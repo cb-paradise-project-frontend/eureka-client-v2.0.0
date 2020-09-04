@@ -1,0 +1,30 @@
+.Main {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 30em;
+  min-height: 5rem;
+  background-color: #f6f8fd;
+  border-top-right-radius: 0.8em;
+  border-top-left-radius: 0.8em;
+  position: relative;
+}
+
+.Bar {
+  flex-grow: 2;
+  text-align: center;
+}
+
+.Close {
+  font-size: 2em;
+  cursor: pointer;
+  background: transparent;
+  color: black;
+  height: 1em;
+  padding: 0.10em 0.25em;
+  text-align: center;
+  justify-content: center;
+}

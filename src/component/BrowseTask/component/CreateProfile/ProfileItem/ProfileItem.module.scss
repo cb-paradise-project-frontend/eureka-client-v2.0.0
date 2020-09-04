@@ -1,0 +1,50 @@
+.profile_item{
+  box-sizing: border-box;
+  display: block;
+  text-align: left;
+  margin: 0px 0px 16px;
+  padding: 0px;
+  color: rgb(41, 43, 50);
+
+  .title{
+    cursor: default;
+  }
+
+  .button{
+    padding: 10px;
+    border: none;
+    background-color: white;
+    outline: none;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: baseline;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-weight: 400;
+    transition: all .1s ease-in-out;
+
+    &:hover{
+      border-color: #545a77;
+      cursor: pointer;
+    }
+
+    .check_icon{
+      background-color: #7db343;
+      width: 18px;
+      border-radius: 50%;
+      text-align: center;
+      color: white;
+      margin: 0;
+      margin-right: 10px;
+    }
+
+    .label{
+      flex: 1 1;
+    }
+
+    .arrow_icon{
+      color: rgb(187, 194, 220);
+    }
+  }
+}

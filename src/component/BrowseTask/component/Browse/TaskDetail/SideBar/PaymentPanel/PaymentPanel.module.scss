@@ -1,0 +1,44 @@
+.payment_panel{
+    border: solid 1px rgb(187, 194, 220);
+    border-radius: 8px;
+
+    .title{
+      line-height: 26px;
+      color: rgb(84, 90, 119);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      padding: 4px;
+      border-bottom: 1px solid rgb(246, 248, 253);
+    }
+
+    .price{
+      color: black;
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 1;
+      padding: 12px 0px;
+      border-bottom: 1px solid rgb(246, 248, 253);
+    }
+
+    .button_wrapper{
+      padding: 8px;
+
+      .button{
+        display: inline-block;
+        width: 100%;
+        margin: 0px;
+        padding: 8px 16px;
+        font-family: museo-bold, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-size: 16px;
+        color: rgb(255, 255, 255);
+        line-height: 24px;
+        letter-spacing: 0.15px;
+        white-space: nowrap;
+        background-color: rgb(125, 179, 67);
+        border: solid 2px rgba(0, 0, 0, 0);
+        border-radius: 160px;
+        cursor: pointer;
+      }
+    }
+}

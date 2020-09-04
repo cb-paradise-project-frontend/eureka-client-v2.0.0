@@ -1,0 +1,23 @@
+.section{
+  width: 100%;
+  margin-top: 15px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title{
+    padding: 20px 16px;
+    padding-bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .content{
+    margin: 0 20px;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

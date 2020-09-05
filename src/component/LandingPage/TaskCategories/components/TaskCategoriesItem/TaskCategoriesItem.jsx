@@ -4,21 +4,33 @@ import styles from './TaskCategoriesItem.module.scss';
 
 import houseIcon from '../../../../../assets/house.svg';
 
-function TaskCategoriesItem({
+function TaskCategoriesItem ({
   type,
-  children
+  title
 }) {
-	return (
+  return (
     <div className={styles.taskCategoriesItem}>
       <button className={styles.taskCategoriesItem__button}>
         <div>
           <img src={houseIcon} alt={type}/>
         </div>
-        <p>{children}</p>
+        <p>{title}</p>
       </button>
     </div>
-	);
+  );
 }
+// {
+// 	return (
+//     <div className={styles.taskCategoriesItem}>
+//       <button className={styles.taskCategoriesItem__button}>
+//         <div>
+//           <img src={houseIcon} alt={type}/>
+//         </div>
+//         <p>{title}</p>
+//       </button>
+//     </div>
+// 	);
+// }
 
 
 export default TaskCategoriesItem;

@@ -75,6 +75,10 @@ class OtherJobsNav extends Component {
           rate = "5 Stars"
           />
         );
+      default: 
+      return (
+        <h1>something wrong</h1>
+      )
     }
   }
 

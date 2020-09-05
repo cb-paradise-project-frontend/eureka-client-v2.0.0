@@ -1,0 +1,31 @@
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+}
+
+.taskCategories__container {
+  position: relative;
+  margin: 15px auto 40px;
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+
+  h3 {
+    color: rgb(41, 43, 50);
+    font-family: museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 30px;
+    line-height: 40px;
+    letter-spacing: -0.15px;
+    padding:20px 0;
+  }
+
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px 10px;
+  }
+
+}

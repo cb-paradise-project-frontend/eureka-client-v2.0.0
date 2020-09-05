@@ -1,0 +1,62 @@
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+}
+
+.home__container {
+  width: 100vw;
+  height: 620px;
+  background-position: center;
+  background-image: url(../../../assets/background_img.png);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      color: white;
+      font-family: museo-black, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      line-height: 1.2;
+      width: 60vw;
+
+      h1 {
+        font-size: 48px;
+        font-weight: 10000;
+        line-height: 52px;
+        letter-spacing: -0.25px;
+        padding: 30px 0;
+      }
+
+      h4 {
+        font-family: museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-size: 34px;
+        line-height: 40px;
+        letter-spacing: -0.15px;
+        padding-bottom: 50px;
+      }
+    }
+
+    button {
+    display: block;
+    flex-wrap: wrap;;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    font-family: museo-bold, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    background-color: rgb(224, 68, 109);
+    border-radius: 160px;
+    margin: 0px;
+    border-color: rgba(0, 0, 0, 0);
+    border-width: 2px;
+    border-style: solid;
+    padding: 16px 24px;
+    }
+}

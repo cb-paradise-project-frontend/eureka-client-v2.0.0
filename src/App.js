@@ -5,13 +5,15 @@ import './App.css';
 
 import BrowseTask from './component/BrowseTask';
 import PostTask from './component/PostTask';
+import LandingPage from './component/LandingPage';
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <LandingPage />
         <BrowseTask />
-        <PostTask />
+        {/* <PostTask /> */}
       </Router>
     </div>
   );

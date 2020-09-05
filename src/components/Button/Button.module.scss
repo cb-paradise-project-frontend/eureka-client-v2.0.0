@@ -1,0 +1,25 @@
+.button {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  box-sizing: border-box;
+  color: rgb(255, 255, 255);
+  font-family: museo-bold, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  width: 100%;
+  background-color: rgb(125, 179, 67);
+  border-radius: 160px;
+  margin: 0 0 8px;
+  border-color: rgba(0, 0, 0, 0);
+  border-width: 2px;
+  border-style: solid;
+  padding: 8px 16px;
+
+}
+
+.google {
+  background-color: #4c8bf5;
+}

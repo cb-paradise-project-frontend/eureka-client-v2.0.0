@@ -1,21 +1,33 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.css';
 
-import BrowseTask from './component/BrowseTask';
-import PostTask from './component/PostTask';
-import LandingPage from './component/LandingPage';
+import { AuthProvider } from './auth/Auth';
+import PrivateRoute from './auth/PrivateRoute';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import BrowseTask from './pages/BrowseTask';
+import PostTask from './pages/PostTask';
+import Landing from './pages/Landing';
+import Profile from './pages/Profile';
+import NotFound from './pages/NotFound';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
+    <AuthProvider>
       <Router>
-        <LandingPage />
-        <BrowseTask />
-        {/* <PostTask /> */}
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/tasks" component={BrowseTask} />
+          <Route exact path="/create" component={PostTask} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/login" component={Login} />
+          <PrivateRoute exact path="/profile" component={Profile} />
+          <Route path="*" component={NotFound} />
+        </Switch>
       </Router>
-    </div>
+    </AuthProvider>
   );
 }
 

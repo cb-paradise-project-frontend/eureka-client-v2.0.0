@@ -10,7 +10,7 @@ import Articles from "./Articles";
 import TopCategories from "./TopCategories";
 import Footer from "./Footer";
 
-function LandingPage() {
+function Landing() {
   return (
     <>
       <Navigation />
@@ -26,4 +26,4 @@ function LandingPage() {
   );
 }
 
-export default LandingPage;
+export default Landing;

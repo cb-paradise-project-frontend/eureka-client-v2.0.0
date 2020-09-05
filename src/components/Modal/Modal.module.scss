@@ -1,0 +1,71 @@
+.container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  height: auto;
+  max-height: 90%;
+  width: auto;
+  border-radius: 5px;
+  padding: 0 20px 20px;
+  animation: 0.4s ease 0s 1 normal none running slideIn;
+  background-color: #ffffff;
+
+  .header {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-shrink: 0;
+    min-height: 60px;
+    position: relative;
+    padding: 0px 16px;
+    border-bottom: 1px solid rgb(246, 248, 253);
+    font-weight: 400;
+
+    .heading {
+      -webkit-box-flex: 1;
+      flex-grow: 1;
+      color: rgb(41, 43, 50);
+      font-family: museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      font-size: 18px;
+      line-height: 24px;
+      letter-spacing: 0.15px;
+      text-align: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      padding: 0px 32px;
+      overflow: hidden;
+    }
+
+    .close {
+      display: inline-flex;
+      border: none;
+      margin: 0;
+      text-decoration: none;
+      background: #ffffff;
+      color: rgb(84, 90, 119);;
+      position: absolute;
+      right: 0px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-align: center;
+
+      i {
+        size: 24px;
+      }
+    }
+
+    .button:hover,
+    .button:focus {
+      color: #333333;
+    }
+  }
+
+  .content {
+    padding: 24px 16px;
+    overflow: hidden auto;
+  }
+}

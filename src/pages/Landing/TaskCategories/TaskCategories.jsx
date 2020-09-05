@@ -54,10 +54,7 @@ class TaskCategories extends React.Component {
                 title = {item.title}
                 />
               )
-            }
-
-
-            )
+            })
           }
         </div>
       </div>

@@ -1,0 +1,76 @@
+.ArticleCard {
+  display: inline-block;
+  width: 300px;
+  height: 380px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 15px 0px;
+  float: none;
+  vertical-align: top;
+  color: rgb(41, 43, 50);
+  text-align: left;
+  border-radius: 4px;
+  background: white;
+  margin: 16px 16px 0px 0px;
+}
+
+.articleTitle {
+  color: rgb(41, 43, 50);
+  font-family: "Baloo Tamma 2", cursive;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  letter-spacing: -0.15px;
+  text-align: left;
+  vertical-align: initial;
+  font-style: initial;
+  white-space: initial;
+  text-decoration: initial;
+  padding: 0px 8px 0px 0px;
+  margin: 16px 0px 0px 16px;
+}
+
+.articleContent {
+  font-family: "Baloo Tamma 2", cursive;
+
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  text-align: left;
+  vertical-align: initial;
+  font-style: initial;
+  white-space: initial;
+  text-decoration: initial;
+  font-size: 16px;
+  color: rgb(84, 90, 119);
+  text-overflow: ellipsis;
+  padding: 0px 16px;
+  margin: 8px 0px 0px;
+  overflow: hidden;
+}
+
+.readMore {
+  color: #008fb4;
+  text-decoration: none;
+  text-align: left;
+  padding: 0px 16px;
+  margin: 8px 0px 0px;
+}
+.readMore :hover {
+  content: "";
+  position: relative;
+  display: block;
+  top: 2px;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: #008fb4;
+}
+.articleImg {
+  width: 100%;
+  transition: transform 0.5s ease 0s;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+// .articleImg:hover {
+//   transform: scale(1.4);
+// }

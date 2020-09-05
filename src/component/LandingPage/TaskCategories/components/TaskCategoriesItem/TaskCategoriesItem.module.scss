@@ -1,0 +1,49 @@
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+}
+
+.taskCategoriesItem__button {
+  display: inline-flex;
+  position: relative;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+
+  button {
+    
+  }
+
+  div {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(84, 90, 119);
+    color: white;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 8px;
+    border-radius: 100%;
+    transition: transform 0.3s ease 0s;
+
+
+
+    img {
+      position: absolute;
+      height: 38px;
+      width: 38px;
+      transition: transform 0.25s ease 0s;
+    }
+  }
+
+  div:hover {
+    background-color: rgb(224, 68, 109);
+    transform: scale(1.08);
+  }
+}

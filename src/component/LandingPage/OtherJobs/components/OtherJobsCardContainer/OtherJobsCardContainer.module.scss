@@ -1,0 +1,33 @@
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+}
+
+
+.OtherJobs__cards {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  margin: 10px auto;
+
+  .OtherJobs__description {
+    h5 {
+      color: rgb(84, 90, 119);
+      font-size: 18px;
+      line-height: 24px;
+      letter-spacing: 0.15px;
+      margin: 10px;
+      padding: 10px;
+      width: 900px;
+      margin: 0 auto 20px;
+    }
+  }
+  
+  .OtherJobs__cardGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 320px);
+    grid-template-rows: repeat(2, 170px);
+    margin: 0 auto;
+  }
+}
+

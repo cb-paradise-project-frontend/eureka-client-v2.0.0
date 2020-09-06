@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styles from './BankAccount.module.scss';
 
 import FormInput from '../../../../../../components/FormInput';
+import Button from '../../../../../../components/Button';
 
 export default function BankAccount({ onSubmit }) {
   const [holder, setHolder] = useState('');
@@ -31,14 +32,14 @@ export default function BankAccount({ onSubmit }) {
     <FormInput 
       label={'Account holder name'}
       value={holder}
-      placeHolder={'e.g. Alice'}
+      placeholder={'e.g. Alice'}
       handleChange={handleInput(setHolder)}
     />
   );
   const accountNumberField = (
     <FormInput 
       label={'Account number'}
-      placeHolder={'e.g. 12345678'}
+      placeholder={'e.g. 12345678'}
       value={accountNumber}
       handleChange={handleInput(setAccountNumber)}
     />
@@ -46,7 +47,7 @@ export default function BankAccount({ onSubmit }) {
   const bsbField = (
     <FormInput 
       label={'BSB'}
-      placeHolder={'e.g. 000-000'}
+      placeholder={'e.g. 000-000'}
       value={bsb}
       handleChange={handleInput(setBsb)}
     />
@@ -62,12 +63,11 @@ export default function BankAccount({ onSubmit }) {
         {accountNumberField}
         {bsbField}
       </div>
-      <button 
-        className={styles.submit_button}
-        onClick={handleSubmit}
-      >
-        Add Bank Account
-      </button>
+      <div className={styles.button_wrapper} >
+        <Button handleSubmit={handleSubmit} >
+          Add Bank Account
+        </Button>
+      </div>
     </>
   );
 }

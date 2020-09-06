@@ -1,4 +1,4 @@
-import * as ACTION from '../Action/actionType';
+import * as ACTION from './Action/actionType';
 
 export default function profileReducer(state, action) {
   console.log(action);

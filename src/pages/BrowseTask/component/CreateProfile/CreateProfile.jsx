@@ -3,11 +3,11 @@ import React, { useReducer } from 'react';
 import styles from './CreateProfile.module.scss';
 
 import ModalPage from '../ModalPage';
-import profileReducer from './Reducer/profileReducer';
+import profileReducer from './Reducer';
 import ProfileItem from './ProfileItem';
 import BankAccount from './SubPages/BankAccount';
 import BillingAddress from './SubPages/BillingAddress';
-import * as action from './Action/actionCreator';
+import * as action from './Reducer/Action/actionCreator';
 
 const initialState = {
   photo: '',
@@ -29,7 +29,6 @@ const initialState = {
   subPage: '',
 };
 
-
 export default function CreateProfile() {
   const [state, dispatch] = useReducer(profileReducer, initialState);
 
@@ -39,6 +38,10 @@ export default function CreateProfile() {
 
   const handleAccountInput = (bankAccount) => {
     dispatch(action.accountInput(bankAccount));
+  };
+
+  const handleBillingAddressInput = (billingAddress) => {
+    dispatch(action.billingAddressInput(billingAddress));
   };
 
   const handleProfileBtnClick = (subPage) => {
@@ -60,7 +63,7 @@ export default function CreateProfile() {
     },
     {
       name: 'Billing Address',
-      subPage: <BillingAddress/>,
+      subPage: <BillingAddress onSubmit={handleBillingAddressInput} />,
     },
     {
       name: 'Date of Birth',

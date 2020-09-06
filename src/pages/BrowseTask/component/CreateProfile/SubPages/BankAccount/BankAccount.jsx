@@ -4,6 +4,7 @@ import styles from './BankAccount.module.scss';
 
 import FormInput from '../../../../../../components/FormInput';
 import Button from '../../../../../../components/Button';
+import handleInput from '../Utils/handleInput';
 
 export default function BankAccount({ onSubmit }) {
   const [holder, setHolder] = useState('');
@@ -11,13 +12,35 @@ export default function BankAccount({ onSubmit }) {
   const [bsb, setBsb] = useState('');
 
   const introduction = `Please provide your bank details so you can get paid. We don't take any money from your account.`;
-  
-  const handleInput = (setter) => {
-    const callSetter = (e) => {
-      setter(e.target.value);
-    };
-    return callSetter;
-  }
+  const formInputElements = [
+    {
+      label: 'Account holder name', 
+      placeholder: 'e.g. Alice', 
+      value: holder, 
+      handleChange: handleInput(setHolder), 
+    },
+    {
+      label: 'Account number', 
+      placeholder: 'e.g. 12345678', 
+      value: accountNumber, 
+      handleChange: handleInput(setAccountNumber), 
+    },
+    {
+      label: 'BSB', 
+      placeholder: 'e.g. 000-000', 
+      value: bsb, 
+      handleChange: handleInput(setBsb), 
+    },
+  ];
+
+  const formInputs = formInputElements.map(({ label, placeholder, value, handleChange }) => (
+    <FormInput 
+      label={label}
+      placeholder={placeholder}
+      value={value}
+      handleChange={handleChange}
+    />
+  ));  
 
   const handleSubmit = () => {
     const bankAccount = {
@@ -28,40 +51,13 @@ export default function BankAccount({ onSubmit }) {
     onSubmit(bankAccount);
   }
 
-  const holderField = (
-    <FormInput 
-      label={'Account holder name'}
-      value={holder}
-      placeholder={'e.g. Alice'}
-      handleChange={handleInput(setHolder)}
-    />
-  );
-  const accountNumberField = (
-    <FormInput 
-      label={'Account number'}
-      placeholder={'e.g. 12345678'}
-      value={accountNumber}
-      handleChange={handleInput(setAccountNumber)}
-    />
-  );
-  const bsbField = (
-    <FormInput 
-      label={'BSB'}
-      placeholder={'e.g. 000-000'}
-      value={bsb}
-      handleChange={handleInput(setBsb)}
-    />
-  );
-
   return (
     <>
       <div className={styles.introduction} >
         {introduction}
       </div>
       <div className={styles.form_input} >
-        {holderField}
-        {accountNumberField}
-        {bsbField}
+        {formInputs}
       </div>
       <div className={styles.button_wrapper} >
         <Button handleSubmit={handleSubmit} >

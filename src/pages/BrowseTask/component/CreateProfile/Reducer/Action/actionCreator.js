@@ -14,6 +14,13 @@ export const accountInput = (bankAccount) => {
   }
 };
 
+export const billingAddressInput = (billingAddress) => {
+  return {
+    type: ACTION.BILLING_ADDRESS_INPUT,
+    payload: { billingAddress }, 
+  }
+};
+
 export const clickBackBtn = () => (
   { type: ACTION.CLICK_BACK_BUTTON }
 );

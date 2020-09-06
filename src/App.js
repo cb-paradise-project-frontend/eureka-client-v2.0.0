@@ -12,6 +12,7 @@ import PostTask from './pages/PostTask';
 import Landing from './pages/Landing';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
+import CreateProfile from './pages/BrowseTask/component/CreateProfile';
 
 const App = () => {
   return (
@@ -19,7 +20,8 @@ const App = () => {
       <Router>
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route exact path="/tasks" component={BrowseTask} />
+          <Route path="/tasks" component={BrowseTask} />
+          <Route exact path="/create-profile" component={CreateProfile} />
           <Route exact path="/create" component={PostTask} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />

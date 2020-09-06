@@ -1,13 +1,12 @@
 import React from 'react';
 
-import GreenButton from '../../../GreenButton';
+import Button from '../../../../../../components/Button';
 
 export default function OfferButton({ expired }) {
   return (
-    <GreenButton 
-      label={'Make an offer'}
-      expired={expired}
-    />
+    <Button expired={expired} >
+      {expired ? 'expired' : 'Make an offer'}
+    </Button>
   );
 }
 

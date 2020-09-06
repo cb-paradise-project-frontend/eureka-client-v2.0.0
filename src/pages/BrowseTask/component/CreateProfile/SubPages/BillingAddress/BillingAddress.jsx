@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './BillingAddress.module.scss';
 
-import FormField from '../../../FormField';
+import FormInput from '../../../../../../components/FormInput';
 
 export default function BillingAddress() {
   const introduction = `Your billing address will be verified before you can receive payments.`;
@@ -15,7 +15,7 @@ export default function BillingAddress() {
       'Country',
   ];
   const formInputs = formInputTexts.map((label) => (
-    <FormField 
+    <FormInput 
       label={label}
       key={label}
     />

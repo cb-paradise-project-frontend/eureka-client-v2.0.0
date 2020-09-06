@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import styles from './BankAccount.module.scss';
 
-import FormField from '../../../FormField';
+import FormInput from '../../../../../../components/FormInput';
 
 export default function BankAccount({ onSubmit }) {
   const [holder, setHolder] = useState('');
@@ -11,6 +11,13 @@ export default function BankAccount({ onSubmit }) {
 
   const introduction = `Please provide your bank details so you can get paid. We don't take any money from your account.`;
   
+  const handleInput = (setter) => {
+    const callSetter = (e) => {
+      setter(e.target.value);
+    };
+    return callSetter;
+  }
+
   const handleSubmit = () => {
     const bankAccount = {
       holder,
@@ -21,27 +28,27 @@ export default function BankAccount({ onSubmit }) {
   }
 
   const holderField = (
-    <FormField 
+    <FormInput 
       label={'Account holder name'}
+      value={holder}
       placeHolder={'e.g. Alice'}
-      input={holder}
-      setInput={setHolder}
+      handleChange={handleInput(setHolder)}
     />
   );
   const accountNumberField = (
-    <FormField 
+    <FormInput 
       label={'Account number'}
       placeHolder={'e.g. 12345678'}
-      input={accountNumber}
-      setInput={setAccountNumber}
+      value={accountNumber}
+      handleChange={handleInput(setAccountNumber)}
     />
   );
   const bsbField = (
-    <FormField 
+    <FormInput 
       label={'BSB'}
       placeHolder={'e.g. 000-000'}
-      input={bsb}
-      setInput={setBsb}
+      value={bsb}
+      handleChange={handleInput(setBsb)}
     />
   );
 

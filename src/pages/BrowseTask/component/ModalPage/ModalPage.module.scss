@@ -23,7 +23,8 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    overflow-y: scroll;
+    overflow: auto;
+    overflow-x: hidden;
     padding: 10px 20px;
   }
 

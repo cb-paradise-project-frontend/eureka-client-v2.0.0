@@ -39,6 +39,7 @@ export default function BankAccount({ onSubmit }) {
       placeholder={placeholder}
       value={value}
       handleChange={handleChange}
+      key={label}
     />
   ));  
 

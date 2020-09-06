@@ -123,6 +123,7 @@ export default function CreateProfile() {
     </>
   );
 
+  console.log(state);
   return (
     <ModalPage  
       header={header}

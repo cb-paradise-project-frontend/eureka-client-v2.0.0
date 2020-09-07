@@ -28,6 +28,13 @@ export const birthdayInput = (birthday) => {
   }
 };
 
+export const mobileInput = (mobile) => {
+  return {
+    type: ACTION.MOBILE_INPUT,
+    payload: { mobile }, 
+  }
+};
+
 export const clickBackBtn = () => (
   { type: ACTION.CLICK_BACK_BUTTON }
 );

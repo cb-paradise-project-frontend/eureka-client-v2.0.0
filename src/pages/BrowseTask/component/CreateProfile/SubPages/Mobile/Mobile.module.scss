@@ -1,0 +1,62 @@
+.introduction{
+  color: #292b32;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  text-align: left;
+  font-weight: 500;
+  margin-bottom: 10px; 
+}
+
+.input_title{
+  display: block;
+  color: rgb(41, 43, 50);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  margin-bottom: 8px;
+  letter-spacing: 0.25px;
+  text-align: left;
+  font-weight: 500;
+}
+
+.input_notice{
+  display: block;
+  color: rgb(84, 90, 119);
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.25px;
+  margin-bottom: 8px;
+}
+
+.input_bar{
+  display: flex;
+
+  .input_wrapper{
+    width: 160px;
+    margin: 0;
+  }
+
+  .disabled{
+    pointer-events: none;
+  }
+
+  .button_wrapper{
+    margin: 8px 10px;
+  }
+
+  .edit{
+    button{
+      color: rgb(0, 143, 180);
+      background-color: rgb(246, 248, 253);
+      border: solid 2px rgb(231, 235, 251);
+    }
+  }
+}
+
+.information{
+  color: rgb(41, 43, 50);
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.25px;
+}

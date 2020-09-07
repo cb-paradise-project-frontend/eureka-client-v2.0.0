@@ -1,13 +1,16 @@
 import React from 'react';
+import classNames from 'classnames/bind';
 
 import styles from './ProfileItem.module.scss';
 
-export default function ProfileItem({ itemName, handleClick }) {
+export default function ProfileItem({ itemName, handleClick, checked }) {
   const checkIcon = String.fromCharCode(10003); 
   const arrowIcon = String.fromCharCode(10095);
 
   const title = `Provide your ${itemName}`;
   const label = `Update your ${itemName}`;
+
+  const cx = classNames.bind(styles);
 
   return (
     <div className={styles.profile_item} >
@@ -18,7 +21,10 @@ export default function ProfileItem({ itemName, handleClick }) {
         className={styles.button}
         onClick={handleClick} 
       >
-        <div className={styles.check_icon} >
+        <div className={cx({
+          check_icon: true,
+          checked: checked === true, 
+        })} >
           {checkIcon}
         </div>
         <div className={styles.label} >

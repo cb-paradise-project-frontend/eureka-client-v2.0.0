@@ -17,10 +17,10 @@ function Landing() {
       <Home />
       <TaskCategories />
       <OtherJobs />
+      <TopCategories />
       <MeetTasker />
       <ThingsToKnow />
       <Articles />
-      <TopCategories />
       <Footer />
     </>
   );

@@ -13,10 +13,10 @@ export default function profileReducer(state, action) {
         ...state,
         billingAddress: action.payload.billingAddress, 
       };
-    case ACTION.BIRTH_DATE_INPUT:
+    case ACTION.BIRTHDAY_INPUT:
       return {
         ...state,
-        birthDate: action.payload.birthDate, 
+        birthday: action.payload.birthday, 
       };
     case ACTION.MOBILE_INPUT:
       return {

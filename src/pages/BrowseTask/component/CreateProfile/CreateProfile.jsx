@@ -7,6 +7,7 @@ import profileReducer from './Reducer';
 import ProfileItem from './ProfileItem';
 import BankAccount from './SubPages/BankAccount';
 import BillingAddress from './SubPages/BillingAddress';
+import Birthday from './SubPages/Birthday';
 import * as action from './Reducer/Action/actionCreator';
 
 const initialState = {
@@ -24,7 +25,11 @@ const initialState = {
     postcode: '',
     country: '',
   },
-  birthDate: '',
+  birthday: {
+    day: '',
+    month: '',
+    year: '', 
+  },
   mobile:'', 
   subPage: '',
 };
@@ -42,6 +47,10 @@ export default function CreateProfile() {
 
   const handleBillingAddressInput = (billingAddress) => {
     dispatch(action.billingAddressInput(billingAddress));
+  };
+
+  const handleBirthdayInput = (birthday) => {
+    dispatch(action.birthdayInput(birthday));
   };
 
   const handleProfileBtnClick = (subPage) => {
@@ -67,7 +76,7 @@ export default function CreateProfile() {
     },
     {
       name: 'Date of Birth',
-      subPage: <BankAccount onSubmit={handleAccountInput} />,
+      subPage: <Birthday onSubmit={handleBirthdayInput} />,
     },
     {
       name: 'Mobile Number',

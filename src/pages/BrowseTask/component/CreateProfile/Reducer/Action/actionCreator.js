@@ -21,6 +21,13 @@ export const billingAddressInput = (billingAddress) => {
   }
 };
 
+export const birthdayInput = (birthday) => {
+  return {
+    type: ACTION.BIRTHDAY_INPUT,
+    payload: { birthday }, 
+  }
+};
+
 export const clickBackBtn = () => (
   { type: ACTION.CLICK_BACK_BUTTON }
 );

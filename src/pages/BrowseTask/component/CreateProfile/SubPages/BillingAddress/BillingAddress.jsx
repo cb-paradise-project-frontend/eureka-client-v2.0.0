@@ -15,6 +15,7 @@ export default function BillingAddress({ onSubmit }) {
   const [country, setCountry] = useState('');
 
   const introduction = `Your billing address will be verified before you can receive payments.`;
+  const information = 'Your address will never been shown publicly, it is only used for account verification purposes.';
   const formInputElements = [
     {
       label: 'Address Line 1', 
@@ -81,6 +82,9 @@ export default function BillingAddress({ onSubmit }) {
         <Button handleSubmit={handleSubmit} >
           Add Billing Address
         </Button>
+      </div>
+      <div className={styles.information} >
+        {information}
       </div>
     </>
   );

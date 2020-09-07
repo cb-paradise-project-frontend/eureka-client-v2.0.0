@@ -1,0 +1,17 @@
+.grouped_input{
+  display: flex;
+
+  .input_wrapper{
+    width: 60px;
+    padding: 0 4px;
+
+    input{
+      text-align: center;
+    }
+  }
+}
+
+.button_wrapper{
+  margin: 20px 0;
+  width: 140px;
+}

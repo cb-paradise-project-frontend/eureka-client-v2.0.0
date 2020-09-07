@@ -2,12 +2,13 @@ import React from 'react';
 
 import styles from './OtherJobsCard.module.scss';
 
-const OtherJobsCard = ({
+function OtherJobsCard ({
   title,
   description,
   price,
   rate,
-}) => (
+}) {
+  return (
   <div className={styles.card__container}>
     <div>
       <h4>{title}</h4>
@@ -28,5 +29,6 @@ const OtherJobsCard = ({
     </div>
   </div>
   );
+}
 
 export default OtherJobsCard;

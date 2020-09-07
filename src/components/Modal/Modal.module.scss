@@ -1,5 +1,5 @@
 .container {
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 50%;
   right: auto;
@@ -13,6 +13,7 @@
   padding: 0 20px 20px;
   animation: 0.4s ease 0s 1 normal none running slideIn;
   background-color: #ffffff;
+  z-index: 999;
 
   .header {
     display: flex;

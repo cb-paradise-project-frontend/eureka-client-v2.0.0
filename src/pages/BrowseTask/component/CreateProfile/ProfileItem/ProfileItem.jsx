@@ -3,12 +3,13 @@ import classNames from 'classnames/bind';
 
 import styles from './ProfileItem.module.scss';
 
-export default function ProfileItem({ itemName, handleClick, checked }) {
+export default function ProfileItem({ itemName, handleClick, checked, statusLabel }) {
   const checkIcon = String.fromCharCode(10003); 
   const arrowIcon = String.fromCharCode(10095);
 
   const title = `Provide your ${itemName}`;
-  const label = `Update your ${itemName}`;
+  const prefix = checked ? 'Update' : 'Enter'; 
+  const label = statusLabel ? statusLabel : `${prefix} your ${itemName}`;
 
   const cx = classNames.bind(styles);
 

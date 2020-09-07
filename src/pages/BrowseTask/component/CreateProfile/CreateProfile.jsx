@@ -9,6 +9,8 @@ import BankAccount from './SubPages/BankAccount';
 import BillingAddress from './SubPages/BillingAddress';
 import Birthday from './SubPages/Birthday';
 import Mobile from './SubPages/Mobile';
+import dayLabel from './Utils/dayLabel';
+import monthLabel from './Utils/monthLabel';
 import * as action from './Reducer/Action/actionCreator';
 
 const initialState = {
@@ -83,7 +85,16 @@ export default function CreateProfile() {
     return (stateValue) && true;
   }
 
-  const profileInfoList = [
+  const birthdayStatusLabel = () => {
+    if (!isChecked(birthday)) return '';
+    const { day, month, year } = birthday;
+    const datText = dayLabel(day);
+    const monthText = monthLabel(month);
+    const label = `${datText} ${monthText} ${year}`;
+    return label;
+  }
+ 
+  const profileItemElementList = [
     {
       name: 'Profile Picture',
       checked: isChecked(photo), 
@@ -102,11 +113,13 @@ export default function CreateProfile() {
     {
       name: 'Date of Birth',
       checked: isChecked(birthday),
+      statusLabel: birthdayStatusLabel(),
       subPage: <Birthday onSubmit={handleBirthdayInput} />,
     },
     {
       name: 'Mobile Number',
       checked: isChecked(mobile),
+      statusLabel: mobile,
       subPage: <Mobile 
         verifiedMobile={mobile} 
         onSubmit={handleMobileInput} 
@@ -114,10 +127,11 @@ export default function CreateProfile() {
     }, 
   ];
 
-  const profileList = profileInfoList.map(({ name, checked, subPage }) => (
+  const profileList = profileItemElementList.map(({ name, checked, statusLabel, subPage }) => (
     <ProfileItem 
       itemName={name}
       handleClick={handleProfileBtnClick(subPage)}
+      statusLabel={statusLabel}
       checked={checked}
       key={name}
     />

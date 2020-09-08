@@ -9,7 +9,7 @@ class PostTaskForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentScreenIndex: 3,
+      currentScreenIndex: 0,
       jobTitle: "",
       jobDetails: "",
       jobTitleLength: 10, 

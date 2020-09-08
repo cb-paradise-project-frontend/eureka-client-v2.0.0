@@ -1,4 +1,4 @@
-@import '../../../../scss-partial/status-color-code';
+@import '../../../../../../../components/scss-partial/status-color-code';
 
 @mixin status-active($status) {
   @extend %status;

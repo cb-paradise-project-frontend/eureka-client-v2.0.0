@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 
 import styles from './BankAccount.module.scss';
 
-import FormField from '../../../FormField';
+import FormInput from '../../../../../../components/FormInput';
+import Button from '../../../../../../components/Button';
+import handleInput from '../Utils/handleInput';
 
 export default function BankAccount({ onSubmit }) {
   const [holder, setHolder] = useState('');
@@ -10,7 +12,37 @@ export default function BankAccount({ onSubmit }) {
   const [bsb, setBsb] = useState('');
 
   const introduction = `Please provide your bank details so you can get paid. We don't take any money from your account.`;
-  
+  const formInputElements = [
+    {
+      label: 'Account holder name', 
+      placeholder: 'e.g. Alice', 
+      value: holder, 
+      handleChange: handleInput(setHolder), 
+    },
+    {
+      label: 'Account number', 
+      placeholder: 'e.g. 12345678', 
+      value: accountNumber, 
+      handleChange: handleInput(setAccountNumber), 
+    },
+    {
+      label: 'BSB', 
+      placeholder: 'e.g. 000-000', 
+      value: bsb, 
+      handleChange: handleInput(setBsb), 
+    },
+  ];
+
+  const formInputs = formInputElements.map(({ label, placeholder, value, handleChange }) => (
+    <FormInput 
+      label={label}
+      placeholder={placeholder}
+      value={value}
+      handleChange={handleChange}
+      key={label}
+    />
+  ));  
+
   const handleSubmit = () => {
     const bankAccount = {
       holder,
@@ -20,47 +52,19 @@ export default function BankAccount({ onSubmit }) {
     onSubmit(bankAccount);
   }
 
-  const holderField = (
-    <FormField 
-      label={'Account holder name'}
-      placeHolder={'e.g. Alice'}
-      input={holder}
-      setInput={setHolder}
-    />
-  );
-  const accountNumberField = (
-    <FormField 
-      label={'Account number'}
-      placeHolder={'e.g. 12345678'}
-      input={accountNumber}
-      setInput={setAccountNumber}
-    />
-  );
-  const bsbField = (
-    <FormField 
-      label={'BSB'}
-      placeHolder={'e.g. 000-000'}
-      input={bsb}
-      setInput={setBsb}
-    />
-  );
-
   return (
     <>
       <div className={styles.introduction} >
         {introduction}
       </div>
       <div className={styles.form_input} >
-        {holderField}
-        {accountNumberField}
-        {bsbField}
+        {formInputs}
       </div>
-      <button 
-        className={styles.submit_button}
-        onClick={handleSubmit}
-      >
-        Add Bank Account
-      </button>
+      <div className={styles.button_wrapper} >
+        <Button handleSubmit={handleSubmit} >
+          Add Bank Account
+        </Button>
+      </div>
     </>
   );
 }

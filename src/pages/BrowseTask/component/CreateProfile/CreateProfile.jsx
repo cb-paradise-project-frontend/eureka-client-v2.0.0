@@ -3,11 +3,15 @@ import React, { useReducer } from 'react';
 import styles from './CreateProfile.module.scss';
 
 import ModalPage from '../ModalPage';
-import profileReducer from './Reducer/profileReducer';
+import profileReducer from './Reducer';
 import ProfileItem from './ProfileItem';
 import BankAccount from './SubPages/BankAccount';
 import BillingAddress from './SubPages/BillingAddress';
-import * as action from './Action/actionCreator';
+import Birthday from './SubPages/Birthday';
+import Mobile from './SubPages/Mobile';
+import dayLabel from './Utils/dayLabel';
+import monthLabel from './Utils/monthLabel';
+import * as action from './Reducer/Action/actionCreator';
 
 const initialState = {
   photo: '',
@@ -24,22 +28,25 @@ const initialState = {
     postcode: '',
     country: '',
   },
-  birthDate: '',
+  birthday: {
+    day: '',
+    month: '',
+    year: '', 
+  },
   mobile:'', 
   subPage: '',
 };
 
-
 export default function CreateProfile() {
   const [state, dispatch] = useReducer(profileReducer, initialState);
-
-  const title = 'To start Making Money';
-  const backButtonIcon = String.fromCharCode(10140);
-  const closeButtonIcon = String.fromCharCode(9747);
-
-  const handleAccountInput = (bankAccount) => {
-    dispatch(action.accountInput(bankAccount));
-  };
+  const { 
+    photo, 
+    bankAccount, 
+    billingAddress, 
+    birthday,
+    mobile, 
+    subPage, 
+  } = state;
 
   const handleProfileBtnClick = (subPage) => {
     return () => (dispatch(action.clickProfileItem(subPage)));
@@ -49,38 +56,90 @@ export default function CreateProfile() {
     dispatch(action.clickBackBtn());
   }
 
-  const profileInfoList = [
+  const handleAccountInput = (bankAccount) => {
+    dispatch(action.accountInput(bankAccount));
+    handleBackBtnClick();
+  };
+
+  const handleBillingAddressInput = (billingAddress) => {
+    dispatch(action.billingAddressInput(billingAddress));
+    handleBackBtnClick();
+  };
+
+  const handleBirthdayInput = (birthday) => {
+    dispatch(action.birthdayInput(birthday));
+    handleBackBtnClick();
+  };
+
+  const handleMobileInput = (mobile) => {
+    dispatch(action.mobileInput(mobile));
+    handleBackBtnClick();
+  };
+
+  const isChecked = (stateValue) => {
+    if(typeof stateValue === 'object') {
+      const valueArray = Object.values(stateValue);
+      const result = valueArray.filter(value => value);
+      return (result.length === valueArray.length) ? true : false;
+    };
+    return (stateValue) && true;
+  }
+
+  const birthdayStatusLabel = () => {
+    if (!isChecked(birthday)) return '';
+    const { day, month, year } = birthday;
+    const datText = dayLabel(day);
+    const monthText = monthLabel(month);
+    const label = `${datText} ${monthText} ${year}`;
+    return label;
+  }
+ 
+  const profileItemElementList = [
     {
       name: 'Profile Picture',
+      checked: isChecked(photo), 
       subPage: <BankAccount onSubmit={handleAccountInput} />,
     },
     {
       name: 'Bank Account Details',
+      checked: isChecked(bankAccount), 
       subPage: <BankAccount onSubmit={handleAccountInput} />,
     },
     {
       name: 'Billing Address',
-      subPage: <BillingAddress/>,
+      checked: isChecked(billingAddress),
+      subPage: <BillingAddress onSubmit={handleBillingAddressInput} />,
     },
     {
       name: 'Date of Birth',
-      subPage: <BankAccount onSubmit={handleAccountInput} />,
+      checked: isChecked(birthday),
+      statusLabel: birthdayStatusLabel(),
+      subPage: <Birthday onSubmit={handleBirthdayInput} />,
     },
     {
       name: 'Mobile Number',
-      subPage: <BankAccount onSubmit={handleAccountInput} />,
+      checked: isChecked(mobile),
+      statusLabel: mobile,
+      subPage: <Mobile 
+        verifiedMobile={mobile} 
+        onSubmit={handleMobileInput} 
+      />,
     }, 
   ];
 
-  const profileList = profileInfoList.map(({ name, subPage }) => (
+  const profileList = profileItemElementList.map(({ name, checked, statusLabel, subPage }) => (
     <ProfileItem 
       itemName={name}
       handleClick={handleProfileBtnClick(subPage)}
+      statusLabel={statusLabel}
+      checked={checked}
       key={name}
     />
   ));
-  
-  const { subPage } = state;
+
+  const title = 'To start Making Money';
+  const backButtonIcon = String.fromCharCode(10140);
+  const closeButtonIcon = String.fromCharCode(9747);
 
   const header = (
     <>

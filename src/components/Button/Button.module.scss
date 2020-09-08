@@ -1,3 +1,5 @@
+@import '../scss-partial/status-color-code';
+
 .button {
   display: inline-block;
   text-align: center;
@@ -17,7 +19,13 @@
   border-width: 2px;
   border-style: solid;
   padding: 8px 16px;
+  outline: none;
 
+  &.expired{
+    background-color: lighten($expired-color, 25%);
+    color: darken($expired-color, 10%);
+    cursor: auto;
+  }
 }
 
 .google {

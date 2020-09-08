@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import { signInWithGoogle, auth } from './../../firebase';
-import { AuthContext } from './../../auth/Auth';
+import { signInWithGoogle, auth } from '../../firebase';
+import { AuthContext } from '../../auth/Auth';
 
-import styles from './Login.module.scss';
+import styles from './LoginModal.module.scss';
 
-import Modal from './../Modal';
-import FormInput from './../FormInput';
-import Button from './../Button';
+import Modal from '../Modal';
+import FormInput from '../FormInput';
+import Button from '../Button';
 
-const Login = () => {
+const LoginModal = () => {
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -72,4 +72,4 @@ const Login = () => {
   );
 }
 
-export default Login;
+export default LoginModal;

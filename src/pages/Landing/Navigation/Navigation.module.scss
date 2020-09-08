@@ -154,6 +154,11 @@ nav {
       background-color: #fff;
     }
 
+    button {
+      background-color: transparent;
+      border: none;
+    }
+
     .logIn {
       color: #fff;
       float: right;
@@ -167,10 +172,6 @@ nav {
       line-height: 58px;
       position: relative;
       text-decoration: none;
-    }
-
-    .logIn:hover {
-      color:rgba(84,90,119,.8);
     }
 
     .signUp {
@@ -187,16 +188,11 @@ nav {
       position: relative;
       text-decoration: none;
     }
-
-    .signUp:hover {
-      color:rgba(84,90,119,.8);
-    }
   }
 
   .categories:hover .category_details {
     display: block;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px;
-    // margin: 10px 10px;
     border-radius: 4px;
     transition: transform 0.4s ease 0s;
   }

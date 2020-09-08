@@ -4,13 +4,13 @@ import { Redirect } from 'react-router-dom';
 import { auth } from '../../firebase';
 import { AuthContext } from '../../auth/Auth';
 
-import styles from './Signup.module.scss';
+import styles from './SignupModal.module.scss';
 
 import Modal from '../Modal';
 import FormInput from '../FormInput';
 import Button from '../Button';
 
-const Signup = () => {
+const SignupModal = () => {
   const [userCredentials, setUserCredentials] = useState({
     email: '',
     password: '',
@@ -80,4 +80,4 @@ const Signup = () => {
   );
 }
 
-export default Signup;
+export default SignupModal;

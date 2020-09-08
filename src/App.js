@@ -2,11 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.css';
+import 'remixicon/fonts/remixicon.css'
 
 import { AuthProvider } from './auth/Auth';
 import PrivateRoute from './auth/PrivateRoute';
-import Signup from './components/Signup';
 import Login from './components/Login';
+import Signup from './components/Signup';
 import BrowseTask from './pages/BrowseTask';
 import PostTask from './pages/PostTask';
 import Landing from './pages/Landing';

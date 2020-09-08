@@ -9,7 +9,6 @@ import styles from './Signup.module.scss';
 import Modal from '../Modal';
 import FormInput from '../FormInput';
 import Button from '../Button';
-import Overlay from '../Overlay';
 
 const Signup = () => {
   const [userCredentials, setUserCredentials] = useState({
@@ -46,40 +45,38 @@ const Signup = () => {
   }
 
   return (
-    <Overlay>
-      <Modal heading="Sign up">
-        <form className={styles.conatiner}>
-          <FormInput
-            label="Email"
-            name="email"
-            type="email"
-            placeholder="Email"
-            required
-            value={userCredentials.email}
-            handleChange={handleChange}
-          />
-          <FormInput
-            label="Password"
-            name="password"
-            type="password"
-            placeholder="Password"
-            required
-            value={userCredentials.password}
-            handleChange={handleChange}
-          />
-          <FormInput
-            label="Comfirm Password"
-            name="confirmPassword"
-            type="password"
-            placeholder="Comfirm Password"
-            required
-            value={userCredentials.confirmPassword}
-            handleChange={handleChange}
-          />
-          <Button type="submit" handleSubmit={onSignUp}>Sign up</Button>
-        </form>
-      </Modal>
-    </Overlay>
+    <Modal heading="Sign up">
+      <form className={styles.conatiner}>
+        <FormInput
+          label="Email"
+          name="email"
+          type="email"
+          placeholder="Email"
+          required
+          value={userCredentials.email}
+          handleChange={handleChange}
+        />
+        <FormInput
+          label="Password"
+          name="password"
+          type="password"
+          placeholder="Password"
+          required
+          value={userCredentials.password}
+          handleChange={handleChange}
+        />
+        <FormInput
+          label="Comfirm Password"
+          name="confirmPassword"
+          type="password"
+          placeholder="Comfirm Password"
+          required
+          value={userCredentials.confirmPassword}
+          handleChange={handleChange}
+        />
+        <Button type="submit" handleSubmit={onSignUp}>Sign up</Button>
+      </form>
+    </Modal>
   );
 }
 

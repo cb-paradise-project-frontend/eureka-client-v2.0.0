@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 
 import styles from './Navigation.module.scss';
 
-import { Login, LoginContext} from './../../../components/Login';
+import { AuthContext } from './../../../auth/Auth';
+import Login from './../../../components/Login';
+import Signup from './../../../components/Signup'
 
 function Navigation() {
   return (
-    <LoginContext.Consumer>
+    <AuthContext.Consumer>
       {
-        ({loginVisible, showLogin}) => (
+        ({authModalVisible, showLoginModal, showSignupModal}) => (
           <nav>
             <div className = {styles.navMenu}>
               <Link to="/" className = {styles.logo}>
@@ -29,19 +31,24 @@ function Navigation() {
 
               <div className = {styles.right}>
                 <a className = {styles.becomeTasker}>Become a Tasker</a>
-                <Link onClick={showLogin} className = {styles.logIn}>Log in</Link>
-                <Link className = {styles.signUp}>Sign up</Link>
+                <Link onClick={showLoginModal} className = {styles.logIn}>Log in</Link>
+                <Link onClick={showSignupModal} className = {styles.signUp}>Sign up</Link>
               </div>
               <>
                 {
-                  !!loginVisible ? <Login /> : null
+                  !!(authModalVisible.loginModal) ? <Login /> : null
+                }
+              </>
+              <>
+                {
+                  !!(authModalVisible.signupModal) ? <Signup /> : null
                 }
               </>
             </div>
           </nav>
         )
       }
-    </LoginContext.Consumer>
+    </AuthContext.Consumer>
   );
 }
 

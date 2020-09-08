@@ -14,25 +14,27 @@ function TaskInput({
   taskInputQuestion,
   taskInputHint,
   errorHint,
+  value,
 }) {
   const cx = classNames.bind(styles);
   return (
     <React.Fragment>
-      <h2 className={styles.OtherHeading}> 
+      <h2 className={styles.other_heading}> 
         {taskInputQuestion}
       </h2>
-      <label className={styles.HintLabel}> 
+      <label className={styles.hint_label}> 
         {taskInputHint}
       </label>
       <textarea 
         className={cx(
           {
-            'JobTitle': size === 'small',
-            'JobDetails': size === 'large',
+            'job_title': size === 'small',
+            'job_details': size === 'large',
           }
         )} 
         maxLength={maxLength} 
-        onChange={onJobInputChange}  
+        onChange={onJobInputChange}
+        value={value}
       />
       {jobLength < minLength
         ? 

@@ -26,8 +26,9 @@ class TaskDescription extends React.Component {
     return (
       <React.Fragment>
         <PostTaskTop> Tell us what you need done? </PostTaskTop>
-        <div className={styles.Main}>
+        <div className={styles.main}>
           <TaskInput
+            value={this.props.jobTitle}
             size={'small'}
             minLength={'10'}
             maxLength={'50'}
@@ -38,6 +39,7 @@ class TaskDescription extends React.Component {
             errorHint={"Please enter at least 10 characters and a maximum of 50 "}
           />
           <TaskInput
+            value={this.props.jobDetails}
             size={'large'}
             minLength={'25'}
             maxLength={'1000'}
@@ -48,7 +50,7 @@ class TaskDescription extends React.Component {
             errorHint={"Please enter at least 25 characters and a maximum of 1000 "}
           />
         </div>
-        <div className={styles.Bottom}>
+        <div className={styles.bottom}>
           <Button handleBackClick={this.props.handleBackClick}>
             Back
           </Button>

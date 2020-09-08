@@ -7,7 +7,7 @@ import png from './welcome.png';
 function WelcomeImg() {
   return (
     <img
-      className={styles.Img}
+      className={styles.img}
       src={png}
       alt="Welcome"
     />

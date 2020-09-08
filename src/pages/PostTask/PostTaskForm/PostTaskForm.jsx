@@ -9,13 +9,15 @@ class PostTaskForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentScreenIndex: 0,
+      currentScreenIndex: 3,
       jobTitle: "",
       jobDetails: "",
       jobTitleLength: 10, 
       jobDetailsLength: 25,
       startDate: null,
       taskBudget: "0",
+      budgetHour: "1",
+      budgetHourlyWage: "0",
     }
 
     this.handleScreenSwitch = this.handleScreenSwitch.bind(this);
@@ -28,7 +30,10 @@ class PostTaskForm extends React.Component {
     this.handleTaskDescriptionNextClick = this.handleTaskDescriptionNextClick.bind(this);
     this.handleTaskLocationAndTimeNextClick = this.handleTaskLocationAndTimeNextClick.bind(this);
     this.handleDateValue = this.handleDateValue.bind(this);
-    this.onBudget = this.onBudget.bind(this);
+    this.onTaskBudget = this.onTaskBudget.bind(this);
+    this.onBudgetHourlyWage = this.onBudgetHourlyWage.bind(this);
+    this.onBudgetHour = this.onBudgetHour.bind(this);
+    this.handleBudgetWageClick = this.handleBudgetWageClick.bind(this);
   }
 
   onJobTitle(value) {
@@ -45,8 +50,28 @@ class PostTaskForm extends React.Component {
       );
   }
 
-  onBudget(value) {
-    this.setState({ taskBudget: value });
+  onTaskBudget() {
+    this.setState((prevState) => ({
+      taskBudget: prevState.budgetHourlyWage * prevState.budgetHour,
+    }));
+  }
+
+  onBudgetHour(value) {
+    this.setState(
+      { budgetHour: value },
+      this.onTaskBudget
+      );
+  }
+
+  onBudgetHourlyWage(value) {
+    this.setState(
+      { budgetHourlyWage: value },
+      this.onTaskBudget
+      );
+  }
+
+  handleBudgetWageClick() {
+    this.setState({ budgetHour: 1 });
   }
 
   handleJobTitle() {
@@ -106,14 +131,16 @@ class PostTaskForm extends React.Component {
       case (1):
         return ( 
           <TaskDescription
-              jobTitleLength={this.state.jobTitleLength}
-              jobDetailsLength={this.state.jobDetailsLength}
-              onJobTitle={this.onJobTitle}
-              onJobDetails={this.onJobDetails}
-              handleJobTitle={this.handleJobTitle}
-              handleJobDetails={this.handleJobDetails}
-              handleNextClick={this.handleTaskDescriptionNextClick}
-              handleBackClick={this.handleBackClick}
+            jobTitle={this.state.jobTitle}
+            jobDetails={this.state.jobDetails}
+            jobTitleLength={this.state.jobTitleLength}
+            jobDetailsLength={this.state.jobDetailsLength}
+            onJobTitle={this.onJobTitle}
+            onJobDetails={this.onJobDetails}
+            handleJobTitle={this.handleJobTitle}
+            handleJobDetails={this.handleJobDetails}
+            handleNextClick={this.handleTaskDescriptionNextClick}
+            handleBackClick={this.handleBackClick}
           />
         );
 
@@ -132,7 +159,9 @@ class PostTaskForm extends React.Component {
           <TaskBudget
             taskBudget={this.state.taskBudget}
             handleBackClick={this.handleBackClick}
-            onBudget={this.onBudget}
+            handleBudgetWageClick={this.handleBudgetWageClick}
+            onBudgetHour={this.onBudgetHour}
+            onBudgetHourlyWage={this.onBudgetHourlyWage}
           /> 
         );
         

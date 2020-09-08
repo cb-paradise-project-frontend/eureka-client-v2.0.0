@@ -13,11 +13,11 @@ function FirstScreen ({
   return (
     <React.Fragment>
       <PostTaskTop />
-      <div className={styles.Main}>
+      <div className={styles.main}>
         <WelcomeImg />
         <WelcomeMsg />
       </div>
-      <div className={styles.Bottom}>
+      <div className={styles.bottom}>
         <Button handleNextClick={handleNextClick}>
           Next
         </Button>

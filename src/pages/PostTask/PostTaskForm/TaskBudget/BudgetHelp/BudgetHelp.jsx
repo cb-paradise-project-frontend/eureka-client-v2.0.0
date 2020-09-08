@@ -7,7 +7,7 @@ import HelpHint from './HelpHint';
 function BudgetHelp() {
   return (
     <React.Fragment>
-      <div className={styles.BudgetHelp}>
+      <div className={styles.budget_help}>
         <HelpHint 
           taskSize={"Small task"}
           taskPayRate={"$25/hour"}

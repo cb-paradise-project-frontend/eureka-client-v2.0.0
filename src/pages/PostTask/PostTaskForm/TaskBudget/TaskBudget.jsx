@@ -7,62 +7,89 @@ import TaskRadio from '../../TaskRadio';
 import BudgetInput from './BudgetInput';
 import Button from '../../Button';
 import BudgetHelp from './BudgetHelp';
+import BudgetDisplay from './BudgetDisplay';
 
 class TaskBudget extends React.Component{
   constructor(props) {
     super(props);
+    this.state = {
+      isHourlyRate: false,
+    };
 
-    this.onBudgetChange = this.onBudgetChange.bind(this);
+    this.onBudgetHour = this.onBudgetHour.bind(this);
+    this.onBudgetHourlyWage = this.onBudgetHourlyWage.bind(this);
+    this.onBudgetHourlyWage = this.onBudgetHourlyWage.bind(this);
+    this.handleHourlyRateClick = this.handleHourlyRateClick.bind(this);
+    this.handleTotalClick = this.handleTotalClick.bind(this);
   }
 
-  onBudgetChange(e) {
-    this.props.onBudget(e.target.value);
+  handleHourlyRateClick(e) {
+    this.setState({ isHourlyRate: true });
   }
+
+  handleTotalClick(e) {
+    this.setState(
+      { isHourlyRate: false },
+      this.props.handleBudgetWageClick
+      );
+  }
+
+  onBudgetHour(e) {
+    this.props.onBudgetHour(e.target.value);
+  }
+
+  onBudgetHourlyWage(e) {
+    this.props.onBudgetHourlyWage(e.target.value);
+  }
+
   render() {
     return (
       <React.Fragment>
         <PostTaskTop> Suggest how much </PostTaskTop>
-        <div className={styles.Main}>
-          <div className={styles.TitleBox}>
-            <h2 className={styles.OtherHeading}> What is your budget? </h2>
-            <div className={styles.WantHelpBox}>
-              <div className={styles.WantHelp}>
+        <div className={styles.main}>
+          <div className={styles.title_box}>
+            <h2 className={styles.other_heading}> What is your budget? </h2>
+            <div className={styles.want_help_box}>
+              <div className={styles.want_help}>
               Want help? 
               <BudgetHelp />
               </div> 
             </div>
           </div>
-          <label className={styles.HintLabel}> 
+          <label className={styles.hint_label}> 
             Please enter the price you're comfortable to pay to get your task done. Taskers will use this as a guide for how much to offer. 
           </label>
-          <div className={styles.TaskRadioBox}>
-            <div className={styles.BudgetRadio}>
+          <div className={styles.task_radio_box}>
+            <div className={styles.budget_radio}>
               <TaskRadio
               radioType={"Total"}
-              isChecked={true} 
+              isChecked={true}
+              handleClick={this.handleTotalClick}
               />
             </div>
-            <div className={styles.BudgetRadio}>
+            <div className={styles.budget_radio}>
               <TaskRadio
               radioType={"Hourly Rate"}
-              isChecked={false} 
+              isChecked={false}
+              handleClick={this.handleHourlyRateClick} 
               />
             </div>
           </div>
           <BudgetInput
-            onBudgetChange={this.onBudgetChange} 
+            switchMode={this.state.isHourlyRate}
+            taskBudget={this.props.taskBudget}
+            minBudget={5}
+            maxBudget={9999}
+            onBudgetHour={this.onBudgetHour}
+            onBudgetHourlyWage={this.onBudgetHourlyWage} 
           />
           <div>
-            <div className={styles.Budget}>
-              <div className={styles.Label}>
-                <div> ESTIMATED BUDGET </div>
-                <div> Final payment will be agree later </div>
-              </div>
-              <div> ${this.props.taskBudget} </div>
-            </div>
+            <BudgetDisplay 
+              taskBudget={this.props.taskBudget}
+            />
           </div>
         </div>
-        <div className={styles.Bottom} >
+        <div className={styles.bottom} >
           <Button handleBackClick = {this.props.handleBackClick}>
             Back
           </Button>

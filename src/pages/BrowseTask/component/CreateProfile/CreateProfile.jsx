@@ -37,7 +37,7 @@ const initialState = {
   subPage: '',
 };
 
-export default function CreateProfile() {
+export default function CreateProfile({ modalToggler }) {
   const [state, dispatch] = useReducer(profileReducer, initialState);
   const { 
     photo, 
@@ -139,25 +139,19 @@ export default function CreateProfile() {
 
   const title = 'To start Making Money';
   const backButtonIcon = String.fromCharCode(10140);
-  const closeButtonIcon = String.fromCharCode(9747);
 
   const header = (
     <>
-      {
-        subPage?
-          <button 
-            className={styles.back_button}
-            onClick={handleBackBtnClick} 
-          >
-            {backButtonIcon}
-          </button> :
-          ''
-      }
+      {subPage? (
+        <button 
+          className={styles.back_button}
+          onClick={handleBackBtnClick} 
+        >
+          {backButtonIcon}
+        </button> 
+      ) : ('')}
       <div className={styles.title} >
         {title}
-      </div>
-      <div className={styles.close_button} >
-        {closeButtonIcon}
       </div>
     </>
   );

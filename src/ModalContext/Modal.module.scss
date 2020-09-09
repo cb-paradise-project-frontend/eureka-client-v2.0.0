@@ -1,0 +1,16 @@
+.close_button{
+  position: absolute;
+  font-size: 20px;
+  color: rgb(187, 194, 220);
+  right: 20px;
+  font-weight: 600;
+  z-index: 999;
+  outline: none;
+  border: none;
+  background-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+    color: rgb(129, 139, 175);
+  }
+}

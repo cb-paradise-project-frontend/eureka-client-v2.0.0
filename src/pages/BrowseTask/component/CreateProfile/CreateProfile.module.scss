@@ -13,30 +13,19 @@
   overflow: hidden;
 }
 
-%header_button{
+.back_button{
   position: absolute;
   font-size: 20px;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.back_button{
-  @extend %header_button;
   border: none;
   outline: none;
   background-color: transparent;
   color: rgb(84, 90, 119);
   left: 20px;
   transform: rotate(180deg);
-}
 
-.close_button{
-  @extend %header_button;
-  color: rgb(187, 194, 220);
-  right: 20px;
-  font-weight: 600;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .footer_button{

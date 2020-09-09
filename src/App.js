@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Modal from 'react-modal';
+import React from 'react';
+
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.css';
@@ -15,36 +15,11 @@ import NotFound from './pages/NotFound';
 import CreateProfile from './pages/BrowseTask/component/CreateProfile';
 import { ModalControlProvider } from './ModalContext';
 
-const customStyles = {
-  content : {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    display: 'flex',
-    borderRadius: '10px',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
-  }
-};
-
-Modal.setAppElement('#root');
-
 const App = () => {
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [modalContent, setModal] = useState('');
-  
-  const toggleModal = () => {
-    setIsOpen(!modalIsOpen);
-  }
-
-  const modalControl = { 
-    toggleModal,
-    setModal, 
-  };
 
   return (
     <AuthProvider>
+<<<<<<< HEAD
 <<<<<<< HEAD
       <Router>
         <Switch>
@@ -71,6 +46,11 @@ const App = () => {
       </Router>
 =======
       <ModalControlProvider value={modalControl}>
+||||||| parent of d4e2e68... 1. move all modal related code into "ModalContext";
+      <ModalControlProvider value={modalControl}>
+=======
+      <ModalControlProvider>
+>>>>>>> d4e2e68... 1. move all modal related code into "ModalContext";
         <Router>
           <Switch>
             <Route exact path="/" component={Landing} />
@@ -84,6 +64,7 @@ const App = () => {
           </Switch>
         </Router>
       </ModalControlProvider>
+<<<<<<< HEAD
       <Modal 
         isOpen={modalIsOpen}
         onRequestClose={toggleModal}
@@ -92,6 +73,16 @@ const App = () => {
         {modalContent}
       </Modal>
 >>>>>>> ccd2037... 1. introduce 'react-modal' package;
+||||||| parent of d4e2e68... 1. move all modal related code into "ModalContext";
+      <Modal 
+        isOpen={modalIsOpen}
+        onRequestClose={toggleModal}
+        style={customStyles}
+      >
+        {modalContent}
+      </Modal>
+=======
+>>>>>>> d4e2e68... 1. move all modal related code into "ModalContext";
     </AuthProvider>
   );
 }

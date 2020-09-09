@@ -5,7 +5,7 @@ import styles from '../PostTaskForm.module.scss';
 import PostTaskTop from '../../PostTaskTop';
 import TaskRadio from '../../TaskRadio';
 import BudgetInput from './BudgetInput';
-import Button from '../../Button';
+import PostTaskButton from '../../PostTaskButton';
 import BudgetHelp from './BudgetHelp';
 import BudgetDisplay from './BudgetDisplay';
 
@@ -90,12 +90,12 @@ class TaskBudget extends React.Component{
           </div>
         </div>
         <div className={styles.bottom} >
-          <Button handleBackClick = {this.props.handleBackClick}>
+          <PostTaskButton handleBackClick = {this.props.handleBackClick}>
             Back
-          </Button>
-          <Button> 
+          </PostTaskButton>
+          <PostTaskButton> 
             Get quotes
-          </Button>
+          </PostTaskButton>
         </div>
     </React.Fragment>
     )

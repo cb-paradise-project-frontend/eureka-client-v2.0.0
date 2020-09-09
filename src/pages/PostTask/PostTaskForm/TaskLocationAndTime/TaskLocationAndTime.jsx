@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import PostTaskTop from '../../PostTaskTop';
 import TaskRadio from '../../TaskRadio';
-import Button from '../../Button';
+import PostTaskButton from '../../PostTaskButton';
 import TaskDatePicker from './TaskDatePicker';
 import ErrorHint from '../../ErrorHint';
 
@@ -62,12 +62,12 @@ render(){
         }
         </div>
         <div className={styles.bottom}>
-          <Button handleBackClick={this.props.handleBackClick} >
+          <PostTaskButton handleClick={this.props.handleBackClick} >
             Back
-          </Button>
-          <Button handleNextClick={this.props.handleNextClick}> 
+          </PostTaskButton>
+          <PostTaskButton handleClick={this.props.handleNextClick}> 
             Next
-          </Button>
+          </PostTaskButton>
         </div>
     </React.Fragment>
   )

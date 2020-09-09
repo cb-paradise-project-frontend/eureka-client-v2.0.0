@@ -3,64 +3,32 @@ import React from 'react';
 import styles from '../PostTaskForm.module.scss';
 
 import PostTaskTop from '../../PostTaskTop';
-import TaskInput from './TaskInput';
-import Button from '../../Button';
+import PostTaskButton from '../../PostTaskButton';
 
-class TaskDescription extends React.Component {
-  constructor(props){
-    super(props);
-    
-    this.onTitleChange = this.onTitleChange.bind(this);
-    this.onDetailsChange = this.onDetailsChange.bind(this);
-  }
-
-  onTitleChange(e) { 
-    this.props.onJobTitle(e.target.value);
-  }
-
-  onDetailsChange(e) { 
-    this.props.onJobDetails(e.target.value);
-  }
-  
-  render() {
+function TaskDescription({
+  jobTitleInput,
+  jobDetailsInput,
+  handleNextClick,
+  handleBackClick,
+}) {
     return (
       <React.Fragment>
         <PostTaskTop> Tell us what you need done? </PostTaskTop>
         <div className={styles.main}>
-          <TaskInput
-            value={this.props.jobTitle}
-            size={'small'}
-            minLength={'10'}
-            maxLength={'50'}
-            onJobInputChange={this.onTitleChange}
-            jobLength={this.props.jobTitleLength}
-            taskInputQuestion={"What do you need done?"} 
-            taskInputHint={"This'll be the title of your task - e.g. Help move my sofa"}
-            errorHint={"Please enter at least 10 characters and a maximum of 50 "}
-          />
-          <TaskInput
-            value={this.props.jobDetails}
-            size={'large'}
-            minLength={'25'}
-            maxLength={'1000'}
-            onJobInputChange={this.onDetailsChange}
-            jobLength={this.props.jobDetailsLength}
-            taskInputQuestion={"What are the details?"} 
-            taskInputHint={"Be as specific as you can about what needs doing"}
-            errorHint={"Please enter at least 25 characters and a maximum of 1000 "}
-          />
+          {jobTitleInput}
+          {jobDetailsInput}
         </div>
         <div className={styles.bottom}>
-          <Button handleBackClick={this.props.handleBackClick}>
+          <PostTaskButton handleClick={handleBackClick}>
             Back
-          </Button>
-          <Button handleNextClick={this.props.handleNextClick}> 
+          </PostTaskButton>
+          <PostTaskButton handleClick={handleNextClick}> 
             Next 
-          </Button>
+          </PostTaskButton>
         </div>
       </React.Fragment>
     )
   }
-}
+
 export default TaskDescription;
 

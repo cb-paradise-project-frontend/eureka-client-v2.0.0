@@ -5,7 +5,7 @@ import styles from '../PostTaskForm.module.scss';
 import PostTaskTop from '../../PostTaskTop';
 import WelcomeImg from './WelcomeImg';
 import WelcomeMsg from './WelcomeMsg';
-import Button from '../../Button';
+import PostTaskButton from '../../PostTaskButton';
 
 function FirstScreen ({
   handleNextClick,
@@ -18,9 +18,9 @@ function FirstScreen ({
         <WelcomeMsg />
       </div>
       <div className={styles.bottom}>
-        <Button handleNextClick={handleNextClick}>
+        <PostTaskButton handleClick={handleNextClick}>
           Next
-        </Button>
+        </PostTaskButton>
       </div>
     </React.Fragment>
   )

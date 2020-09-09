@@ -17,7 +17,7 @@ function BudgetInput({
     event.target.value = event.target.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1').replace(/^0+/g, '').replace(/(?<!^)-/g, '');
   }
 
-  const errorHint = "Please suggest a budget between $" + minBudget + " and $" + maxBudget + " for your task";
+  const errorHint = `Please suggest a budget between $ ${minBudget} and ${maxBudget} for your task`;
 
   return (
     <div className={styles.budget_input_box}>
@@ -28,28 +28,21 @@ function BudgetInput({
           onChange={onBudgetHourlyWage}
           onInput={validateInput}
         />
-        {switchMode
-          ?
-          <React.Fragment>
-            <div className={styles.radio}> /hr &times; </div>
-            <input
-              className={styles.hour}
-              type="text"
-              onChange={onBudgetHour}
-              onInput={validateInput}
-            />
-            <div className={styles.radio}> /hrs </div>
-          </React.Fragment>
-          :
-        null}
+        {switchMode 
+          &&
+        <React.Fragment>
+          <div className={styles.radio}> /hr &times; </div>
+          <input
+            className={styles.hour}
+            type="text"
+            onChange={onBudgetHour}
+            onInput={validateInput}
+          />
+          <div className={styles.radio}> /hrs </div>
+        </React.Fragment>
+        }
       </div>
-      {taskBudget < minBudget || taskBudget > maxBudget
-        ?
-        <ErrorHint>
-          {errorHint}
-        </ErrorHint>
-        :
-      null}
+      {(taskBudget < minBudget || taskBudget > maxBudget) && <ErrorHint>{errorHint}</ErrorHint> }
     </div>
   )
 }

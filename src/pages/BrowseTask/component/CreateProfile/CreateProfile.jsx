@@ -37,7 +37,7 @@ const initialState = {
   subPage: '',
 };
 
-export default function CreateProfile() {
+export default function CreateProfile({ modalToggler }) {
   const [state, dispatch] = useReducer(profileReducer, initialState);
   const { 
     photo, 

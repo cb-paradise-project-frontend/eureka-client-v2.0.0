@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import styles from './Navigation.module.scss';
 
 import { AuthContext } from './../../../auth/Auth';
-import Login from './../../../components/Login';
-import Signup from './../../../components/Signup'
+import LoginModal from '../../../components/LoginModal';
+import SignupModal from '../../../components/SignupModal'
 
 function Navigation() {
   return (
@@ -31,17 +31,17 @@ function Navigation() {
 
               <div className = {styles.right}>
                 <a className = {styles.becomeTasker}>Become a Tasker</a>
-                <Link onClick={showLoginModal} className = {styles.logIn}>Log in</Link>
-                <Link onClick={showSignupModal} className = {styles.signUp}>Sign up</Link>
+                <button onClick={showLoginModal} className = {styles.logIn}>Log in</button>
+                <button onClick={showSignupModal} className = {styles.signUp}>Sign up</button>
               </div>
               <>
                 {
-                  !!(authModalVisible.loginModal) ? <Login /> : null
+                  !!(authModalVisible.loginModal) && <LoginModal />
                 }
               </>
               <>
                 {
-                  !!(authModalVisible.signupModal) ? <Signup /> : null
+                  !!(authModalVisible.signupModal) && <SignupModal />
                 }
               </>
             </div>

@@ -8,23 +8,21 @@ import { AuthContext } from './../../auth/Auth';
 const Modal = ({heading, children}) => {
   return (
     <AuthContext.Consumer>
-      {
-        ({hideAuthModal}) => (
-          <Overlay>
-            <div className={styles.container}>
-              <header className={styles.header}>
-                <div className={styles.heading}>{heading}</div>
-                <button className={styles.close} onClick={hideAuthModal}>
-                  <i className="ri-close-fill ri-2x"></i>
-                </button>
-              </header>
-              <div className={styles.content}>
-                {children}
-              </div>
+      {({hideAuthModal}) => (
+        <Overlay>
+          <div className={styles.container}>
+            <header className={styles.header}>
+              <div className={styles.heading}>{heading}</div>
+              <button className={styles.close} onClick={hideAuthModal}>
+                <i className="ri-close-fill ri-2x"></i>
+              </button>
+            </header>
+            <div className={styles.content}>
+              {children}
             </div>
-          </Overlay>
-        )
-      }
+          </div>
+        </Overlay>
+      )}
     </AuthContext.Consumer>
   )
 }

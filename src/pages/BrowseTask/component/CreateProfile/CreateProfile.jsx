@@ -5,6 +5,7 @@ import styles from './CreateProfile.module.scss';
 import ModalPage from '../ModalPage';
 import profileReducer from './Reducer';
 import ProfileItem from './ProfileItem';
+import Photo from './SubPages/Photo';
 import BankAccount from './SubPages/BankAccount';
 import BillingAddress from './SubPages/BillingAddress';
 import Birthday from './SubPages/Birthday';
@@ -98,7 +99,7 @@ export default function CreateProfile({ toggler }) {
     {
       name: 'Profile Picture',
       checked: isChecked(photo), 
-      subPage: <BankAccount onSubmit={handleAccountInput} />,
+      subPage: <Photo url={photo} />,
     },
     {
       name: 'Bank Account Details',
@@ -142,14 +143,14 @@ export default function CreateProfile({ toggler }) {
 
   const header = (
     <>
-      {subPage? (
+      {subPage && (
         <button 
           className={styles.back_button}
           onClick={handleBackBtnClick} 
         >
           {backButtonIcon}
         </button> 
-      ) : ('')}
+      )}
       <div className={styles.title} >
         {title}
       </div>

@@ -8,8 +8,8 @@ import ErrorHint from '../../pages/PostTask/ErrorHint';
 function FormTextAreaInput({
   size,
   maxLength,
-  onJobInputChange,
-  isAbleToSubmitTaskDescription,
+  onInputChange,
+  isInputValid,
   displayValue,
   errorHint,
   ...otherProps
@@ -20,16 +20,16 @@ function FormTextAreaInput({
       <textarea 
         className={cx(
           {
-            job_title: size === "small",
-            job_details: size === "large",
+            small_text_area: size === "small",
+            large_text_area: size === "large",
           }
         )} 
         maxLength={maxLength} 
-        onChange={(e) => onJobInputChange(e.target.value)}
+        onChange={(e) => onInputChange(e.target.value)}
         value={displayValue}
         {...otherProps}
       />
-      { isAbleToSubmitTaskDescription && <ErrorHint>{errorHint}</ErrorHint> }
+      { isInputValid && <ErrorHint>{errorHint}</ErrorHint> }
     </React.Fragment>
   )
 }

@@ -24,11 +24,11 @@ export default function JobDetailsInput({
       {taskInputHint}
     </label>
     <FormTextAreaInput
-      isAbleToSubmitTaskDescription={isJobDetailsValid}
+      isInputValid={isJobDetailsValid}
       displayValue={jobDetails}
       size={size}
       maxLength={maxLength}
-      onJobInputChange={onJobDetails}
+      onInputChange={onJobDetails}
       errorHint={errorHint}
     />
     </React.Fragment>

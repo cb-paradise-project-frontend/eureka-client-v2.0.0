@@ -11,7 +11,6 @@ import PostTask from './pages/PostTask';
 import Landing from './pages/Landing';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
-import CreateProfile from './pages/BrowseTask/component/CreateProfile';
 import { ModalControlProvider } from './ModalContext';
 
 const App = () => {

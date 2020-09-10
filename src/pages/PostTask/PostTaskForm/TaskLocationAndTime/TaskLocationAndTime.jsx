@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import PostTaskTop from '../../PostTaskTop';
 import TaskRadio from '../../TaskRadio';
-import Button from '../../Button';
+import PostTaskButton from '../../PostTaskButton';
 import TaskDatePicker from './TaskDatePicker';
 import ErrorHint from '../../ErrorHint';
 
@@ -24,19 +24,19 @@ render(){
   return (
     <React.Fragment>
       <PostTaskTop> Say where & when </PostTaskTop>
-      <div className={styles.Main}>
-        <h2 className={styles.OtherHeading}> 
+      <div className={styles.main}>
+        <h2 className={styles.other_heading}> 
           Where do you need it done? 
         </h2>
-        <div className={styles.TaskRadioBox}>
-          <div className={styles.Piece}>
+        <div className={styles.task_radio_box}>
+          <div className={styles.piece}>
             <TaskRadio
               radioType={"In Person"}
               radioHint={"Select this if you need the Tasker physically there."}
               isChecked={true} 
             />
           </div>
-          <div className={styles.Piece}>
+          <div className={styles.piece}>
             <TaskRadio
               radioType={"Online"}
               radioHint={"Select this if the Tasker can do it from home."}
@@ -44,10 +44,10 @@ render(){
             />
           </div>
         </div>
-        <h2 className={styles.OtherHeading}> 
+        <h2 className={styles.other_heading}> 
           When do you need it done? 
         </h2>
-        <div className={styles.DateBox}>
+        <div className={styles.date_box}>
           <TaskDatePicker 
             startDate={this.props.startDate}
             onDateChange={this.onDateChange}
@@ -61,13 +61,13 @@ render(){
           null
         }
         </div>
-        <div className={styles.Bottom}>
-          <Button handleBackClick={this.props.handleBackClick} >
+        <div className={styles.bottom}>
+          <PostTaskButton handleClick={this.props.handleBackClick} >
             Back
-          </Button>
-          <Button handleNextClick={this.props.handleNextClick}> 
+          </PostTaskButton>
+          <PostTaskButton handleClick={this.props.handleNextClick}> 
             Next
-          </Button>
+          </PostTaskButton>
         </div>
     </React.Fragment>
   )

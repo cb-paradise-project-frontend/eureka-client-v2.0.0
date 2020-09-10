@@ -4,6 +4,8 @@ import Welcome from './Welcome/Welcome';
 import TaskDescription from './TaskDescription/TaskDescription';
 import TaskLocationAndTime from './TaskLocationAndTime/TaskLocationAndTime';
 import TaskBudget from './TaskBudget/TaskBudget';
+import JobTitleInput from './TaskDescription/JobTitleInput';
+import JobDetailsInput from './TaskDescription/JobDetailsInput';
 
 class PostTaskForm extends React.Component {
   constructor(props) {
@@ -12,49 +14,60 @@ class PostTaskForm extends React.Component {
       currentScreenIndex: 0,
       jobTitle: "",
       jobDetails: "",
-      jobTitleLength: 10, 
-      jobDetailsLength: 25,
       startDate: null,
       taskBudget: "0",
+      budgetHour: "1",
+      budgetHourlyWage: "0",
+      isChecked: false,
     }
+
+    this.jobTitleMinLength = 10;
+    this.jobDetailsMinLength = 25;
 
     this.handleScreenSwitch = this.handleScreenSwitch.bind(this);
     this.handleNextClick = this.handleNextClick.bind(this);
     this.handleBackClick = this.handleBackClick.bind(this);
     this.onJobTitle = this.onJobTitle.bind(this);
     this.onJobDetails = this.onJobDetails.bind(this);
-    this.handleJobTitle = this.handleJobTitle.bind(this);
-    this.handleJobDetails = this.handleJobDetails.bind(this);
     this.handleTaskDescriptionNextClick = this.handleTaskDescriptionNextClick.bind(this);
     this.handleTaskLocationAndTimeNextClick = this.handleTaskLocationAndTimeNextClick.bind(this);
     this.handleDateValue = this.handleDateValue.bind(this);
-    this.onBudget = this.onBudget.bind(this);
+    this.onTaskBudget = this.onTaskBudget.bind(this);
+    this.onBudgetHourlyWage = this.onBudgetHourlyWage.bind(this);
+    this.onBudgetHour = this.onBudgetHour.bind(this);
+    this.handleBudgetWageClick = this.handleBudgetWageClick.bind(this);
   }
 
   onJobTitle(value) {
-    this.setState(
-      { jobTitle: value },
-      this.handleJobTitle
-      );
+    this.setState({ jobTitle: value });
   }
 
   onJobDetails(value) {
+    this.setState({ jobDetails: value });
+  }
+
+  onTaskBudget() {
+    this.setState((prevState) => ({
+      taskBudget: prevState.budgetHourlyWage * prevState.budgetHour,
+    }));
+  }
+
+  onBudgetHour(value) {
     this.setState(
-      { jobDetails: value },
-      this.handleJobDetails
+      { budgetHour: value },
+      this.onTaskBudget
       );
   }
 
-  onBudget(value) {
-    this.setState({ taskBudget: value });
+  onBudgetHourlyWage(value) {
+    this.setState(
+      { budgetHourlyWage: value },
+      this.onTaskBudget
+      );
   }
 
-  handleJobTitle() {
-    this.setState({ jobTitleLength: this.state.jobTitle.length });
-  }
-
-  handleJobDetails() {
-    this.setState({ jobDetailsLength: this.state.jobDetails.length });
+  handleBudgetWageClick() {
+    this.setState({ budgetHour: 1 });
   }
 
   handleDateValue(date) {
@@ -73,15 +86,51 @@ class PostTaskForm extends React.Component {
     })
   )}
 
+  isJobTitleValid() {
+      //(jobTitle.length < minLength && isChecked)
+      //{(jobTitle&jobDetails.length < minLength && isChecked) && <ErrorHint>{errorHint}</ErrorHint>}
+    const { jobTitle, isChecked } = this.state;
+    return(jobTitle.length < this.jobTitleMinLength && isChecked) 
+    // { //才会渲染errorHint
+    //   this.setState({ isAbleToSubmitTaskDescription: true });
+    // } else {
+    //   this.setState({ isAbleToSubmitTaskDescription: false });
+    // }
+  }
+  isJobDetailsValid() {
+  const { jobDetails, isChecked } = this.state;
+  return(jobDetails.length < this.jobDetailsMinLength && isChecked) 
+}
+
   handleTaskDescriptionNextClick() {
-    this.handleJobTitle();
-    this.handleJobDetails();
-   
-    if (this.state.jobTitleLength > 10 && this.state.jobDetailsLength > 25) {
+    const { jobTitle, jobDetails } = this.state;
+    if(jobTitle.length < this.jobTitleMinLength || jobDetails.length < this.jobDetailsMinLength) { //如果太长，need 换行？How？  TODO 
+      this.setState({ isChecked: true });
+    }else{
       this.handleNextClick();
+      this.setState({ isChecked: false });
     }
   }
-
+  jobTitleInput() {
+    return(
+      <JobTitleInput 
+        jobTitle={this.state.jobTitle}
+        isJobTitleValid={this.isJobTitleValid()}
+        onJobTitle={this.onJobTitle}
+      />
+    )
+  }
+ 
+  jobDetailsInput() {
+    return(
+      <JobDetailsInput
+        jobDetails={this.state.jobDetails}
+        isJobDetailsValid={this.isJobDetailsValid()}
+        onJobDetails={this.onJobDetails}
+      />
+    )
+  }
+  
   handleTaskLocationAndTimeNextClick() {
     const { startDate } = this.state;
 
@@ -106,14 +155,10 @@ class PostTaskForm extends React.Component {
       case (1):
         return ( 
           <TaskDescription
-              jobTitleLength={this.state.jobTitleLength}
-              jobDetailsLength={this.state.jobDetailsLength}
-              onJobTitle={this.onJobTitle}
-              onJobDetails={this.onJobDetails}
-              handleJobTitle={this.handleJobTitle}
-              handleJobDetails={this.handleJobDetails}
-              handleNextClick={this.handleTaskDescriptionNextClick}
-              handleBackClick={this.handleBackClick}
+            jobTitleInput={this.jobTitleInput()}
+            jobDetailsInput={this.jobDetailsInput()}
+            handleNextClick={this.handleTaskDescriptionNextClick}
+            handleBackClick={this.handleBackClick}
           />
         );
 
@@ -132,7 +177,9 @@ class PostTaskForm extends React.Component {
           <TaskBudget
             taskBudget={this.state.taskBudget}
             handleBackClick={this.handleBackClick}
-            onBudget={this.onBudget}
+            handleBudgetWageClick={this.handleBudgetWageClick}
+            onBudgetHour={this.onBudgetHour}
+            onBudgetHourlyWage={this.onBudgetHourlyWage}
           /> 
         );
         

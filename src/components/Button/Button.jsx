@@ -11,8 +11,8 @@ const Button = ({children, handleSubmit, isGoogle, isDisabled, ...otherProps}) =
       className={cx({
         button: true,
         google: isGoogle,
-        disabled: isDisabled,
       })}
+      disabled={isDisabled}
       onClick={handleSubmit}
     >
       {children}

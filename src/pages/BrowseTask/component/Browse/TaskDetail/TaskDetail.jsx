@@ -9,6 +9,7 @@ import SideBar from './SideBar';
 import OfferButton from './OfferButton';
 import Question from './Question';
 import { TaskProvider } from '../TaskContext';
+import { EXPIRED } from '../../../../../components/Status';
 
 function TaskDetail({ taskList, match }) {
   const task = taskList.find(task => task.id === match.params.taskId);
@@ -25,7 +26,7 @@ function TaskDetail({ taskList, match }) {
         <Section title = 'OFFER'>
           <div className = {styles.offer_icon}/>
           <div className = {styles.button_wrapper}>
-            <OfferButton isExpired = {(status === 'expired')}/>
+            <OfferButton isExpired = {(status === EXPIRED)}/>
           </div>
         </Section>
         <Question/>

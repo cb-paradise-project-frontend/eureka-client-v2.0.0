@@ -4,8 +4,8 @@ import { withRouter } from 'react-router-dom';
 
 import styles from './TaskListItem.module.scss';
 
-function TaskListItem({ task, history, match }) {
-  const {
+function TaskListItem({ 
+  task:{
     title,
     status,
     budget,
@@ -13,7 +13,10 @@ function TaskListItem({ task, history, match }) {
     location,
     due,
     id
-  } = task;
+  }, 
+  history, 
+  match 
+}) {
 
   function handleClick() {
     history.push(`${match.url}/${id}`);
@@ -25,7 +28,7 @@ function TaskListItem({ task, history, match }) {
     <div 
       className = {cx(
         'task_list_item',
-        status, 
+        status.toLowerCase(), 
       )}
       onClick = {handleClick}
     >

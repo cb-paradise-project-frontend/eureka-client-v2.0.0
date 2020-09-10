@@ -8,7 +8,7 @@ import TaskDetail from './TaskDetail';
 
 const testData = {
   title: 'Roof repair',
-  status: 'open',
+  status: 'OPEN',
   budget: '120',
   poster: {
     name: 'Tifa',
@@ -34,9 +34,9 @@ function createData(size, data) {
 
 const dataArray = createData(10, testData);
 dataArray[1].title = 'Wall repair';
-dataArray[1].status = 'assigned';
-dataArray[2].status = 'completed';
-dataArray[3].status = 'expired';
+dataArray[1].status = 'ASSIGNED';
+dataArray[2].status = 'COMPLETED';
+dataArray[3].status = 'EXPIRED';
 
 
 

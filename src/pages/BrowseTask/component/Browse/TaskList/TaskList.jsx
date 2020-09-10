@@ -4,7 +4,7 @@ import styles from './TaskList.module.scss';
 
 import TaskListItem from './TaskListItem';
 
-function TaskList({ taskList }) {
+export default function TaskList({ taskList }) {
   const displayedTasks = taskList.map((task) => 
     <TaskListItem
       key = {task.id}
@@ -17,6 +17,4 @@ function TaskList({ taskList }) {
       {displayedTasks}
     </div>
   );
-}
-
-export default TaskList;
+};

@@ -3,8 +3,9 @@ import React from 'react';
 import styles from './PaymentPanel.module.scss';
 
 import OfferButton from '../../OfferButton';
+import { EXPIRED } from '../../../../../../../components/Status';
 
-function PaymentPanel({ status, budget }) {
+export default function PaymentPanel({ status, budget }) {
   const title = 'TASK BUDGET';
 
   return(
@@ -16,10 +17,8 @@ function PaymentPanel({ status, budget }) {
         ${budget}
       </div>
       <div className = {styles.button_wrapper}>
-        <OfferButton isExpired = {(status === 'expired')}/>
+        <OfferButton isExpired = {(status === EXPIRED)}/>
       </div>
     </div>
   );
-}
-
-export default PaymentPanel;
+};

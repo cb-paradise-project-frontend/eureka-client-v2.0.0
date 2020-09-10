@@ -1,4 +1,4 @@
-.job_title {
+.small_text_area {
   width: 30em;
   height: 3em;
   margin-left: 1em;
@@ -6,7 +6,7 @@
   resize: none;
 }
 
-.job_details {
-  @extend .job_title;
+.large_text_area {
+  @extend .small_text_area;
   height: 12em;
 }

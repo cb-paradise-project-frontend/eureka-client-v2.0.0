@@ -57,6 +57,11 @@ export default function CreateProfile({ toggler }) {
     dispatch(action.clickBackBtn());
   }
 
+  const handlePhotoUpload = (photo) => {
+    dispatch(action.photoUpload(photo));
+    handleBackBtnClick();
+  };
+
   const handleAccountInput = (bankAccount) => {
     dispatch(action.accountInput(bankAccount));
     handleBackBtnClick();
@@ -99,7 +104,7 @@ export default function CreateProfile({ toggler }) {
     {
       name: 'Profile Picture',
       checked: isChecked(photo), 
-      subPage: <Photo url={photo} />,
+      subPage: <Photo url={photo} onSubmit={handlePhotoUpload} />,
     },
     {
       name: 'Bank Account Details',

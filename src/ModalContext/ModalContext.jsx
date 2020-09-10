@@ -16,35 +16,40 @@ const customStyles = {
   }
 };
 
-const ModalContext = createContext('');
+const ModalContext = createContext();
 
 export function ModalControlProvider({ children }) {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [modalContent, setModal] = useState('');
-  
-  const toggleModal = () => {
-    setIsOpen(!modalIsOpen);
+  const [modalContent, setModal] = useState();
+
+  const openModal = () => {
+    setIsOpen(true);
+  }
+
+  const closeModal = () => {
+    setIsOpen(false);
   }
 
   const modalControl = { 
-    toggleModal,
+    openModal,
+    closeModal,
     setModal, 
   };
 
   const closeButtonIcon = String.fromCharCode(9747);
 
   return(
-    <ModalContext.Provider value = {modalControl}>
+    <ModalContext.Provider value={modalControl}>
       {children}
       <Modal 
         isOpen={modalIsOpen}
-        onRequestClose={toggleModal}
+        onRequestClose={closeModal}
         style={customStyles}
       >
         <>
           <button 
             className={styles.close_button}
-            onClick={toggleModal} 
+            onClick={closeModal} 
           >
             {closeButtonIcon}
           </button>

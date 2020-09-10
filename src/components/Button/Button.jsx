@@ -5,13 +5,13 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const Button = ({children, handleSubmit, isGoogle, expired, ...otherProps}) => {
+const Button = ({children, handleSubmit, isGoogle, isDisabled, ...otherProps}) => {
   return (
     <button
       className={cx({
         button: true,
         google: isGoogle,
-        expired: expired
+        disabled: isDisabled,
       })}
       onClick={handleSubmit}
     >

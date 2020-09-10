@@ -9,18 +9,22 @@ import PostTaskButton from '../../PostTaskButton';
 import TaskDatePicker from './TaskDatePicker';
 import ErrorHint from '../../ErrorHint';
 
-class TaskLocationAndTime extends React.Component {
-  constructor(props){
-    super(props);
+function TaskLocationAndTime({
+  startDate,
+  handleDateValue,
+  handleBackClick,
+  handleNextClick,
 
-    this.onDateChange = this.onDateChange.bind(this);
-  }
+}) {
+  // constructor(props){
+  //   super(props);
+
+  //   this.onDateChange = this.onDateChange.bind(this);
+  // }
  
-  onDateChange(event) {
-    this.props.handleDateValue(event);
+  function onDateChange(event) {
+    return handleDateValue(event);
   }
-
-render(){
   return (
     <React.Fragment>
       <PostTaskTop> Say where & when </PostTaskTop>
@@ -49,11 +53,11 @@ render(){
         </h2>
         <div className={styles.date_box}>
           <TaskDatePicker 
-            startDate={this.props.startDate}
-            onDateChange={this.onDateChange}
+            startDate={startDate}
+            onDateChange={onDateChange}
           />
         </div>
-        { this.props.startDate == null ?
+        { startDate == null ?
           <ErrorHint>
             Please select the date you would like the task to be done 
           </ErrorHint>
@@ -62,17 +66,15 @@ render(){
         }
         </div>
         <div className={styles.bottom}>
-          <PostTaskButton handleClick={this.props.handleBackClick} >
+          <PostTaskButton handleClick={handleBackClick} >
             Back
           </PostTaskButton>
-          <PostTaskButton handleClick={this.props.handleNextClick}> 
+          <PostTaskButton handleClick={handleNextClick}> 
             Next
           </PostTaskButton>
         </div>
     </React.Fragment>
   )
   }
-}
-
 export default TaskLocationAndTime;
 

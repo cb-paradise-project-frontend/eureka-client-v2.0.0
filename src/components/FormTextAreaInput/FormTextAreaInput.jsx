@@ -29,7 +29,7 @@ function FormTextAreaInput({
         value={displayValue}
         {...otherProps}
       />
-      { isInputValid && <ErrorHint>{errorHint}</ErrorHint> }
+      { !isInputValid || <ErrorHint>{errorHint}</ErrorHint> }
     </React.Fragment>
   )
 }

@@ -23,7 +23,6 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route path="/tasks" component={BrowseTask} />
-            <Route exact path="/create-profile" component={CreateProfile} />
             <Route exact path="/create" component={PostTask} />
             <PrivateRoute exact path="/profile" component={Profile} />
             <Route path="*" component={NotFound} />

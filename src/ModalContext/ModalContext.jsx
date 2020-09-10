@@ -16,7 +16,7 @@ const customStyles = {
   }
 };
 
-const ModalContext = createContext('');
+const ModalContext = createContext();
 
 export function ModalControlProvider({ children }) {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -34,7 +34,7 @@ export function ModalControlProvider({ children }) {
   const closeButtonIcon = String.fromCharCode(9747);
 
   return(
-    <ModalContext.Provider value = {modalControl}>
+    <ModalContext.Provider value={modalControl}>
       {children}
       <Modal 
         isOpen={modalIsOpen}

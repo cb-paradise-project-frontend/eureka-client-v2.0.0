@@ -21,7 +21,7 @@
   padding: 8px 16px;
   outline: none;
 
-  &.disabled{
+  &:disabled{
     background-color: lighten($expired-color, 25%);
     color: darken($expired-color, 10%);
     cursor: auto;

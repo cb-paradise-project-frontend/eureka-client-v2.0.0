@@ -1,28 +1,37 @@
 import React from 'react'
 
-import TaskInput from '../../../TaskInput';
+import styles from '../../PostTaskForm.module.scss'
+
+import FormTextAreaInput from '../../../../../components/FormTextAreaInput';
 
 export default function JobTitleInput({
   jobTitle,
   isJobTitleValid,
   onJobTitle,
+  errorHint,
 }) {
   const size = "small";
-  const maxLength = "50";
-  const TASK_INPUT_MSG = {
-    taskInputQuestion: "What do you need done?",
-    taskInputHint: "This'll be the title of your task - e.g. Help move my sofa",
-    errorHint: "Please enter at least 10 characters and a maximum of 50 ",
-  }
+  const maxLength = 50;
+  const taskInputQuestion = "What do you need done?";
+  const taskInputHint = "This'll be the title of your task - e.g. Help move my sofa";
+
   return (
-    <TaskInput
+    <React.Fragment>
+    <h2 className={styles.other_heading}> 
+      {taskInputQuestion}
+    </h2>
+    <label className={styles.hint_label}> 
+      {taskInputHint}
+    </label>
+    <FormTextAreaInput
       isAbleToSubmitTaskDescription={isJobTitleValid}
       displayValue={jobTitle}
       size={size}
       maxLength={maxLength}
       onJobInputChange={onJobTitle}
-      taskInputMsg={TASK_INPUT_MSG}
+      errorHint={errorHint}
     />
-      )
+    </React.Fragment>
+    )
   }
 

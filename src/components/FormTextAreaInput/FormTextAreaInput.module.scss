@@ -1,0 +1,12 @@
+.job_title {
+  width: 30em;
+  height: 3em;
+  margin-left: 1em;
+  margin-right: 1em;
+  resize: none;
+}
+
+.job_details {
+  @extend .job_title;
+  height: 12em;
+}

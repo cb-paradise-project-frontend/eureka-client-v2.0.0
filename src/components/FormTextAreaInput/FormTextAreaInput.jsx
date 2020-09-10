@@ -1,32 +1,22 @@
 import React from 'react';
 
-import styles from '../PostTaskForm/PostTaskForm.module.scss';
+import styles from './FormTextAreaInput.module.scss';
 
 import classNames from 'classnames/bind';
-import ErrorHint from '../ErrorHint';
+import ErrorHint from '../../pages/PostTask/ErrorHint';
 
-function TaskInput({
+function FormTextAreaInput({
   size,
   maxLength,
   onJobInputChange,
   isAbleToSubmitTaskDescription,
   displayValue,
-  taskInputMsg: 
-  {
-    taskInputQuestion,
-    taskInputHint,
-    errorHint,
-  },
+  errorHint,
+  ...otherProps
 }) {
   const cx = classNames.bind(styles);
   return (
     <React.Fragment>
-      <h2 className={styles.other_heading}> 
-        {taskInputQuestion}
-      </h2>
-      <label className={styles.hint_label}> 
-        {taskInputHint}
-      </label>
       <textarea 
         className={cx(
           {
@@ -37,11 +27,12 @@ function TaskInput({
         maxLength={maxLength} 
         onChange={(e) => onJobInputChange(e.target.value)}
         value={displayValue}
+        {...otherProps}
       />
       { isAbleToSubmitTaskDescription && <ErrorHint>{errorHint}</ErrorHint> }
     </React.Fragment>
   )
 }
 
-export default TaskInput;
+export default FormTextAreaInput;
 

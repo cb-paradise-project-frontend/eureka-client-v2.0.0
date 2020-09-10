@@ -117,6 +117,7 @@ class PostTaskForm extends React.Component {
         jobTitle={this.state.jobTitle}
         isJobTitleValid={this.isJobTitleValid()}
         onJobTitle={this.onJobTitle}
+        errorHint= {"Please enter at least 10 characters and a maximum of 50 "}
       />
     )
   }
@@ -127,6 +128,7 @@ class PostTaskForm extends React.Component {
         jobDetails={this.state.jobDetails}
         isJobDetailsValid={this.isJobDetailsValid()}
         onJobDetails={this.onJobDetails}
+        errorHint= {"Please enter at least 25 characters and a maximum of 1000 "}
       />
     )
   }

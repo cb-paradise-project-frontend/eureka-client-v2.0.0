@@ -25,7 +25,7 @@ function TaskDetail({ taskList, match }) {
         <Section title = 'OFFER'>
           <div className = {styles.offer_icon}/>
           <div className = {styles.button_wrapper}>
-            <OfferButton expired = {(status === 'expired')}/>
+            <OfferButton isExpired = {(status === 'expired')}/>
           </div>
         </Section>
         <Question/>

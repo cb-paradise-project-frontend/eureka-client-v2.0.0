@@ -4,8 +4,8 @@ import Button from '../../../../../../components/Button';
 import { ModalControlConsumer } from '../../../../../../ModalContext';
 import CreateProfile from '../../../CreateProfile';
 
-export default function OfferButton({ expired }) {
-  const label = expired ? 'Expired' : 'Make an offer';
+export default function OfferButton({ isExpired }) {
+  const label = isExpired ? 'Expired' : 'Make an offer';
 
   const handleClick = ({ openModal, closeModal }, setter) => {
     const setModal = () => {
@@ -19,7 +19,7 @@ export default function OfferButton({ expired }) {
     <ModalControlConsumer>
       {({ setModal, ...modalToggler }) => (
         <Button 
-          expired={expired}
+          isDisabled={isExpired}
           handleSubmit={handleClick(modalToggler, setModal)} 
         >
           {label}

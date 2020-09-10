@@ -21,10 +21,11 @@
   padding: 8px 16px;
   outline: none;
 
-  &.expired{
+  &.disabled{
     background-color: lighten($expired-color, 25%);
     color: darken($expired-color, 10%);
     cursor: auto;
+    pointer-events: none;
   }
 }
 

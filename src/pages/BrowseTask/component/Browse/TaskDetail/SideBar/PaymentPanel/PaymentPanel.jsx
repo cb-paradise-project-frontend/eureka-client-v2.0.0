@@ -16,7 +16,7 @@ function PaymentPanel({ status, budget }) {
         ${budget}
       </div>
       <div className = {styles.button_wrapper}>
-        <OfferButton expired = {(status === 'expired')}/>
+        <OfferButton isExpired = {(status === 'expired')}/>
       </div>
     </div>
   );

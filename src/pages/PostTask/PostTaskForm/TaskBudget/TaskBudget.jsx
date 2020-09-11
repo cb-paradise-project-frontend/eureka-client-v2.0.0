@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from '../PostTaskForm.module.scss';
 
 import PostTaskTop from '../../PostTaskTop';
-import TaskRadio from '../../../../components/Radio';
+import BudgetRadio from '../../../../components/Radio';
 import BudgetInput from './BudgetInput';
 import PostTaskButton from '../../PostTaskButton';
 import BudgetHelp from './BudgetHelp';
@@ -23,11 +23,17 @@ class TaskBudget extends React.Component{
     this.handleTotalClick = this.handleTotalClick.bind(this);
   }
 
-  handleHourlyRateClick(e) {
+  handleHourlyRateClick() {
     this.setState({ isHourlyRate: true });
   }
+  // const [isHourlyRate, setHourlyRate] = useState(false);
 
-  handleTotalClick(e) {
+  // useEffect(() => {
+  //   setHourlyRate(true);
+  //   props.handleBudgetWageClick;
+  // }) 
+
+  handleTotalClick() {
     this.setState(
       { isHourlyRate: false },
       this.props.handleBudgetWageClick
@@ -61,23 +67,25 @@ class TaskBudget extends React.Component{
           </label>
           <div className={styles.task_radio_box}>
             <div className={styles.budget_radio}>
-              <TaskRadio
-              radioType={"Total"}
-              isChecked={true}
-              handleClick={this.handleTotalClick}
+              <BudgetRadio
+                radioTitle={"Total"}
+                radioName={"budgetRadio"}
+                isChecked={true}
+                handleClick={this.handleTotalClick}
               />
             </div>
             <div className={styles.budget_radio}>
-              <TaskRadio
-              radioType={"Hourly Rate"}
-              isChecked={false}
-              handleClick={this.handleHourlyRateClick} 
+              <BudgetRadio
+                radioTitle={"Hourly Rate"}
+                radioName={"budgetRadio"}
+                isChecked={false}
+                handleClick={this.handleHourlyRateClick} 
               />
             </div>
           </div>
           <BudgetInput
             switchMode={this.state.isHourlyRate}
-            taskBudget={this.props.taskBudget}
+            isBudgetInvalid={this.props.isBudgetInvalid}
             minBudget={5}
             maxBudget={9999}
             onBudgetHour={this.onBudgetHour}
@@ -90,10 +98,10 @@ class TaskBudget extends React.Component{
           </div>
         </div>
         <div className={styles.bottom} >
-          <PostTaskButton handleClick = {this.props.handleBackClick}>
+          <PostTaskButton handleClick={this.props.handleBackClick}>
             Back
           </PostTaskButton>
-          <PostTaskButton> 
+          <PostTaskButton handleClick={this.props.handleNextClick}> 
             Get quotes
           </PostTaskButton>
         </div>

@@ -42,7 +42,9 @@ function TaskListItem({
       </div>
       <div className = {styles.content}>
         <div className = {styles.avatar}>
-          <img src = {poster.avatar} alt = 'avatar'/>
+          {poster.avatar &&
+            <img src = {poster.avatar} alt = 'avatar'/>
+          }
         </div>
         <div className = {styles.location}>
           {location}

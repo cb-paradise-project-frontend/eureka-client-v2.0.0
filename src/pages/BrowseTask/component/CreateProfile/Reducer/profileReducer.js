@@ -3,6 +3,11 @@ import * as ACTION from './Action/actionType';
 export default function profileReducer(state, action) {
   console.log(action);
   switch(action.type) {
+    case ACTION.PHOTO_UPLOAD:
+      return {
+        ...state,
+        photo: action.payload.photo, 
+      };
     case ACTION.ACCOUNT_INPUT:
       return {
         ...state,

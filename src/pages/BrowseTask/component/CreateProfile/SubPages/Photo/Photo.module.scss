@@ -1,0 +1,44 @@
+@import '../../../../../../components/scss-partial/icon-url'; 
+
+.form_wrapper{
+  display: flex;
+  align-items: center;
+
+  .avatar_wrapper{
+    background-color: lighten(grey, 30%);
+    border-radius: 5px;
+    display: inline-block;
+    height: 50px;
+    position: relative;
+    width: 50px;
+    margin-right: 20px;
+    background-image: url($avatar-icon-url);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70%;
+
+    img{
+      width: 100%;
+    }
+  }
+
+  .button_wrapper{
+    position: relative;
+
+    button{
+      margin: 0;
+    }
+
+    input{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      outline: none;
+      opacity: 0;
+      
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
+}

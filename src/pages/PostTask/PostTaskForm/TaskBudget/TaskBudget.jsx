@@ -3,7 +3,7 @@ import React from 'react';
 import styles from '../PostTaskForm.module.scss';
 
 import PostTaskTop from '../../PostTaskTop';
-import TaskRadio from '../../TaskRadio';
+import TaskRadio from '../../../../components/Radio';
 import BudgetInput from './BudgetInput';
 import PostTaskButton from '../../PostTaskButton';
 import BudgetHelp from './BudgetHelp';
@@ -90,7 +90,7 @@ class TaskBudget extends React.Component{
           </div>
         </div>
         <div className={styles.bottom} >
-          <PostTaskButton handleBackClick = {this.props.handleBackClick}>
+          <PostTaskButton handleClick = {this.props.handleBackClick}>
             Back
           </PostTaskButton>
           <PostTaskButton> 

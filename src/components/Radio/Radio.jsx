@@ -1,9 +1,10 @@
 import React from 'react';
 
-import styles from '../PostTaskForm/PostTaskForm.module.scss';
+import styles from './Radio.module.scss';
 
-function TaskRadio({
-  radioType,
+function Radio({
+  radioName,
+  radioTitle,
   radioHint,
   isChecked,
   handleClick,
@@ -13,12 +14,12 @@ function TaskRadio({
       <div className={styles.task_radio}>
         <input 
           className={styles.radio}
-          name="TaskRadio"
+          name={radioName}
           type="radio" 
           defaultChecked={isChecked}
           onClick={handleClick}
         />
-        <p className={styles.radio_title}> {radioType} </p>
+        <p className={styles.radio_title}> {radioTitle} </p>
       </div>
         <b>
           {radioHint}
@@ -27,5 +28,5 @@ function TaskRadio({
   )
 }
 
-export default TaskRadio;
+export default Radio;
 

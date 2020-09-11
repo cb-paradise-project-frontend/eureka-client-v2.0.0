@@ -1,30 +1,18 @@
 import React from 'react';
 
 import styles from '../PostTaskForm.module.scss';
-import 'react-datepicker/dist/react-datepicker.css';
 
 import PostTaskTop from '../../PostTaskTop';
-import TaskRadio from '../../TaskRadio';
+import TaskDeliveryMethod from './TaskDeliveryMethod';
 import PostTaskButton from '../../PostTaskButton';
-import TaskDatePicker from './TaskDatePicker';
-import ErrorHint from '../../ErrorHint';
+
 
 function TaskLocationAndTime({
-  startDate,
-  handleDateValue,
   handleBackClick,
   handleNextClick,
-
+  taskDatePicker
 }) {
-  // constructor(props){
-  //   super(props);
 
-  //   this.onDateChange = this.onDateChange.bind(this);
-  // }
- 
-  function onDateChange(event) {
-    return handleDateValue(event);
-  }
   return (
     <React.Fragment>
       <PostTaskTop> Say where & when </PostTaskTop>
@@ -32,38 +20,13 @@ function TaskLocationAndTime({
         <h2 className={styles.other_heading}> 
           Where do you need it done? 
         </h2>
-        <div className={styles.task_radio_box}>
-          <div className={styles.piece}>
-            <TaskRadio
-              radioType={"In Person"}
-              radioHint={"Select this if you need the Tasker physically there."}
-              isChecked={true} 
-            />
-          </div>
-          <div className={styles.piece}>
-            <TaskRadio
-              radioType={"Online"}
-              radioHint={"Select this if the Tasker can do it from home."}
-              isChecked={false}
-            />
-          </div>
-        </div>
+        <TaskDeliveryMethod />
         <h2 className={styles.other_heading}> 
           When do you need it done? 
         </h2>
         <div className={styles.date_box}>
-          <TaskDatePicker 
-            startDate={startDate}
-            onDateChange={onDateChange}
-          />
+          {taskDatePicker}
         </div>
-        { startDate == null ?
-          <ErrorHint>
-            Please select the date you would like the task to be done 
-          </ErrorHint>
-          :
-          null
-        }
         </div>
         <div className={styles.bottom}>
           <PostTaskButton handleClick={handleBackClick} >

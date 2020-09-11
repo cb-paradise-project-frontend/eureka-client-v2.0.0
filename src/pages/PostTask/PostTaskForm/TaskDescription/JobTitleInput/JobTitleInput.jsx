@@ -6,7 +6,7 @@ import FormTextAreaInput from '../../../../../components/FormTextAreaInput';
 
 export default function JobTitleInput({
   jobTitle,
-  isJobTitleValid,
+  isJobTitleInvalid,
   onJobTitle,
   errorHint,
 }) {
@@ -24,7 +24,7 @@ export default function JobTitleInput({
       {taskInputHint}
     </label>
     <FormTextAreaInput
-      isInputValid={isJobTitleValid}
+      isInputInvalid={isJobTitleInvalid}
       displayValue={jobTitle}
       size={size}
       maxLength={maxLength}

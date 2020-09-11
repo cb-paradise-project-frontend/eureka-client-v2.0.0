@@ -6,12 +6,13 @@ import TaskLocationAndTime from './TaskLocationAndTime/TaskLocationAndTime';
 import TaskBudget from './TaskBudget/TaskBudget';
 import JobTitleInput from './TaskDescription/JobTitleInput';
 import JobDetailsInput from './TaskDescription/JobDetailsInput';
+import TaskDatePicker from './TaskLocationAndTime/TaskDatePicker';
 
 class PostTaskForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentScreenIndex: 0,
+      currentScreenIndex: 2,
       jobTitle: "",
       jobDetails: "",
       startDate: null,
@@ -86,7 +87,7 @@ class PostTaskForm extends React.Component {
     })
   )}
 
-  isJobTitleValid() {
+  isJobTitleInvalid() {
       //(jobTitle.length < minLength && isChecked)
       //{(jobTitle&jobDetails.length < minLength && isChecked) && <ErrorHint>{errorHint}</ErrorHint>}
     const { jobTitle, isChecked } = this.state;
@@ -97,10 +98,10 @@ class PostTaskForm extends React.Component {
     //   this.setState({ isAbleToSubmitTaskDescription: false });
     // }
   }
-  isJobDetailsValid() {
+  isJobDetailsInvalid() {
   const { jobDetails, isChecked } = this.state;
   return(jobDetails.length < this.jobDetailsMinLength && isChecked) 
-}
+  }
 
   handleTaskDescriptionNextClick() {
     const { jobTitle, jobDetails } = this.state;
@@ -111,11 +112,27 @@ class PostTaskForm extends React.Component {
       this.setState({ isChecked: false });
     }
   }
+    
+  handleTaskLocationAndTimeNextClick() {
+    const { startDate } = this.state;
+
+    if (!startDate) {
+      this.setState({ isChecked: true });
+    }else{
+      this.handleNextClick();
+      this.setState({ isChecked: false })
+    }
+  }
+  isTaskDateValid() {
+    const { startDate, isChecked } = this.state;
+    return(startDate == null && isChecked) 
+    }
+
   jobTitleInput() {
     return(
       <JobTitleInput 
         jobTitle={this.state.jobTitle}
-        isJobTitleValid={this.isJobTitleValid()}
+        isJobTitleInvalid={this.isJobTitleInvalid()}
         onJobTitle={this.onJobTitle}
         errorHint= {"Please enter at least 10 characters and a maximum of 50 "}
       />
@@ -126,20 +143,21 @@ class PostTaskForm extends React.Component {
     return(
       <JobDetailsInput
         jobDetails={this.state.jobDetails}
-        isJobDetailsValid={this.isJobDetailsValid()}
+        isJobDetailsInvalid={this.isJobDetailsInvalid()}
         onJobDetails={this.onJobDetails}
         errorHint= {"Please enter at least 25 characters and a maximum of 1000 "}
       />
     )
   }
-  
-  handleTaskLocationAndTimeNextClick() {
-    const { startDate } = this.state;
 
-    if (!startDate) {
-      return;
-    }
-    this.handleNextClick();
+  taskDatePicker() {
+    return(
+      <TaskDatePicker 
+        startDate={this.state.startDate}
+        onDateChange={this.handleDateValue}
+        isTaskDateInvalid={this.isTaskDateValid()}
+      />
+    )
   }
 
   handleScreenSwitch (screenIndex) {
@@ -167,10 +185,9 @@ class PostTaskForm extends React.Component {
       case (2):
         return ( 
           <TaskLocationAndTime 
-              startDate={this.state.startDate}
-              handleDateValue={this.handleDateValue}
-              handleNextClick={this.handleTaskLocationAndTimeNextClick}
-              handleBackClick={this.handleBackClick}
+            taskDatePicker={this.taskDatePicker()}
+            handleNextClick={this.handleTaskLocationAndTimeNextClick}
+            handleBackClick={this.handleBackClick}
           />
         );
 

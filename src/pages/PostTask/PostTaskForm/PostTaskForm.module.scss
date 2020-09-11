@@ -65,30 +65,10 @@
   font-weight: bold;
 }
 
-.task_radio_box {
-  display: flex;
-  flex-direction: row;
-}
-
-.piece {
-  display: flex;
-  flex-direction: column;
-  background-color: #e3e4d6;
-  width: 12.5em;
-  height: 6em;
-  margin-left: 1em;
-}
-
 .budget_radio {
   display: flex;
   flex-direction: column;
   margin: 1em;
-}
-
-.task_radio {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
 }
 
 .date_box {
@@ -118,13 +98,8 @@
   flex-direction: column;
 }
 
-.radio {
-  margin-block-start: 0.5em;
-  margin-block-end: 0.5em;
-}
-
 .money {
-  @extend .radio;
+  @extend .units;
   margin-left: 1em;
   margin-right: 0.1em;
   width: 8em;
@@ -133,12 +108,6 @@
 .hour {
   @extend .money;
   width: 5em;
-}
-
-.radio_title {
-  margin-block-start: 0.1em;
-  margin-block-end: 0.1em;
-  flex-grow: 1;
 }
 
 .want_help_box {
@@ -179,5 +148,6 @@
 }
 
 .units {
-  @extend .radio;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
 }

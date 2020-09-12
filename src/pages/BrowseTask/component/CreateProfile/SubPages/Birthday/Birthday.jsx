@@ -5,6 +5,7 @@ import styles from './Birthday.module.scss';
 import FormInput from '../../../../../../components/FormInput';
 import handleInput from '../Utils/handleInput';
 import Button from '../../../../../../components/Button';
+import { isBirthday } from '../../../../../../utils/submitValidator';
 
 export default function BirthDate({ onSubmit }) {
   const [day, setDay] = useState('');
@@ -48,8 +49,13 @@ export default function BirthDate({ onSubmit }) {
       day,
       month,
       year, 
+    };
+    if(isBirthday(birthday)){
+      onSubmit(birthday);
+    }else{
+      console.log('input not valid');
     }
-    onSubmit(birthday);
+
   }
 
   return (

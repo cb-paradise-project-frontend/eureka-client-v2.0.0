@@ -38,6 +38,7 @@ export default function BirthDate({ onSubmit }) {
         placeholder={placeholder}
         value={value}
         handleChange={handleChange}
+        maxLength={placeholder.length}
       />
     </div>
   ));  

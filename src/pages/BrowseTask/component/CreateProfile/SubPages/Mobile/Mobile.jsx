@@ -6,6 +6,7 @@ import styles from './Mobile.module.scss';
 import FormInput from '../../../../../../components/FormInput';
 import handleInput from '../Utils/handleInput';
 import Button from '../../../../../../components/Button';
+import { onlyNumber } from '../../../../../../utils/inputValidator';
 
 export default function Mobile({ verifiedMobile, onSubmit }) {
   const verified = verifiedMobile ? true : false;
@@ -49,11 +50,10 @@ export default function Mobile({ verifiedMobile, onSubmit }) {
       <div className={styles.input_title} >
         {title}
       </div>
-      {notice?
+      {notice &&
         <div className={styles.input_notice} >
           {notice}
-        </div> :
-        ''
+        </div>
       }
       <div className={styles.input_bar} >
         <div className={cx({
@@ -62,7 +62,7 @@ export default function Mobile({ verifiedMobile, onSubmit }) {
           })} >
           <FormInput 
             value={value}
-            handleChange={handleInput(setMobile)}
+            handleChange={handleInput(setMobile, onlyNumber)}
           />
         </div>
         <div className={cx({

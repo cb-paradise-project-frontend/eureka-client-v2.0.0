@@ -18,7 +18,6 @@ function BudgetInput({
   }
 
   const errorHint = `Please suggest a budget between $ ${minBudget} and ${maxBudget} for your task`;
-  //这里放在taskbudget，传进来，然后可以删了min，max， 等taskbudget改成hook，再这么弄
 
   return (
     <div className={styles.budget_input_box}>

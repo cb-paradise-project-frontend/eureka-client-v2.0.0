@@ -9,7 +9,6 @@ function PostTask() {
     <div className={styles.container}>
       <PostTaskForm />
     </div>
-
   );
 }
 export default PostTask;

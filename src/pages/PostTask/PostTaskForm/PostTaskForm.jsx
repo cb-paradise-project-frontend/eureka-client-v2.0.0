@@ -1,18 +1,22 @@
 import React from 'react';
 
+import styles from './PostTaskForm.module.scss';
+
 import Welcome from './Welcome/Welcome';
 import TaskDescription from './TaskDescription/TaskDescription';
 import TaskLocationAndTime from './TaskLocationAndTime/TaskLocationAndTime';
 import TaskBudget from './TaskBudget/TaskBudget';
 import JobTitleInput from './TaskDescription/JobTitleInput';
 import JobDetailsInput from './TaskDescription/JobDetailsInput';
-import TaskDatePicker from './TaskLocationAndTime/TaskDatePicker';
+import TaskDatePicker from '../../../components/DateSelector';
+import PostTaskTop from '../PostTaskTop';
+import PostTaskButton from '../PostTaskButton';
 
 class PostTaskForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentScreenIndex: 3,
+      currentScreenIndex: 0,
       jobTitle: "",
       jobDetails: "",
       startDate: null,
@@ -31,8 +35,6 @@ class PostTaskForm extends React.Component {
     this.handleBackClick = this.handleBackClick.bind(this);
     this.onJobTitle = this.onJobTitle.bind(this);
     this.onJobDetails = this.onJobDetails.bind(this);
-    this.handleTaskDescriptionNextClick = this.handleTaskDescriptionNextClick.bind(this);
-    this.handleTaskLocationAndTimeNextClick = this.handleTaskLocationAndTimeNextClick.bind(this);
     this.handleGetQuoteClick = this.handleGetQuoteClick.bind(this);
     this.handleDateValue = this.handleDateValue.bind(this);
     this.onTaskBudget = this.onTaskBudget.bind(this);
@@ -78,8 +80,8 @@ class PostTaskForm extends React.Component {
   }
 
   handleNextClick() {
-    this.setState(() => ({
-      currentScreenIndex: this.state.currentScreenIndex + 1,
+    this.setState((prevState) => ({
+      currentScreenIndex: prevState.currentScreenIndex + 1,
     })
   )}
 
@@ -107,44 +109,22 @@ class PostTaskForm extends React.Component {
     return((taskBudget < this.minBudget || taskBudget > this.maxBudget) && isChecked)
   }
 
-  handleTaskDescriptionNextClick() {
-    const { jobTitle, jobDetails } = this.state;
+  isTaskDateValid() {
+    const { startDate, isChecked } = this.state;
 
-    if(jobTitle.length < this.jobTitleMinLength || jobDetails.length < this.jobDetailsMinLength) { //如果太长，need 换行？How？  TODO 
-      this.setState({ isChecked: true });
-    }else {
-      this.handleNextClick();
-      this.setState({ isChecked: false });
+    return(startDate == null && isChecked) 
     }
-  }
-    
-  handleTaskLocationAndTimeNextClick() {
-    const { startDate } = this.state;
-
-    if(!startDate) {
-      this.setState({ isChecked: true });
-    }else{
-      this.handleNextClick();
-      this.setState({ isChecked: false });
-    }
-  }
-
+  
   handleGetQuoteClick() {
     const { taskBudget } = this.state;
 
-    if(taskBudget == 0) {
+    if(taskBudget === 0) {
       this.setState({ isChecked: true });
     }else{
       this.setState({ isChecked: false });
       //this.link to task page or profile()
     }
   }
-
-  isTaskDateValid() {
-    const { startDate, isChecked } = this.state;
-
-    return(startDate == null && isChecked) 
-    }
 
   jobTitleInput() {
     return(
@@ -167,44 +147,95 @@ class PostTaskForm extends React.Component {
       />
     )
   }
-
+  
   taskDatePicker() {
     return(
       <TaskDatePicker 
         startDate={this.state.startDate}
         onDateChange={this.handleDateValue}
-        isTaskDateInvalid={this.isTaskDateValid()}
+        isDateInvalid={this.isTaskDateValid()}
+        errorHint={"Please select the date you would like the task to be done"}
       />
     )
   }
 
+  handleClickCreator(condition) {
+    const handleClick = () => {
+      if(condition) {
+        this.setState({ isChecked: true });
+      }else {
+        this.handleNextClick();
+        this.setState({ isChecked: false });
+      }
+    }
+    return handleClick;
+  } 
+
   render() {
-    const { currentScreenIndex } = this.state;
+    const { currentScreenIndex, startDate, jobTitle, jobDetails } = this.state;
+    
+    const conditionList = [
+      (false),
+      (jobTitle.length < this.jobTitleMinLength || jobDetails.length < this.jobDetailsMinLength),
+      (!startDate),
+    ]
+
+    const backBtn = (
+      <PostTaskButton handleClick={this.handleBackClick}>
+        Back
+      </PostTaskButton>
+    )
+
+    const nextBtn = (
+      <PostTaskButton handleClick={this.handleClickCreator(conditionList[currentScreenIndex])}>
+        Next
+      </PostTaskButton>
+    )
+
+    const submitBtn = (
+      <PostTaskButton handleClick={this.handleGetQuoteClick}>
+        Get quotes
+      </PostTaskButton>
+    )
+
+    const postTaskTop = [
+      <PostTaskTop />,
+      <PostTaskTop> Tell us what you need done? </PostTaskTop>,
+      <PostTaskTop> Say where & when </PostTaskTop>,
+      <PostTaskTop> Suggest how much </PostTaskTop>
+    ]
+
     const pageList = [
-      <Welcome handleNextClick={this.handleNextClick} />,
+      <Welcome />,
       <TaskDescription 
         jobTitleInput={this.jobTitleInput()}
         jobDetailsInput={this.jobDetailsInput()}
-        handleNextClick={this.handleTaskDescriptionNextClick}
-        handleBackClick={this.handleBackClick}
       />,
       <TaskLocationAndTime
         taskDatePicker={this.taskDatePicker()}
-        handleNextClick={this.handleTaskLocationAndTimeNextClick}
-        handleBackClick={this.handleBackClick} 
       />,
       <TaskBudget 
         taskBudget={this.state.taskBudget}
         isBudgetInvalid={this.isBudgetInvalid()}
-        handleNextClick={this.handleGetQuoteClick}
-        handleBackClick={this.handleBackClick}
         handleBudgetWageClick={this.handleBudgetWageClick}
         onBudgetHour={this.onBudgetHour}
         onBudgetHourlyWage={this.onBudgetHourlyWage}
       />,
     ]
+    
+    const postTaskBottom = (
+      <div className={styles.bottom} >
+        { currentScreenIndex === 0 || backBtn }
+        { currentScreenIndex === pageList.length - 1 ? submitBtn : nextBtn }
+      </div>
+    )
+
     return (
-      pageList[currentScreenIndex]
+      <div>
+        {postTaskTop[currentScreenIndex]}
+        {pageList[currentScreenIndex]}
+        {postTaskBottom}
+      </div>
     )
   }
 }

@@ -3,15 +3,16 @@ import React from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import DatePicker from 'react-datepicker';
-import ErrorHint from '../../../ErrorHint';
+import ErrorHint from '../../pages/PostTask/ErrorHint';
 import { addMonths } from 'date-fns';
 
-function TaskDatePicker({
+function DateSelector({
   startDate,
   onDateChange,
-  isTaskDateInvalid,
+  isDateInvalid,
+  errorHint,
 }) {
-  const errorHint = "Please select the date you would like the task to be done ";
+  
   return (
     <React.Fragment>
       <DatePicker 
@@ -22,9 +23,9 @@ function TaskDatePicker({
         disabledKeyboardNavigation
         placeholderText="Select a date"
       />
-      { isTaskDateInvalid && <ErrorHint>{errorHint}</ErrorHint> }
+      { isDateInvalid && <ErrorHint>{errorHint}</ErrorHint> }
     </React.Fragment>
   )
 }
 
-export default TaskDatePicker;
+export default DateSelector;

@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import styles from '../PostTaskForm.module.scss';
 
-import PostTaskTop from '../../PostTaskTop';
 import BudgetRadio from '../../../../components/Radio';
 import BudgetInput from './BudgetInput';
-import PostTaskButton from '../../PostTaskButton';
 import BudgetHelp from './BudgetHelp';
 import BudgetDisplay from './BudgetDisplay';
 
@@ -13,7 +11,7 @@ class TaskBudget extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      isHourlyRate: false,
+      isClickHourlyRate: false,
     };
 
     this.onBudgetHour = this.onBudgetHour.bind(this);
@@ -24,18 +22,12 @@ class TaskBudget extends React.Component{
   }
 
   handleHourlyRateClick() {
-    this.setState({ isHourlyRate: true });
+    this.setState({ isClickHourlyRate: true });
   }
-  // const [isHourlyRate, setHourlyRate] = useState(false);
-
-  // useEffect(() => {
-  //   setHourlyRate(true);
-  //   props.handleBudgetWageClick;
-  // }) 
 
   handleTotalClick() {
     this.setState(
-      { isHourlyRate: false },
+      { isClickHourlyRate: false },
       this.props.handleBudgetWageClick
       );
   }
@@ -51,7 +43,6 @@ class TaskBudget extends React.Component{
   render() {
     return (
       <React.Fragment>
-        <PostTaskTop> Suggest how much </PostTaskTop>
         <div className={styles.main}>
           <div className={styles.title_box}>
             <h2 className={styles.other_heading}> What is your budget? </h2>
@@ -84,7 +75,7 @@ class TaskBudget extends React.Component{
             </div>
           </div>
           <BudgetInput
-            switchMode={this.state.isHourlyRate}
+            switchMode={this.state.isClickHourlyRate}
             isBudgetInvalid={this.props.isBudgetInvalid}
             minBudget={5}
             maxBudget={9999}
@@ -96,14 +87,6 @@ class TaskBudget extends React.Component{
               taskBudget={this.props.taskBudget}
             />
           </div>
-        </div>
-        <div className={styles.bottom} >
-          <PostTaskButton handleClick={this.props.handleBackClick}>
-            Back
-          </PostTaskButton>
-          <PostTaskButton handleClick={this.props.handleNextClick}> 
-            Get quotes
-          </PostTaskButton>
         </div>
     </React.Fragment>
     )

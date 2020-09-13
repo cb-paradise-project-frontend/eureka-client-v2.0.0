@@ -1,14 +1,13 @@
-export function isBirthday({ day, month, year }) {
+export default function isDate(day, month, year, validYearRange=150) {
   const MAX_DAY = [
     31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,
   ];
-
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
 
   const conditions = [ 
     // year valid
-    ( year > currentYear - 150 && year < currentYear),
+    ( year > currentYear - validYearRange),
     // month valid
     (0 < month < 13),
     // day valid
@@ -16,6 +15,5 @@ export function isBirthday({ day, month, year }) {
   ];
 
   const reducer = (accumulator, currentValue) => accumulator && currentValue;
-
   return conditions.reduce(reducer);
-}
+};

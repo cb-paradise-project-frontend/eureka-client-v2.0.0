@@ -1,3 +1,3 @@
-export function onlyNumber(value) {
+export default function onlyNumber(value) {
   return value = value.replace(/[^0-9]/g, '',); 
-}
+};

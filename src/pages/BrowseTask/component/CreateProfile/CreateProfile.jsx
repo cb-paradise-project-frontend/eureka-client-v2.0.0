@@ -10,8 +10,6 @@ import BankAccount from './SubPages/BankAccount';
 import BillingAddress from './SubPages/BillingAddress';
 import Birthday from './SubPages/Birthday';
 import Mobile from './SubPages/Mobile';
-import dayLabel from './Utils/dayLabel';
-import monthLabel from './Utils/monthLabel';
 import * as action from './Reducer/Action/actionCreator';
 
 const initialState = {
@@ -93,11 +91,7 @@ export default function CreateProfile({ toggler }) {
 
   const birthdayStatusLabel = () => {
     if (!isChecked(birthday)) return '';
-    const { day, month, year } = birthday;
-    const datText = dayLabel(day);
-    const monthText = monthLabel(month);
-    const label = `${datText} ${monthText} ${year}`;
-    return label;
+    return birthday.toDateString().replace(/[^\s]+/, '');
   }
  
   const profileItemElementList = [
@@ -143,9 +137,6 @@ export default function CreateProfile({ toggler }) {
     />
   ));
 
-  const title = 'To start Making Money';
-  const backButtonIcon = String.fromCharCode(10140);
-
   const header = (
     <>
       {subPage && (
@@ -153,11 +144,11 @@ export default function CreateProfile({ toggler }) {
           className={styles.back_button}
           onClick={handleBackBtnClick} 
         >
-          {backButtonIcon}
+          {String.fromCharCode(10140)}
         </button> 
       )}
       <div className={styles.title} >
-        {title}
+        To start Making Money
       </div>
     </>
   );

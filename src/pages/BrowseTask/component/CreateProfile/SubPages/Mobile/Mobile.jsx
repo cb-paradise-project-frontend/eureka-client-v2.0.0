@@ -6,7 +6,7 @@ import styles from './Mobile.module.scss';
 import FormInput from '../../../../../../components/FormInput';
 import handleInput from '../Utils/handleInput';
 import Button from '../../../../../../components/Button';
-import { onlyNumber } from '../../../../../../utils/inputValidator';
+import onlyNumber from '../../../../../../utils/validators/input';
 
 export default function Mobile({ verifiedMobile, onSubmit }) {
   const verified = verifiedMobile ? true : false;

@@ -66,7 +66,6 @@ export default function BirthDate({ onSubmit }) {
 
   const handleSubmit = () => {
     if(!getError()){
-      console.log('submit');
       const birthday =  new Date(year, month-1, day);
       onSubmit(birthday);
       toggleTest(false);

@@ -2,10 +2,8 @@ import React from 'react';
 
 import styles from '../PostTaskForm.module.scss';
 
-import PostTaskTop from '../../PostTaskTop';
-import TaskRadio from '../../../../components/Radio';
+import BudgetRadio from '../../../../components/Radio';
 import BudgetInput from './BudgetInput';
-import PostTaskButton from '../../PostTaskButton';
 import BudgetHelp from './BudgetHelp';
 import BudgetDisplay from './BudgetDisplay';
 
@@ -13,7 +11,7 @@ class TaskBudget extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      isHourlyRate: false,
+      isClickHourlyRate: false,
     };
 
     this.onBudgetHour = this.onBudgetHour.bind(this);
@@ -23,13 +21,13 @@ class TaskBudget extends React.Component{
     this.handleTotalClick = this.handleTotalClick.bind(this);
   }
 
-  handleHourlyRateClick(e) {
-    this.setState({ isHourlyRate: true });
+  handleHourlyRateClick() {
+    this.setState({ isClickHourlyRate: true });
   }
 
-  handleTotalClick(e) {
+  handleTotalClick() {
     this.setState(
-      { isHourlyRate: false },
+      { isClickHourlyRate: false },
       this.props.handleBudgetWageClick
       );
   }
@@ -45,7 +43,6 @@ class TaskBudget extends React.Component{
   render() {
     return (
       <React.Fragment>
-        <PostTaskTop> Suggest how much </PostTaskTop>
         <div className={styles.main}>
           <div className={styles.title_box}>
             <h2 className={styles.other_heading}> What is your budget? </h2>
@@ -61,23 +58,25 @@ class TaskBudget extends React.Component{
           </label>
           <div className={styles.task_radio_box}>
             <div className={styles.budget_radio}>
-              <TaskRadio
-              radioType={"Total"}
-              isChecked={true}
-              handleClick={this.handleTotalClick}
+              <BudgetRadio
+                radioTitle={"Total"}
+                radioName={"budgetRadio"}
+                isChecked={true}
+                handleClick={this.handleTotalClick}
               />
             </div>
             <div className={styles.budget_radio}>
-              <TaskRadio
-              radioType={"Hourly Rate"}
-              isChecked={false}
-              handleClick={this.handleHourlyRateClick} 
+              <BudgetRadio
+                radioTitle={"Hourly Rate"}
+                radioName={"budgetRadio"}
+                isChecked={false}
+                handleClick={this.handleHourlyRateClick} 
               />
             </div>
           </div>
           <BudgetInput
-            switchMode={this.state.isHourlyRate}
-            taskBudget={this.props.taskBudget}
+            switchMode={this.state.isClickHourlyRate}
+            isBudgetInvalid={this.props.isBudgetInvalid}
             minBudget={5}
             maxBudget={9999}
             onBudgetHour={this.onBudgetHour}
@@ -88,14 +87,6 @@ class TaskBudget extends React.Component{
               taskBudget={this.props.taskBudget}
             />
           </div>
-        </div>
-        <div className={styles.bottom} >
-          <PostTaskButton handleClick = {this.props.handleBackClick}>
-            Back
-          </PostTaskButton>
-          <PostTaskButton> 
-            Get quotes
-          </PostTaskButton>
         </div>
     </React.Fragment>
     )

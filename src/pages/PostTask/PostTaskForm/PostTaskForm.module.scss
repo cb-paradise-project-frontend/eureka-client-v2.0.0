@@ -66,9 +66,12 @@
 }
 
 .budget_radio {
-  display: flex;
-  flex-direction: column;
   margin: 1em;
+}
+
+.task_radio_box {
+  display: flex;
+  flex-direction: row;
 }
 
 .date_box {
@@ -144,10 +147,11 @@
 }
 
 .budget_input {
+  height: 2em;
   display: flex;
 }
 
 .units {
-  margin-block-start: 0.5em;
-  margin-block-end: 0.5em;
+  margin-block-start: 0.3em;
+  margin-block-end: 0.3em;
 }

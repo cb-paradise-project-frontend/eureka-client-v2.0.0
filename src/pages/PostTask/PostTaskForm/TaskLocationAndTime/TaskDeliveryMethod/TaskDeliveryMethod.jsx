@@ -8,6 +8,7 @@ import Radio from '../../../../../components/Radio';
 function TaskDeliveryMethod() {
   return (
     <React.Fragment>
+    <div className={styles.box}>
       <div className={styles.piece}>
         <Radio
           radioName={"taskRadio"}
@@ -23,6 +24,7 @@ function TaskDeliveryMethod() {
           radioHint={"Select this if the Tasker can do it from home."}
           isChecked={false}
         />
+      </div>
       </div>
     </React.Fragment>
   )

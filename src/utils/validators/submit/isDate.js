@@ -1,4 +1,5 @@
 export default function isDate(day, month, year, validYearRange=150) {
+  if(!day || !month || !year) return false;
   const MAX_DAY = [
     31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,
   ];
@@ -9,9 +10,9 @@ export default function isDate(day, month, year, validYearRange=150) {
     // year valid
     ( year > currentYear - validYearRange),
     // month valid
-    (0 < month < 13),
+    (month > 0 && month < 13),
     // day valid
-    (0 < day < MAX_DAY[day - 1]),
+    (day > 0 && day < (MAX_DAY[month-1] + 1) ),
   ];
 
   const reducer = (accumulator, currentValue) => accumulator && currentValue;

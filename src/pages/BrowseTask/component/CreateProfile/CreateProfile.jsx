@@ -50,34 +50,24 @@ export default function CreateProfile({ toggler }) {
   const handleProfileBtnClick = (subPage) => {
     return () => (dispatch(action.clickProfileItem(subPage)));
   };
- 
   const handleBackBtnClick = () => {
     dispatch(action.clickBackBtn());
-  }
+  };
 
   const handlePhotoUpload = (photo) => {
     dispatch(action.photoUpload(photo));
-    handleBackBtnClick();
   };
-
   const handleAccountInput = (bankAccount) => {
     dispatch(action.accountInput(bankAccount));
-    handleBackBtnClick();
   };
-
   const handleBillingAddressInput = (billingAddress) => {
     dispatch(action.billingAddressInput(billingAddress));
-    handleBackBtnClick();
   };
-
   const handleBirthdayInput = (birthday) => {
     dispatch(action.birthdayInput(birthday));
-    handleBackBtnClick();
   };
-
   const handleMobileInput = (mobile) => {
     dispatch(action.mobileInput(mobile));
-    handleBackBtnClick();
   };
 
   const isChecked = (stateValue) => {
@@ -87,12 +77,12 @@ export default function CreateProfile({ toggler }) {
       return (result.length === valueArray.length) ? true : false;
     };
     return (stateValue) && true;
-  }
+  };
 
   const birthdayStatusLabel = () => {
     if (!isChecked(birthday)) return '';
     return birthday.toDateString().replace(/[^\s]+/, '');
-  }
+  };
  
   const profileItemElementList = [
     {
@@ -177,4 +167,4 @@ export default function CreateProfile({ toggler }) {
       footer={footer}
     />
   );
-} 
+}; 

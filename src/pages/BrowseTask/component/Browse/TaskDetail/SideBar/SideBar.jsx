@@ -10,10 +10,10 @@ function SideBar() {
     <div className = {styles.side_bar} >
       <TaskConsumer>
         {({ status, budget }) => (
-            <PaymentPanel 
-              status = {status}
-              budget = {budget}
-            />
+          <PaymentPanel 
+            status = {status}
+            budget = {budget}
+          />
         )}     
       </TaskConsumer>
     </div>

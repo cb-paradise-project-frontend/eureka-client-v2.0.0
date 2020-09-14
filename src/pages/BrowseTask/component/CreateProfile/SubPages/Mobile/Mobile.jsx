@@ -63,6 +63,7 @@ export default function Mobile({ verifiedMobile, onSubmit }) {
           <FormInput 
             value={value}
             handleChange={handleInput(setMobile, onlyNumber)}
+            maxLength={15}  // 15 is the max length of international phone number 
           />
         </div>
         <div className={cx({

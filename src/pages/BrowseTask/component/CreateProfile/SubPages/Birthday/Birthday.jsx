@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import styles from './Birthday.module.scss';
 
-import FormInput from '../../../../../../components/FormInput';
+import Input from '../../../../../../components/Input';
 import handleInput from '../Utils/handleInput';
 import Button from '../../../../../../components/Button';
 import ErrorMessage from '../../../../../../components/ErrorMessage';
@@ -39,7 +39,7 @@ export default function BirthDate({ onSubmit }) {
       className={styles.input_wrapper}
       key={placeholder}
     >
-      <FormInput 
+      <Input 
         placeholder={placeholder}
         value={value}
         handleChange={handleChange}

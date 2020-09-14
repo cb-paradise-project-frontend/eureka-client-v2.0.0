@@ -82,28 +82,28 @@ export default function CreateProfile({ toggler }) {
   const profileItemElementList = [
     {
       name: 'Profile Picture',
-      checked: isFilled(photo), 
+      value: photo, 
       subPage: <Photo url={photo} onSubmit={handlePhotoUpload} />,
     },
     {
       name: 'Bank Account Details',
-      checked: isFilled(bankAccount), 
+      value: bankAccount, 
       subPage: <BankAccount onSubmit={handleAccountInput} />,
     },
     {
       name: 'Billing Address',
-      checked: isFilled(billingAddress),
+      value: billingAddress,
       subPage: <BillingAddress onSubmit={handleBillingAddressInput} />,
     },
     {
       name: 'Date of Birth',
-      checked: isFilled(birthday),
+      value: birthday,
       statusLabel: birthdayStatusLabel(),
       subPage: <Birthday onSubmit={handleBirthdayInput} />,
     },
     {
       name: 'Mobile Number',
-      checked: isFilled(mobile),
+      value: mobile,
       statusLabel: mobile,
       subPage: <Mobile 
         verifiedMobile={mobile} 
@@ -112,12 +112,12 @@ export default function CreateProfile({ toggler }) {
     }, 
   ];
 
-  const profileList = profileItemElementList.map(({ name, checked, statusLabel, subPage }) => (
+  const profileList = profileItemElementList.map(({ name, value, statusLabel, subPage }) => (
     <ProfileItem 
       itemName={name}
       handleClick={handleProfileBtnClick(subPage)}
       statusLabel={statusLabel}
-      checked={checked}
+      checked={isFilled(value)}
       key={name}
     />
   ));

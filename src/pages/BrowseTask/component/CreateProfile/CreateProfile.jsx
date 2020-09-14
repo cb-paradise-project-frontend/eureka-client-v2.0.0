@@ -39,17 +39,12 @@ const initialState = {
 export default function CreateProfile({ toggler }) {
   const [state, dispatch] = useReducer(profileReducer, initialState);
   const { 
-    photo, 
-    bankAccount, 
-    billingAddress, 
-    birthday,
-    mobile, 
-    subPage, 
+    photo, bankAccount, billingAddress, birthday, mobile, subPage, 
   } = state;
 
-  const handleProfileBtnClick = (subPage) => {
-    return () => (dispatch(action.clickProfileItem(subPage)));
-  };
+  const handleProfileBtnClick = (subPage) => (
+    () => (dispatch(action.clickProfileItem(subPage)))
+  );
   const handleBackBtnClick = () => {
     dispatch(action.clickBackBtn());
   };

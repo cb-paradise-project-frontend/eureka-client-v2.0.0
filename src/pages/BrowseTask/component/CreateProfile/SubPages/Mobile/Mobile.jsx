@@ -10,7 +10,7 @@ import onlyNumber from '../../../../../../utils/validators/input';
 
 export default function Mobile({ verifiedMobile, onSubmit }) {
   const verified = verifiedMobile ? true : false;
-  const [mobile, setMobile] = useState();
+  const [mobile, setMobile] = useState('');
   const [isVerified, toggleEdit] = useState(verified);
   
   const handleEdit = () => {

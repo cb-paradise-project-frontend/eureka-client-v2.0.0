@@ -8,14 +8,14 @@ import handleInput from '../Utils/handleInput';
 import { onlyNumber, addDashInNumber } from '../../../../../../utils/validators/input';
 
 export default function BankAccount({ onSubmit }) {
-  const [holder, setHolder] = useState();
-  const [accountNumber, setAccountNumber] = useState();
-  const [bsb, setBsb] = useState();
+  const [holder, setHolder] = useState('');
+  const [accountNumber, setAccountNumber] = useState('');
+  const [bsb, setBsb] = useState('');
   const [testing, toggleTest] = useState(false);
   const [hightLight, setHighLight] = useState();
 
   const introduction = `Please provide your bank details so you can get paid. We don't take any money from your account.`;
-  const formInputElements = [
+  const fieldElementList = [
     {
       label: 'Account holder name', 
       placeholder: 'Alice', 
@@ -55,7 +55,7 @@ export default function BankAccount({ onSubmit }) {
     setHighLight('');
   };
 
-  const formInputs = formInputElements.map(({ 
+  const fieldList = fieldElementList.map(({ 
     label, placeholder, value, maxLength, handleChange 
   }) => {
     const isError = (label === hightLight);
@@ -74,7 +74,7 @@ export default function BankAccount({ onSubmit }) {
   });  
 
   const checkEmpty = () => {
-    const emptyField = formInputElements.find(({ value }) => !value);
+    const emptyField = fieldElementList.find(({ value }) => !value);
     if(emptyField){
       const { label } = emptyField;
       const message = `${label} is required.`;
@@ -114,7 +114,7 @@ export default function BankAccount({ onSubmit }) {
         {introduction}
       </div>
       <div className={styles.form_input} >
-        {formInputs}
+        {fieldList}
       </div>
       <div className={styles.button_wrapper} >
         <Button handleSubmit={handleSubmit} >

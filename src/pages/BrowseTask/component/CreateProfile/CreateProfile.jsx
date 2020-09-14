@@ -74,10 +74,8 @@ export default function CreateProfile({ toggler }) {
     return (stateValue) && true;
   };
 
-  const birthdayStatusLabel = () => {
-    if (!isFilled(birthday)) return '';
-    return birthday.toDateString().replace(/[^\s]+/, '');
-  };
+  const birthdayStatusLabel = isFilled(birthday) &&
+    birthday.toDateString().replace(/[^\s]+/, '');
  
   const profileItemElementList = [
     {
@@ -98,7 +96,7 @@ export default function CreateProfile({ toggler }) {
     {
       name: 'Date of Birth',
       value: birthday,
-      statusLabel: birthdayStatusLabel(),
+      statusLabel: birthdayStatusLabel,
       subPage: <Birthday onSubmit={handleBirthdayInput} />,
     },
     {

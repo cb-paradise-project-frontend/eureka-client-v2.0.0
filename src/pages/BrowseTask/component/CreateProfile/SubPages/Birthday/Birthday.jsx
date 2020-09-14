@@ -48,7 +48,7 @@ export default function BirthDate({ onSubmit }) {
     </div>
   ));  
 
-  const conditionList = [
+  const validations = [
     {
       condition: (isDate(day, month, year)),
       message: 'Please enter a valid date.',
@@ -60,7 +60,7 @@ export default function BirthDate({ onSubmit }) {
   ];
 
   const getError = () => {
-    const error = conditionList.find(conditionItem => conditionItem.condition === false);
+    const error = validations.find(validation => validation.condition === false);
     return error ? error.message : false;
   }
 

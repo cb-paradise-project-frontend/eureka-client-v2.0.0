@@ -70,7 +70,7 @@ export default function CreateProfile({ toggler }) {
     dispatch(action.mobileInput(mobile));
   };
 
-  const isChecked = (stateValue) => {
+  const isFilled = (stateValue) => {
     if(typeof stateValue === 'object') {
       const valueArray = Object.values(stateValue);
       const result = valueArray.filter(value => value);
@@ -80,35 +80,35 @@ export default function CreateProfile({ toggler }) {
   };
 
   const birthdayStatusLabel = () => {
-    if (!isChecked(birthday)) return '';
+    if (!isFilled(birthday)) return '';
     return birthday.toDateString().replace(/[^\s]+/, '');
   };
  
   const profileItemElementList = [
     {
       name: 'Profile Picture',
-      checked: isChecked(photo), 
+      checked: isFilled(photo), 
       subPage: <Photo url={photo} onSubmit={handlePhotoUpload} />,
     },
     {
       name: 'Bank Account Details',
-      checked: isChecked(bankAccount), 
+      checked: isFilled(bankAccount), 
       subPage: <BankAccount onSubmit={handleAccountInput} />,
     },
     {
       name: 'Billing Address',
-      checked: isChecked(billingAddress),
+      checked: isFilled(billingAddress),
       subPage: <BillingAddress onSubmit={handleBillingAddressInput} />,
     },
     {
       name: 'Date of Birth',
-      checked: isChecked(birthday),
+      checked: isFilled(birthday),
       statusLabel: birthdayStatusLabel(),
       subPage: <Birthday onSubmit={handleBirthdayInput} />,
     },
     {
       name: 'Mobile Number',
-      checked: isChecked(mobile),
+      checked: isFilled(mobile),
       statusLabel: mobile,
       subPage: <Mobile 
         verifiedMobile={mobile} 

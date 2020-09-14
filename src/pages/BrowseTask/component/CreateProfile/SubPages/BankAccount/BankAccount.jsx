@@ -8,9 +8,9 @@ import handleInput from '../Utils/handleInput';
 import { onlyNumber, addDashInNumber } from '../../../../../../utils/validators/input';
 
 export default function BankAccount({ onSubmit }) {
-  const [holder, setHolder] = useState('');
-  const [accountNumber, setAccountNumber] = useState('');
-  const [bsb, setBsb] = useState('');
+  const [holder, setHolder] = useState();
+  const [accountNumber, setAccountNumber] = useState();
+  const [bsb, setBsb] = useState();
   const [testing, toggleTest] = useState(false);
   const [hightLight, setHighLight] = useState();
 

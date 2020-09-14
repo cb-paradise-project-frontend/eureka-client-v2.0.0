@@ -41,7 +41,6 @@ dataArray[3].status = 'EXPIRED';
 
 
 function Browse({ match }) {
-
   //eslint-disable-next-line
   const [taskList, setTaskList] = useState(dataArray);
 

@@ -9,16 +9,12 @@ function SideBar() {
   return(
     <div className = {styles.side_bar} >
       <TaskConsumer>
-        {
-          ({ status, budget }) => {
-            return (
-              <PaymentPanel 
-                status = {status}
-                budget = {budget}
-              />
-            );
-          }
-        }       
+        {({ status, budget }) => (
+            <PaymentPanel 
+              status = {status}
+              budget = {budget}
+            />
+        )}     
       </TaskConsumer>
     </div>
   );

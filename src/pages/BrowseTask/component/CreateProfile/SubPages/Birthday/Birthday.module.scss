@@ -1,13 +1,22 @@
 .grouped_input{
   display: flex;
+  flex-direction: column;
 
   .input_wrapper{
-    width: 60px;
+    width: 200px;
     padding: 0 4px;
+    display: flex;
+    margin: 0;
 
     input{
       text-align: center;
     }
+  }
+  
+  .message_wrapper{
+    padding: 0 10px;
+    padding-bottom: 10px;
+    height: 22px;
   }
 }
 

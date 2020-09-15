@@ -10,8 +10,6 @@ import BankAccount from './SubPages/BankAccount';
 import BillingAddress from './SubPages/BillingAddress';
 import Birthday from './SubPages/Birthday';
 import Mobile from './SubPages/Mobile';
-import dayLabel from './Utils/dayLabel';
-import monthLabel from './Utils/monthLabel';
 import * as action from './Reducer/Action/actionCreator';
 
 const initialState = {
@@ -41,90 +39,69 @@ const initialState = {
 export default function CreateProfile({ toggler }) {
   const [state, dispatch] = useReducer(profileReducer, initialState);
   const { 
-    photo, 
-    bankAccount, 
-    billingAddress, 
-    birthday,
-    mobile, 
-    subPage, 
+    photo, bankAccount, billingAddress, birthday, mobile, subPage, 
   } = state;
 
-  const handleProfileBtnClick = (subPage) => {
-    return () => (dispatch(action.clickProfileItem(subPage)));
-  };
- 
+  const handleProfileBtnClick = (subPage) => (
+    () => (dispatch(action.clickProfileItem(subPage)))
+  );
   const handleBackBtnClick = () => {
     dispatch(action.clickBackBtn());
-  }
+  };
 
   const handlePhotoUpload = (photo) => {
     dispatch(action.photoUpload(photo));
-    handleBackBtnClick();
   };
-
   const handleAccountInput = (bankAccount) => {
     dispatch(action.accountInput(bankAccount));
-    handleBackBtnClick();
   };
-
   const handleBillingAddressInput = (billingAddress) => {
     dispatch(action.billingAddressInput(billingAddress));
-    handleBackBtnClick();
   };
-
   const handleBirthdayInput = (birthday) => {
     dispatch(action.birthdayInput(birthday));
-    handleBackBtnClick();
   };
-
   const handleMobileInput = (mobile) => {
     dispatch(action.mobileInput(mobile));
-    handleBackBtnClick();
   };
 
-  const isChecked = (stateValue) => {
+  const isFilled = (stateValue) => {
     if(typeof stateValue === 'object') {
       const valueArray = Object.values(stateValue);
       const result = valueArray.filter(value => value);
       return (result.length === valueArray.length) ? true : false;
     };
     return (stateValue) && true;
-  }
+  };
 
-  const birthdayStatusLabel = () => {
-    if (!isChecked(birthday)) return '';
-    const { day, month, year } = birthday;
-    const datText = dayLabel(day);
-    const monthText = monthLabel(month);
-    const label = `${datText} ${monthText} ${year}`;
-    return label;
-  }
+  const birthdayStatusLabel = isFilled(birthday) &&
+    birthday.toDateString().replace(/[^\s]+/, '');
  
   const profileItemElementList = [
     {
       name: 'Profile Picture',
-      checked: isChecked(photo), 
+      value: photo, 
       subPage: <Photo url={photo} onSubmit={handlePhotoUpload} />,
     },
     {
       name: 'Bank Account Details',
-      checked: isChecked(bankAccount), 
+      value: bankAccount, 
       subPage: <BankAccount onSubmit={handleAccountInput} />,
     },
     {
       name: 'Billing Address',
-      checked: isChecked(billingAddress),
+      value: billingAddress,
       subPage: <BillingAddress onSubmit={handleBillingAddressInput} />,
     },
     {
       name: 'Date of Birth',
-      checked: isChecked(birthday),
-      statusLabel: birthdayStatusLabel(),
+      value: birthday,
+      statusLabel: birthdayStatusLabel,
       subPage: <Birthday onSubmit={handleBirthdayInput} />,
     },
     {
       name: 'Mobile Number',
-      checked: isChecked(mobile),
+      value: mobile,
       statusLabel: mobile,
       subPage: <Mobile 
         verifiedMobile={mobile} 
@@ -133,18 +110,15 @@ export default function CreateProfile({ toggler }) {
     }, 
   ];
 
-  const profileList = profileItemElementList.map(({ name, checked, statusLabel, subPage }) => (
+  const profileList = profileItemElementList.map(({ name, value, statusLabel, subPage }) => (
     <ProfileItem 
       itemName={name}
       handleClick={handleProfileBtnClick(subPage)}
       statusLabel={statusLabel}
-      checked={checked}
+      checked={isFilled(value)}
       key={name}
     />
   ));
-
-  const title = 'To start Making Money';
-  const backButtonIcon = String.fromCharCode(10140);
 
   const header = (
     <>
@@ -153,11 +127,11 @@ export default function CreateProfile({ toggler }) {
           className={styles.back_button}
           onClick={handleBackBtnClick} 
         >
-          {backButtonIcon}
+          {String.fromCharCode(10140)}
         </button> 
       )}
       <div className={styles.title} >
-        {title}
+        To start Making Money
       </div>
     </>
   );
@@ -186,4 +160,4 @@ export default function CreateProfile({ toggler }) {
       footer={footer}
     />
   );
-} 
+}; 

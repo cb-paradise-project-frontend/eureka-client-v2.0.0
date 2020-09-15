@@ -1,5 +1,8 @@
-export default function handleInput(setter) {
-  return function callSetter (e) {
-    setter(e.target.value);
+export default function handleInput(
+  setter, 
+  validator = (value) => value
+) {
+  return function callSetter ({ target:{ value } }) {
+    setter(validator(value));
   };
 };

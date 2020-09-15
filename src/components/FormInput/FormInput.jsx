@@ -1,30 +1,33 @@
 import React from 'react';
-import classNames from 'classnames/bind';
 
 import styles from './FormInput.module.scss';
 
-const cx = classNames.bind(styles);
+import Input from '../Input';
+import ErrorMessage from '../ErrorMessage';
 
-const FormInput = ({label, name, type, placeholder, handleChange, isError, errorMessage, ...otherProps}) => {
+const FormInput = ({
+  label, name, type, placeholder, handleChange, isError, errorMessage, ...otherProps
+}) => {
   return (
     <div className={styles.container}>
-      <label className={styles.label}>{label}</label>
-      <input
-        className={cx({
-          input: true,
-          error_input: isError,
-        })}
+      <Input 
+        label={label}
         name={name}
         type={type}
         placeholder={placeholder}
-        onChange={handleChange}
+        handleChange={handleChange}
+        isError={isError}
         {...otherProps}
       />
-      {
-        isError ? <span className={styles.error_message}>{errorMessage}</span> : ''
-      }
+      <div className={styles.error_message} >
+        {isError &&
+          <ErrorMessage>
+            {errorMessage}
+          </ErrorMessage>
+        }
+      </div>
     </div>
   );
-}
+};
 
 export default FormInput;

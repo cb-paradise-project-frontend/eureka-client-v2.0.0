@@ -13,10 +13,12 @@ export default function BillingAddress({ onSubmit }) {
   const [state, setState] = useState('');
   const [postcode, setPostcode] = useState('');
   const [country, setCountry] = useState('');
+  const [testing, toggleTest] = useState(false);
 
   const introduction = `Your billing address will be verified before you can receive payments.`;
   const information = 'Your address will never been shown publicly, it is only used for account verification purposes.';
-  const formInputElements = [
+  
+  const fieldElementList = [
     {
       label: 'Address Line 1', 
       value: lineOne, 
@@ -49,26 +51,35 @@ export default function BillingAddress({ onSubmit }) {
     },
   ];
 
-  const formInputs = formInputElements.map(({ label, value, handleChange }) => (
+  const errorMessage = 'Please enter your complete address.';
+
+  const fieldList = fieldElementList.map(({ label, value, handleChange }) => (
     <FormInput 
       label={label}
       value={value}
       handleChange={handleChange}
+      isError={testing && !value}
+      errorMessage={errorMessage}
       key={label}
     />
   ));
 
+  const checkEmpty = () => {
+    const emptyField = fieldElementList.find(({ value }) => !value);
+    return !emptyField;
+  };
+
   const handleSubmit = () => {
-    const billingAddress = {
-      lineOne,
-      lineTwo,
-      suburb,
-      state,
-      postcode,
-      country, 
+    if(checkEmpty()){
+      const billingAddress = {
+        lineOne, lineTwo, suburb, state, postcode, country, 
+      };
+      onSubmit(billingAddress);
+      toggleTest(false);
+    }else{
+      toggleTest(true);
     }
-    onSubmit(billingAddress);
-  }
+  };
 
   return (
     <>
@@ -76,7 +87,7 @@ export default function BillingAddress({ onSubmit }) {
         {introduction}
       </div>
       <div className={styles.form_input} >
-        {formInputs}
+        {fieldList}
       </div>
       <div className={styles.button_wrapper} >
         <Button handleSubmit={handleSubmit} >
@@ -88,4 +99,4 @@ export default function BillingAddress({ onSubmit }) {
       </div>
     </>
   );
-}
+};

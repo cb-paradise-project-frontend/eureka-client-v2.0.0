@@ -1,0 +1,21 @@
+.button {
+  display: inline-flex;
+  border: none;
+  outline: none;
+  margin: 0;
+  text-decoration: none;
+  background: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  color: rgb(187, 194, 220);
+
+  i {
+    size: 24px;
+  }
+
+  &:hover{
+    color: rgb(129, 139, 175);
+    // color: rgb(84, 90, 119);
+  }
+}

@@ -1,20 +1,8 @@
 import React, { useState, createContext } from 'react';
-import Modal from 'react-modal';
+
 import styles from './Modal.module.scss';
 
-Modal.setAppElement('#root');
-
-const customStyles = {
-  content : {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    borderRadius: '10px',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
-  }
-};
+import Overlay from '../components/Overlay';
 
 const ModalContext = createContext();
 
@@ -24,11 +12,11 @@ export function ModalControlProvider({ children }) {
 
   const openModal = () => {
     setIsOpen(true);
-  }
+  };
 
   const closeModal = () => {
     setIsOpen(false);
-  }
+  };
 
   const modalControl = { 
     openModal,
@@ -41,21 +29,19 @@ export function ModalControlProvider({ children }) {
   return(
     <ModalContext.Provider value={modalControl}>
       {children}
-      <Modal 
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-      >
-        <>
-          <button 
-            className={styles.close_button}
-            onClick={closeModal} 
-          >
-            {closeButtonIcon}
-          </button>
-          {modalContent}
-        </>
-      </Modal>
+      {modalIsOpen &&
+        <Overlay>
+          <div className={styles.modal_container} >
+            {/* <button 
+              className={styles.close_button}
+              onClick={closeModal} 
+            >
+              {closeButtonIcon}
+            </button> */}
+            {modalContent}
+          </div>     
+        </Overlay>
+      }
     </ModalContext.Provider>
   );
 }

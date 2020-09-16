@@ -10,6 +10,7 @@ import BankAccount from './SubPages/BankAccount';
 import BillingAddress from './SubPages/BillingAddress';
 import Birthday from './SubPages/Birthday';
 import Mobile from './SubPages/Mobile';
+import CloseIconButton from '../../../../components/CloseIconButton';
 import * as action from './Reducer/Action/actionCreator';
 
 const initialState = {
@@ -130,6 +131,9 @@ export default function CreateProfile({ toggler }) {
           {String.fromCharCode(10140)}
         </button> 
       )}
+      <div className={styles.close_button} >
+        <CloseIconButton onClick={toggler} /> 
+      </div>
       <div className={styles.title} >
         To start Making Money
       </div>

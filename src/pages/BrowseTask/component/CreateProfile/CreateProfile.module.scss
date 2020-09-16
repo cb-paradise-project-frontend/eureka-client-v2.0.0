@@ -1,4 +1,16 @@
 
+%header-button{
+  position: absolute;
+  font-size: 20px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .title{
   flex-grow: 1;
   color: rgb(41, 43, 50);
@@ -14,18 +26,15 @@
 }
 
 .back_button{
-  position: absolute;
-  font-size: 20px;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  color: rgb(84, 90, 119);
-  left: 20px;
+  @extend %header-button;
+  left: 15px;
   transform: rotate(180deg);
+  color: rgb(84, 90, 119);
+}
 
-  &:hover {
-    cursor: pointer;
-  }
+.close_button{
+  @extend %header-button;
+  right: 10px;
 }
 
 .footer_button{

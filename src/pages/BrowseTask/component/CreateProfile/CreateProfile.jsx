@@ -147,14 +147,12 @@ export default function CreateProfile({ toggler }) {
   );
 
   const footer = (
-    <>
-      <button
-          className={styles.footer_button}
-          onClick={handleBackBtnClick} 
-        >
-          {subPage ? 'Back' : 'Continue'}
-      </button>
-    </>
+    <button
+        className={styles.footer_button}
+        onClick={handleBackBtnClick} 
+      >
+        {subPage ? 'Back' : 'Continue'}
+    </button>
   );
 
   return (

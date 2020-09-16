@@ -16,6 +16,7 @@ export function ModalControlProvider({ children }) {
 
   const closeModal = () => {
     setIsOpen(false);
+    setModal('');
   };
 
   const modalControl = { 
@@ -24,26 +25,18 @@ export function ModalControlProvider({ children }) {
     setModal, 
   };
 
-  const closeButtonIcon = String.fromCharCode(9747);
-
   return(
     <ModalContext.Provider value={modalControl}>
       {children}
       {modalIsOpen &&
         <Overlay>
           <div className={styles.modal_container} >
-            {/* <button 
-              className={styles.close_button}
-              onClick={closeModal} 
-            >
-              {closeButtonIcon}
-            </button> */}
             {modalContent}
           </div>     
         </Overlay>
       }
     </ModalContext.Provider>
   );
-}
+};
 
 export const ModalControlConsumer = ModalContext.Consumer;

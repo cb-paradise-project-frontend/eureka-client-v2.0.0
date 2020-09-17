@@ -6,6 +6,9 @@
   border-radius: 10px;
   padding: 20px;
   background-color: white;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
 
   .close_button{
     position: absolute;

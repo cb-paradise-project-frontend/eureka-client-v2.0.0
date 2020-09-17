@@ -22,28 +22,28 @@ function TaskDetail({ taskList, match, history }) {
   };
 
   return(
-    <div className = {styles.task_detail}>
-      <TaskProvider task = {task}>
-        <SideBar/>
-        <Header/>
-        <Section title = 'DETAILS'>
+    <div className={styles.task_detail} >
+      <TaskProvider task={task} >
+        <SideBar />
+        <Header />
+        <Section title='DETAILS' >
           {details}
         </Section>
-        <Section title = 'OFFER'>
-          <div className = {styles.offer_icon}/>
-          <div className = {styles.button_wrapper}>
-            <OfferButton isExpired = {(status === EXPIRED)}/>
+        <Section title='OFFER' >
+          <div className={styles.offer_icon} />
+          <div className={styles.button_wrapper} >
+            <OfferButton isExpired={(status === EXPIRED)} />
           </div>
         </Section>
         <Question/>
       </TaskProvider>
-      <Route exact path={`${match.url}/make-bid`}>
+      <Route exact path={`${match.url}/make-bid`} >
         <Modal
           isOpen={true}
           closeModal={closeModal}
           confirmBeforeClose
         >
-          <CreateProfile/>
+          <CreateProfile />
         </Modal>
       </Route>
     </div>

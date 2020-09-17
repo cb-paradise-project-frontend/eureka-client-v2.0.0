@@ -13,7 +13,7 @@ export default function TaskList({ taskList }) {
   );
 
   return(
-    <div className = {styles.task_list}>
+    <div className = {styles.task_list} >
       {displayedTasks}
     </div>
   );

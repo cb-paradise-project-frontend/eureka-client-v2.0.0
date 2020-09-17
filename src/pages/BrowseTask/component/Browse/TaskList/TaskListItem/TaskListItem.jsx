@@ -18,35 +18,35 @@ function TaskListItem({
 
   return(
     <div 
-      className = {cx(
+      className={cx(
         'task_list_item',
         status.toLowerCase(), 
       )}
       onClick = {handleClick}
     >
-      <div className = {styles.header}>
-        <div className = {styles.title}>
+      <div className={styles.header} >
+        <div className={styles.title} >
           {title}
         </div>
-        <div className = {styles.budget}>
+        <div className={styles.budget} >
           ${budget}
         </div>
       </div>
-      <div className = {styles.content}>
-        <div className = {styles.avatar}>
+      <div className={styles.content} >
+        <div className={styles.avatar} >
           {poster.avatar &&
-            <img src = {poster.avatar} alt = 'avatar'/>
+            <img src={poster.avatar} alt="avatar" />
           }
         </div>
-        <div className = {styles.location}>
+        <div className={styles.location} >
           {location}
         </div>
-        <div className = {styles.due}>
+        <div className={styles.due} >
           {due}
         </div>
       </div>
-      <div className = {styles.footer}>
-        <div className = {styles.status}>
+      <div className={styles.footer} >
+        <div className={styles.status} >
           {status}
         </div>
       </div>

@@ -34,8 +34,8 @@ export default function AlertModal({ onLeftBtnClick, onRightBtnClick }) {
   );
 
   const modalBottom = (
-    <div className={styles.modal_bottom}>
-      <div className={styles.left_button}>
+    <div className={styles.modal_bottom} >
+      <div className={styles.left_button} >
         {leftButton}
       </div>
       <div className={styles.right_button} >

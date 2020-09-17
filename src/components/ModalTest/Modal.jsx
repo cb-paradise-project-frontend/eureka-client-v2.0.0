@@ -7,17 +7,18 @@ import Overlay from '../Overlay';
 import CloseIconButton from '../CloseIconButton';
 import AlertModal from '../AlertModal';
 
-export default function Modal({ closeModal, children }) {
+const modalRoot = document.body;
+
+export default function Modal({ closeModal, confirmBeforeClose, children }) {
   const [showAlert, toggleAlert] = useState(false);
 
-  const modalRoot = document.body;
+  const onRequestClose = confirmBeforeClose 
+    ? () => {toggleAlert(true)}
+    : closeModal;
 
-  const onRequestClose = () => {
-    toggleAlert(true);
-  };
   const onContinue = () => {
     toggleAlert(false);
-  }
+  };
 
   return (
     <>
@@ -28,7 +29,7 @@ export default function Modal({ closeModal, children }) {
               <CloseIconButton onClick={onRequestClose} /> 
             </div>
             {children}
-            {showAlert && 
+            {confirmBeforeClose && showAlert && 
               <Overlay>
                 <AlertModal 
                   onLeftBtnClick={onContinue} 

@@ -4,6 +4,19 @@
   margin-left: 1em;
   margin-right: 1em;
   resize: none;
+  padding: 4px 8px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #bbc2dc;
+  box-sizing: border-box;
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    border: 1px solid rgb(0, 143, 180);
+  }
 }
 
 .large_text_area {

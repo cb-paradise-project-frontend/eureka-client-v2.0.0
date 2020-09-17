@@ -1,15 +1,4 @@
 
-%header-button{
-  position: absolute;
-  font-size: 20px;
-  border: none;
-  outline: none;
-  background-color: transparent;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
 
 .title{
   flex-grow: 1;
@@ -26,10 +15,18 @@
 }
 
 .back_button{
-  @extend %header-button;
+  position: absolute;
+  font-size: 20px;
+  border: none;
+  outline: none;
+  background-color: transparent;
   left: 15px;
   transform: rotate(180deg);
   color: rgb(84, 90, 119);
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 

@@ -10,7 +10,6 @@ import BankAccount from './SubPages/BankAccount';
 import BillingAddress from './SubPages/BillingAddress';
 import Birthday from './SubPages/Birthday';
 import Mobile from './SubPages/Mobile';
-import CloseIconButton from '../../../../components/CloseIconButton';
 import * as action from './Reducer/Action/actionCreator';
 
 const initialState = {
@@ -132,7 +131,7 @@ export default function CreateProfile({ toggler }) {
         </button> 
       )}
       <div className={styles.title} >
-        To start Making Money
+        To Start Making Money
       </div>
     </>
   );

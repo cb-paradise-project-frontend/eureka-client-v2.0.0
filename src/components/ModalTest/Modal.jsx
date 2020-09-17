@@ -31,8 +31,8 @@ export default function Modal({ closeModal, children }) {
             {showAlert && 
               <Overlay>
                 <AlertModal 
-                  onConfirm={closeModal} 
-                  onQuit={onContinue}
+                  onLeftBtnClick={onContinue} 
+                  onRightBtnClick={closeModal}
                 />
               </Overlay>
             }

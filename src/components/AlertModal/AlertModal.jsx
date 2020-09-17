@@ -6,7 +6,7 @@ import ModalPage from '../ModalPage';
 import Button from '../Button';
 import CloseIconButton from '../CloseIconButton';
 
-export default function AlertModal({ onConfirm, onQuit }) {
+export default function AlertModal({ onLeftBtnClick, onRightBtnClick }) {
   const [isModalOpen, toggleModal] = useState(true);
 
   const title = `Sorry to see you go...`;
@@ -14,12 +14,12 @@ export default function AlertModal({ onConfirm, onQuit }) {
 
   const handleQuit = () => {
     toggleModal(false);
-    onQuit();
+    onRightBtnClick();
   };
 
   const leftButton = (
     <Button
-      handleSubmit={handleQuit}
+      handleSubmit={onLeftBtnClick}
     >
       Continue Task
     </Button>
@@ -27,7 +27,7 @@ export default function AlertModal({ onConfirm, onQuit }) {
 
   const rightButton = (
     <Button
-    handleSubmit={onConfirm}
+    handleSubmit={handleQuit}
   >
     Discard & Exit
   </Button>

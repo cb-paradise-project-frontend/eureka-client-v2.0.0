@@ -39,7 +39,6 @@ function TaskDetail({ taskList, match, history }) {
       </TaskProvider>
       <Route exact path={`${match.url}/make-bid`} >
         <Modal
-          isOpen={true}
           closeModal={closeModal}
           confirmBeforeClose
         >

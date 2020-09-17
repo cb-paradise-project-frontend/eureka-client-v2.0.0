@@ -5,7 +5,7 @@ import styles from './Modal.module.scss';
 
 import Overlay from '../Overlay';
 import CloseIconButton from '../CloseIconButton';
-import AlertModal from '../AlertModal';
+import AlertModal from './AlertModal';
 
 const modalRoot = document.body;
 

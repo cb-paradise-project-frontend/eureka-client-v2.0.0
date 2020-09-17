@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 import styles from './AlertModal.module.scss';
 
-import ModalPage from '../ModalPage';
-import Button from '../Button';
-import CloseIconButton from '../CloseIconButton';
+import ModalPage from '../../ModalPage';
+import Button from '../../Button';
+import CloseIconButton from '../../CloseIconButton';
 
 export default function AlertModal({ onLeftBtnClick, onRightBtnClick }) {
   const [isModalOpen, toggleModal] = useState(true);

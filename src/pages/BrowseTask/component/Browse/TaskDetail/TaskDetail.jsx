@@ -41,6 +41,7 @@ function TaskDetail({ taskList, match, history }) {
         <Modal
           isOpen={true}
           closeModal={closeModal}
+          confirmBeforeClose
         >
           <CreateProfile/>
         </Modal>

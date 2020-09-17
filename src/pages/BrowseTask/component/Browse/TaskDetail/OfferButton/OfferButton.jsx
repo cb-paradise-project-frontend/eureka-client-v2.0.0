@@ -7,15 +7,13 @@ function OfferButton({ isExpired, match }) {
   const label = isExpired ? 'Expired' : 'Make an offer';
 
   return (
-    <>
+    <Link to={`${match.url}/make-bid`}>
       <Button 
         isDisabled={isExpired}
       >
-        <Link to={`${match.url}/make-bid`}>
-          {label}
-        </Link>
+        {label}
       </Button>
-    </>
+    </Link>
   );
 };
 

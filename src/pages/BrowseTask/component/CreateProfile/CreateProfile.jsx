@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 
 import styles from './CreateProfile.module.scss';
 
-import ModalPage from '../ModalPage';
+import ModalPage from '../../../../components/ModalPage';
 import profileReducer from './Reducer';
 import ProfileItem from './ProfileItem';
 import Photo from './SubPages/Photo';
@@ -36,7 +36,7 @@ const initialState = {
   subPage: '',
 };
 
-export default function CreateProfile({ toggler }) {
+export default function CreateProfile() {
   const [state, dispatch] = useReducer(profileReducer, initialState);
   const { 
     photo, bankAccount, billingAddress, birthday, mobile, subPage, 

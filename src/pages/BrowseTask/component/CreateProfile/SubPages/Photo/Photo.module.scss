@@ -2,7 +2,9 @@
 
 .form_wrapper{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  align-items: stretch;
+  height: 200px;
 
   .avatar_wrapper{
     background-color: lighten(grey, 30%);

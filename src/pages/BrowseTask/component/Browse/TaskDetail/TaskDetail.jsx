@@ -40,7 +40,7 @@ function TaskDetail({ taskList, match, history }) {
       <Route exact path={`${match.url}/make-bid`}>
         <Modal
           isOpen={true}
-          onRequestClose={closeModal}
+          closeModal={closeModal}
         >
           <CreateProfile/>
         </Modal>

@@ -5,8 +5,8 @@
   right: auto;
   bottom: auto;
   width: auto;
+  min-width: 400px;
   max-width: 500px;
-  height: auto;  
   max-height: 90%;
   border-radius: 15px;
   margin-right: -50%;
@@ -16,20 +16,9 @@
 
   .close_button{
     position: absolute;
-    font-size: 20px;
-    color: rgb(187, 194, 220);
     top: 30px;
     right: 20px;
-    font-weight: 600;
-    z-index: 999;
-    outline: none;
-    border: none;
-    background-color: transparent;
-  
-    &:hover {
-      cursor: pointer;
-      color: rgb(129, 139, 175);
-    }
+    z-index: 1;
   }
 }
 

@@ -48,7 +48,7 @@ function TaskDetail({ taskList, match, history }) {
       </Route>
     </div>
   );
-}
+};
 
 export default withRouter(TaskDetail);
 

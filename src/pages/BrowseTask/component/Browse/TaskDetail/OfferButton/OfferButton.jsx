@@ -1,31 +1,23 @@
 import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 
 import Button from '../../../../../../components/Button';
-import { ModalControlConsumer } from '../../../../../../ModalContext';
-import CreateProfile from '../../../CreateProfile';
 
-export default function OfferButton({ isExpired }) {
+function OfferButton({ isExpired, match }) {
   const label = isExpired ? 'Expired' : 'Make an offer';
 
-  const handleClick = ({ openModal, closeModal }, setter) => {
-    const setModal = () => {
-      setter(<CreateProfile toggler={closeModal} />);
-      openModal();
-    };
-    return setModal;
-  };
-
   return (
-    <ModalControlConsumer>
-      {({ setModal, ...modalToggler }) => (
-        <Button 
-          isDisabled={isExpired}
-          handleSubmit={handleClick(modalToggler, setModal)} 
-        >
+    <>
+      <Button 
+        isDisabled={isExpired}
+      >
+        <Link to={`${match.url}/make-bid`}>
           {label}
-        </Button>
-      )}
-    </ModalControlConsumer>
+        </Link>
+      </Button>
+    </>
   );
-}
+};
+
+export default withRouter(OfferButton);
 

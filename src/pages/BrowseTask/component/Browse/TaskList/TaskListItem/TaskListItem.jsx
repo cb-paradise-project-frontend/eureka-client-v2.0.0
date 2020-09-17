@@ -5,22 +5,14 @@ import { withRouter } from 'react-router-dom';
 import styles from './TaskListItem.module.scss';
 
 function TaskListItem({ 
-  task:{
-    title,
-    status,
-    budget,
-    poster,
-    location,
-    due,
-    id
-  }, 
+  task:{ title, status, budget, poster, location, due, id }, 
   history, 
   match 
 }) {
 
   function handleClick() {
     history.push(`${match.url}/${id}`);
-  }
+  };
 
   const cx = classNames.bind(styles);
 
@@ -60,6 +52,6 @@ function TaskListItem({
       </div>
     </div>
   );
-}
+};
 
 export default withRouter(TaskListItem);

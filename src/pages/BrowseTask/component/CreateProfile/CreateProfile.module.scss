@@ -32,10 +32,6 @@
   color: rgb(84, 90, 119);
 }
 
-.close_button{
-  @extend %header-button;
-  right: 10px;
-}
 
 .footer_button{
   display: inline-block;

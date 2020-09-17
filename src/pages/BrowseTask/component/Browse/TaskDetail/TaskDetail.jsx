@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Route } from 'react-router-dom';
 
 import styles from './TaskDetail.module.scss';
 
@@ -10,10 +10,16 @@ import OfferButton from './OfferButton';
 import Question from './Question';
 import { TaskProvider } from '../TaskContext';
 import { EXPIRED } from '../../../../../components/Status';
+import Modal from '../../../../../components/ModalTest';
+import CreateProfile from '../../CreateProfile';
 
-function TaskDetail({ taskList, match }) {
+function TaskDetail({ taskList, match, history }) {
   const task = taskList.find(task => task.id === match.params.taskId);
   const { status, details } = task;
+
+  const closeModal = () => {
+    history.push(match.url);
+  };
 
   return(
     <div className = {styles.task_detail}>
@@ -31,6 +37,14 @@ function TaskDetail({ taskList, match }) {
         </Section>
         <Question/>
       </TaskProvider>
+      <Route exact path={`${match.url}/make-bid`}>
+        <Modal
+          isOpen={true}
+          onRequestClose={closeModal}
+        >
+          <CreateProfile/>
+        </Modal>
+      </Route>
     </div>
   );
 }

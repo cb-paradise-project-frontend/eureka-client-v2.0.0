@@ -6,11 +6,13 @@ import styles from './Modal.module.scss';
 import Overlay from '../Overlay';
 import CloseIconButton from '../CloseIconButton';
 import AlertModal from './AlertModal';
+import { useHistory } from 'react-router-dom';
 
 const modalRoot = document.body;
 
-export default function Modal({ closeModal, confirmBeforeClose, children }) {
+export default function Modal({ confirmBeforeClose, children }) {
   const [showAlert, toggleAlert] = useState(false);
+  const closeModal = useHistory().goBack;
 
   const onRequestClose = confirmBeforeClose 
     ? () => {toggleAlert(true)}

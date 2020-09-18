@@ -12,7 +12,6 @@ import BillingAddress from './SubPages/BillingAddress';
 import Birthday from './SubPages/Birthday';
 import Mobile from './SubPages/Mobile';
 import * as action from './Reducer/Action/actionCreator';
-import { useHistory } from 'react-router-dom';
 
 const initialState = {
   photo: '',
@@ -153,17 +152,8 @@ export default function CreateProfile() {
     </button>
   );
 
-  const history = useHistory();
-
-  const closeModal = () => {
-    history.goBack();
-  };
-
   return (
-    <Modal
-      closeModal={closeModal}
-      confirmBeforeClose
-    >
+    <Modal confirmBeforeClose >
       <ModalPage  
         header={header}
         content={content}

@@ -8,10 +8,7 @@ function OfferButton({ isExpired }) {
   const location = useLocation();
 
   return (
-    <Link to={{
-      pathname: `${location.pathname}/make-bid`,
-      state: { createProfile: true }
-    }}>
+    <Link to={`${location.pathname}/make-bid`} >
       <Button 
         isDisabled={isExpired}
       >

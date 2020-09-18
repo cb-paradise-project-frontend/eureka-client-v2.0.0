@@ -12,7 +12,6 @@ import BillingAddress from './SubPages/BillingAddress';
 import Birthday from './SubPages/Birthday';
 import Mobile from './SubPages/Mobile';
 import * as action from './Reducer/Action/actionCreator';
-import { useLocation } from 'react-router-dom';
 
 const initialState = {
   photo: '',
@@ -39,12 +38,7 @@ const initialState = {
 };
 
 export default function CreateProfile() {
-  const location = useLocation();
   const [fields, dispatch] = useReducer(profileReducer, initialState);
-  
-  const isModalActive = location.state && location.state.createProfile;
-  if (!isModalActive) return null;
-
   const { 
     photo, bankAccount, billingAddress, birthday, mobile, subPage, 
   } = fields;

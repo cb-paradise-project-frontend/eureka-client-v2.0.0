@@ -11,6 +11,7 @@ import PostTask from './pages/PostTask';
 import Landing from './pages/Landing';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
+import CreateProfile from './pages/BrowseTask/component/CreateProfile';
 
 const App = () => {
 
@@ -24,6 +25,7 @@ const App = () => {
           <PrivateRoute exact path="/profile" component={Profile} />
           <Route path="*" component={NotFound} />
         </Switch>
+        <Route path={"/"} component={CreateProfile} />
       </Router>
     </AuthProvider>
   );

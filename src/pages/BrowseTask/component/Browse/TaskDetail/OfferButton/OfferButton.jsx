@@ -1,13 +1,17 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import Button from '../../../../../../components/Button';
 
-function OfferButton({ isExpired, match }) {
+function OfferButton({ isExpired }) {
   const label = isExpired ? 'Expired' : 'Make an offer';
+  const location = useLocation();
 
   return (
-    <Link to={`${match.url}/make-bid`} >
+    <Link to={{
+      pathname: `${location.pathname}/make-bid`,
+      state: { createProfile: true }
+    }}>
       <Button 
         isDisabled={isExpired}
       >
@@ -17,5 +21,5 @@ function OfferButton({ isExpired, match }) {
   );
 };
 
-export default withRouter(OfferButton);
+export default OfferButton;
 

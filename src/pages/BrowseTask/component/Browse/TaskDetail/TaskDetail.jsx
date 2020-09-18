@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Route } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import styles from './TaskDetail.module.scss';
 
@@ -10,7 +10,6 @@ import OfferButton from './OfferButton';
 import Question from './Question';
 import { TaskProvider } from '../TaskContext';
 import { EXPIRED } from '../../../../../components/Status';
-import CreateProfile from '../../CreateProfile';
 
 function TaskDetail({ taskList, match }) {
   const task = taskList.find(task => task.id === match.params.taskId);
@@ -32,9 +31,6 @@ function TaskDetail({ taskList, match }) {
         </Section>
         <Question/>
       </TaskProvider>
-      <Route exact path={`${match.url}/make-bid`} >
-        <CreateProfile />
-      </Route>
     </div>
   );
 };

@@ -12,7 +12,7 @@ import { TaskProvider } from '../TaskContext';
 import { EXPIRED } from '../../../../../components/Status';
 
 function TaskDetail({ taskList, match }) {
-  const task = taskList.find(task => task.id === match.params.taskId) || taskList[0];
+  const task = taskList.find(task => task.id === match.params.taskId) || taskList[0]; //TODO: use a default page when no task selected
   const { status, details } = task ;
 
   return(

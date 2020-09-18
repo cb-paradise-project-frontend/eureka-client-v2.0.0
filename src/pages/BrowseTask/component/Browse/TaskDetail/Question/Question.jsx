@@ -26,7 +26,7 @@ function Question() {
         <div className = {styles.input}>
           <FormTextAreaInput
             size={'large'}
-            placeHolder={placeHolder}
+            placeholder={placeHolder}
             displayValue={input}
             onInputChange={updateInput}
           />

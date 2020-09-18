@@ -25,7 +25,7 @@ const App = () => {
           <PrivateRoute exact path="/profile" component={Profile} />
           <Route path="*" component={NotFound} />
         </Switch>
-        <Route path={"/"} component={CreateProfile} />
+        <Route path="/" component={CreateProfile} />
       </Router>
     </AuthProvider>
   );

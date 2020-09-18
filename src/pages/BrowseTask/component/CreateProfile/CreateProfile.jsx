@@ -42,7 +42,7 @@ export default function CreateProfile() {
   const location = useLocation();
   const [fields, dispatch] = useReducer(profileReducer, initialState);
   
-  const isModalActive = location && location.state && location.state.createProfile;
+  const isModalActive = location.state && location.state.createProfile;
   if (!isModalActive) return null;
 
   const { 

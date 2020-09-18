@@ -3,6 +3,7 @@ import React, { useReducer } from 'react';
 import styles from './CreateProfile.module.scss';
 
 import ModalPage from '../../../../components/ModalPage';
+import Modal from '../../../../components/ModalTest';
 import profileReducer from './Reducer';
 import ProfileItem from './ProfileItem';
 import Photo from './SubPages/Photo';
@@ -11,6 +12,7 @@ import BillingAddress from './SubPages/BillingAddress';
 import Birthday from './SubPages/Birthday';
 import Mobile from './SubPages/Mobile';
 import * as action from './Reducer/Action/actionCreator';
+import { useHistory } from 'react-router-dom';
 
 const initialState = {
   photo: '',
@@ -151,11 +153,22 @@ export default function CreateProfile() {
     </button>
   );
 
+  const history = useHistory();
+
+  const closeModal = () => {
+    history.goBack();
+  };
+
   return (
-    <ModalPage  
-      header={header}
-      content={content}
-      footer={footer}
-    />
+    <Modal
+      closeModal={closeModal}
+      confirmBeforeClose
+    >
+      <ModalPage  
+        header={header}
+        content={content}
+        footer={footer}
+      />
+    </Modal>
   );
 }; 

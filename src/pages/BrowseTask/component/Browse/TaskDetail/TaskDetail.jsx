@@ -10,16 +10,11 @@ import OfferButton from './OfferButton';
 import Question from './Question';
 import { TaskProvider } from '../TaskContext';
 import { EXPIRED } from '../../../../../components/Status';
-import Modal from '../../../../../components/ModalTest';
 import CreateProfile from '../../CreateProfile';
 
-function TaskDetail({ taskList, match, history }) {
+function TaskDetail({ taskList, match }) {
   const task = taskList.find(task => task.id === match.params.taskId);
   const { status, details } = task;
-
-  const closeModal = () => {
-    history.push(match.url);
-  };
 
   return(
     <div className={styles.task_detail} >
@@ -38,12 +33,7 @@ function TaskDetail({ taskList, match, history }) {
         <Question/>
       </TaskProvider>
       <Route exact path={`${match.url}/make-bid`} >
-        <Modal
-          closeModal={closeModal}
-          confirmBeforeClose
-        >
-          <CreateProfile />
-        </Modal>
+        <CreateProfile />
       </Route>
     </div>
   );

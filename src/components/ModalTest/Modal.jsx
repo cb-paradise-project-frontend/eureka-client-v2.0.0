@@ -6,7 +6,6 @@ import styles from './Modal.module.scss';
 import Overlay from '../Overlay';
 import CloseIconButton from '../CloseIconButton';
 import AlertModal from './AlertModal';
-import Landing from '../../pages/Landing';
 import { useHistory } from 'react-router-dom';
 
 const modalRoot = document.body;
@@ -14,9 +13,6 @@ const modalRoot = document.body;
 export default function Modal({ confirmBeforeClose, children }) {
   const [showAlert, toggleAlert] = useState(false);
   const history  = useHistory();
-
-  const pathLength = history.location.pathname.split('/').length - 1;
-  const isLandingModal = pathLength < 2;
 
   const closeModal = history.goBack;
 
@@ -30,9 +26,6 @@ export default function Modal({ confirmBeforeClose, children }) {
 
   return (
     <>
-      {isLandingModal &&
-        <Landing />
-      }
       {createPortal(
         <Overlay>
           <div className={styles.modal_container} >

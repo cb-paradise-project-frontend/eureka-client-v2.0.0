@@ -1,13 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import styles from './Navigation.module.scss';
 
-import { AuthContext } from './../../../auth/Auth';
-import LoginModal from '../../../components/LoginModal';
-import SignupModal from '../../../components/SignupModal'
+import { AuthContext } from './../../auth/Auth';
+import LoginModal from '../../components/LoginModal';
+import SignupModal from '../../components/SignupModal'
 
 function Navigation() {
+  const pathName = useLocation().pathname;
+  const postRoute = pathName === '/' ? '/create' : `${pathName}/create`;
+
   return (
     <AuthContext.Consumer>
       {
@@ -19,7 +22,7 @@ function Navigation() {
               </Link>
 
               <div className = {styles.left}>
-                <Link to="/create" className = {styles.postTask}>Post a task</Link>
+                <Link to={postRoute} className = {styles.postTask}>Post a task</Link>
                 <div  className = {styles.categories}>
                   <a>Categories</a>
                   <div className = {styles.category_details}>

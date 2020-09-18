@@ -49,7 +49,7 @@ export default function AlertModal({ onLeftBtnClick, onRightBtnClick }) {
       {isModalOpen &&
         <div className={styles.modal_container} >
           <div className={styles.close_button} >
-            <CloseIconButton onClick={handleQuit} /> 
+            <CloseIconButton onClick={onLeftBtnClick} /> 
           </div>
           <ModalPage
             header={title}

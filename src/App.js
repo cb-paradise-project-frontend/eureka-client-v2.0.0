@@ -12,19 +12,21 @@ import Landing from './pages/Landing';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 import CreateProfile from './pages/BrowseTask/component/CreateProfile';
+import Navigation from './pages/Navigation/Navigation';
 
 const App = () => {
 
   return (
     <AuthProvider>
       <Router>
+        <Navigation />
         <Switch>
-          <Route exact path="/" component={Landing} />
-          <Route exact path="*/create" component={PostTask} />
           <Route path="/tasks" component={BrowseTask} />
-          <PrivateRoute exact path="/profile" component={Profile} />
+          <PrivateRoute path="/profile" component={Profile} />
+          <Route path="/" component={Landing} />
           <Route component={NotFound} />
         </Switch>
+        <Route exact path="*/create" component={PostTask} />
         <Route exact path="*/make-bid" component={CreateProfile} />
       </Router>
     </AuthProvider>

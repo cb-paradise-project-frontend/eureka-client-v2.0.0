@@ -12,8 +12,8 @@ import { TaskProvider } from '../TaskContext';
 import { EXPIRED } from '../../../../../components/Status';
 
 function TaskDetail({ taskList, match }) {
-  const task = taskList.find(task => task.id === match.params.taskId);
-  const { status, details } = task;
+  const task = taskList.find(task => task.id === match.params.taskId) || taskList[0];
+  const { status, details } = task ;
 
   return(
     <div className={styles.task_detail} >

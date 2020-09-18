@@ -20,10 +20,10 @@ const App = () => {
       <Router>
         <Switch>
           <Route exact path="/" component={Landing} />
+          <Route exact path="*/create" component={PostTask} />
           <Route path="/tasks" component={BrowseTask} />
-          <Route exact path="/create" component={PostTask} />
           <PrivateRoute exact path="/profile" component={Profile} />
-          <Route path="*" component={NotFound} />
+          <Route component={NotFound} />
         </Switch>
         <Route exact path="*/make-bid" component={CreateProfile} />
       </Router>

@@ -11,23 +11,24 @@ import PostTask from './pages/PostTask';
 import Landing from './pages/Landing';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
-import { ModalControlProvider } from './ModalContext';
+import CreateProfile from './pages/BrowseTask/component/CreateProfile';
+import Navigation from './pages/Navigation/Navigation';
 
 const App = () => {
 
   return (
     <AuthProvider>
-      <ModalControlProvider>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <Route path="/tasks" component={BrowseTask} />
-            <Route exact path="/create" component={PostTask} />
-            <PrivateRoute exact path="/profile" component={Profile} />
-            <Route path="*" component={NotFound} />
-          </Switch>
-        </Router>
-      </ModalControlProvider>
+      <Router>
+        <Navigation />
+        <Switch>
+          <Route path="/tasks" component={BrowseTask} />
+          <PrivateRoute path="/profile" component={Profile} />
+          <Route path="/" component={Landing} />
+          <Route component={NotFound} />
+        </Switch>
+        <Route exact path="*/create" component={PostTask} />
+        <Route exact path="*/make-bid" component={CreateProfile} />
+      </Router>
     </AuthProvider>
   );
 }

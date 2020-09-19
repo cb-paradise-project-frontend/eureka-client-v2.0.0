@@ -12,28 +12,28 @@ import { TaskProvider } from '../TaskContext';
 import { EXPIRED } from '../../../../../components/Status';
 
 function TaskDetail({ taskList, match }) {
-  const task = taskList.find(task => task.id === match.params.taskId);
-  const { status, details } = task;
+  const task = taskList.find(task => task.id === match.params.taskId) || taskList[0]; //TODO: use a default page when no task selected
+  const { status, details } = task ;
 
   return(
-    <div className = {styles.task_detail}>
-      <TaskProvider task = {task}>
-        <SideBar/>
-        <Header/>
-        <Section title = 'DETAILS'>
+    <div className={styles.task_detail} >
+      <TaskProvider task={task} >
+        <SideBar />
+        <Header />
+        <Section title='DETAILS' >
           {details}
         </Section>
-        <Section title = 'OFFER'>
-          <div className = {styles.offer_icon}/>
-          <div className = {styles.button_wrapper}>
-            <OfferButton isExpired = {(status === EXPIRED)}/>
+        <Section title='OFFER' >
+          <div className={styles.offer_icon} />
+          <div className={styles.button_wrapper} >
+            <OfferButton isExpired={(status === EXPIRED)} />
           </div>
         </Section>
         <Question/>
       </TaskProvider>
     </div>
   );
-}
+};
 
 export default withRouter(TaskDetail);
 

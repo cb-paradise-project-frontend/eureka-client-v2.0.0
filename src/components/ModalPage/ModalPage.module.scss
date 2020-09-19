@@ -1,22 +1,17 @@
-
 .modal_page{
-  border-radius: 5px;
+  // border-radius: 5px;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  overflow: auto;
   height: auto;
-  min-height: 530px;
-  max-height: 0.9vh;
   width: 100%;
-  min-width: 400px;
-  max-width: 500px;
+  justify-content: space-between;
 
   .header{
     position: relative;
     min-height: 60px;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   .content{
@@ -24,6 +19,7 @@
     flex-direction: column;
     flex-grow: 1;
     overflow: auto;
+    max-height: 400px;
     overflow-x: hidden;
     padding: 10px 20px;
   }

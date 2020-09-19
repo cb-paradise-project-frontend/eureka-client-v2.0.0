@@ -2,7 +2,8 @@ import React, { useReducer } from 'react';
 
 import styles from './CreateProfile.module.scss';
 
-import ModalPage from '../ModalPage';
+import ModalPage from '../../../../components/ModalPage';
+import Modal from '../../../../components/ModalTest';
 import profileReducer from './Reducer';
 import ProfileItem from './ProfileItem';
 import Photo from './SubPages/Photo';
@@ -36,11 +37,11 @@ const initialState = {
   subPage: '',
 };
 
-export default function CreateProfile({ toggler }) {
-  const [state, dispatch] = useReducer(profileReducer, initialState);
+export default function CreateProfile() {
+  const [fields, dispatch] = useReducer(profileReducer, initialState);
   const { 
     photo, bankAccount, billingAddress, birthday, mobile, subPage, 
-  } = state;
+  } = fields;
 
   const handleProfileBtnClick = (subPage) => (
     () => (dispatch(action.clickProfileItem(subPage)))
@@ -131,7 +132,7 @@ export default function CreateProfile({ toggler }) {
         </button> 
       )}
       <div className={styles.title} >
-        To start Making Money
+        To Start Making Money
       </div>
     </>
   );
@@ -143,21 +144,21 @@ export default function CreateProfile({ toggler }) {
   );
 
   const footer = (
-    <>
-      <button
-          className={styles.footer_button}
-          onClick={handleBackBtnClick} 
-        >
-          {subPage ? 'Back' : 'Continue'}
-      </button>
-    </>
+    <button
+        className={styles.footer_button}
+        onClick={handleBackBtnClick} 
+      >
+        {subPage ? 'Back' : 'Continue'}
+    </button>
   );
 
   return (
-    <ModalPage  
-      header={header}
-      content={content}
-      footer={footer}
-    />
+    <Modal confirmBeforeClose >
+      <ModalPage  
+        header={header}
+        content={content}
+        footer={footer}
+      />
+    </Modal>
   );
 }; 

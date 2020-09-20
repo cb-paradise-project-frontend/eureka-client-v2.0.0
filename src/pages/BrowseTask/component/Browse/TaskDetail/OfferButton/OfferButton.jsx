@@ -3,12 +3,18 @@ import { Link, useLocation } from 'react-router-dom';
 
 import Button from '../../../../../../components/Button';
 
-function OfferButton({ isExpired }) {
-  const label = isExpired ? 'Expired' : 'Make an offer';
-  const location = useLocation();
+import styles from './OfferButton.module.scss';
 
+export default function OfferButton({ isExpired }) {
+  const { pathname } = useLocation();
+
+  const label = isExpired ? 'Expired' : 'Make an offer';
+  
   return (
-    <Link to={`${location.pathname}/make-bid`} >
+    <Link 
+      to={`${pathname}/make-bid`} 
+      className={isExpired && styles.disabled_link}
+    >
       <Button 
         isDisabled={isExpired}
       >
@@ -18,5 +24,4 @@ function OfferButton({ isExpired }) {
   );
 };
 
-export default OfferButton;
 

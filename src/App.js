@@ -6,13 +6,13 @@ import 'remixicon/fonts/remixicon.css'
 
 import { AuthProvider } from './auth/Auth';
 import PrivateRoute from './auth/PrivateRoute';
-import BrowseTask from './pages/BrowseTask';
 import PostTask from './pages/PostTask';
 import Landing from './pages/Landing';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
-import CreateProfile from './pages/BrowseTask/component/CreateProfile';
+import CreateProfile from './pages/CreateProfile';
 import Navigation from './pages/Navigation/Navigation';
+import Browse from './pages/Browse/Browse';
 
 const App = () => {
 
@@ -21,7 +21,7 @@ const App = () => {
       <Router>
         <Navigation />
         <Switch>
-          <Route path="/tasks" component={BrowseTask} />
+          <Route path="/tasks" component={Browse} />
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/" component={Landing} />
           <Route component={NotFound} />

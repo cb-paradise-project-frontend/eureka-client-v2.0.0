@@ -11,8 +11,10 @@ import Question from './Question';
 import { TaskProvider } from '../TaskContext';
 import { EXPIRED } from '../../../components/Status';
 
-function TaskDetail({ taskList, match }) {
-  const task = taskList.find(task => task.id === match.params.taskId) || taskList[0]; //TODO: use a default page when no task selected
+function TaskDetail({ taskList, match:{params:{ taskId }} }) {
+  const task = taskList.find(task => task.id === taskId); //TODO: use a default page when no task selected
+  if(!task) return null;
+
   const { status, details } = task ;
 
   return(

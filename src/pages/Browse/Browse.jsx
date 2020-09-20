@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect, Route, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 
 import styles from './Browse.module.scss';
 
@@ -44,19 +44,16 @@ function Browse({ match }) {
   //eslint-disable-next-line
   const [taskList, setTaskList] = useState(dataArray);
 
-  const defaultTaskId = taskList[0].id; 
-
   return(
     <div className={styles.browse_container} >
       <div className = {styles.browse} >
         <TaskList taskList={taskList} />
-        <Redirect to={`${match.path}/${defaultTaskId}`} />
         <Route path={`${match.path}/:taskId`} >
           <TaskDetail taskList={taskList} />
         </Route>
       </div>
     </div>
   );
-}
+};
 
 export default withRouter(Browse);

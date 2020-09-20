@@ -1,0 +1,19 @@
+@import '../../../components/scss-partial/icon-url';
+
+.task_detail{
+  overflow-y: scroll;
+}
+
+.offer_icon{
+  background-image: url($offer-icon-url);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 200px;
+  height: 200px;
+  margin: 20px 0;
+}
+
+.button_wrapper{
+  text-align: center;
+}

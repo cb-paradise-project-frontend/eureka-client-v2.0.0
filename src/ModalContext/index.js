@@ -1,1 +1,0 @@
-export { ModalControlProvider, ModalControlConsumer } from './ModalContext';

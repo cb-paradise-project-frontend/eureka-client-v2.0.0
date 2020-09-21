@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styles from './QuestionInput.module.scss';
 
@@ -13,6 +13,10 @@ const testUser = {
 
 export default function QuestionInput({ onSubmit }) {
   const [input, updateInput] = useState('');
+
+  useEffect(() => {
+    updateInput('');
+  }, [onSubmit]);
 
   const placeHolder = 'Ask a question';
   const WORD_LIMIT = 1500; 

@@ -6,7 +6,7 @@ import QuestionInput from './QuestionInput';
 import QuestionList from './QuestionList';
 import { TaskConsumer } from '../../TaskContext';
 
-function Question({ questions }) {
+function Question() {
   const title = 'QUESTION';
   const notice = `Please don't share personal info – insurance won't apply to tasks done privately!`;
 
@@ -21,16 +21,18 @@ function Question({ questions }) {
         {notice}
       </div>
       <TaskConsumer>
-        {({ questions }) => 
+        {({ 
+          taskProperties:{ questions }, askQuestion 
+        }) => (
           <>
             <div className={styles.input_wrapper} >
-              <QuestionInput />
+              <QuestionInput onSubmit={askQuestion} />
             </div>
             <div className={styles.question_list_wrapper}>
               <QuestionList questions={questions} />
             </div>
           </>
-        }
+        )}
       </TaskConsumer>
     </div>
   );

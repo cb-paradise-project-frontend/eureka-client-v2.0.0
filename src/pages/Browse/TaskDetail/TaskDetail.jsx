@@ -11,11 +11,15 @@ import Question from './Question';
 import { TaskProvider } from '../TaskContext';
 import { EXPIRED } from '../../../components/Status';
 
-function TaskDetail({ taskList, match:{params:{ taskId }} }) {
-  const task = taskList.find(task => task.id === taskId); //TODO: use a default page when no task selected
-  if(!task) return null;
+function TaskDetail({ taskList, addQuestion, match:{params:{ taskId }} }) {
+  const selectedTask = taskList.find(task => task.id === taskId); //TODO: use a default page when no task selected
+  if(!selectedTask) return null;
 
-  const { status, details } = task ;
+  const { status, details } = selectedTask ;
+  const task = {
+    taskProperties: selectedTask,
+    askQuestion: addQuestion(taskId),
+  };
 
   return(
     <div className={styles.task_detail} >
@@ -31,7 +35,7 @@ function TaskDetail({ taskList, match:{params:{ taskId }} }) {
             <OfferButton isExpired={(status === EXPIRED)} />
           </div>
         </Section>
-        <Question questions={task.questions} />
+        <Question />
       </TaskProvider>
     </div>
   );

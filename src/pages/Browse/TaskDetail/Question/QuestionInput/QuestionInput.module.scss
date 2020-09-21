@@ -44,6 +44,10 @@
       color: rgb(0, 143, 180);
       margin: 0 10px;
 
+      &:hover{
+        cursor: pointer;
+      }
+
       &:disabled{
         pointer-events: none;
         color: rgb(187, 194, 220);

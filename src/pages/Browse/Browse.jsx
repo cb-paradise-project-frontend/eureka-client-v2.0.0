@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 
 import styles from './Browse.module.scss';
@@ -20,24 +20,7 @@ const testData = {
             - install synthetic turf
             - landscaping design and install
             - remove and upgrade existing waterfall feature into the pool`,
-  questions: [
-    {
-      poster: {
-        id: 0,
-        name: 'Alice',
-        avatar: '',
-      },
-      content: 'dadadadadadadada',
-    },
-    {
-      poster: {
-        id: 1,
-        name: 'Dave',
-        avatar: '',
-      },
-      content: 'wulawulawulawuala',
-    },
-  ], 
+  questions: [], 
 };
 
 function createData(size, data) {
@@ -45,10 +28,11 @@ function createData(size, data) {
   for(let i = 0; i < size; i ++) {
     const newData = {...data};
     newData.id = `${i}`;
+    newData.questions = [];
     dataArray.push(newData);
   }
   return dataArray;
-}
+};
 
 const dataArray = createData(10, testData);
 dataArray[1].title = 'Wall repair';
@@ -57,21 +41,53 @@ dataArray[2].status = 'COMPLETED';
 dataArray[3].status = 'EXPIRED';
 
 
+class Browse extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { taskList: dataArray };
+    this.addQuestion = this.addQuestion.bind(this);
+  };
 
-function Browse({ match }) {
-  //eslint-disable-next-line
-  const [taskList, setTaskList] = useState(dataArray);
+  addQuestion(taskId) {
+    return (question, user) => {
+      const taskIndex = this.state.taskList.findIndex(task => task.id === taskId);
+      if (!taskIndex && taskIndex!== 0) {  //TODO, remove the last condition when we have real id
+        return null;
+      } else {
+        this.setState((prevState) => {
+          const newTaskList = prevState.taskList.map(task => task);
+          const newQuestionList = newTaskList[taskIndex].questions;
+          const newQuestion = {
+            id: newQuestionList.length + 1,
+            poster: user,
+            content: question, 
+          };
+          newQuestionList.unshift(newQuestion);
+          return { taskList: newTaskList }; 
+        });
+      }
+    }
+  };
 
-  return(
-    <div className={styles.browse_container} >
-      <div className = {styles.browse} >
-        <TaskList taskList={taskList} />
-        <Route path={`${match.path}/:taskId`} >
-          <TaskDetail taskList={taskList} />
-        </Route>
+  render() {
+    const { taskList } = this.state;
+    const { props, addQuestion } = this;
+    const { match:{ path } } = props;
+
+    return(
+      <div className={styles.browse_container} >
+        <div className = {styles.browse} >
+          <TaskList taskList={taskList} />
+          <Route path={`${path}/:taskId`} >
+            <TaskDetail 
+              taskList={taskList} 
+              addQuestion={addQuestion}
+            />
+          </Route>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 };
 
 export default withRouter(Browse);

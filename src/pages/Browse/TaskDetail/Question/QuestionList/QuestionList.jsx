@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './QuestionList.module.scss';
 
-import Avatar from '../../../../../components/Avatar';
+import QuestionAvatar from '../QuestionAvatar';
 
 export default function QuestionList({ questions }) {
   const questionList = questions.map(({ 
@@ -12,9 +12,7 @@ export default function QuestionList({ questions }) {
       className={styles.question_wrapper} 
       key={id}
     >
-      <div className={styles.avatar_wrapper} >
-        <Avatar avatarUrl={avatar} />
-      </div>
+      <QuestionAvatar avatarUrl={avatar} />
       <div className={styles.details} >
         <div className={styles.header} >{name}</div>
         <div className={styles.content} >{content}</div>

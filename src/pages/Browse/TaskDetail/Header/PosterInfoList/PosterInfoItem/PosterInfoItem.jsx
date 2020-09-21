@@ -16,7 +16,7 @@ export default function PosterInfoItem({ title, content }) {
       <div className = {styles.icon_wrapper}>
         <div className = {cx(
           {
-            'POSTED BY': 'avatar',
+            'POSTED BY': 'avatar_wrapper',
             'LOCATION': 'location_icon',
             'DUE DATE': 'date_icon', 
           }[title]

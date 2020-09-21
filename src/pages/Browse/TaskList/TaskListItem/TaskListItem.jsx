@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 
 import styles from './TaskListItem.module.scss';
 
+import Avatar from '../../../../components/Avatar';
+
 function TaskListItem({ 
   task:{ title, status, budget, poster, location, due, id }, 
   history, 
@@ -33,10 +35,8 @@ function TaskListItem({
         </div>
       </div>
       <div className={styles.content} >
-        <div className={styles.avatar} >
-          {poster.avatar &&
-            <img src={poster.avatar} alt="avatar" />
-          }
+        <div className={styles.avatar_container} >
+          <Avatar avatarUrl={poster.avatar} />
         </div>
         <div className={styles.location} >
           {location}

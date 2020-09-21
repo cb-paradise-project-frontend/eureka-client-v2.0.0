@@ -12,18 +12,18 @@ function Question() {
   const placeHolder = 'Ask a question';
 
   return (
-    <div className ={styles.question}>
-      <div className = {styles.title_bar}>
-        <div className = {styles.title}>
+    <div className={styles.question} >
+      <div className={styles.title_bar} >
+        <div className={styles.title} >
           {title}
         </div>
       </div>
-      <div className = {styles.notice}>
+      <div className={styles.notice} >
         {notice}
       </div>
-      <div className = {styles.input_wrapper}>
-        <div className = {styles.avatar}/>
-        <div className = {styles.input}>
+      <div className={styles.input_wrapper} >
+        <div className={styles.avatar} />
+        <div className={styles.input} >
           <FormTextAreaInput
             size={'large'}
             placeholder={placeHolder}

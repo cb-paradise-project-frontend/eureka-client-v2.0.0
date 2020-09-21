@@ -23,6 +23,7 @@ const testData = {
   questions: [
     {
       poster: {
+        id: 0,
         name: 'Alice',
         avatar: '',
       },
@@ -30,6 +31,7 @@ const testData = {
     },
     {
       poster: {
+        id: 1,
         name: 'Dave',
         avatar: '',
       },

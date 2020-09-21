@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styles from './QuestionInput.module.scss';
 
 import FormTextAreaInput from '../../../../../components/FormTextAreaInput';
-import Avatar from '../../../../../components/Avatar';
+import QuestionAvatar from '../QuestionAvatar';
 
 export default function QuestionInput() {
   const [input, updateInput] = useState('');
@@ -27,9 +27,7 @@ export default function QuestionInput() {
 
   return (
     <>
-      <div className={styles.avatar_wrapper} >
-        <Avatar />
-      </div>
+      <QuestionAvatar />
       <div className={styles.input} >
         <FormTextAreaInput
           size={'large'}

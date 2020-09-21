@@ -5,7 +5,7 @@ import styles from './Question.module.scss';
 import FormTextAreaInput from '../../../../components/FormTextAreaInput';
 import Avatar from '../../../../components/Avatar';
 
-function Question() {
+function Question({ questions }) {
   const [input, updateInput] = useState('');
 
   const title = 'QUESTION';

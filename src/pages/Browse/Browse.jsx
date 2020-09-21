@@ -20,6 +20,22 @@ const testData = {
             - install synthetic turf
             - landscaping design and install
             - remove and upgrade existing waterfall feature into the pool`,
+  questions: [
+    {
+      poster: {
+        name: 'Alice',
+        avatar: '',
+      },
+      content: 'dadadadadadadada',
+    },
+    {
+      poster: {
+        name: 'Dave',
+        avatar: '',
+      },
+      content: 'wulawulawulawuala',
+    },
+  ], 
 };
 
 function createData(size, data) {

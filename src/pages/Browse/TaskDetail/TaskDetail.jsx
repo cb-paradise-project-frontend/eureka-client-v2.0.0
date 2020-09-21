@@ -31,7 +31,7 @@ function TaskDetail({ taskList, match:{params:{ taskId }} }) {
             <OfferButton isExpired={(status === EXPIRED)} />
           </div>
         </Section>
-        <Question/>
+        <Question questions={task.questions} />
       </TaskProvider>
     </div>
   );

@@ -49,21 +49,10 @@
 }
 
 .avatar{
-  @extend %icon;
-  border: 1px solid #bbc2dc;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: url($avatar-icon-url);
-  background-repeat: no-repeat;
-  background-size: 75%;
-  background-position: center;
-
-  img{
-    width: 80%;
-    height: 80%;
-  }
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
 }
 
 .location_icon{

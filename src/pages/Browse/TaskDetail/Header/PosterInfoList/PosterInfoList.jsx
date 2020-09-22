@@ -7,14 +7,13 @@ import PosterInfoItem from './PosterInfoItem';
 function PosterInfoList({ posterInfo }) {
   const titleList = ['POSTED BY', 'LOCATION', 'DUE DATE'];
 
-  const posterInfoList = titleList.map((title, index) =>
+  const posterInfoList = titleList.map((title, index) => (
     <PosterInfoItem
       key = {title}
       title = {title}
       content = {posterInfo[index]}
     />
-  );
-  
+  ));
   return (
     <div className = {styles.poster_info}>
       {posterInfoList}

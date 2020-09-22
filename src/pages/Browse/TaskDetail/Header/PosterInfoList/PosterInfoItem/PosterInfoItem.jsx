@@ -6,7 +6,6 @@ import styles from './PosterInfoItem.module.scss';
 import Avatar from '../../../../../../components/Avatar';
 
 export default function PosterInfoItem({ title, content }) {
-
   const cx = classNames.bind(styles);
 
   const displayContent = (content.name) ? content.name : content;
@@ -18,11 +17,11 @@ export default function PosterInfoItem({ title, content }) {
           {
             'POSTED BY': 'avatar_wrapper',
             'LOCATION': 'location_icon',
-            'DUE DATE': 'date_icon', 
-          }[title]
+            'DUE DATE': 'date_icon',
+          }[title],
         )}>
-          {(title === 'POSTED BY') &&
-            <Avatar avatarUrl={content.avatar} />
+          {(title === 'POSTED BY')
+            && <Avatar avatarUrl={content.avatar} />
           }
         </div>
       </div>
@@ -36,4 +35,4 @@ export default function PosterInfoItem({ title, content }) {
       </div>
     </div>
   );
-};
+}

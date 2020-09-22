@@ -8,9 +8,6 @@
     "@testing-library/user-event": "^7.2.1",
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
-    "eslint": "^7.9.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.0",
     "firebase": "^7.19.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
@@ -41,5 +38,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
   }
 }

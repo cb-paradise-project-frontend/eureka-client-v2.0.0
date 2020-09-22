@@ -10,9 +10,7 @@ function Header() {
   return (
     <div className = {styles.header}>
       <TaskConsumer>
-        {({ 
-          taskProperties:{ title, status, poster, location, due, } 
-        }) => (
+        {({ title, status, poster, location, due, }) => (
           <div className = {styles.detail_panel}>
             <div className = {styles.status_bar}>
               <StatusList status={status} />

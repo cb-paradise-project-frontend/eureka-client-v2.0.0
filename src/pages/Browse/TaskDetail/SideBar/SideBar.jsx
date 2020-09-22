@@ -9,9 +9,7 @@ export default function SideBar() {
   return(
     <div className = {styles.side_bar} >
       <TaskConsumer>
-        {({ 
-          taskProperties:{ status, budget } 
-        }) => (
+        {({ status, budget }) => (
           <PaymentPanel 
             status={status}
             budget={budget}

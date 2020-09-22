@@ -34,43 +34,68 @@ function createData(size, data) {
   return dataArray;
 };
 
-const dataArray = createData(10, testData);
-dataArray[1].title = 'Wall repair';
-dataArray[1].status = 'ASSIGNED';
-dataArray[2].status = 'COMPLETED';
-dataArray[3].status = 'EXPIRED';
+const tasks = createData(10, testData);
+tasks[1].title = 'Wall repair';
+tasks[1].status = 'ASSIGNED';
+tasks[2].status = 'COMPLETED';
+tasks[3].status = 'EXPIRED';
 
 
 class Browse extends Component {
   constructor(props) {
     super(props);
-    this.state = { taskList: dataArray };
+    this.state = { 
+      taskList: [],
+      questionList: [],  
+    };
     this.addQuestion = this.addQuestion.bind(this);
   };
 
+  initializeState() {
+    const taskList = [];
+    const questionList = [];
+    tasks.forEach(({ id, questions, ...otherInfo }) => {
+      questionList.push({ 
+        id,
+        questions, 
+       });
+      taskList.push({
+        id, 
+        ...otherInfo,
+      });
+    }); 
+    this.setState({
+      taskList,
+      questionList, 
+    });
+  }
+
+  componentDidMount() {
+    this.initializeState();
+  };
+
   addQuestion(taskId) {
-    return (question, user) => {
-      const taskIndex = this.state.taskList.findIndex(task => task.id === taskId);
-      if (!taskIndex && taskIndex!== 0) {  //TODO, remove the last condition when we have real id
-        return null;
-      } else {
+    const questionIndex = this.state.questionList.findIndex(
+      question => question.id === taskId
+    );
+    return questionIndex >= 0 && 
+      ((question, user) => {
         this.setState((prevState) => {
-          const newTaskList = prevState.taskList.map(task => task);
-          const newQuestionList = newTaskList[taskIndex].questions;
+          const newQuestionList = prevState.questionList.map(questionObj => questionObj);
+          const selectedQuestionObj = newQuestionList[questionIndex];
           const newQuestion = {
-            id: newQuestionList.length + 1,
+            id: selectedQuestionObj.length + 1,
             poster: user,
             content: question, 
           };
-          newQuestionList.unshift(newQuestion);
-          return { taskList: newTaskList }; 
+          selectedQuestionObj.questions.unshift(newQuestion);
+          return { questionList: newQuestionList }; 
         });
-      }
-    }
+    });
   };
 
   render() {
-    const { taskList } = this.state;
+    const { taskList, questionList } = this.state;
     const { props, addQuestion } = this;
     const { match:{ path } } = props;
 
@@ -81,6 +106,7 @@ class Browse extends Component {
           <Route path={`${path}/:taskId`} >
             <TaskDetail 
               taskList={taskList} 
+              questionList={questionList}
               addQuestion={addQuestion}
             />
           </Route>

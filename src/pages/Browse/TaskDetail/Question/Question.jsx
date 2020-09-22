@@ -4,9 +4,8 @@ import styles from './Question.module.scss';
 
 import QuestionInput from './QuestionInput';
 import QuestionList from './QuestionList';
-import { TaskConsumer } from '../../TaskContext';
 
-function Question() {
+function Question({ questions, askQuestion }) {
   const title = 'QUESTION';
   const notice = `Please don't share personal info – insurance won't apply to tasks done privately!`;
 
@@ -20,20 +19,12 @@ function Question() {
       <div className={styles.notice} >
         {notice}
       </div>
-      <TaskConsumer>
-        {({ 
-          taskProperties:{ questions }, askQuestion 
-        }) => (
-          <>
-            <div className={styles.input_wrapper} >
-              <QuestionInput onSubmit={askQuestion} />
-            </div>
-            <div className={styles.question_list_wrapper}>
-              <QuestionList questions={questions} />
-            </div>
-          </>
-        )}
-      </TaskConsumer>
+      <div className={styles.input_wrapper} >
+        <QuestionInput onSubmit={askQuestion} />
+      </div>
+      <div className={styles.question_list_wrapper}>
+        <QuestionList questions={questions} />
+      </div>
     </div>
   );
 };

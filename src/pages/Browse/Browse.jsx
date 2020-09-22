@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import { Redirect, Route, withRouter } from 'react-router-dom';
 
 import styles from './Browse.module.scss';
 
@@ -98,10 +98,12 @@ class Browse extends Component {
     const { taskList, questionList } = this.state;
     const { props, addQuestion } = this;
     const { match:{ path } } = props;
+    const defaultTaskId = taskList[0] && taskList[0].id;
 
     return(
       <div className={styles.browse_container} >
         <div className = {styles.browse} >
+          <Redirect to={`${path}/${defaultTaskId}`} />
           <TaskList taskList={taskList} />
           <Route path={`${path}/:taskId`} >
             <TaskDetail 

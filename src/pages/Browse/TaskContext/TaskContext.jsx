@@ -1,11 +1,11 @@
-import React, {createContext} from 'react';
+import React, { createContext } from 'react';
 
 const TaskContext = createContext(null);
 
 
-export function TaskProvider({task, children}) {
+export function TaskProvider({ task, children }) {
   return(
-    <TaskContext.Provider value = {task}>
+    <TaskContext.Provider value={task}>
       {children}
     </TaskContext.Provider>
   );

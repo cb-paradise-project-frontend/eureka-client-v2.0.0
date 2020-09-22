@@ -1,5 +1,4 @@
 @import '../../../../components/scss-partial/status-color-code';
-@import '../../../../components/scss-partial/icon-url';
 
 $text-color: #292b32;
 $content-color: #545a77;
@@ -73,25 +72,11 @@ $content-color: #545a77;
       font-size: 12px;
     }
 
-    .avatar{
+    .avatar_container{
       position: absolute;
       right: 0;
       width: 30px;
       height: 30px;
-      border: 1px solid #bbc2dc;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-image: url($avatar-icon-url);
-      background-repeat: no-repeat;
-      background-size: 70%;
-      background-position: center;
-
-      img{
-        width: 80%;
-        height: 80%;
-      }
     }
   }
 

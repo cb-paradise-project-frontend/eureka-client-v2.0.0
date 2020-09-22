@@ -1,39 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import styles from './Question.module.scss';
 
-import FormTextAreaInput from '../../../../components/FormTextAreaInput';
+import QuestionInput from './QuestionInput';
+import QuestionList from './QuestionList';
 
-function Question() {
-  const [input, updateInput] = useState('');
-
-  const title = 'QUESTION';
+function Question({ questions, askQuestion }) {
+  const title = `QUESTION(${questions.length})`;
   const notice = `Please don't share personal info – insurance won't apply to tasks done privately!`;
-  const placeHolder = 'Ask a question';
 
   return (
-    <div className ={styles.question}>
-      <div className = {styles.title_bar}>
-        <div className = {styles.title}>
-          {title}
-        </div>
+    <div className={styles.question_wrapper} >
+      <div className={styles.title} >
+        {title}
       </div>
-      <div className = {styles.notice}>
+      <div className={styles.notice} >
         {notice}
       </div>
-      <div className = {styles.input_wrapper}>
-        <div className = {styles.avatar}/>
-        <div className = {styles.input}>
-          <FormTextAreaInput
-            size={'large'}
-            placeholder={placeHolder}
-            displayValue={input}
-            onInputChange={updateInput}
-          />
-        </div>
+      <div className={styles.input_wrapper} >
+        <QuestionInput onSubmit={askQuestion} />
+      </div>
+      <div className={styles.question_list_wrapper}>
+        <QuestionList questions={questions} />
       </div>
     </div>
   );
-}
+};
 
 export default Question;

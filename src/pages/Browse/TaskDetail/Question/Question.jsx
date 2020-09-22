@@ -6,15 +6,13 @@ import QuestionInput from './QuestionInput';
 import QuestionList from './QuestionList';
 
 function Question({ questions, askQuestion }) {
-  const title = 'QUESTION';
+  const title = `QUESTION(${questions.length})`;
   const notice = `Please don't share personal info – insurance won't apply to tasks done privately!`;
 
   return (
     <div className={styles.question_wrapper} >
-      <div className={styles.title_bar} >
-        <div className={styles.title} >
-          {title}
-        </div>
+      <div className={styles.title} >
+        {title}
       </div>
       <div className={styles.notice} >
         {notice}

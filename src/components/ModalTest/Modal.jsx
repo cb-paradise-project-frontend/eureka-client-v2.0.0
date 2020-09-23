@@ -4,13 +4,13 @@ import { useHistory } from 'react-router-dom';
 import styles from './Modal.module.scss';
 
 import Overlay from '../Overlay';
-import CloseIconButton from '../CloseIconButton';
+import Button from '../Button';
 
 const Modal = ({ onRequestClose, children }) => (
   <Overlay>
     <div className={styles.modal_container} >
       <div className={styles.close_button} >
-        <CloseIconButton onClick={onRequestClose} />
+        <Button.CloseIcon onClick={onRequestClose} />
       </div>
       {children}
     </div>

@@ -21,4 +21,15 @@ const Button = ({
   </button>
 );
 
+const CloseIcon = ({ onClick }) => (
+  <button
+    className={styles.close_icon}
+    onClick={onClick}
+  >
+    <i className="ri-close-fill ri-2x"/>
+  </button>
+);
+
+Button.CloseIcon = CloseIcon;
+
 export default Button;

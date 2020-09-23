@@ -8,9 +8,9 @@ import Overlay from '../Overlay';
 import AlertModal from './AlertModal';
 import CloseIconButton from '../CloseIconButton';
 
-const modalRoot = document.body;
+// const modalRoot = document.body;
 
-export default function Modal({ confirmBeforeClose, children }) {
+const Modal = ({ confirmBeforeClose, children }) => {
   const [showAlert, toggleAlert] = useState(false);
   const history = useHistory();
 
@@ -26,7 +26,7 @@ export default function Modal({ confirmBeforeClose, children }) {
 
   return (
     <>
-      {createPortal(
+      {
         <Overlay>
           <div className={styles.modal_container} >
             <div className={styles.close_button} >
@@ -42,9 +42,32 @@ export default function Modal({ confirmBeforeClose, children }) {
               </Overlay>
             }
           </div>
-        </Overlay>,
-        modalRoot,
-      )}
+        </Overlay>
+      }
     </>
   );
-}
+};
+
+const Header = ({ children }) => (
+  <div className={styles.header} >
+    {children}
+  </div>
+);
+
+const Content = ({ children }) => (
+  <div className={styles.content} >
+    {children}
+  </div>
+);
+
+const Footer = ({ children }) => (
+  <div className={styles.footer} >
+    {children}
+  </div>
+);
+
+Modal.Header = Header;
+Modal.Content = Content;
+Modal.Footer = Footer;
+
+export default Modal;

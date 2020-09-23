@@ -82,29 +82,29 @@ export default function CreateProfile() {
     {
       name: 'Profile Picture',
       value: photo,
-      subPage: <Photo url={photo} onSubmit={handlePhotoUpload} />,
+      page: <Photo url={photo} onSubmit={handlePhotoUpload} />,
     },
     {
       name: 'Bank Account Details',
       value: bankAccount,
-      subPage: <BankAccount onSubmit={handleAccountInput} />,
+      page: <BankAccount onSubmit={handleAccountInput} />,
     },
     {
       name: 'Billing Address',
       value: billingAddress,
-      subPage: <BillingAddress onSubmit={handleBillingAddressInput} />,
+      page: <BillingAddress onSubmit={handleBillingAddressInput} />,
     },
     {
       name: 'Date of Birth',
       value: birthday,
       statusLabel: birthdayStatusLabel,
-      subPage: <Birthday onSubmit={handleBirthdayInput} />,
+      page: <Birthday onSubmit={handleBirthdayInput} />,
     },
     {
       name: 'Mobile Number',
       value: mobile,
       statusLabel: mobile,
-      subPage: <Mobile
+      page: <Mobile
         verifiedMobile={mobile}
         onSubmit={handleMobileInput}
       />,

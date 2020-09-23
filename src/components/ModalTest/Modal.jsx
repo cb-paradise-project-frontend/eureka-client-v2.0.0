@@ -1,45 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import styles from './Modal.module.scss';
 
 import Overlay from '../Overlay';
-import AlertModal from './AlertModal';
 import CloseIconButton from '../CloseIconButton';
 
-const Modal = ({ confirmBeforeClose, children }) => {
-  const [showAlert, toggleAlert] = useState(false);
+const Modal = ({ onCloseClick, children }) => {
   const history = useHistory();
 
   const closeModal = history.goBack;
 
-  const onRequestClose = confirmBeforeClose
-    ? () => { toggleAlert(true); }
-    : closeModal;
-
-  const onContinue = () => {
-    toggleAlert(false);
-  };
+  const onRequestClose = onCloseClick || closeModal;
 
   return (
-    <>
-      {
-        <Overlay>
-          <div className={styles.modal_container} >
-            <div className={styles.close_button} >
-              <CloseIconButton onClick={onRequestClose} />
-            </div>
-            {children}
-            {confirmBeforeClose && showAlert &&
-              <AlertModal
-                onLeftBtnClick={onContinue}
-                onRightBtnClick={closeModal}
-              />
-            }
-          </div>
-        </Overlay>
-      }
-    </>
+    <Overlay>
+      <div className={styles.modal_container} >
+        <div className={styles.close_button} >
+          <CloseIconButton onClick={onRequestClose} />
+        </div>
+        {children}
+      </div>
+    </Overlay>
   );
 };
 

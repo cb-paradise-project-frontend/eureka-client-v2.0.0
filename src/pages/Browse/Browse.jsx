@@ -73,6 +73,12 @@ class Browse extends Component {
   componentDidMount() {
     this.initializeState();
   };
+  //TODO 既要get也要put 龙哥
+  //状态是嵌套array，如果只是为了update一个reply，如果把整个复制拿出来，添加完reply后再上传
+  //task -> question[-> reply] -> desc -> budget -> location -> time -> User[Poster, Tasker]
+  //当添加question的时候，是等待upload成功之后，从后端拿到然后刷新，还是不用等，前端根据state刷新
+  //students.hobbies.basketball
+  //embedded, reference 
 
   addQuestion(taskId) {
     const questionIndex = this.state.questionList.findIndex(

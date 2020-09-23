@@ -1,1 +1,1 @@
-export { default } from './ModalPage.jsx';
+export { default } from './ModalPage';

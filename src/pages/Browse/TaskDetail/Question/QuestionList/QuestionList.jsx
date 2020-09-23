@@ -5,12 +5,12 @@ import styles from './QuestionList.module.scss';
 import QuestionAvatar from '../QuestionAvatar';
 
 export default function QuestionList({ questions }) {
-  const questionList = questions.map(({
-    id, poster: { avatar, name }, content,
-  }, index) => (
-    <div
-      className={styles.question_wrapper}
-      key={`${id}${index}`}
+  const questionList = questions.map(({ 
+    id, poster:{ avatar, name }, content 
+  }, index) =>
+    <div 
+      className={styles.question_wrapper} 
+      key={id}
     >
       <QuestionAvatar avatarUrl={avatar} />
       <div className={styles.details} >
@@ -19,7 +19,7 @@ export default function QuestionList({ questions }) {
         <div className={styles.footer} >Reply</div>
       </div>
     </div>
-  ));
+  );
 
   return questionList;
-}
+};

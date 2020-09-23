@@ -1,1 +1,1 @@
-export { default } from './QuestionAvatar.jsx';
+export { default } from  './QuestionAvatar';

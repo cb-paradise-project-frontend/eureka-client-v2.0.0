@@ -14,27 +14,27 @@ export default function BankAccount({ onSubmit }) {
   const [testing, toggleTest] = useState(false);
   const [hightLight, setHighLight] = useState();
 
-  const introduction = "Please provide your bank details so you can get paid. We don't take any money from your account.";
+  const introduction = `Please provide your bank details so you can get paid. We don't take any money from your account.`;
   const fieldElementList = [
     {
-      label: 'Account holder name',
-      placeholder: 'Alice',
-      value: holder,
-      handleChange: handleInput(setHolder),
+      label: 'Account holder name', 
+      placeholder: 'Alice', 
+      value: holder, 
+      handleChange: handleInput(setHolder), 
     },
     {
-      label: 'Account number',
-      placeholder: '12345678',
-      value: accountNumber,
-      maxLength: 9,
-      handleChange: handleInput(setAccountNumber, onlyNumber),
+      label: 'Account number', 
+      placeholder: '12345678', 
+      value: accountNumber, 
+      maxLength: 9, 
+      handleChange: handleInput(setAccountNumber, onlyNumber), 
     },
     {
-      label: 'BSB',
-      placeholder: '000-000',
-      value: bsb,
-      maxLength: 7,
-      handleChange: handleInput(setBsb, addDashInNumber),
+      label: 'BSB', 
+      placeholder: '000-000', 
+      value: bsb, 
+      maxLength: 7, 
+      handleChange: handleInput(setBsb, addDashInNumber), 
     },
   ];
 
@@ -55,12 +55,12 @@ export default function BankAccount({ onSubmit }) {
     setHighLight('');
   };
 
-  const fieldList = fieldElementList.map(({
-    label, placeholder, value, maxLength, handleChange,
+  const fieldList = fieldElementList.map(({ 
+    label, placeholder, value, maxLength, handleChange 
   }) => {
     const isError = (label === hightLight);
     return (
-      <FormInput
+      <FormInput 
         label={label}
         placeholder={placeholder}
         value={value}
@@ -71,43 +71,44 @@ export default function BankAccount({ onSubmit }) {
         key={label}
       />
     );
-  });
+  });  
 
   const checkEmpty = () => {
     const emptyField = fieldElementList.find(({ value }) => !value);
-    if (!emptyField) {
+    if(emptyField){
+      const { label } = emptyField;
+      const message = `${label} is required.`;
+      return {label, message};
+    }else{
       return false;
-    }
-    const { label } = emptyField;
-    const message = `${label} is required.`;
-    return { label, message };
+    };
   };
-
+ 
   const getError = () => {
-    const error = validations.find((validation) => !validation.condition);
+    const error = validations.find(validation => !validation.condition);
     return checkEmpty() || error || false;
   };
 
   const handleSubmit = () => {
-    if (getError()) {
+    if(getError()){
       toggleTest(true);
       setHighLight(getError().label);
-    } else {
+    }else{
       const bankAccount = {
-        holder, accountNumber, bsb,
+        holder, accountNumber, bsb, 
       };
       onSubmit(bankAccount);
       setHighLight('');
       toggleTest(false);
-    }
+    }   
   };
 
   return (
     <>
-      {testing && getError() && 
+      {testing && getError() &&
         <div className={styles.message_box} >
           {getError().message}
-        </div>
+        </div> 
       }
       <div className={styles.introduction} >
         {introduction}

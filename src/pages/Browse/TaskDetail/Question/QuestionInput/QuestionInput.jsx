@@ -8,7 +8,7 @@ import QuestionAvatar from '../QuestionAvatar';
 const testUser = {
   id: 3,
   name: 'Tony',
-  avatar: '',
+  avatar: '', 
 };
 
 export default function QuestionInput({ onSubmit }) {
@@ -19,7 +19,7 @@ export default function QuestionInput({ onSubmit }) {
   }, [onSubmit]);
 
   const placeHolder = 'Ask a question';
-  const WORD_LIMIT = 1500;
+  const WORD_LIMIT = 1500; 
 
   const handleSubmit = () => {
     onSubmit(input, testUser);
@@ -27,7 +27,7 @@ export default function QuestionInput({ onSubmit }) {
 
   const Footer = () => (
     <>
-      <button
+      <button 
         className={styles.submit_button}
         disabled={input.length < 1}
         onClick={handleSubmit}
@@ -57,4 +57,4 @@ export default function QuestionInput({ onSubmit }) {
       </div>
     </>
   );
-}
+};

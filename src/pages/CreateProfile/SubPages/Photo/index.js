@@ -1,1 +1,1 @@
-export { default } from './Photo.jsx';
+export { default } from './Photo';

@@ -15,46 +15,46 @@ export default function BillingAddress({ onSubmit }) {
   const [country, setCountry] = useState('');
   const [testing, toggleTest] = useState(false);
 
-  const introduction = 'Your billing address will be verified before you can receive payments.';
+  const introduction = `Your billing address will be verified before you can receive payments.`;
   const information = 'Your address will never been shown publicly, it is only used for account verification purposes.';
-
+  
   const fieldElementList = [
     {
-      label: 'Address Line 1',
-      value: lineOne,
-      handleChange: handleInput(setLineOne),
+      label: 'Address Line 1', 
+      value: lineOne, 
+      handleChange: handleInput(setLineOne), 
     },
     {
-      label: 'Address Line 2 (optional)',
-      value: lineTwo,
-      handleChange: handleInput(setLineTwo),
+      label: 'Address Line 2 (optional)', 
+      value: lineTwo, 
+      handleChange: handleInput(setLineTwo), 
     },
     {
-      label: 'Suburb',
-      value: suburb,
-      handleChange: handleInput(setSuburb),
+      label: 'Suburb', 
+      value: suburb, 
+      handleChange: handleInput(setSuburb), 
     },
     {
-      label: 'State',
-      value: state,
-      handleChange: handleInput(setState),
+      label: 'State', 
+      value: state, 
+      handleChange: handleInput(setState), 
     },
     {
-      label: 'Postcode',
-      value: postcode,
-      handleChange: handleInput(setPostcode),
+      label: 'Postcode', 
+      value: postcode, 
+      handleChange: handleInput(setPostcode), 
     },
     {
-      label: 'Country',
-      value: country,
-      handleChange: handleInput(setCountry),
+      label: 'Country', 
+      value: country, 
+      handleChange: handleInput(setCountry), 
     },
   ];
 
   const errorMessage = 'Please enter your complete address.';
 
   const fieldList = fieldElementList.map(({ label, value, handleChange }) => (
-    <FormInput
+    <FormInput 
       label={label}
       value={value}
       handleChange={handleChange}
@@ -70,13 +70,13 @@ export default function BillingAddress({ onSubmit }) {
   };
 
   const handleSubmit = () => {
-    if (checkEmpty()) {
+    if(checkEmpty()){
       const billingAddress = {
-        lineOne, lineTwo, suburb, state, postcode, country,
+        lineOne, lineTwo, suburb, state, postcode, country, 
       };
       onSubmit(billingAddress);
       toggleTest(false);
-    } else {
+    }else{
       toggleTest(true);
     }
   };
@@ -99,4 +99,4 @@ export default function BillingAddress({ onSubmit }) {
       </div>
     </>
   );
-}
+};

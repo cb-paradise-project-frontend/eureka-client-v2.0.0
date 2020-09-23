@@ -1,1 +1,1 @@
-export { default } from './Mobile.jsx';
+export { default } from './Mobile';

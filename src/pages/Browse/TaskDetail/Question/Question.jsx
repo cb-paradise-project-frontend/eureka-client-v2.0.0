@@ -5,9 +5,9 @@ import styles from './Question.module.scss';
 import QuestionInput from './QuestionInput';
 import QuestionList from './QuestionList';
 
-export default function Question({ questions, askQuestion }) {
+function Question({ questions, askQuestion }) {
   const title = `QUESTION(${questions.length})`;
-  const notice = "Please don't share personal info – insurance won't apply to tasks done privately!";
+  const notice = `Please don't share personal info – insurance won't apply to tasks done privately!`;
 
   return (
     <div className={styles.question_wrapper} >
@@ -25,4 +25,6 @@ export default function Question({ questions, askQuestion }) {
       </div>
     </div>
   );
-}
+};
+
+export default Question;

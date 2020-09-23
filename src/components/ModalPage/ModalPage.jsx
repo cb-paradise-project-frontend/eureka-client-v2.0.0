@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './ModalPage.module.scss';
 
-export default function ModalPage({ header, content, footer }) {
+export default function ModalPage({ header, content, footer}) {
   return (
     <div className={styles.modal_page} >
       <div className={styles.header} >

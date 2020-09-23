@@ -1,3 +1,1 @@
-export {
-  default, auth, signInWithGoogle, logOut,
-} from './utils';
+export { default, auth, signInWithGoogle, logOut } from './utils';

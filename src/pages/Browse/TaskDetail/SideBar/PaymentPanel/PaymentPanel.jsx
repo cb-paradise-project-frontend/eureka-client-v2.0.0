@@ -8,7 +8,7 @@ import { EXPIRED } from '../../../../../components/Status';
 export default function PaymentPanel({ status, budget }) {
   const title = 'TASK BUDGET';
 
-  return (
+  return(
     <div className = {styles.payment_panel}>
       <div className = {styles.title}>
         {title}
@@ -21,4 +21,4 @@ export default function PaymentPanel({ status, budget }) {
       </div>
     </div>
   );
-}
+};

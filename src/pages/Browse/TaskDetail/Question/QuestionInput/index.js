@@ -1,1 +1,1 @@
-export { default } from './QuestionInput.jsx';
+export { default } from './QuestionInput'; 

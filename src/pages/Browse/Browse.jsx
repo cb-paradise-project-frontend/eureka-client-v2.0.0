@@ -20,19 +20,19 @@ const testData = {
             - install synthetic turf
             - landscaping design and install
             - remove and upgrade existing waterfall feature into the pool`,
-  questions: [],
+  questions: [], 
 };
 
 function createData(size, data) {
   const dataArray = [];
-  for (let i = 0; i < size; i += 1) {
-    const newData = { ...data };
+  for(let i = 0; i < size; i ++) {
+    const newData = {...data};
     newData.id = `${i}`;
     newData.questions = [];
     dataArray.push(newData);
   }
   return dataArray;
-}
+};
 
 const tasks = createData(10, testData);
 tasks[1].title = 'Wall repair';
@@ -40,73 +40,74 @@ tasks[1].status = 'ASSIGNED';
 tasks[2].status = 'COMPLETED';
 tasks[3].status = 'EXPIRED';
 
+
 class Browse extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = { 
       taskList: [],
-      questionList: [],
+      questionList: [],  
     };
     this.addQuestion = this.addQuestion.bind(this);
-  }
+  };
 
   initializeState() {
     const taskList = [];
     const questionList = [];
     tasks.forEach(({ id, questions, ...otherInfo }) => {
-      questionList.push({
+      questionList.push({ 
         id,
-        questions,
-      });
+        questions, 
+       });
       taskList.push({
-        id,
+        id, 
         ...otherInfo,
       });
-    });
+    }); 
     this.setState({
       taskList,
-      questionList,
+      questionList, 
     });
   }
 
   componentDidMount() {
     this.initializeState();
-  }
+  };
 
   addQuestion(taskId) {
     const questionIndex = this.state.questionList.findIndex(
-      (question) => (question.id === taskId),
+      question => question.id === taskId
     );
-    return questionIndex >= 0
-      && ((question, user) => {
+    return questionIndex >= 0 && 
+      ((question, user) => {
         this.setState((prevState) => {
-          const newQuestionList = prevState.questionList.map((questionObj) => questionObj);
+          const newQuestionList = prevState.questionList.map(questionObj => questionObj);
           const selectedQuestionObj = newQuestionList[questionIndex];
           const newQuestion = {
             id: selectedQuestionObj.length + 1,
             poster: user,
-            content: question,
+            content: question, 
           };
           selectedQuestionObj.questions.unshift(newQuestion);
-          return { questionList: newQuestionList };
+          return { questionList: newQuestionList }; 
         });
-      });
-  }
+    });
+  };
 
   render() {
     const { taskList, questionList } = this.state;
     const { props, addQuestion } = this;
-    const { match: { path } } = props;
+    const { match:{ path } } = props;
     const defaultTaskId = taskList[0] && taskList[0].id;
 
-    return (
+    return(
       <div className={styles.browse_container} >
         <div className = {styles.browse} >
           <Redirect to={`${path}/${defaultTaskId}`} />
           <TaskList taskList={taskList} />
           <Route path={`${path}/:taskId`} >
-            <TaskDetail
-              taskList={taskList}
+            <TaskDetail 
+              taskList={taskList} 
               questionList={questionList}
               addQuestion={addQuestion}
             />
@@ -114,7 +115,7 @@ class Browse extends Component {
         </div>
       </div>
     );
-  }
-}
+  };
+};
 
 export default withRouter(Browse);

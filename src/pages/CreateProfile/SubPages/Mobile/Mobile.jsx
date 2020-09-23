@@ -71,7 +71,7 @@ export default function Mobile({ verifiedMobile, onSubmit }) {
           edit: isVerified === true,
           send: isVerified === false,
         })} >
-          <Button handleSubmit={handleClick} >
+          <Button onClick={handleClick} >
             {buttonLabel}
           </Button>
         </div>

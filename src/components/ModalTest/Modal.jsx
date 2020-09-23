@@ -1,50 +1,52 @@
-import React, { useState } from 'react';
-import { createPortal } from 'react-dom';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import styles from './Modal.module.scss';
 
 import Overlay from '../Overlay';
-import CloseIconButton from '../CloseIconButton';
-import AlertModal from './AlertModal';
-import { useHistory } from 'react-router-dom';
+import Button from '../Button';
 
-const modalRoot = document.body;
+const Modal = ({ onRequestClose, children }) => (
+  <Overlay>
+    <div className={styles.modal_container} >
+      <div className={styles.close_button} >
+        <Button.CloseIcon onClick={onRequestClose} />
+      </div>
+      {children}
+    </div>
+  </Overlay>
+);
 
-export default function Modal({ confirmBeforeClose, children }) {
-  const [showAlert, toggleAlert] = useState(false);
-  const history  = useHistory();
+const Header = ({ children }) => (
+  <div className={styles.header} >
+    {children}
+  </div>
+);
 
-  const closeModal = history.goBack;
+const Content = ({ children }) => (
+  <div className={styles.content} >
+    {children}
+  </div>
+);
 
-  const onRequestClose = confirmBeforeClose 
-    ? () => {toggleAlert(true)}
-    : closeModal;
+const Footer = ({ children }) => (
+  <div className={styles.footer} >
+    {children}
+  </div>
+);
 
-  const onContinue = () => {
-    toggleAlert(false);
-  };
-
+const GoBackWhenClose = ({ children }) => {
+  const { goBack } = useHistory();
   return (
-    <>
-      {createPortal(
-        <Overlay>
-          <div className={styles.modal_container} >
-            <div className={styles.close_button} >
-              <CloseIconButton onClick={onRequestClose} /> 
-            </div>
-            {children}
-            {confirmBeforeClose && showAlert && 
-              <Overlay>
-                <AlertModal 
-                  onLeftBtnClick={onContinue} 
-                  onRightBtnClick={closeModal}
-                />
-              </Overlay>
-            }
-          </div>     
-        </Overlay>,
-        modalRoot
-      )}
-    </>
+    <Modal onRequestClose={goBack} >
+      {children}
+    </Modal>
   );
-};   
+};
+
+Modal.Header = Header;
+Modal.Content = Content;
+Modal.Footer = Footer;
+Modal.GoBackWhenClose = GoBackWhenClose;
+
+export default Modal;

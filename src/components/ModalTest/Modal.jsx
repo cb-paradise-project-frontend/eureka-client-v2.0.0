@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { createPortal } from 'react-dom';
 import { useHistory } from 'react-router-dom';
 
 import styles from './Modal.module.scss';
@@ -7,8 +6,6 @@ import styles from './Modal.module.scss';
 import Overlay from '../Overlay';
 import AlertModal from './AlertModal';
 import CloseIconButton from '../CloseIconButton';
-
-// const modalRoot = document.body;
 
 const Modal = ({ confirmBeforeClose, children }) => {
   const [showAlert, toggleAlert] = useState(false);
@@ -34,12 +31,10 @@ const Modal = ({ confirmBeforeClose, children }) => {
             </div>
             {children}
             {confirmBeforeClose && showAlert &&
-              <Overlay>
-                <AlertModal 
-                  onLeftBtnClick={onContinue}
-                  onRightBtnClick={closeModal}
-                />
-              </Overlay>
+              <AlertModal
+                onLeftBtnClick={onContinue}
+                onRightBtnClick={closeModal}
+              />
             }
           </div>
         </Overlay>

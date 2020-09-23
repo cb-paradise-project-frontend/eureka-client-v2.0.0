@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import styles from './AlertModal.module.scss';
 
 import ModalPage from '../../ModalPage';
+// import ModalPage from '../../ModalPage';
 import Button from '../../Button';
 import CloseIconButton from '../../CloseIconButton';
+import Modal from '../Modal';
 
 export default function AlertModal({ onLeftBtnClick, onRightBtnClick }) {
   const [isModalOpen, toggleModal] = useState(true);
@@ -47,17 +49,22 @@ export default function AlertModal({ onLeftBtnClick, onRightBtnClick }) {
   return (
     <>
       {isModalOpen &&
-        <div className={styles.modal_container} >
+        <Modal>
+          <Modal.Header>{title}</Modal.Header>
+          <Modal.Content>{information}</Modal.Content>
+          <Modal.Footer>{modalBottom}</Modal.Footer>
+        </Modal>
+      }
+        {/* <div className={styles.modal_container} >
           <div className={styles.close_button} >
-            <CloseIconButton onClick={onLeftBtnClick} /> 
+            <CloseIconButton onClick={onLeftBtnClick} />
           </div>
           <ModalPage
             header={title}
             content={information}
             footer={modalBottom}
           />
-        </div>
-      }
+        </div> */}
     </>
   );
-};
+}

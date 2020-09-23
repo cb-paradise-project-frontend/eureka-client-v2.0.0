@@ -1,1 +1,1 @@
-export { default } from './OfferButton';
+export { default } from './OfferButton.jsx';

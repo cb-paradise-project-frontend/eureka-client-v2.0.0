@@ -3,20 +3,20 @@ import classNames from 'classnames/bind';
 
 import styles from './StatusList.module.scss';
 
-import * as STATUS from '../../../../../components/Status'; 
+import * as STATUS from '../../../../../components/Status';
 
 function StatusList({ status }) {
   const cx = classNames.bind(styles);
 
   const statusNameList = Object.values(STATUS);
   const statusList = statusNameList.map((statusName) => (
-    <div 
+    <div
       className = {cx(
-        { 
+        {
           status: true,
           active: status === statusName,
         },
-        statusName.toLowerCase()
+        statusName.toLowerCase(),
       )}
       key={statusName}
     >
@@ -29,7 +29,6 @@ function StatusList({ status }) {
       {statusList}
     </div>
   );
-
 }
 
 export default StatusList;

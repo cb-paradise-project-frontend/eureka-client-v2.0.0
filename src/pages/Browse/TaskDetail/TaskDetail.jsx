@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 
 import styles from './TaskDetail.module.scss';
 
@@ -11,18 +11,22 @@ import Question from './Question';
 import { TaskProvider } from '../TaskContext';
 import { EXPIRED } from '../../../components/Status';
 
-function TaskDetail({ taskList, questionList, addQuestion, match:{params:{ taskId }} }) {
-  const task = taskList.find(task => task.id === taskId); //TODO: use a default page when no task selected
-  if(!task) return null;
+export default function TaskDetail({
+  taskList, questionList, addQuestion,
+}) {
+  const { params: { taskId } } = useRouteMatch();
+  // TODO: use a default page when no task selected
+  const selectedTask = taskList.find((task) => task.id === taskId);
+  if (!selectedTask) return null;
 
-  const { questions } = questionList.find(questionItem => questionItem.id === taskId);
+  const { questions } = questionList.find((questionItem) => questionItem.id === taskId);
   const askQuestion = addQuestion(taskId);
 
-  const { status, details } = task;
+  const { status, details } = selectedTask;
 
-  return(
+  return (
     <div className={styles.task_detail} >
-      <TaskProvider task={task} >
+      <TaskProvider task={selectedTask} >
         <SideBar />
         <Header />
         <Section title='DETAILS' >
@@ -41,7 +45,4 @@ function TaskDetail({ taskList, questionList, addQuestion, match:{params:{ taskI
       </TaskProvider>
     </div>
   );
-};
-
-export default withRouter(TaskDetail);
-
+}

@@ -1,1 +1,1 @@
-export { default } from './PosterInfoList';
+export { default } from './PosterInfoList.jsx';

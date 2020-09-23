@@ -2,13 +2,12 @@ import React from 'react';
 
 import styles from './Modal.module.scss';
 
-import Overlay from './../Overlay';
-import { AuthContext } from './../../auth/Auth';
+import Overlay from '../Overlay';
+import { AuthContext } from '../../auth/Auth';
 
-const Modal = ({heading, children}) => {
-  return (
+const Modal = ({ heading, children }) => (
     <AuthContext.Consumer>
-      {({hideAuthModal}) => (
+      {({ hideAuthModal }) => (
         <Overlay>
           <div className={styles.container}>
             <header className={styles.header}>
@@ -24,7 +23,6 @@ const Modal = ({heading, children}) => {
         </Overlay>
       )}
     </AuthContext.Consumer>
-  )
-}
+);
 
 export default Modal;

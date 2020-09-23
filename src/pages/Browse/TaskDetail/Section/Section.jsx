@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './Section.module.scss';
 
-function Section({ title, children }) {
-  return(
+export default function Section({ title, children }) {
+  return (
     <div className = {styles.section}>
       <div className = {styles.title}>
         {title}
@@ -14,5 +14,3 @@ function Section({ title, children }) {
     </div>
   );
 }
-
-export default Section;

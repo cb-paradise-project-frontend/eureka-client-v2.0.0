@@ -1,1 +1,1 @@
-export { default } from './ProfileItem';
+export { default } from './ProfileItem.jsx';

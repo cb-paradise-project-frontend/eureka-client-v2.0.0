@@ -1,46 +1,46 @@
-import * as ACTION from '../Action/actionType';
+import * as ACTION from './actionType';
 
 export const clickProfileItem = (subPage) => (
   {
     type: ACTION.CLICK_PROFILE_ITEM,
-    payload: { subPage }, 
+    payload: { subPage },
   }
 );
 
-export const photoUpload = (photo) => {
-  return {
+export const photoUpload = (photo) => (
+  {
     type: ACTION.PHOTO_UPLOAD,
-    payload: { photo }, 
+    payload: { photo },
   }
-};
+);
 
-export const accountInput = (bankAccount) => {
-  return {
+export const accountInput = (bankAccount) => (
+  {
     type: ACTION.ACCOUNT_INPUT,
-    payload: { bankAccount }, 
+    payload: { bankAccount },
   }
-};
+);
 
-export const billingAddressInput = (billingAddress) => {
-  return {
+export const billingAddressInput = (billingAddress) => (
+  {
     type: ACTION.BILLING_ADDRESS_INPUT,
-    payload: { billingAddress }, 
+    payload: { billingAddress },
   }
-};
+);
 
-export const birthdayInput = (birthday) => {
-  return {
+export const birthdayInput = (birthday) => (
+  {
     type: ACTION.BIRTHDAY_INPUT,
-    payload: { birthday }, 
+    payload: { birthday },
   }
-};
+);
 
-export const mobileInput = (mobile) => {
-  return {
+export const mobileInput = (mobile) => (
+  {
     type: ACTION.MOBILE_INPUT,
-    payload: { mobile }, 
+    payload: { mobile },
   }
-};
+);
 
 export const clickBackBtn = () => (
   { type: ACTION.CLICK_BACK_BUTTON }

@@ -1,10 +1,10 @@
 import React from 'react';
+import DatePicker from 'react-datepicker';
+import { addMonths } from 'date-fns';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import DatePicker from 'react-datepicker';
 import ErrorHint from '../../pages/PostTask/ErrorHint';
-import { addMonths } from 'date-fns';
 
 function DateSelector({
   startDate,
@@ -12,10 +12,9 @@ function DateSelector({
   isDateInvalid,
   errorHint,
 }) {
-  
   return (
     <React.Fragment>
-      <DatePicker 
+      <DatePicker
         selected={startDate}
         onChange={onDateChange}
         minDate={new Date()}
@@ -25,7 +24,7 @@ function DateSelector({
       />
       { isDateInvalid && <ErrorHint>{errorHint}</ErrorHint> }
     </React.Fragment>
-  )
+  );
 }
 
 export default DateSelector;

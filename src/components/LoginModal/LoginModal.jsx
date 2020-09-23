@@ -17,23 +17,23 @@ const LoginModal = () => {
   });
 
   const handleChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setForm({
       ...form,
       [name]: value,
     });
-  }
+  };
 
   const onLoginWithEmail = (e) => {
     e.preventDefault();
-    const {email, password} = form;
+    const { email, password } = form;
     auth.signInWithEmailAndPassword(email, password);
-  }
+  };
 
   const onLoginWithGoogle = (e) => {
     e.preventDefault();
     signInWithGoogle();
-  }
+  };
 
   useEffect(() => {
     console.log('form', form);
@@ -47,7 +47,7 @@ const LoginModal = () => {
 
   return (
     <Modal heading="Log in">
-      <div className={styles.conatiner}>
+      <div className={styles.container}>
         <FormInput
           label="Email"
           name="email"
@@ -65,11 +65,11 @@ const LoginModal = () => {
           handleChange={handleChange}
         />
         <Button handleSubmit={onLoginWithEmail}>Log in</Button>
-        <div className={styles.seperator}>or log in with</div>
+        <div className={styles.separator}>or log in with</div>
         <Button handleSubmit={onLoginWithGoogle} isGoogle>Google</Button>
       </div>
     </Modal>
   );
-}
+};
 
 export default LoginModal;

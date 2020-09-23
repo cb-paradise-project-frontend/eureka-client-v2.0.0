@@ -7,27 +7,25 @@ import ErrorMessage from '../ErrorMessage';
 
 const FormInput = ({
   label, name, type, placeholder, handleChange, isError, errorMessage, ...otherProps
-}) => {
-  return (
-    <div className={styles.container}>
-      <Input 
-        label={label}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        handleChange={handleChange}
-        isError={isError}
-        {...otherProps}
-      />
-      <div className={styles.error_message} >
-        {isError &&
-          <ErrorMessage>
-            {errorMessage}
-          </ErrorMessage>
-        }
-      </div>
+}) => (
+  <div className={styles.container}>
+    <Input
+      label={label}
+      name={name}
+      type={type}
+      placeholder={placeholder}
+      handleChange={handleChange}
+      isError={isError}
+      {...otherProps}
+    />
+    <div className={styles.error_message} >
+      {isError &&
+        <ErrorMessage>
+          {errorMessage}
+        </ErrorMessage>
+      }
     </div>
-  );
-};
+  </div>
+);
 
 export default FormInput;

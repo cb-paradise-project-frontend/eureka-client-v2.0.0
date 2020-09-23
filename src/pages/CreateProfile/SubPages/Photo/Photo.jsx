@@ -14,9 +14,7 @@ export default function Photo({ url, onSubmit }) {
   return (
     <div className={styles.form_wrapper} >
       <div className={styles.avatar_wrapper} >
-        {url &&
-          <img src={url} alt="avatar" />
-        }
+        {url && <img src={url} alt="avatar" />}
       </div>
       <div className={styles.button_wrapper} >
         <input type="file" onChange={handleChange} />

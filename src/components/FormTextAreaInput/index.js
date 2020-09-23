@@ -1,1 +1,1 @@
-export { default } from './FormTextAreaInput';
+export { default } from './FormTextAreaInput.jsx';

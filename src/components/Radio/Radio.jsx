@@ -12,10 +12,10 @@ function Radio({
   return (
     <React.Fragment>
       <div className={styles.task_radio}>
-        <input 
+        <input
           className={styles.radio}
           name={radioName}
-          type="radio" 
+          type="radio"
           defaultChecked={isChecked}
           onClick={handleClick}
         />
@@ -25,8 +25,7 @@ function Radio({
           {radioHint}
         </b>
     </React.Fragment>
-  )
+  );
 }
 
 export default Radio;
-

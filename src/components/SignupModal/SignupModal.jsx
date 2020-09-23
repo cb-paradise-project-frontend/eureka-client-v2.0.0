@@ -18,35 +18,35 @@ const SignupModal = () => {
   });
 
   const handleChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setUserCredentials({
       ...userCredentials,
-      [name]: value
+      [name]: value,
     });
-  }
+  };
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    const {email, password} = userCredentials;
+    const { email, password } = userCredentials;
     auth.createUserWithEmailAndPassword(email, password)
-    .then((u) => {console.log(u)})
-    .catch((error) => {
-      console.log(error);
-    });
-  }
+      .then((u) => { console.log(u); })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
     console.log(userCredentials);
   }, [userCredentials]);
 
   const { currentUser } = useContext(AuthContext);
-  if (currentUser)  {
-    return (<Redirect to="/profile" />)
+  if (currentUser) {
+    return (<Redirect to="/profile" />);
   }
 
   return (
     <Modal heading="Sign up">
-      <form className={styles.conatiner}>
+      <form className={styles.container}>
         <FormInput
           label="Email"
           name="email"
@@ -66,10 +66,10 @@ const SignupModal = () => {
           handleChange={handleChange}
         />
         <FormInput
-          label="Comfirm Password"
+          label="Confirm Password"
           name="confirmPassword"
           type="password"
-          placeholder="Comfirm Password"
+          placeholder="Confirm Password"
           required
           value={userCredentials.confirmPassword}
           handleChange={handleChange}
@@ -78,6 +78,6 @@ const SignupModal = () => {
       </form>
     </Modal>
   );
-}
+};
 
 export default SignupModal;

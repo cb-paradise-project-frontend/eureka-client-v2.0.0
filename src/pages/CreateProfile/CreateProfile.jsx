@@ -150,10 +150,10 @@ export default function CreateProfile() {
   );
 
   return (
-    <Modal confirmBeforeClose >
+    <Modal.GoBackWhenClose >
       <Modal.Header>{header}</Modal.Header>
       <Modal.Content>{content}</Modal.Content>
       <Modal.Footer>{footer}</Modal.Footer>
-    </Modal>
+    </Modal.GoBackWhenClose>
   );
 }

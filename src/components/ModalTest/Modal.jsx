@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import styles from './Modal.module.scss';
 
@@ -34,8 +35,18 @@ const Footer = ({ children }) => (
   </div>
 );
 
+const GoBackWhenClose = ({ children }) => {
+  const { goBack } = useHistory();
+  return (
+    <Modal onRequestClose={goBack} >
+      {children}
+    </Modal>
+  );
+};
+
 Modal.Header = Header;
 Modal.Content = Content;
 Modal.Footer = Footer;
+Modal.GoBackWhenClose = GoBackWhenClose;
 
 export default Modal;

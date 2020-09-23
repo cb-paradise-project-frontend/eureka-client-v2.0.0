@@ -1,1 +1,1 @@
-export { default } from './Radio.jsx';
+export { default } from './Radio';

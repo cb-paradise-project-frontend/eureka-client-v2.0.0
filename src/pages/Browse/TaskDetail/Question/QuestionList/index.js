@@ -1,1 +1,1 @@
-export { default } from './QuestionList.jsx';
+export { default } from './QuestionList';

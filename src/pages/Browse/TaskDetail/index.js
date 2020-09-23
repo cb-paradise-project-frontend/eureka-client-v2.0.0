@@ -1,1 +1,1 @@
-export { default } from './TaskDetail.jsx';
+export { default } from './TaskDetail';

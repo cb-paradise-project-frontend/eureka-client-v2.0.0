@@ -1,1 +1,1 @@
-export { default } from './BankAccount.jsx';
+export { default } from './BankAccount';

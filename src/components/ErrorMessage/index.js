@@ -1,1 +1,1 @@
-export { default } from './ErrorMessage.jsx';
+export { default } from './ErrorMessage';

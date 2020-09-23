@@ -1,1 +1,1 @@
-export { default } from './Browse.jsx';
+export { default } from './Browse';

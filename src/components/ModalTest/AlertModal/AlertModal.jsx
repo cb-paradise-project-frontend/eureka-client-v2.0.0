@@ -9,8 +9,8 @@ import CloseIconButton from '../../CloseIconButton';
 export default function AlertModal({ onLeftBtnClick, onRightBtnClick }) {
   const [isModalOpen, toggleModal] = useState(true);
 
-  const title = 'Sorry to see you go...';
-  const information = "Are you sure? You're almost done and it's free to post a task...";
+  const title = `Sorry to see you go...`;
+  const information = `Are you sure? You're almost done and it's free to post a task...`;
 
   const handleQuit = () => {
     toggleModal(false);
@@ -49,7 +49,7 @@ export default function AlertModal({ onLeftBtnClick, onRightBtnClick }) {
       {isModalOpen &&
         <div className={styles.modal_container} >
           <div className={styles.close_button} >
-            <CloseIconButton onClick={onLeftBtnClick} />
+            <CloseIconButton onClick={onLeftBtnClick} /> 
           </div>
           <ModalPage
             header={title}
@@ -60,4 +60,4 @@ export default function AlertModal({ onLeftBtnClick, onRightBtnClick }) {
       }
     </>
   );
-}
+};

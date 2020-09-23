@@ -1,1 +1,1 @@
-export { default } from './AlertModal.jsx';
+export { default } from './AlertModal';

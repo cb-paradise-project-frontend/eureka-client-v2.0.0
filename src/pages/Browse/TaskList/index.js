@@ -1,1 +1,1 @@
-export { default } from './TaskList.jsx';
+export { default } from './TaskList';

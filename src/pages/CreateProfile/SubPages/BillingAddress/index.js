@@ -1,1 +1,1 @@
-export { default } from './BillingAddress.jsx';
+export { default } from './BillingAddress';

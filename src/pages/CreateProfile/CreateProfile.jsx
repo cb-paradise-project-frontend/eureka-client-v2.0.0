@@ -19,7 +19,7 @@ const initialState = {
     holder: '',
     accountNumber: '',
     bsb: '',
-  },
+  }, 
   billingAddress: {
     lineOne: '',
     lineTwo: '',
@@ -31,92 +31,90 @@ const initialState = {
   birthday: {
     day: '',
     month: '',
-    year: '',
+    year: '', 
   },
-  mobile: '',
+  mobile:'', 
   subPage: '',
 };
 
 export default function CreateProfile() {
   const [fields, dispatch] = useReducer(profileReducer, initialState);
-  const {
-    photo, bankAccount, billingAddress, birthday, mobile, subPage,
+  const { 
+    photo, bankAccount, billingAddress, birthday, mobile, subPage, 
   } = fields;
 
-  const handleProfileBtnClick = (selectedPage) => (
-    () => (dispatch(action.clickProfileItem(selectedPage)))
+  const handleProfileBtnClick = (subPage) => (
+    () => (dispatch(action.clickProfileItem(subPage)))
   );
   const handleBackBtnClick = () => {
     dispatch(action.clickBackBtn());
   };
 
-  const handlePhotoUpload = (input) => {
-    dispatch(action.photoUpload(input));
+  const handlePhotoUpload = (photo) => {
+    dispatch(action.photoUpload(photo));
   };
-  const handleAccountInput = (input) => {
-    dispatch(action.accountInput(input));
+  const handleAccountInput = (bankAccount) => {
+    dispatch(action.accountInput(bankAccount));
   };
-  const handleBillingAddressInput = (input) => {
-    dispatch(action.billingAddressInput(input));
+  const handleBillingAddressInput = (billingAddress) => {
+    dispatch(action.billingAddressInput(billingAddress));
   };
-  const handleBirthdayInput = (input) => {
-    dispatch(action.birthdayInput(input));
+  const handleBirthdayInput = (birthday) => {
+    dispatch(action.birthdayInput(birthday));
   };
-  const handleMobileInput = (input) => {
-    dispatch(action.mobileInput(input));
+  const handleMobileInput = (mobile) => {
+    dispatch(action.mobileInput(mobile));
   };
 
   const isFilled = (stateValue) => {
-    if (typeof stateValue === 'object') {
+    if(typeof stateValue === 'object') {
       const valueArray = Object.values(stateValue);
-      const result = valueArray.filter((value) => value);
-      return (result.length === valueArray.length);
-    }
+      const result = valueArray.filter(value => value);
+      return (result.length === valueArray.length) ? true : false;
+    };
     return (stateValue) && true;
   };
 
-  const birthdayStatusLabel = isFilled(birthday)
-    && birthday.toDateString().replace(/[^\s]+/, '');
-
+  const birthdayStatusLabel = isFilled(birthday) &&
+    birthday.toDateString().replace(/[^\s]+/, '');
+ 
   const profileItemElementList = [
     {
       name: 'Profile Picture',
-      value: photo,
-      page: <Photo url={photo} onSubmit={handlePhotoUpload} />,
+      value: photo, 
+      subPage: <Photo url={photo} onSubmit={handlePhotoUpload} />,
     },
     {
       name: 'Bank Account Details',
-      value: bankAccount,
-      page: <BankAccount onSubmit={handleAccountInput} />,
+      value: bankAccount, 
+      subPage: <BankAccount onSubmit={handleAccountInput} />,
     },
     {
       name: 'Billing Address',
       value: billingAddress,
-      page: <BillingAddress onSubmit={handleBillingAddressInput} />,
+      subPage: <BillingAddress onSubmit={handleBillingAddressInput} />,
     },
     {
       name: 'Date of Birth',
       value: birthday,
       statusLabel: birthdayStatusLabel,
-      page: <Birthday onSubmit={handleBirthdayInput} />,
+      subPage: <Birthday onSubmit={handleBirthdayInput} />,
     },
     {
       name: 'Mobile Number',
       value: mobile,
       statusLabel: mobile,
-      page: <Mobile
-        verifiedMobile={mobile}
-        onSubmit={handleMobileInput}
+      subPage: <Mobile 
+        verifiedMobile={mobile} 
+        onSubmit={handleMobileInput} 
       />,
-    },
+    }, 
   ];
 
-  const profileList = profileItemElementList.map(({
-    name, value, statusLabel, page,
-  }) => (
-    <ProfileItem
+  const profileList = profileItemElementList.map(({ name, value, statusLabel, subPage }) => (
+    <ProfileItem 
       itemName={name}
-      handleClick={handleProfileBtnClick(page)}
+      handleClick={handleProfileBtnClick(subPage)}
       statusLabel={statusLabel}
       checked={isFilled(value)}
       key={name}
@@ -126,12 +124,12 @@ export default function CreateProfile() {
   const header = (
     <>
       {subPage && (
-        <button
+        <button 
           className={styles.back_button}
-          onClick={handleBackBtnClick}
+          onClick={handleBackBtnClick} 
         >
           {String.fromCharCode(10140)}
-        </button>
+        </button> 
       )}
       <div className={styles.title} >
         To Start Making Money
@@ -139,12 +137,16 @@ export default function CreateProfile() {
     </>
   );
 
-  const content = subPage || profileList;
+  const content = (
+    subPage ? 
+      subPage : 
+      profileList
+  );
 
   const footer = (
     <button
         className={styles.footer_button}
-        onClick={handleBackBtnClick}
+        onClick={handleBackBtnClick} 
       >
         {subPage ? 'Back' : 'Continue'}
     </button>
@@ -152,11 +154,11 @@ export default function CreateProfile() {
 
   return (
     <Modal confirmBeforeClose >
-      <ModalPage
+      <ModalPage  
         header={header}
         content={content}
         footer={footer}
       />
     </Modal>
   );
-}
+}; 

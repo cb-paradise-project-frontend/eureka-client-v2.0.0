@@ -1,30 +1,28 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import styles from './TaskListItem.module.scss';
 
 import Avatar from '../../../../components/Avatar';
 
-export default function TaskListItem({
-  task: {
-    title, status, budget, poster, location, due, id,
-  },
+function TaskListItem({ 
+  task:{ title, status, budget, poster, location, due, id }, 
+  history, 
+  match 
 }) {
-  const history = useHistory();
-  const match = useRouteMatch();
 
   function handleClick() {
     history.push(`${match.url}/${id}`);
-  }
+  };
 
   const cx = classNames.bind(styles);
 
-  return (
-    <div
+  return(
+    <div 
       className={cx(
         'task_list_item',
-        status.toLowerCase(),
+        status.toLowerCase(), 
       )}
       onClick = {handleClick}
     >
@@ -54,4 +52,6 @@ export default function TaskListItem({
       </div>
     </div>
   );
-}
+};
+
+export default withRouter(TaskListItem);

@@ -8,4 +8,4 @@ export default function CloseIconButton({ onClick }) {
       <i className="ri-close-fill ri-2x"></i>
     </button>
   );
-}
+};

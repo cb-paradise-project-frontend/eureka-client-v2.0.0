@@ -1,1 +1,1 @@
-export { default } from './PaymentPanel.jsx';
+export { default } from './PaymentPanel';

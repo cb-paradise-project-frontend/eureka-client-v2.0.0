@@ -1,1 +1,1 @@
-export { TaskProvider, TaskConsumer } from './TaskContext.jsx';
+export {TaskProvider, TaskConsumer} from './TaskContext';

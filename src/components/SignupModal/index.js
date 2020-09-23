@@ -1,1 +1,1 @@
-export { default } from './SignupModal.jsx';
+export { default } from './SignupModal';

@@ -12,19 +12,21 @@ export default function OfferButton({ isExpired }) {
   const label = isExpired ? 'Expired' : 'Make an offer';
 
   const cx = classNames.bind(styles);
-
+  
   return (
-    <Link
-      to={`${pathname}/make-bid`}
+    <Link 
+      to={`${pathname}/make-bid`} 
       className={cx({
-        disabled_link: isExpired === true,
+        disabled_link: isExpired === true, 
       })}
     >
-      <Button
+      <Button 
         isDisabled={isExpired}
       >
         {label}
       </Button>
     </Link>
   );
-}
+};
+
+

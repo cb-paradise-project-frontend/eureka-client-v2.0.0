@@ -6,7 +6,7 @@ import Input from '../../../../components/Input';
 import handleInput from '../Utils/handleInput';
 import Button from '../../../../components/Button';
 import ErrorMessage from '../../../../components/ErrorMessage';
-import { onlyNumber } from '../../../../utils/validators/input';
+import onlyNumber from '../../../../utils/validators/input';
 import { isDate, isAdult } from '../../../../utils/validators/submit';
 
 export default function BirthDate({ onSubmit }) {
@@ -15,37 +15,38 @@ export default function BirthDate({ onSubmit }) {
   const [year, setYear] = useState('');
   const [testing, toggleTest] = useState(false);
 
+
   const formInputElements = [
     {
-      placeholder: 'DD',
-      value: day,
-      handleChange: handleInput(setDay, onlyNumber),
+      placeholder: 'DD', 
+      value: day, 
+      handleChange: handleInput(setDay, onlyNumber), 
     },
     {
-      placeholder: 'MM',
-      value: month,
-      handleChange: handleInput(setMonth, onlyNumber),
+      placeholder: 'MM', 
+      value: month, 
+      handleChange: handleInput(setMonth, onlyNumber), 
     },
     {
-      placeholder: 'YYYY',
-      value: year,
-      handleChange: handleInput(setYear, onlyNumber),
+      placeholder: 'YYYY', 
+      value: year, 
+      handleChange: handleInput(setYear, onlyNumber), 
     },
   ];
 
   const formInputs = formInputElements.map(({ placeholder, value, handleChange }) => (
-    <div
+    <div 
       className={styles.input_wrapper}
       key={placeholder}
     >
-      <Input
+      <Input 
         placeholder={placeholder}
         value={value}
         handleChange={handleChange}
         maxLength={placeholder.length}
       />
     </div>
-  ));
+  ));  
 
   const validations = [
     {
@@ -59,28 +60,28 @@ export default function BirthDate({ onSubmit }) {
   ];
 
   const getError = () => {
-    const error = validations.find((validation) => validation.condition === false);
+    const error = validations.find(validation => validation.condition === false);
     return error ? error.message : false;
-  };
+  }
 
   const handleSubmit = () => {
-    if (getError()) {
+    if(getError()){
       toggleTest(true);
-    } else {
-      const birthday = new Date(year, month - 1, day);
+    }else{
+      const birthday =  new Date(year, month-1, day);
       onSubmit(birthday);
       toggleTest(false);
     }
-  };
+  }
 
   return (
     <>
       <div className={styles.grouped_input} >
         <div className={styles.input_wrapper} >
           {formInputs}
-        </div>
+        </div>  
         <div className={styles.message_wrapper}>
-          {(testing && getError()) &&
+          {(testing && getError()) && 
             <ErrorMessage>
               {getError()}
             </ErrorMessage>

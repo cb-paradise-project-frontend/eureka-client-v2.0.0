@@ -16,7 +16,7 @@ function FormTextAreaInput({
 }) {
   const cx = classNames.bind(styles);
   return (
-    <React.Fragment>
+    <>
       <textarea
         className={cx(
           {
@@ -30,7 +30,7 @@ function FormTextAreaInput({
         {...otherProps}
       />
       { isInputInvalid && <ErrorHint>{errorHint}</ErrorHint> }
-    </React.Fragment>
+    </>
   );
 }
 

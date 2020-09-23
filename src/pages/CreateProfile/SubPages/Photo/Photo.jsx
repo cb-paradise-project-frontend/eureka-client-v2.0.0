@@ -5,11 +5,11 @@ import styles from './Photo.module.scss';
 import Button from '../../../../components/Button';
 
 export default function Photo({ url, onSubmit }) {
-  const handleChange = ({ target:{files} }) => {
+  const handleChange = ({ target: { files } }) => {
     if (files[0]) {
       onSubmit(URL.createObjectURL(files[0]));
     }
-  }; 
+  };
 
   return (
     <div className={styles.form_wrapper} >
@@ -26,4 +26,4 @@ export default function Photo({ url, onSubmit }) {
       </div>
     </div>
   );
-}; 
+}

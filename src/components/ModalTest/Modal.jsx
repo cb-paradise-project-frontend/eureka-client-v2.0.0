@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useHistory } from 'react-router-dom';
 
 import styles from './Modal.module.scss';
 
 import Overlay from '../Overlay';
-import CloseIconButton from '../CloseIconButton';
 import AlertModal from './AlertModal';
-import { useHistory } from 'react-router-dom';
+import CloseIconButton from '../CloseIconButton';
 
 const modalRoot = document.body;
 
 export default function Modal({ confirmBeforeClose, children }) {
   const [showAlert, toggleAlert] = useState(false);
-  const history  = useHistory();
+  const history = useHistory();
 
   const closeModal = history.goBack;
 
-  const onRequestClose = confirmBeforeClose 
-    ? () => {toggleAlert(true)}
+  const onRequestClose = confirmBeforeClose
+    ? () => { toggleAlert(true); }
     : closeModal;
 
   const onContinue = () => {
@@ -30,21 +30,21 @@ export default function Modal({ confirmBeforeClose, children }) {
         <Overlay>
           <div className={styles.modal_container} >
             <div className={styles.close_button} >
-              <CloseIconButton onClick={onRequestClose} /> 
+              <CloseIconButton onClick={onRequestClose} />
             </div>
             {children}
-            {confirmBeforeClose && showAlert && 
+            {confirmBeforeClose && showAlert &&
               <Overlay>
                 <AlertModal 
-                  onLeftBtnClick={onContinue} 
+                  onLeftBtnClick={onContinue}
                   onRightBtnClick={closeModal}
                 />
               </Overlay>
             }
-          </div>     
+          </div>
         </Overlay>,
-        modalRoot
+        modalRoot,
       )}
     </>
   );
-};   
+}

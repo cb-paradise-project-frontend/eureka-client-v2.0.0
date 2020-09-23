@@ -90,7 +90,7 @@ export default function BillingAddress({ onSubmit }) {
         {fieldList}
       </div>
       <div className={styles.button_wrapper} >
-        <Button handleSubmit={handleSubmit} >
+        <Button onClick={handleSubmit} >
           Add Billing Address
         </Button>
       </div>

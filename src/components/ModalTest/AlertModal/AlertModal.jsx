@@ -19,7 +19,7 @@ export default function AlertModal({ onLeftBtnClick, onRightBtnClick }) {
 
   const leftButton = (
     <Button
-      handleSubmit={onLeftBtnClick}
+      onClick={onLeftBtnClick}
     >
       Continue Task
     </Button>
@@ -27,7 +27,7 @@ export default function AlertModal({ onLeftBtnClick, onRightBtnClick }) {
 
   const rightButton = (
     <Button
-    handleSubmit={handleQuit}
+    onClick={handleQuit}
   >
     Discard & Exit
   </Button>

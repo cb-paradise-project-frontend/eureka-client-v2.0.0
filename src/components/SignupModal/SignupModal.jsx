@@ -74,7 +74,7 @@ const SignupModal = () => {
           value={userCredentials.confirmPassword}
           handleChange={handleChange}
         />
-        <Button type="submit" handleSubmit={onSignUp}>Sign up</Button>
+        <Button type="submit" onClick={onSignUp}>Sign up</Button>
       </form>
     </Modal>
   );

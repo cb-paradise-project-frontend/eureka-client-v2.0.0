@@ -117,7 +117,7 @@ export default function BankAccount({ onSubmit }) {
         {fieldList}
       </div>
       <div className={styles.button_wrapper} >
-        <Button handleSubmit={handleSubmit} >
+        <Button onClick={handleSubmit} >
           Add Bank Account
         </Button>
       </div>

@@ -1,12 +1,12 @@
 import React from 'react';
+import classNames from 'classnames/bind';
 
 import styles from './Button.module.scss';
-import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
 const Button = ({
-  children, handleSubmit, isGoogle, isDisabled, ...otherProps
+  children, onClick, isGoogle, isDisabled, ...otherProps
 }) => (
   <button
     className={cx({
@@ -14,7 +14,8 @@ const Button = ({
       google: isGoogle,
     })}
     disabled={isDisabled}
-    onClick={handleSubmit}
+    onClick={onClick}
+    {...otherProps}
   >
     {children}
   </button>

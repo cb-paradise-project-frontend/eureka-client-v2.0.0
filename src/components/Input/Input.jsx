@@ -4,10 +4,16 @@ import classNames from 'classnames/bind';
 import styles from './Input.module.scss';
 import ErrorMessage from '../ErrorMessage';
 
+const cx = classNames.bind(styles);
+
 const Input = ({
-  label, name, type, placeholder, handleChange, isError, ...otherProps
+  label, name, type, placeholder, validator, handleChange, isError, ...otherProps
 }) => {
-  const cx = classNames.bind(styles);
+  const inputHandler = ({ target: { value } }) => {
+    const validInput = validator ? validator(value) : value;
+    handleChange(validInput);
+  };
+
   return (
     <div className={styles.input_wrapper} >
       {label
@@ -21,7 +27,7 @@ const Input = ({
         name={name}
         type={type}
         placeholder={placeholder}
-        onChange={handleChange}
+        onChange={inputHandler}
         {...otherProps}
       />
     </div>

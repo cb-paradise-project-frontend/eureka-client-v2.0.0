@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import styles from './BankAccount.module.scss';
 
 import Button from '../../../../components/Button';
-import handleInput from '../Utils/handleInput';
 import { onlyNumber, addDashInNumber } from '../../../../utils/validators/input';
 import Input from '../../../../components/Input';
 
@@ -20,21 +19,23 @@ export default function BankAccount({ onSubmit }) {
       label: 'Account holder name',
       placeholder: 'Alice',
       value: holder,
-      handleChange: handleInput(setHolder),
+      handleChange: setHolder,
     },
     {
       label: 'Account number',
       placeholder: '12345678',
       value: accountNumber,
       maxLength: 9,
-      handleChange: handleInput(setAccountNumber, onlyNumber),
+      validator: onlyNumber,
+      handleChange: setAccountNumber,
     },
     {
       label: 'BSB',
       placeholder: '000-000',
       value: bsb,
       maxLength: 7,
-      handleChange: handleInput(setBsb, addDashInNumber),
+      validator: addDashInNumber,
+      handleChange: setBsb,
     },
   ];
 
@@ -56,13 +57,14 @@ export default function BankAccount({ onSubmit }) {
   };
 
   const fieldList = fieldElementList.map(({
-    label, placeholder, value, maxLength, handleChange,
+    label, placeholder, value, maxLength, validator, handleChange,
   }) => (
     <div className={styles.input_wrapper} key={label} >
       <Input
         label={label}
         placeholder={placeholder}
         value={value}
+        validator={validator}
         handleChange={handleChange}
         isError={label === highlightField}
         maxLength={maxLength}

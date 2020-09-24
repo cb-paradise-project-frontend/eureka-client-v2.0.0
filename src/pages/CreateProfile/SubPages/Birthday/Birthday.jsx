@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import styles from './Birthday.module.scss';
 
 import Input from '../../../../components/Input';
-import handleInput from '../Utils/handleInput';
 import Button from '../../../../components/Button';
 import ErrorMessage from '../../../../components/ErrorMessage';
 import onlyNumber from '../../../../utils/validators/input';
@@ -41,7 +40,8 @@ export default function BirthDate({ onSubmit }) {
       <Input
         placeholder={placeholder}
         value={value}
-        handleChange={handleInput(handleChange, onlyNumber)}
+        validator={onlyNumber}
+        handleChange={handleChange}
         maxLength={placeholder.length}
       />
     </div>

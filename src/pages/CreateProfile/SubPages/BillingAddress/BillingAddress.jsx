@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import styles from './BillingAddress.module.scss';
 
-import handleInput from '../Utils/handleInput';
 import Button from '../../../../components/Button';
 import Input from '../../../../components/Input';
 
@@ -58,7 +57,7 @@ export default function BillingAddress({ onSubmit }) {
       <Input.WithErrorMessage
         label={label}
         value={value}
-        handleChange={handleInput(handleChange)}
+        handleChange={handleChange}
         isError={testing && !value}
         errorMessage={errorMessage}
       />

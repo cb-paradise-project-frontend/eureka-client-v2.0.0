@@ -15,38 +15,37 @@ export default function BirthDate({ onSubmit }) {
   const [year, setYear] = useState('');
   const [testing, toggleTest] = useState(false);
 
-
   const formInputElements = [
     {
-      placeholder: 'DD', 
-      value: day, 
-      handleChange: handleInput(setDay, onlyNumber), 
+      placeholder: 'DD',
+      value: day,
+      handleChange: setDay,
     },
     {
-      placeholder: 'MM', 
-      value: month, 
-      handleChange: handleInput(setMonth, onlyNumber), 
+      placeholder: 'MM',
+      value: month,
+      handleChange: setMonth,
     },
     {
-      placeholder: 'YYYY', 
-      value: year, 
-      handleChange: handleInput(setYear, onlyNumber), 
+      placeholder: 'YYYY',
+      value: year,
+      handleChange: setYear,
     },
   ];
 
   const formInputs = formInputElements.map(({ placeholder, value, handleChange }) => (
-    <div 
+    <div
       className={styles.input_wrapper}
       key={placeholder}
     >
-      <Input 
+      <Input
         placeholder={placeholder}
         value={value}
-        handleChange={handleChange}
+        handleChange={handleInput(handleChange, onlyNumber)}
         maxLength={placeholder.length}
       />
     </div>
-  ));  
+  ));
 
   const validations = [
     {
@@ -65,23 +64,23 @@ export default function BirthDate({ onSubmit }) {
   }
 
   const handleSubmit = () => {
-    if(getError()){
+    if (getError()) {
       toggleTest(true);
-    }else{
-      const birthday =  new Date(year, month-1, day);
+    } else {
+      const birthday = new Date(year, month - 1, day);
       onSubmit(birthday);
       toggleTest(false);
     }
-  }
+  };
 
   return (
     <>
       <div className={styles.grouped_input} >
         <div className={styles.input_wrapper} >
           {formInputs}
-        </div>  
+        </div>
         <div className={styles.message_wrapper}>
-          {(testing && getError()) && 
+          {(testing && getError()) &&
             <ErrorMessage>
               {getError()}
             </ErrorMessage>

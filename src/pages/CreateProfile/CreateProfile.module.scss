@@ -1,5 +1,3 @@
-
-
 .title{
   flex-grow: 1;
   color: rgb(41, 43, 50);
@@ -14,39 +12,16 @@
   overflow: hidden;
 }
 
-.back_button{
-  position: absolute;
-  font-size: 20px;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  left: 15px;
-  transform: rotate(180deg);
-  color: rgb(84, 90, 119);
-
-  &:hover {
-    cursor: pointer;
-  }
+.profile_list_wrapper{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
-
-.footer_button{
-  display: inline-block;
-  outline: none;
-  text-align: center;
-  white-space: nowrap;
-  cursor: pointer;
-  box-sizing: border-box;
-  font-family: museo-bold, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0.15px;
-  width: 100%;
-  background-color: rgb(246, 248, 253);
-  color: rgb(0, 143, 180);
-  margin: 0px;
-  border: solid 2px rgb(231, 235, 251);
-  border-radius: 160px;
-  padding: 8px 16px;
+.back_button_wrapper{
+  position: absolute;
+  left: 20px;
+  display: flex;
+  align-items: center;
 }
 

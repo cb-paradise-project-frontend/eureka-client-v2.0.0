@@ -11,6 +11,7 @@ import BillingAddress from './SubPages/BillingAddress';
 import Birthday from './SubPages/Birthday';
 import Mobile from './SubPages/Mobile';
 import * as action from './Reducer/Action/actionCreator';
+import Button from '../../components/Button';
 
 const initialState = {
   photo: '',
@@ -110,28 +111,29 @@ export default function CreateProfile() {
     },
   ];
 
-  const profileList = profileItemElementList.map(({
-    name, value, statusLabel, page,
-  }) => (
-    <ProfileItem
-      itemName={name}
-      handleClick={handleProfileBtnClick(page)}
-      statusLabel={statusLabel}
-      checked={isFilled(value)}
-      key={name}
-    />
-  ));
+  const profileList = (
+    <div className={styles.profile_list_wrapper} >
+      {profileItemElementList.map(({
+        name, value, statusLabel, page,
+      }) => (
+        <ProfileItem
+          itemName={name}
+          handleClick={handleProfileBtnClick(page)}
+          statusLabel={statusLabel}
+          checked={isFilled(value)}
+          key={name}
+        />
+      ))}
+    </div>
+  );
 
   const header = (
     <>
-      {subPage && (
-        <button
-          className={styles.back_button}
-          onClick={handleBackBtnClick}
-        >
-          {String.fromCharCode(10140)}
-        </button>
-      )}
+      {subPage &&
+        <div className={styles.back_button_wrapper} >
+          <Button.BackIcon onClick={handleBackBtnClick} />
+        </div>
+      }
       <div className={styles.title} >
         To Start Making Money
       </div>
@@ -141,12 +143,12 @@ export default function CreateProfile() {
   const content = subPage || profileList;
 
   const footer = (
-    <button
-        className={styles.footer_button}
-        onClick={handleBackBtnClick}
-      >
-        {subPage ? 'Back' : 'Continue'}
-    </button>
+    <Button
+      onClick={handleBackBtnClick}
+      color={'light-blue'}
+    >
+      {subPage ? 'Back' : 'Continue'}
+    </Button>
   );
 
   return (

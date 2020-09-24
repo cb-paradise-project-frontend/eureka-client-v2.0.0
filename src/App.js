@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.css';
-import 'remixicon/fonts/remixicon.css'
+import 'remixicon/fonts/remixicon.css';
 
 import { AuthProvider } from './auth/Auth';
 import PrivateRoute from './auth/PrivateRoute';
@@ -29,7 +29,7 @@ const App = () => {
         <Route path="*/create" component={PostTask} />
         <Route path="*/make-bid" component={CreateProfile} />
         {/* 
-          触犯多个modal，使render顺序和url上的顺序匹配
+          触发多个modal，使render顺序和url上的顺序匹配
           brainstorm:
             CREATE: path="*create"
             MAKE_BID: path="*make-bid" //TODO, 问龙哥

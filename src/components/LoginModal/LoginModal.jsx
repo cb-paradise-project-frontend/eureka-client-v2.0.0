@@ -66,7 +66,12 @@ const LoginModal = () => {
         />
         <Button onClick={onLoginWithEmail}>Log in</Button>
         <div className={styles.seperator}>or log in with</div>
-        <Button onClick={onLoginWithGoogle} isGoogle>Google</Button>
+        <Button 
+          onClick={onLoginWithGoogle} 
+          color={'blue'}
+        >
+          Google
+        </Button>
       </div>
     </Modal>
   );

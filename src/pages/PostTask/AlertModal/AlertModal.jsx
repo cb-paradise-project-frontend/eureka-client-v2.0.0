@@ -10,23 +10,29 @@ export default function AlertModal({ onLeftBtnClick, onRightBtnClick, onRequestC
   const information = "Are you sure? You're almost done and it's free to post a task...";
 
   const leftButton = (
-    <Button onClick={onLeftBtnClick}>
+    <Button
+      onClick={onLeftBtnClick}
+      color={'light-blue'}
+    >
       Continue Task
     </Button>
   );
 
   const rightButton = (
-    <Button onClick={onRightBtnClick}>
+    <Button
+      onClick={onRightBtnClick}
+      color={'red'}
+    >
       Discard & Exit
     </Button>
   );
 
   const modalBottom = (
     <div className={styles.modal_bottom} >
-      <div className={styles.left_button} >
+      <div className={styles.button} >
         {leftButton}
       </div>
-      <div className={styles.right_button} >
+      <div className={styles.button} >
         {rightButton}
       </div>
     </div>

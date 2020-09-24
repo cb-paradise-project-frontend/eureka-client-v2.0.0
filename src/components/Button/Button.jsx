@@ -6,13 +6,19 @@ import styles from './Button.module.scss';
 const cx = classNames.bind(styles);
 
 const Button = ({
-  children, onClick, isGoogle, isDisabled, ...otherProps
+  children, onClick, color, isDisabled, ...otherProps
 }) => (
   <button
-    className={cx({
-      button: true,
-      google: isGoogle,
-    })}
+    className={cx(
+      'button',
+      {
+        green: 'green',
+        blue: 'blue',
+        'light-blue': 'light-blue',
+        red: 'red',
+        pink: 'pink',
+      }[color] || 'green',
+    )}
     disabled={isDisabled}
     onClick={onClick}
     {...otherProps}
@@ -21,15 +27,28 @@ const Button = ({
   </button>
 );
 
-const CloseIcon = ({ onClick }) => (
+const IconButton = ({ onClick, children }) => (
   <button
-    className={styles.close_icon}
+    className={styles.icon_button}
     onClick={onClick}
   >
-    <i className="ri-close-fill ri-2x"/>
+    {children}
   </button>
 );
 
+const CloseIcon = ({ onClick }) => (
+  <IconButton onClick={onClick} >
+    <i className="ri-close-fill ri-xl"/>
+  </IconButton>
+);
+
+const BackIcon = ({ onClick }) => (
+  <IconButton onClick={onClick} >
+    <i className="ri-arrow-left-line ri-xl" />
+  </IconButton>
+);
+
 Button.CloseIcon = CloseIcon;
+Button.BackIcon = BackIcon;
 
 export default Button;

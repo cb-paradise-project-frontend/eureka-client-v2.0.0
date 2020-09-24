@@ -37,19 +37,13 @@ const IconButton = ({ onClick, children }) => (
 );
 
 const CloseIcon = ({ onClick }) => (
-  <IconButton
-    className={styles.close_icon}
-    onClick={onClick}
-  >
+  <IconButton onClick={onClick} >
     <i className="ri-close-fill ri-xl"/>
   </IconButton>
 );
 
 const BackIcon = ({ onClick }) => (
-  <IconButton
-    className={styles.back_icon}
-    onClick={onClick}
-  >
+  <IconButton onClick={onClick} >
     <i className="ri-arrow-left-line ri-xl" />
   </IconButton>
 );

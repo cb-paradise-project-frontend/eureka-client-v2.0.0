@@ -11,6 +11,7 @@ import BillingAddress from './SubPages/BillingAddress';
 import Birthday from './SubPages/Birthday';
 import Mobile from './SubPages/Mobile';
 import * as action from './Reducer/Action/actionCreator';
+import Button from '../../components/Button';
 
 const initialState = {
   photo: '',
@@ -124,14 +125,9 @@ export default function CreateProfile() {
 
   const header = (
     <>
-      {subPage && (
-        <button
-          className={styles.back_button}
-          onClick={handleBackBtnClick}
-        >
-          {String.fromCharCode(10140)}
-        </button>
-      )}
+      {subPage
+        && <Button.BackIcon onClick={handleBackBtnClick} />
+      }
       <div className={styles.title} >
         To Start Making Money
       </div>
@@ -141,12 +137,12 @@ export default function CreateProfile() {
   const content = subPage || profileList;
 
   const footer = (
-    <button
-        className={styles.footer_button}
-        onClick={handleBackBtnClick}
-      >
-        {subPage ? 'Back' : 'Continue'}
-    </button>
+    <Button
+      onClick={handleBackBtnClick}
+      color={'light-blue'}
+    >
+      {subPage ? 'Back' : 'Continue'}
+    </Button>
   );
 
   return (

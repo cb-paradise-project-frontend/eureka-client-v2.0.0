@@ -27,15 +27,34 @@ const Button = ({
   </button>
 );
 
-const CloseIcon = ({ onClick }) => (
+const IconButton = ({ onClick, children }) => (
   <button
-    className={styles.close_icon}
+    className={styles.icon_button}
     onClick={onClick}
   >
-    <i className="ri-close-fill ri-2x"/>
+    {children}
   </button>
 );
 
+const CloseIcon = ({ onClick }) => (
+  <IconButton
+    className={styles.close_icon}
+    onClick={onClick}
+  >
+    <i className="ri-close-fill ri-xl"/>
+  </IconButton>
+);
+
+const BackIcon = ({ onClick }) => (
+  <IconButton
+    className={styles.back_icon}
+    onClick={onClick}
+  >
+    <i className="ri-arrow-left-line ri-xl" />
+  </IconButton>
+);
+
 Button.CloseIcon = CloseIcon;
+Button.BackIcon = BackIcon;
 
 export default Button;

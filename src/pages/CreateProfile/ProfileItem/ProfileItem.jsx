@@ -3,28 +3,30 @@ import classNames from 'classnames/bind';
 
 import styles from './ProfileItem.module.scss';
 
-export default function ProfileItem({ itemName, handleClick, checked, statusLabel }) {
-  const checkIcon = String.fromCharCode(10003); 
+const cx = classNames.bind(styles);
+
+export default function ProfileItem({
+  itemName, handleClick, checked, statusLabel,
+}) {
+  const checkIcon = String.fromCharCode(10003);
   const arrowIcon = String.fromCharCode(10095);
 
   const title = `Provide your ${itemName}`;
-  const prefix = checked ? 'Update' : 'Enter'; 
-  const label = statusLabel ? statusLabel : `${prefix} your ${itemName}`;
-
-  const cx = classNames.bind(styles);
+  const prefix = checked ? 'Update' : 'Enter';
+  const label = statusLabel || `${prefix} your ${itemName}`;
 
   return (
     <div className={styles.profile_item} >
       <div className={styles.title} >
         {title}
       </div>
-      <button 
+      <button
         className={styles.button}
-        onClick={handleClick} 
+        onClick={handleClick}
       >
         <div className={cx({
           check_icon: true,
-          checked: checked === true, 
+          checked,
         })} >
           {checkIcon}
         </div>

@@ -2,15 +2,13 @@ import React from "react";
 
 import styles from "./TaskerImg.module.scss";
 
-import Samantha from "../../../../../assets/tasker-samantha.png";
-
-
-function TaskerImg () {
+function TaskerImg (props) {
+    console.log(props);
     return (
         <React.Fragment>
-        <img src={Samantha} alt="taskerPhoto" className={styles.taskerPhoto}/>
+        <img src={props.data.taskerImg} alt="taskerPhoto" className={styles.taskerPhoto}/>
         </React.Fragment>
     );
 }
- 
+
 export default TaskerImg;

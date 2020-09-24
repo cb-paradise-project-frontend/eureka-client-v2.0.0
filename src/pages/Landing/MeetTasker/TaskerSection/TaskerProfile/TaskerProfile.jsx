@@ -6,22 +6,20 @@ import id from "../../../../../assets/badge-id.png";
 
 import styles from "./TaskerProfile.module.scss";
 
-function TaskerProfile() {
+
+function TaskerProfile(props) {
   return (
     <div className={styles.container}>
       <div className={styles.top}>
         <div className={styles.description}>
           <div className={styles.name}>
-            <h4>Samantha</h4>
+            <h4>{props.data.name}</h4>
           </div>
           <div className={styles.specialities}>
-            <p>Specialities: assembly, pet care, gardening</p>
+            <p>{props.data.spec}</p>
           </div>
           <div className={styles.content}>
-            <p>
-              Returning to the workforce as a single mum, Sam had to find
-              something that could be flexible and cover the cost of childcare.
-            </p>
+            <p>{props.data.details}</p>
           </div>
         </div>
       </div>
@@ -34,7 +32,7 @@ function TaskerProfile() {
 
             <img src={star} />
             <div className={styles.reviews_star}>
-              <p> 4.9 stars from 185 review </p>
+              <p> {props.data.stars}</p>
             </div>
           </div>
 
@@ -44,14 +42,11 @@ function TaskerProfile() {
             </div>
 
             <div className={styles.content}>
-              <p>
-                {" "}
-                Very nice and caring in trying circumstances! Thanks again{" "}
-              </p>
+              <p>{props.data.reviews}</p>
             </div>
 
             <div className={styles.reviewer}>
-              <p>--Tim S.</p>
+              <p>{props.data.viewer}</p>
             </div>
           </div>
         </div>

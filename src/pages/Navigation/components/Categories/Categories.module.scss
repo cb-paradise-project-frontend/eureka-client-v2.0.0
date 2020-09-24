@@ -1,0 +1,114 @@
+*, h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.categories {
+  color:#fff;
+  cursor: pointer;
+  display: inline-block;
+  // font-family: "Baloo Tamma 2", cursive;
+  font-size: 13px;
+  height: 57px;
+  letter-spacing: .4px;
+  line-height: 58px;
+  position: relative;
+  text-decoration: none;
+  padding: 0 10px;
+  &:hover {
+    color: #008fb4;
+    border-top: 2px solid #008fb4;
+  }
+
+  .category_content{
+    font-family: "Baloo Tamma 2", cursive;
+    height: 400px;
+    width: 750px;
+    top: 57px;
+    background-color: #fff;
+    color: rgb(41, 43, 50);
+    position: absolute;
+    display: none;
+    // flex-direction: row;
+    border-radius: 5px;
+    cursor: default;
+
+    .category_details_left {
+      width: 250px;
+      height: 100%;
+      display: inline-block;
+      justify-content: center;
+      align-content: unset;
+      align-items: center;
+      box-sizing: border-box;
+      margin: 0px;
+      background: rgb(246, 248, 253);
+      padding: 24px 0px 0px 24px;
+      border-radius: 5px 0 0 5px;
+
+      p:first-child {
+        color: rgb(41, 43, 50);
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 40px;
+        letter-spacing: 0.15px;
+        margin: 0px 12px 0px 0px;
+        padding-bottom: 8px;
+        display: block;
+      }
+
+      p:nth-child(2) {
+        color: rgb(41, 43, 50);
+        font-size: 18px;
+        line-height: 20px;
+        letter-spacing: 0.45px;
+        margin: 0px 0px 24px;
+        padding: 0px;
+      }
+
+      .category_details_wrapper {
+        border: 2px solid rgb(232, 232, 232);
+        border-left: 4px solid rgb(0, 143, 180);
+        background-color: rgb(255, 255, 255);
+        height: 90px;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        box-sizing: border-box;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.15px;
+        padding-left: 15px;
+
+        h3 {
+          color: rgb(0, 143, 180);
+          font-size: 16px;
+          font-weight: 700;
+          padding: 12px 0 3px;
+        }
+
+        p {
+          line-height: 20px;
+          // font-size: 14px;
+        }
+      }
+
+    }
+
+    .category_details_right {
+      width: 500px;
+      height: 400px;
+      // display: inline-block;
+      color: rgb(41, 43, 50);
+    }
+  }
+
+}
+
+.categories:hover .category_content {
+  display: block;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px;
+  // margin: 10px 10px;
+  border-radius: 4px;
+  transition: transform 0.4s ease 0s;
+}

@@ -26,8 +26,14 @@ const App = () => {
           <Route path="/" component={Landing} />
           <Route component={NotFound} />
         </Switch>
-        <Route exact path="*/create" component={PostTask} />
-        <Route exact path="*/make-bid" component={CreateProfile} />
+        <Route path="*/create" component={PostTask} />
+        <Route path="*/make-bid" component={CreateProfile} />
+        {/* 
+          触犯多个modal，使render顺序和url上的顺序匹配
+          brainstorm:
+            CREATE: path="*create"
+            MAKE_BID: path="*make-bid" //TODO, 问龙哥
+        */}
       </Router>
     </AuthProvider>
   );

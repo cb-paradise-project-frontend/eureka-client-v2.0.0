@@ -230,8 +230,8 @@ class PostTaskForm extends React.Component {
       </div>
     )
 
-    return (
-      <div>
+    return ( //wrapper TODO 问龙哥，为什么不用div，就会溢出
+      <div> 
         {postTaskTop[currentScreenIndex]}
         {pageList[currentScreenIndex]}
         {postTaskBottom}

@@ -125,8 +125,10 @@ export default function CreateProfile() {
 
   const header = (
     <>
-      {subPage
-        && <Button.BackIcon onClick={handleBackBtnClick} />
+      {subPage &&
+        <div className={styles.back_button_wrapper} >
+          <Button.BackIcon onClick={handleBackBtnClick} />
+        </div>
       }
       <div className={styles.title} >
         To Start Making Money

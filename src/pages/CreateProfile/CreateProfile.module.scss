@@ -1,5 +1,3 @@
-
-
 .title{
   flex-grow: 1;
   color: rgb(41, 43, 50);
@@ -14,18 +12,10 @@
   overflow: hidden;
 }
 
-.back_button{
+.back_button_wrapper{
   position: absolute;
-  font-size: 20px;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  left: 15px;
-  transform: rotate(180deg);
-  color: rgb(84, 90, 119);
-
-  &:hover {
-    cursor: pointer;
-  }
+  left: 20px;
+  display: flex;
+  align-items: center;
 }
 

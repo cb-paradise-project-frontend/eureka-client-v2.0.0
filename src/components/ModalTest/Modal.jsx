@@ -9,7 +9,7 @@ import Button from '../Button';
 const Modal = ({ onRequestClose, children }) => (
   <Overlay>
     <div className={styles.modal_container} >
-      <div className={styles.close_button} >
+      <div className={styles.close_button_wrapper} >
         <Button.CloseIcon onClick={onRequestClose} />
       </div>
       {children}

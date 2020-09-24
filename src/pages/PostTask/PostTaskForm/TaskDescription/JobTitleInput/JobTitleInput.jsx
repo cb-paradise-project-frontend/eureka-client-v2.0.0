@@ -2,7 +2,7 @@ import React from 'react'
 
 import styles from '../../PostTaskForm.module.scss'
 
-import FormTextAreaInput from '../../../../../components/FormTextAreaInput';
+import TextArea from '../../../../../components/TextArea';
 
 export default function JobTitleInput({
   jobTitle,
@@ -23,7 +23,7 @@ export default function JobTitleInput({
     <label className={styles.hint_label}> 
       {taskInputHint}
     </label>
-    <FormTextAreaInput
+    <TextArea.WithErrorHint
       isInputInvalid={isJobTitleInvalid}
       displayValue={jobTitle}
       size={size}

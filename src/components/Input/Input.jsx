@@ -36,7 +36,7 @@ const WithErrorMessage = ({
         {...otherProps}
       />
       <div className={styles.error_message_wrapper} >
-        {isError &&
+        {isError && errorMessage &&
           <ErrorMessage>
             {errorMessage}
           </ErrorMessage>

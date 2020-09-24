@@ -1,6 +1,5 @@
-.small_text_area {
+.text_area{
   width: 30em;
-  height: 3em;
   margin-left: 1em;
   margin-right: 1em;
   resize: none;
@@ -18,7 +17,15 @@
   }
 }
 
-.large_text_area {
-  @extend .small_text_area;
+.small{
+  height: 3em;
+}
+
+.large{
   height: 12em;
+}
+
+.error_hint_wrapper{
+  display: block;
+  min-height: 25px;
 }

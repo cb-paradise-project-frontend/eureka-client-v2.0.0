@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import styles from './QuestionInput.module.scss';
 
-import FormTextAreaInput from '../../../../../components/FormTextAreaInput';
+import TextArea from '../../../../../components/TextArea';
 import QuestionAvatar from '../QuestionAvatar';
 
 const testUser = {
@@ -44,7 +44,7 @@ export default function QuestionInput({ onSubmit }) {
     <>
       <QuestionAvatar />
       <div className={styles.input} >
-        <FormTextAreaInput
+        <TextArea
           size={'large'}
           placeholder={placeHolder}
           displayValue={input}

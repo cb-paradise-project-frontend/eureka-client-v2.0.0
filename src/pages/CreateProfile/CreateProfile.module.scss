@@ -12,6 +12,12 @@
   overflow: hidden;
 }
 
+.profile_list_wrapper{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
 .back_button_wrapper{
   position: absolute;
   left: 20px;

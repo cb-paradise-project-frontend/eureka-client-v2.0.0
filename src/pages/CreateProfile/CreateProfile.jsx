@@ -111,17 +111,21 @@ export default function CreateProfile() {
     },
   ];
 
-  const profileList = profileItemElementList.map(({
-    name, value, statusLabel, page,
-  }) => (
-    <ProfileItem
-      itemName={name}
-      handleClick={handleProfileBtnClick(page)}
-      statusLabel={statusLabel}
-      checked={isFilled(value)}
-      key={name}
-    />
-  ));
+  const profileList = (
+    <div className={styles.profile_list_wrapper} >
+      {profileItemElementList.map(({
+        name, value, statusLabel, page,
+      }) => (
+        <ProfileItem
+          itemName={name}
+          handleClick={handleProfileBtnClick(page)}
+          statusLabel={statusLabel}
+          checked={isFilled(value)}
+          key={name}
+        />
+      ))}
+    </div>
+  );
 
   const header = (
     <>

@@ -16,6 +16,7 @@ const Button = ({
         blue: 'blue',
         'light-blue': 'light-blue',
         red: 'red',
+        pink: 'pink',
       }[color] || 'green',
     )}
     disabled={isDisabled}

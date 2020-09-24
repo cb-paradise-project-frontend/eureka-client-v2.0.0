@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import classNames from 'classnames/bind';
 
 import styles from './Mobile.module.scss';
 
@@ -9,38 +8,40 @@ import Button from '../../../../components/Button';
 import onlyNumber from '../../../../utils/validators/input';
 
 export default function Mobile({ verifiedMobile, onSubmit }) {
-  const verified = verifiedMobile ? true : false;
+  const verified = verifiedMobile || false;
   const [mobile, setMobile] = useState('');
   const [isVerified, toggleEdit] = useState(verified);
-  
+
   const handleEdit = () => {
     toggleEdit(!isVerified);
   };
 
   const handleSubmit = () => {
     onSubmit(mobile);
-  }
+  };
 
   const introduction = `We'll keep you up to date about the latest happenings on your tasks by SMS.`;
   const information = `Verifying your mobile number helps us know you're a genuine human! We won't show it to anyone or sell it on to any 3rd party, it's just for us to send you some good stuff.`;
   const editBtnElements = {
     title: 'Verified mobile number',
     value: verifiedMobile,
+    color: 'light-blue',
     buttonLabel: 'Edit',
     handleClick: handleEdit,
-  }
+  };
   const sendBtnElements = {
     title: 'Mobile number',
     value: mobile,
+    color: 'green',
     notice: 'We will send you a verification code',
     buttonLabel: 'Send',
     handleClick: handleSubmit,
-  }
+  };
 
   const buttonElement = isVerified ? editBtnElements : sendBtnElements;
-  const { title, value, notice, buttonLabel, handleClick } = buttonElement;
-
-  const cx = classNames.bind(styles);
+  const {
+    title, value, color, notice, buttonLabel, handleClick,
+  } = buttonElement;
 
   return (
     <>
@@ -56,22 +57,19 @@ export default function Mobile({ verifiedMobile, onSubmit }) {
         </div>
       }
       <div className={styles.input_bar} >
-        <div className={cx({
-            input_wrapper: true,
-            disabled: isVerified, 
-          })} >
-          <FormInput 
+        <div className={styles.input_wrapper} >
+          <FormInput
             value={value}
             handleChange={handleInput(setMobile, onlyNumber)}
-            maxLength={15}  // 15 is the max length of international phone number 
+            disabled={isVerified}
+            maxLength={15} // 15 is the max length of international phone number
           />
         </div>
-        <div className={cx({
-          button_wrapper: true,
-          edit: isVerified === true,
-          send: isVerified === false,
-        })} >
-          <Button onClick={handleClick} >
+        <div className={styles.button_wrapper} >
+          <Button
+            onClick={handleClick}
+            color={color}
+          >
             {buttonLabel}
           </Button>
         </div>

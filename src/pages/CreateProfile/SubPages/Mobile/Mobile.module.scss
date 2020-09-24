@@ -32,25 +32,17 @@
 .input_bar{
   display: flex;
 
+  :disabled{
+    pointer-events: none;
+  }
+
   .input_wrapper{
     width: 160px;
     margin: 0;
   }
 
-  .disabled{
-    pointer-events: none;
-  }
-
   .button_wrapper{
     margin: 8px 10px;
-  }
-
-  .edit{
-    button{
-      color: rgb(0, 143, 180);
-      background-color: rgb(246, 248, 253);
-      border: solid 2px rgb(231, 235, 251);
-    }
   }
 }
 

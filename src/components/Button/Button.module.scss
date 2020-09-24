@@ -5,19 +5,17 @@
   text-align: center;
   white-space: nowrap;
   cursor: pointer;
-  box-sizing: border-box;
-  color: rgb(255, 255, 255);
   font-family: museo-bold, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 16px;
+  color: rgb(255, 255, 255);
   line-height: 24px;
   letter-spacing: 0.15px;
   width: 100%;
-  background-color: rgb(125, 179, 67);
   border-radius: 160px;
-  margin: 0 0 8px;
   border-color: rgba(0, 0, 0, 0);
   border-width: 2px;
   border-style: solid;
+  box-sizing: border-box;
   padding: 8px 16px;
   outline: none;
 
@@ -34,8 +32,22 @@
   }
 }
 
-.google {
+.green {
+  background-color: rgb(125, 179, 67);
+}
+.blue {
   background-color: #4c8bf5;
+}
+.light-blue {
+  color: rgb(0, 143, 180);
+  border-color: rgb(231, 235, 251);
+  background-color: rgb(246, 248, 253);
+}
+.pink {
+  background-color: #e0446d;
+}
+.red{
+  background-color: rgb(231, 82, 69);
 }
 
 .close_icon{

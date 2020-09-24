@@ -6,27 +6,23 @@ import Button from '../../../../components/Button';
 
 import styles from './OfferButton.module.scss';
 
+const cx = classNames.bind(styles);
+
 export default function OfferButton({ isExpired }) {
   const { pathname } = useLocation();
 
   const label = isExpired ? 'Expired' : 'Make an offer';
 
-  const cx = classNames.bind(styles);
-  
   return (
-    <Link 
-      to={`${pathname}/make-bid`} 
+    <Link
+      to={`${pathname}/make-bid`}
       className={cx({
-        disabled_link: isExpired === true, 
+        disabled_link: isExpired,
       })}
     >
-      <Button 
-        isDisabled={isExpired}
-      >
+      <Button isDisabled={isExpired} >
         {label}
       </Button>
     </Link>
   );
-};
-
-
+}

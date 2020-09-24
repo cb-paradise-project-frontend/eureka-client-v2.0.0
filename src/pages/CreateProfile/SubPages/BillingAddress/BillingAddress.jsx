@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 import styles from './BillingAddress.module.scss';
 
-import FormInput from '../../../../components/FormInput';
 import handleInput from '../Utils/handleInput';
 import Button from '../../../../components/Button';
+import Input from '../../../../components/Input';
 
 export default function BillingAddress({ onSubmit }) {
   const [lineOne, setLineOne] = useState('');
@@ -54,14 +54,15 @@ export default function BillingAddress({ onSubmit }) {
   const errorMessage = 'Please enter your complete address.';
 
   const fieldList = fieldElementList.map(({ label, value, handleChange }) => (
-    <FormInput
-      label={label}
-      value={value}
-      handleChange={handleInput(handleChange)}
-      isError={testing && !value}
-      errorMessage={errorMessage}
-      key={label}
-    />
+    <div className={styles.field_input_wrapper} key={label} >
+      <Input.WithErrorMessage
+        label={label}
+        value={value}
+        handleChange={handleInput(handleChange)}
+        isError={testing && !value}
+        errorMessage={errorMessage}
+      />
+    </div>
   ));
 
   const checkEmpty = () => {

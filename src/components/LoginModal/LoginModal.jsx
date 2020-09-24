@@ -7,8 +7,8 @@ import { AuthContext } from '../../auth/Auth';
 import styles from './LoginModal.module.scss';
 
 import Modal from '../Modal';
-import FormInput from '../FormInput';
 import Button from '../Button';
+import Input from '../Input';
 
 const LoginModal = () => {
   const [form, setForm] = useState({
@@ -48,22 +48,26 @@ const LoginModal = () => {
   return (
     <Modal heading="Log in">
       <div className={styles.conatiner}>
-        <FormInput
-          label="Email"
-          name="email"
-          type="email"
-          placeholder="Email"
-          value={form.email}
-          handleChange={handleChange}
-        />
-        <FormInput
-          label="Password"
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={form.password}
-          handleChange={handleChange}
-        />
+        <div className={styles.input_wrapper} >
+          <Input
+            label="Email"
+            name="email"
+            type="email"
+            placeholder="Email"
+            value={form.email}
+            handleChange={handleChange}
+          />
+        </div>
+        <div className={styles.input_wrapper} >
+          <Input
+            label="Password"
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={form.password}
+            handleChange={handleChange}
+          />
+        </div>
         <Button onClick={onLoginWithEmail}>Log in</Button>
         <div className={styles.seperator}>or log in with</div>
         <Button 

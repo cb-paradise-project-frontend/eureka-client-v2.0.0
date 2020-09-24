@@ -50,3 +50,14 @@
     }
   }
 }
+
+.input_with_error_message{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .error_message_wrapper {
+    display: block;
+    height: 14px;
+  }
+}

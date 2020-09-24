@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 
 import styles from './Mobile.module.scss';
 
-import FormInput from '../../../../components/FormInput';
-import handleInput from '../Utils/handleInput';
 import Button from '../../../../components/Button';
 import onlyNumber from '../../../../utils/validators/input';
+import Input from '../../../../components/Input';
 
 export default function Mobile({ verifiedMobile, onSubmit }) {
   const verified = verifiedMobile || false;
@@ -58,9 +57,10 @@ export default function Mobile({ verifiedMobile, onSubmit }) {
       }
       <div className={styles.input_bar} >
         <div className={styles.input_wrapper} >
-          <FormInput
+          <Input
             value={value}
-            handleChange={handleInput(setMobile, onlyNumber)}
+            validator={onlyNumber}
+            handleChange={setMobile}
             disabled={isVerified}
             maxLength={15} // 15 is the max length of international phone number
           />

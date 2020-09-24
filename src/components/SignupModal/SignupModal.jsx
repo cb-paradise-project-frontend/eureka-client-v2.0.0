@@ -7,8 +7,8 @@ import { AuthContext } from '../../auth/Auth';
 import styles from './SignupModal.module.scss';
 
 import Modal from '../Modal';
-import FormInput from '../FormInput';
 import Button from '../Button';
+import Input from '../Input';
 
 const SignupModal = () => {
   const [userCredentials, setUserCredentials] = useState({
@@ -40,40 +40,46 @@ const SignupModal = () => {
   }, [userCredentials]);
 
   const { currentUser } = useContext(AuthContext);
-  if (currentUser)  {
+  if (currentUser) {
     return (<Redirect to="/profile" />)
   }
 
   return (
     <Modal heading="Sign up">
       <form className={styles.conatiner}>
-        <FormInput
-          label="Email"
-          name="email"
-          type="email"
-          placeholder="Email"
-          required
-          value={userCredentials.email}
-          handleChange={handleChange}
-        />
-        <FormInput
-          label="Password"
-          name="password"
-          type="password"
-          placeholder="Password"
-          required
-          value={userCredentials.password}
-          handleChange={handleChange}
-        />
-        <FormInput
-          label="Comfirm Password"
-          name="confirmPassword"
-          type="password"
-          placeholder="Comfirm Password"
-          required
-          value={userCredentials.confirmPassword}
-          handleChange={handleChange}
-        />
+        <div className={styles.input_wrapper} >
+          <Input
+            label="Email"
+            name="email"
+            type="email"
+            placeholder="Email"
+            required
+            value={userCredentials.email}
+            handleChange={handleChange}
+          />
+        </div>
+        <div className={styles.input_wrapper} >
+          <Input
+            label="Password"
+            name="password"
+            type="password"
+            placeholder="Password"
+            required
+            value={userCredentials.password}
+            handleChange={handleChange}
+          />
+        </div>
+        <div className={styles.input_wrapper} >
+          <Input
+            label="Comfirm Password"
+            name="confirmPassword"
+            type="password"
+            placeholder="Comfirm Password"
+            required
+            value={userCredentials.confirmPassword}
+            handleChange={handleChange}
+          />
+        </div>
         <Button type="submit" onClick={onSignUp}>Sign up</Button>
       </form>
     </Modal>

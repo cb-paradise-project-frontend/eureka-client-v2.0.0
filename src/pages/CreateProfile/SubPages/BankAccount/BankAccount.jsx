@@ -2,17 +2,16 @@ import React, { useState } from 'react';
 
 import styles from './BankAccount.module.scss';
 
-import FormInput from '../../../../components/FormInput';
 import Button from '../../../../components/Button';
-import handleInput from '../Utils/handleInput';
 import { onlyNumber, addDashInNumber } from '../../../../utils/validators/input';
+import Input from '../../../../components/Input';
 
 export default function BankAccount({ onSubmit }) {
   const [holder, setHolder] = useState('');
   const [accountNumber, setAccountNumber] = useState('');
   const [bsb, setBsb] = useState('');
   const [testing, toggleTest] = useState(false);
-  const [hightLight, setHighLight] = useState();
+  const [highlightField, setHighlightField] = useState();
 
   const introduction = `Please provide your bank details so you can get paid. We don't take any money from your account.`;
   const fieldElementList = [
@@ -20,21 +19,23 @@ export default function BankAccount({ onSubmit }) {
       label: 'Account holder name',
       placeholder: 'Alice',
       value: holder,
-      handleChange: handleInput(setHolder),
+      handleChange: setHolder,
     },
     {
       label: 'Account number',
       placeholder: '12345678',
       value: accountNumber,
       maxLength: 9,
-      handleChange: handleInput(setAccountNumber, onlyNumber),
+      validator: onlyNumber,
+      handleChange: setAccountNumber,
     },
     {
       label: 'BSB',
       placeholder: '000-000',
       value: bsb,
       maxLength: 7,
-      handleChange: handleInput(setBsb, addDashInNumber),
+      validator: addDashInNumber,
+      handleChange: setBsb,
     },
   ];
 
@@ -52,30 +53,31 @@ export default function BankAccount({ onSubmit }) {
   ];
 
   const resetHighLight = () => {
-    setHighLight('');
+    setHighlightField('');
   };
 
   const fieldList = fieldElementList.map(({
-    label, placeholder, value, maxLength, handleChange,
-  }) => {
-    const isError = (label === hightLight);
-    return (
-      <FormInput
+    label, placeholder, value, maxLength, validator, handleChange,
+  }) => (
+    <div className={styles.input_wrapper} key={label} >
+      <Input
         label={label}
         placeholder={placeholder}
         value={value}
+        validator={validator}
         handleChange={handleChange}
-        isError={isError}
+        isError={label === highlightField}
         maxLength={maxLength}
         onFocus={resetHighLight}
-        key={label}
       />
-    );
-  });
+    </div>
+  ));
 
   const checkEmpty = () => {
-    const { label } = fieldElementList.find(({ value }) => !value);
-    return label && { label, message: `${label} is required.` };
+    const emptyField = fieldElementList.find(({ value }) => !value);
+    if (!emptyField) return false;
+    const { label } = emptyField;
+    return { label, message: `${label} is required.` };
   };
 
   const getError = () => {
@@ -86,13 +88,13 @@ export default function BankAccount({ onSubmit }) {
   const handleSubmit = () => {
     if (getError()) {
       toggleTest(true);
-      setHighLight(getError().label);
+      setHighlightField(getError().label);
     } else {
       const bankAccount = {
         holder, accountNumber, bsb,
       };
       onSubmit(bankAccount);
-      setHighLight('');
+      setHighlightField('');
       toggleTest(false);
     }
   };

@@ -6,6 +6,7 @@ module.exports = {
     "node": true,
   },
   "rules": {
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "linebreak-style": 0,
   },
 };

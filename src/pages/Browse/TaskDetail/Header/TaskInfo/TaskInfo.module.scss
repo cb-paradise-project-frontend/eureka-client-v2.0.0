@@ -1,4 +1,4 @@
-@import '../../../../../../components/scss-partial/icon-url';
+@import '../../../../../components/scss-partial/icon-url';
 
 %icon-layout{
   width: 100%;
@@ -12,6 +12,10 @@
   background-repeat: no-repeat;
   background-position: center;
   background-color: white;
+}
+
+.poster_info{
+  margin-top: 10px;
 }
 
 .poster_info_item{

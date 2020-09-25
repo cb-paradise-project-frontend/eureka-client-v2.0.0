@@ -1,13 +1,13 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './PosterInfoList.module.scss';
+import styles from './TaskInfo.module.scss';
 import Avatar from '../../../../../components/Avatar';
 
 const cx = classNames.bind(styles);
 
-function PosterInfoList({ posterInfo }) {
-  const PosterInfoItem = ({ title, content }) => {
+function TaskInfo({ poster, location, due }) {
+  const TaskInfoItem = ({ title, content }) => {
     const displayContent = content.name || content;
 
     return (
@@ -37,21 +37,34 @@ function PosterInfoList({ posterInfo }) {
     );
   };
 
-  const titleList = ['POSTED BY', 'LOCATION', 'DUE DATE'];
+  const taskInfoList = [
+    {
+      title: 'POSTED BY',
+      data: poster,
+    },
+    {
+      title: 'LOCATION',
+      data: location,
+    },
+    {
+      title: 'DUE DATE',
+      data: due,
+    },
+  ];
 
-  const posterInfoList = titleList.map((title, index) =>
-    <PosterInfoItem
+  const displayedTaskInfo = taskInfoList.map(({ title, data }) =>
+    <TaskInfoItem
       key = {title}
       title = {title}
-      content = {posterInfo[index]}
+      content = {data}
     />
   );
 
   return (
     <div className = {styles.poster_info}>
-      {posterInfoList}
+      {displayedTaskInfo}
     </div>
   );
 }
 
-export default PosterInfoList;
+export default TaskInfo;

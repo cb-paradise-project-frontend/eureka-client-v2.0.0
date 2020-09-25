@@ -7,9 +7,11 @@
   position: relative;
   margin: 0 auto 30px;
   height: 50px;
+  
 
   p {
     color: rgb(41, 43, 50);
+    font-family: "Baloo Tamma 2", cursive;
     font-size: 20px;
     line-height: 28px;
     letter-spacing: 0.15px;
@@ -21,7 +23,6 @@
     margin: 0 30px 0 0;
     padding: 12px 0 16px;
     cursor: pointer;
-    font-family: museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   }
 
   p:visited {

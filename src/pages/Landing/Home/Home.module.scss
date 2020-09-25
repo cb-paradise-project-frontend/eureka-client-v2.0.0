@@ -17,20 +17,20 @@
       display: flex;
       flex-direction: column;
       color: white;
-      font-family: museo-black, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      font-family: "Baloo Tamma 2", cursive;
       line-height: 1.2;
       width: 60vw;
 
       h1 {
-        font-size: 48px;
-        font-weight: 10000;
+        font-size: 60px;
+        font-weight: 1200;
         line-height: 52px;
-        letter-spacing: -0.25px;
+        // letter-spacing: -0.25px;
         padding: 30px 0;
       }
 
       h4 {
-        font-family: museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-family: "Baloo Tamma 2", cursive;
         font-size: 34px;
         line-height: 40px;
         letter-spacing: -0.15px;
@@ -46,8 +46,8 @@
     cursor: pointer;
     box-sizing: border-box;
     color: rgb(255, 255, 255);
-    font-family: museo-bold, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    font-size: 18px;
+    font-family: "Baloo Tamma 2", cursive;
+    font-size: 20px;
     font-weight: bold;
     line-height: 24px;
     letter-spacing: 0.15px;

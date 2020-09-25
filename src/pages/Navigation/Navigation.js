@@ -5,7 +5,8 @@ import styles from './Navigation.module.scss';
 
 import { AuthContext } from './../../auth/Auth';
 import LoginModal from '../../components/LoginModal';
-import SignupModal from '../../components/SignupModal'
+import SignupModal from '../../components/SignupModal';
+import Categories from '../Navigation/components/Categories';
 
 function Navigation() {
   const pathName = useLocation().pathname;
@@ -23,17 +24,13 @@ function Navigation() {
 
               <div className = {styles.left}>
                 <Link to={postRoute} className = {styles.postTask}>Post a task</Link>
-                <div  className = {styles.categories}>
-                  <a>Categories</a>
-                  <div className = {styles.category_details}>
-                  </div>
-                </div>
+                <Categories />
                 <Link to="/tasks" className = {styles.browseTasks}>Browse tasks</Link>
-                <a className = {styles.howItWorks}>How it works</a>
+                <div className = {styles.howItWorks}>How it works</div>
               </div>
 
               <div className = {styles.right}>
-                <a className = {styles.becomeTasker}>Become a Tasker</a>
+                <button className = {styles.becomeTasker}>Become a Tasker</button>
                 <button onClick={showLoginModal} className = {styles.logIn}>Log in</button>
                 <button onClick={showSignupModal} className = {styles.signUp}>Sign up</button>
               </div>

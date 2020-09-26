@@ -35,18 +35,8 @@ const Footer = ({ children }) => (
   </div>
 );
 
-const GoBackWhenClose = ({ children }) => {
-  const { goBack } = useHistory();
-  return (
-    <Modal onRequestClose={goBack} >
-      {children}
-    </Modal>
-  );
-};
-
 Modal.Header = Header;
 Modal.Content = Content;
 Modal.Footer = Footer;
-Modal.GoBackWhenClose = GoBackWhenClose;
 
 export default Modal;

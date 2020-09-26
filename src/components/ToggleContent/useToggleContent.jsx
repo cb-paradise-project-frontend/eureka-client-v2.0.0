@@ -12,5 +12,6 @@ export default function useToggleContent() {
       {show && children}
     </>
   );
+
   return [toggler, Content];
 }

@@ -2,25 +2,25 @@ import React from 'react';
 
 import Button from '../../../../components/Button';
 
-import ToggleContent from '../../../../components/ToggleContent';
+import { useToggleContent } from '../../../../components/ToggleContent';
 import CreateProfile from '../../../CreateProfile';
 
 export default function OfferButton({ isExpired }) {
+  const [toggler, Content] = useToggleContent();
+
   const label = isExpired ? 'Expired' : 'Make an offer';
 
   return (
-    <ToggleContent
-      toggle={(toggler) => (
-        <Button
+    <>
+      <Button
           onClick={toggler}
           isDisabled={isExpired}
         >
           {label}
         </Button>
-      )}
-      content={(toggler) => (
+      <Content>
         <CreateProfile pageToggler={toggler} />
-      )}
-    />
+      </Content>
+    </>
   );
 }

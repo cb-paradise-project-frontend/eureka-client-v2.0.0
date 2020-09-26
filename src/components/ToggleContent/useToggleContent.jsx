@@ -13,5 +13,5 @@ export default function useToggleContent() {
     </>
   );
 
-  return [toggler, Content];
+  return [Content, toggler];
 }

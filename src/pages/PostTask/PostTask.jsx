@@ -8,7 +8,7 @@ import AlertModal from '../../pages/PostTask/AlertModal';
 import { useToggleContent } from '../../components/ToggleContent';
 
 export default function PostTask({ pageToggler }) {
-  const [toggleAlert, AlertContent] = useToggleContent();
+  const [AlertContent, toggleAlert] = useToggleContent();
 
   return (
     <Modal onRequestClose={toggleAlert}>

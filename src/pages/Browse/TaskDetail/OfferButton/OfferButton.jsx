@@ -6,7 +6,7 @@ import { useToggleContent } from '../../../../components/ToggleContent';
 import CreateProfile from '../../../CreateProfile';
 
 export default function OfferButton({ isExpired }) {
-  const [toggler, Content] = useToggleContent();
+  const [Content, toggler] = useToggleContent();
 
   const label = isExpired ? 'Expired' : 'Make an offer';
 

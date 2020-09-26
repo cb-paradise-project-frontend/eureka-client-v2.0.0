@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styles from './Navigation.module.scss';
 
@@ -7,10 +7,28 @@ import { AuthContext } from './../../auth/Auth';
 import LoginModal from '../../components/LoginModal';
 import SignupModal from '../../components/SignupModal';
 import Categories from '../Navigation/components/Categories';
+import ToggleContent from '../../components/ToggleContent';
+import Button from '../../components/Button';
+import PostTask from '../PostTask/PostTask';
 
 function Navigation() {
-  const pathName = useLocation().pathname;
-  const postRoute = pathName === '/' ? '/create' : `${pathName}/create`;
+  const PostTaskModal = () => (
+    <ToggleContent
+      toggle={(toggler) => (
+        <div className={styles.post_task_button_wrapper} >
+          <Button
+            color={'pink'}
+            onClick={toggler}
+          >
+            Post a Task
+          </Button>
+        </div>
+      )}
+      content={(toggler) => (
+        <PostTask pageToggler={toggler} />
+      )}
+    />
+  );
 
   return (
     <AuthContext.Consumer>
@@ -23,7 +41,7 @@ function Navigation() {
               </Link>
 
               <div className = {styles.left}>
-                <Link to={postRoute} className = {styles.postTask}>Post a task</Link>
+                <PostTaskModal />
                 <Categories />
                 <Link to="/tasks" className = {styles.browseTasks}>Browse tasks</Link>
                 <div className = {styles.howItWorks}>How it works</div>

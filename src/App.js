@@ -6,7 +6,6 @@ import 'remixicon/fonts/remixicon.css';
 
 import { AuthProvider } from './auth/Auth';
 import PrivateRoute from './auth/PrivateRoute';
-import PostTask from './pages/PostTask';
 import Landing from './pages/Landing';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
@@ -23,7 +22,6 @@ const App = () => (
         <Route path="/" component={Landing} />
         <Route component={NotFound} />
       </Switch>
-      <Route path="*/create" component={PostTask} />
     </Router>
   </AuthProvider>
 );

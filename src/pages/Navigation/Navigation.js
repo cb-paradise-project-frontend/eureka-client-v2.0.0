@@ -12,7 +12,7 @@ import Button from '../../components/Button';
 import PostTask from '../PostTask/PostTask';
 
 function Navigation() {
-  const PostTaskModal = () => (
+  const PostTaskButton = () => (
     <ToggleContent
       toggle={(toggler) => (
         <div className={styles.post_task_button_wrapper} >
@@ -30,42 +30,80 @@ function Navigation() {
     />
   );
 
+  const LoginButton = () => (
+    <ToggleContent
+      toggle={(toggler) => (
+        <div className={styles.login_button_wrapper} >
+          <Button.Text
+            color={'white'}
+            onClick={toggler}
+          >
+            Log in
+          </Button.Text>
+        </div>
+      )}
+      content={(toggler) => (
+        <LoginModal pageToggler={toggler} />
+      )}
+    />
+  );
+
+  const SignupButton = () => (
+    <ToggleContent
+      toggle={(toggler) => (
+        <div className={styles.signup_button_wrapper} >
+          <Button.Text
+            color={'white'}
+            onClick={toggler}
+          >
+            Sign up
+          </Button.Text>
+        </div>
+      )}
+      content={(toggler) => (
+        <SignupModal pageToggler={toggler} />
+      )}
+    />
+  );
+
   return (
     <AuthContext.Consumer>
-      {
-        ({authModalVisible, showLoginModal, showSignupModal}) => (
-          <nav>
-            <div className = {styles.navMenu}>
-              <Link to="/" className = {styles.logo}>
-                logo
+      {(currentUser) => (
+        <nav>
+          <div className={styles.navMenu}>
+            <Link
+              className={styles.logo}
+              to="/"
+            >
+              logo
+            </Link>
+
+            <div className={styles.left}>
+              <PostTaskButton />
+              <Categories />
+              <Link
+                className={styles.browseTasks}
+                to="/tasks"
+              >
+                Browse tasks
               </Link>
-
-              <div className = {styles.left}>
-                <PostTaskModal />
-                <Categories />
-                <Link to="/tasks" className = {styles.browseTasks}>Browse tasks</Link>
-                <div className = {styles.howItWorks}>How it works</div>
+              <div className={styles.howItWorks} >
+                How it works
               </div>
-
-              <div className = {styles.right}>
-                <button className = {styles.becomeTasker}>Become a Tasker</button>
-                <button onClick={showLoginModal} className = {styles.logIn}>Log in</button>
-                <button onClick={showSignupModal} className = {styles.signUp}>Sign up</button>
-              </div>
-              <>
-                {
-                  !!(authModalVisible.loginModal) && <LoginModal />
-                }
-              </>
-              <>
-                {
-                  !!(authModalVisible.signupModal) && <SignupModal />
-                }
-              </>
             </div>
-          </nav>
-        )
-      }
+
+            <div className={styles.right} >
+              <SignupButton />
+              <LoginButton />
+              <div className={styles.becomeTasker} >
+                <Button color={'transparent'} >
+                  Become a Tasker
+                </Button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      )}
     </AuthContext.Consumer>
   );
 }

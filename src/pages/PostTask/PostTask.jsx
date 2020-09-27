@@ -11,10 +11,9 @@ import JobDetailsInput from './TaskDescription/JobDetailsInput';
 import TaskDatePicker from '../../components/DateSelector';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
-import AlertModal, { withAlert } from './AlertModal';
-import { useToggleContent } from '../../components/ToggleContent';
+import { withAlert } from './AlertModal';
 
-class PostTaskForm extends React.Component {
+class PostTask extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -261,4 +260,4 @@ class PostTaskForm extends React.Component {
   }
 }
 
-export default withAlert(PostTaskForm);
+export default withAlert(PostTask);

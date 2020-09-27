@@ -1,30 +1,47 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 
 import styles from './Modal.module.scss';
 
-import Overlay from './../Overlay';
-import { AuthContext } from './../../auth/Auth';
+import Overlay from '../Overlay';
+import Button from '../Button';
 
-const Modal = ({heading, children}) => {
-  return (
-    <AuthContext.Consumer>
-      {({hideAuthModal}) => (
-        <Overlay>
-          <div className={styles.container}>
-            <header className={styles.header}>
-              <div className={styles.heading}>{heading}</div>
-              <button className={styles.close} onClick={hideAuthModal}>
-                <i className="ri-close-fill ri-2x"></i>
-              </button>
-            </header>
-            <div className={styles.content}>
-              {children}
-            </div>
-          </div>
-        </Overlay>
-      )}
-    </AuthContext.Consumer>
+const modalRoot = document.body;
+
+const Modal = ({ onRequestClose, children }) => (
+  createPortal(
+    <Overlay>
+      <div className={styles.modal_container} >
+        <div className={styles.close_button_wrapper} >
+          <Button.CloseIcon onClick={onRequestClose} />
+        </div>
+        {children}
+      </div>
+    </Overlay>,
+    modalRoot,
   )
-}
+);
+
+const Header = ({ children }) => (
+  <div className={styles.header} >
+    {children}
+  </div>
+);
+
+const Content = ({ children }) => (
+  <div className={styles.content} >
+    {children}
+  </div>
+);
+
+const Footer = ({ children }) => (
+  <div className={styles.footer} >
+    {children}
+  </div>
+);
+
+Modal.Header = Header;
+Modal.Content = Content;
+Modal.Footer = Footer;
 
 export default Modal;

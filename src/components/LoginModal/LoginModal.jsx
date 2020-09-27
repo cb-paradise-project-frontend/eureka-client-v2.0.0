@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
-
 import { signInWithGoogle, auth } from '../../firebase';
-import { AuthContext } from '../../auth/Auth';
 
 import styles from './LoginModal.module.scss';
 
-import Modal from '../ModalTest';
+import { AuthContext } from '../../auth/Auth';
+import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';
 

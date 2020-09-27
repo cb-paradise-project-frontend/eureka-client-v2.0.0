@@ -3,8 +3,8 @@ import React from 'react';
 import styles from './PostTaskStyles.module.scss';
 
 import PostTaskForm from './PostTaskForm';
-import Modal from '../../components/ModalTest';
-import AlertModal from '../../pages/PostTask/AlertModal';
+import Modal from '../../components/Modal';
+import AlertModal from './AlertModal';
 import { useToggleContent } from '../../components/ToggleContent';
 
 export default function PostTask({ pageToggler }) {

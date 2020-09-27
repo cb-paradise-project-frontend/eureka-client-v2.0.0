@@ -5,7 +5,6 @@
   right: auto;
   bottom: auto;
   width: auto;
-  min-width: 400px;
   max-width: 500px;
   max-height: 90%;
   border-radius: 5px;
@@ -32,26 +31,30 @@
 
   .header{
     @extend %center;
-    height: 60px;
-    width: 100%;
-    box-sizing: border-box;
+    flex-grow: 1;
+    min-height: 60px;
+    padding: 0 44px;
+    color: #292b32;
+    font-family: museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   .content{
-    width: 100%;
+    flex-grow: 1;
     max-height: 400px;
-    overflow: auto;
-    overflow-x: hidden;
-    padding: 10px 30px;
-    box-sizing: border-box;
+    overflow: hidden auto;
+    padding: 10px 20px;
   }
 
   .footer{
     @extend %center;
-    min-height: 60px;
-    padding: 10px 30px 20px;
-    box-sizing: border-box;
-    width: 100%
+    padding: 10px 20px;
   }
 }
 

@@ -10,7 +10,7 @@ import JobTitleInput from './TaskDescription/JobTitleInput';
 import JobDetailsInput from './TaskDescription/JobDetailsInput';
 import TaskDatePicker from '../../../components/DateSelector';
 import PostTaskTop from '../PostTaskTop';
-import PostTaskButton from '../PostTaskButton';
+import Button from '../../../components/Button';
 
 class PostTaskForm extends React.Component {
   constructor(props) {
@@ -60,15 +60,15 @@ class PostTaskForm extends React.Component {
   onBudgetHour(value) {
     this.setState(
       { budgetHour: value },
-      this.onTaskBudget
-      );
+      this.onTaskBudget,
+    );
   }
 
   onBudgetHourlyWage(value) {
     this.setState(
       { budgetHourlyWage: value },
-      this.onTaskBudget
-      );
+      this.onTaskBudget,
+    );
   }
 
   handleBudgetWageClick() {
@@ -82,75 +82,75 @@ class PostTaskForm extends React.Component {
   handleNextClick() {
     this.setState((prevState) => ({
       currentScreenIndex: prevState.currentScreenIndex + 1,
-    })
-  )}
+    }));
+  }
 
   handleBackClick() {
     this.setState((prevState) => ({
       currentScreenIndex: prevState.currentScreenIndex - 1,
-    })
-  )}
+    }));
+  }
 
   isJobTitleInvalid() {
     const { jobTitle, isChecked } = this.state;
 
-    return(jobTitle.length < this.jobTitleMinLength && isChecked) 
+    return (jobTitle.length < this.jobTitleMinLength && isChecked);
   }
 
   isJobDetailsInvalid() {
     const { jobDetails, isChecked } = this.state;
 
-    return(jobDetails.length < this.jobDetailsMinLength && isChecked) 
+    return (jobDetails.length < this.jobDetailsMinLength && isChecked);
   }
-  
+
   isBudgetInvalid() {
     const { taskBudget, isChecked } = this.state;
 
-    return((taskBudget < this.minBudget || taskBudget > this.maxBudget) && isChecked)
+    return ((taskBudget < this.minBudget || taskBudget > this.maxBudget) && isChecked);
   }
 
   isTaskDateValid() {
     const { startDate, isChecked } = this.state;
 
-    return(startDate == null && isChecked) 
-    }
-  
+    return (startDate == null && isChecked);
+  }
+
   handleGetQuoteClick() {
     const { taskBudget } = this.state;
 
-    if(taskBudget === 0) {
+    if (taskBudget === 0) {
       this.setState({ isChecked: true });
-    }else{
+    } else {
       this.setState({ isChecked: false });
       //this.link to task page or profile()
     }
   }
 
   jobTitleInput() {
-    return(
-      <JobTitleInput 
+    return (
+      <JobTitleInput
         jobTitle={this.state.jobTitle}
         isJobTitleInvalid={this.isJobTitleInvalid()}
         onJobTitle={this.onJobTitle}
         errorHint= {"Please enter at least 10 characters and a maximum of 50 "}
       />
-    )
+    );
   }
- 
+
   jobDetailsInput() {
-    return(
+    return (
       <JobDetailsInput
         jobDetails={this.state.jobDetails}
         isJobDetailsInvalid={this.isJobDetailsInvalid()}
         onJobDetails={this.onJobDetails}
         errorHint= {"Please enter at least 25 characters and a maximum of 1000 "}
       />
-    )
+    );
   }
-  
+
   taskDatePicker() {
-    return(
-      <TaskDatePicker 
+    return (
+      <TaskDatePicker
         startDate={this.state.startDate}
         onDateChange={this.handleDateValue}
         isDateInvalid={this.isTaskDateValid()}
@@ -161,42 +161,53 @@ class PostTaskForm extends React.Component {
 
   handleClickCreator(condition) {
     const handleClick = () => {
-      if(condition) {
+      if (condition) {
         this.setState({ isChecked: true });
-      }else {
+      } else {
         this.handleNextClick();
         this.setState({ isChecked: false });
       }
     }
     return handleClick;
-  } 
+  }
 
   render() {
-    const { currentScreenIndex, startDate, jobTitle, jobDetails } = this.state;
-    
+    const {
+      currentScreenIndex, startDate, jobTitle, jobDetails,
+    } = this.state;
+
     const conditionList = [
       (false),
       (jobTitle.length < this.jobTitleMinLength || jobDetails.length < this.jobDetailsMinLength),
       (!startDate),
-    ]
+    ];
 
     const backBtn = (
-      <PostTaskButton handleClick={this.handleBackClick}>
-        Back
-      </PostTaskButton>
-    )
+      <div className={styles.button} >
+        <Button
+          onClick={this.handleBackClick}
+          color={'light-blue'}
+        >
+          Back
+        </Button>
+      </div>
+    );
 
     const nextBtn = (
-      <PostTaskButton handleClick={this.handleClickCreator(conditionList[currentScreenIndex])}>
-        Next
-      </PostTaskButton>
-    )
+      <div className={styles.button} >
+        <Button onClick={this.handleClickCreator(conditionList[currentScreenIndex])} >
+          Next
+        </Button>
+      </div>
+    );
 
     const submitBtn = (
-      <PostTaskButton handleClick={this.handleGetQuoteClick}>
-        Get quotes
-      </PostTaskButton>
-    )
+      <div className={styles.button} >
+        <Button onClick={this.handleGetQuoteClick} >
+          Get quotes
+        </Button>
+      </div>
+    );
 
     const postTaskTop = [
       <PostTaskTop />,
@@ -221,22 +232,22 @@ class PostTaskForm extends React.Component {
         onBudgetHour={this.onBudgetHour}
         onBudgetHourlyWage={this.onBudgetHourlyWage}
       />,
-    ]
-    
+    ];
+
     const postTaskBottom = (
       <div className={styles.bottom} >
         { currentScreenIndex === 0 || backBtn }
         { currentScreenIndex === pageList.length - 1 ? submitBtn : nextBtn }
       </div>
-    )
+    );
 
-    return ( //wrapper TODO 问龙哥，为什么不用div，就会溢出
-      <div> 
+    return (
+      <div>
         {postTaskTop[currentScreenIndex]}
         {pageList[currentScreenIndex]}
         {postTaskBottom}
       </div>
-    )
+    );
   }
 }
 

@@ -140,7 +140,11 @@ export default function CreateProfile({ pageToggler }) {
     </>
   );
 
-  const content = subPage || profileList;
+  const content = (
+    <div className={styles.content_wrapper} >
+      {subPage || profileList}
+    </div>
+  );
 
   const footer = (
     <Button

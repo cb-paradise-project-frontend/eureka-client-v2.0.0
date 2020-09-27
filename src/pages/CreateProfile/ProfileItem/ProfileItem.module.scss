@@ -11,7 +11,7 @@
   }
 
   .button{
-    padding: 10px;
+    padding: 10px 0;
     border: none;
     background-color: white;
     outline: none;
@@ -38,7 +38,6 @@
       margin: 0;
       margin-right: 10px;
       visibility: hidden;
-
     }
 
     .checked{
@@ -51,6 +50,7 @@
 
     .arrow_icon{
       color: rgb(187, 194, 220);
+      padding: 0 10px;
     }
   }
 }

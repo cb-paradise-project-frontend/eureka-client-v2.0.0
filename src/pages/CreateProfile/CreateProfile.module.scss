@@ -12,11 +12,17 @@
   overflow: hidden;
 }
 
-.profile_list_wrapper{
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+.content_wrapper{
+  margin: 0 15px;
+  width: 360px;
+  
+  .profile_list_wrapper{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
 }
+
 
 .back_button_wrapper{
   position: absolute;

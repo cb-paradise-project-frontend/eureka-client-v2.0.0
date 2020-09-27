@@ -1,47 +1,27 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom'
 
 import styles from './PostTaskStyles.module.scss';
 
 import PostTaskForm from './PostTaskForm';
 import Modal from '../../components/ModalTest';
 import AlertModal from '../../pages/PostTask/AlertModal';
+import { useToggleContent } from '../../components/ToggleContent';
 
-class PostTask extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      showAlert: false,
-    }
+export default function PostTask({ pageToggler }) {
+  const [AlertContent, toggleAlert] = useToggleContent();
 
-    this.toggleAlertModal = this.toggleAlertModal.bind(this);
-  }
-
-  toggleAlertModal(event) {
-    event.preventDefault();
-
-    this.setState((prevState) => ({
-      showAlert: !prevState.showAlert,
-    }))
-  }
-
-  render() {
-    const { showAlert } = this.state;
-
-    return (
-      <Modal onRequestClose={this.toggleAlertModal}>
+  return (
+    <Modal onRequestClose={toggleAlert}>
       <div className={styles.container}>
-        {showAlert && (
-          <AlertModal 
-            onRequestClose={this.toggleAlertModal}
-            onLeftBtnClick={this.toggleAlertModal}
-            onRightBtnClick={this.props.history.goBack}
+        <AlertContent>
+          <AlertModal
+            onRequestClose={toggleAlert}
+            onLeftBtnClick={toggleAlert}
+            onRightBtnClick={pageToggler}
           />
-          )}
-        <PostTaskForm />
+        </AlertContent>
+      <PostTaskForm />
       </div>
     </Modal>
-    );
-  }
+  );
 }
-export default withRouter(PostTask);

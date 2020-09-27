@@ -37,7 +37,7 @@ const initialState = {
   subPage: '',
 };
 
-export default function CreateProfile() {
+export default function CreateProfile({ pageToggler }) {
   const [fields, dispatch] = useReducer(profileReducer, initialState);
   const {
     photo, bankAccount, billingAddress, birthday, mobile, subPage,
@@ -152,10 +152,10 @@ export default function CreateProfile() {
   );
 
   return (
-    <Modal.GoBackWhenClose >
+    <Modal onRequestClose={pageToggler} >
       <Modal.Header>{header}</Modal.Header>
       <Modal.Content>{content}</Modal.Content>
       <Modal.Footer>{footer}</Modal.Footer>
-    </Modal.GoBackWhenClose>
+    </Modal>
   );
 }

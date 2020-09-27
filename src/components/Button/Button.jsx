@@ -17,6 +17,7 @@ const Button = ({
         'light-blue': 'light-blue',
         red: 'red',
         pink: 'pink',
+        transparent: 'transparent',
       }[color] || 'green',
     )}
     disabled={isDisabled}
@@ -48,7 +49,23 @@ const BackIcon = ({ onClick }) => (
   </IconButton>
 );
 
+const Text = ({ onClick, children, color }) => (
+  <button
+    onClick={onClick}
+    className={cx(
+      'text_button',
+      {
+        white: 'white',
+        grey: 'grey',
+      }[color] || 'grey',
+    )}
+  >
+    {children}
+  </button>
+);
+
 Button.CloseIcon = CloseIcon;
 Button.BackIcon = BackIcon;
+Button.Text = Text;
 
 export default Button;

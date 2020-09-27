@@ -6,11 +6,11 @@ import { AuthContext } from '../../auth/Auth';
 
 import styles from './SignupModal.module.scss';
 
-import Modal from '../Modal';
+import Modal from '../ModalTest';
 import Button from '../Button';
 import Input from '../Input';
 
-const SignupModal = () => {
+const SignupModal = ({ pageToggler }) => {
   const [userCredentials, setUserCredentials] = useState({
     email: '',
     password: '',
@@ -18,21 +18,21 @@ const SignupModal = () => {
   });
 
   const handleChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setUserCredentials({
       ...userCredentials,
-      [name]: value
+      [name]: value,
     });
-  }
+  };
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    const {email, password} = userCredentials;
+    const { email, password } = userCredentials;
     auth.createUserWithEmailAndPassword(email, password)
-    .then((u) => {console.log(u)})
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((u) => { console.log(u); })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   useEffect(() => {
@@ -41,49 +41,52 @@ const SignupModal = () => {
 
   const { currentUser } = useContext(AuthContext);
   if (currentUser) {
-    return (<Redirect to="/profile" />)
+    return (<Redirect to="/profile" />);
   }
 
   return (
-    <Modal heading="Sign up">
-      <form className={styles.conatiner}>
-        <div className={styles.input_wrapper} >
-          <Input
-            label="Email"
-            name="email"
-            type="email"
-            placeholder="Email"
-            required
-            value={userCredentials.email}
-            handleChange={handleChange}
-          />
-        </div>
-        <div className={styles.input_wrapper} >
-          <Input
-            label="Password"
-            name="password"
-            type="password"
-            placeholder="Password"
-            required
-            value={userCredentials.password}
-            handleChange={handleChange}
-          />
-        </div>
-        <div className={styles.input_wrapper} >
-          <Input
-            label="Comfirm Password"
-            name="confirmPassword"
-            type="password"
-            placeholder="Comfirm Password"
-            required
-            value={userCredentials.confirmPassword}
-            handleChange={handleChange}
-          />
-        </div>
-        <Button type="submit" onClick={onSignUp}>Sign up</Button>
-      </form>
+    <Modal onRequestClose={pageToggler} >
+      <Modal.Header>Join us</Modal.Header>
+      <Modal.Content>
+        <form className={styles.container}>
+          <div className={styles.input_wrapper} >
+            <Input
+              label="Email"
+              name="email"
+              type="email"
+              placeholder="Email"
+              required
+              value={userCredentials.email}
+              handleChange={handleChange}
+            />
+          </div>
+          <div className={styles.input_wrapper} >
+            <Input
+              label="Password"
+              name="password"
+              type="password"
+              placeholder="Password"
+              required
+              value={userCredentials.password}
+              handleChange={handleChange}
+            />
+          </div>
+          <div className={styles.input_wrapper} >
+            <Input
+              label="Confirm Password"
+              name="confirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+              required
+              value={userCredentials.confirmPassword}
+              handleChange={handleChange}
+            />
+          </div>
+          <Button type="submit" onClick={onSignUp}>Sign up</Button>
+        </form>
+      </Modal.Content>
     </Modal>
   );
-}
+};
 
 export default SignupModal;

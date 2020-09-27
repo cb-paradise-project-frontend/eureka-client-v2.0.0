@@ -11,7 +11,7 @@ import JobDetailsInput from './TaskDescription/JobDetailsInput';
 import TaskDatePicker from '../../components/DateSelector';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
-import AlertModal from './AlertModal';
+import AlertModal, { withAlert } from './AlertModal';
 import { useToggleContent } from '../../components/ToggleContent';
 
 class PostTaskForm extends React.Component {
@@ -243,8 +243,10 @@ class PostTaskForm extends React.Component {
       </div>
     );
 
+    const { onRequestClose } = this.props;
+
     return (
-      <Modal onRequestClose={this.props.pageToggler} >
+      <Modal onRequestClose={onRequestClose} >
         <Modal.Header>
           {postTaskTop[currentScreenIndex]}
         </Modal.Header>
@@ -259,19 +261,4 @@ class PostTaskForm extends React.Component {
   }
 }
 
-export default function PostTask({ pageToggler }) {
-  const [AlertContent, toggleAlert] = useToggleContent();
-
-  return (
-      <div className={styles.container}>
-        <PostTaskForm pageToggler={toggleAlert} />
-        <AlertContent>
-          <AlertModal
-            onRequestClose={toggleAlert}
-            onLeftBtnClick={toggleAlert}
-            onRightBtnClick={pageToggler}
-          />
-        </AlertContent>
-      </div>
-  );
-}
+export default withAlert(PostTaskForm);

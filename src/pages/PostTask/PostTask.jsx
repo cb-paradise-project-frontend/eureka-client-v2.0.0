@@ -210,47 +210,60 @@ class PostTask extends React.Component {
       </div>
     );
 
-    const postTaskTop = [
-      '',
-      'Tell us what you need done?',
-      'Say where & when',
-      'Suggest how much',
-    ]
-
-    const pageList = [
-      <Welcome />,
-      <TaskDescription 
-        jobTitleInput={this.jobTitleInput()}
-        jobDetailsInput={this.jobDetailsInput()}
-      />,
-      <TaskLocationAndTime
-        taskDatePicker={this.taskDatePicker()}
-      />,
-      <TaskBudget 
-        taskBudget={this.state.taskBudget}
-        isBudgetInvalid={this.isBudgetInvalid()}
-        handleBudgetWageClick={this.handleBudgetWageClick}
-        onBudgetHour={this.onBudgetHour}
-        onBudgetHourlyWage={this.onBudgetHourlyWage}
-      />,
+    const pages = [
+      {
+        title: '',
+        content: <Welcome />,
+      },
+      {
+        title: 'Tell us what you need done?',
+        content: (
+          <TaskDescription
+            jobTitleInput={this.jobTitleInput()}
+            jobDetailsInput={this.jobDetailsInput()}
+          />
+        ),
+      },
+      {
+        title: 'Say where & when',
+        content: (
+          <TaskLocationAndTime
+            taskDatePicker={this.taskDatePicker()}
+          />
+        ),
+      },
+      {
+        title: 'Suggest how much',
+        content: (
+          <TaskBudget
+            taskBudget={this.state.taskBudget}
+            isBudgetInvalid={this.isBudgetInvalid()}
+            handleBudgetWageClick={this.handleBudgetWageClick}
+            onBudgetHour={this.onBudgetHour}
+            onBudgetHourlyWage={this.onBudgetHourlyWage}
+          />
+        ),
+      },
     ];
 
     const postTaskBottom = (
       <div className={styles.bottom} >
         { currentScreenIndex === 0 || backBtn }
-        { currentScreenIndex === pageList.length - 1 ? submitBtn : nextBtn }
+        { currentScreenIndex === pages.length - 1 ? submitBtn : nextBtn }
       </div>
     );
+
+    const { title, content } = pages[currentScreenIndex];
 
     const { onRequestClose } = this.props;
 
     return (
       <Modal onRequestClose={onRequestClose} >
         <Modal.Header>
-          {postTaskTop[currentScreenIndex]}
+          {title}
         </Modal.Header>
         <Modal.Content>
-          {pageList[currentScreenIndex]}
+          {content}
         </Modal.Content>
         <Modal.Footer>
           {postTaskBottom}

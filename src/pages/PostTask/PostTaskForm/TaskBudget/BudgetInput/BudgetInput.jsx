@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from '../../PostTaskForm.module.scss';
 
-import ErrorHint from '../../../ErrorHint';
+import ErrorMessage from '../../../../../components/ErrorMessage';
 
 function BudgetInput({
   isBudgetInvalid,
@@ -42,7 +42,7 @@ function BudgetInput({
         </React.Fragment>
         }
       </div>
-      { isBudgetInvalid && <ErrorHint>{errorHint}</ErrorHint> }
+      { isBudgetInvalid && <ErrorMessage>{errorHint}</ErrorMessage> }
     </div>
   )
 }

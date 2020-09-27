@@ -3,8 +3,8 @@ import React from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import DatePicker from 'react-datepicker';
-import ErrorHint from '../../pages/PostTask/ErrorHint';
 import { addMonths } from 'date-fns';
+import ErrorMessage from '../ErrorMessage';
 
 function DateSelector({
   startDate,
@@ -23,7 +23,7 @@ function DateSelector({
         disabledKeyboardNavigation
         placeholderText="Select a date"
       />
-      { isDateInvalid && <ErrorHint>{errorHint}</ErrorHint> }
+      { isDateInvalid && <ErrorMessage>{errorHint}</ErrorMessage> }
     </React.Fragment>
   )
 }

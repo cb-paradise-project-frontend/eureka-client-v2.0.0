@@ -1,7 +1,6 @@
 .text_area{
   width: 30em;
-  margin-left: 1em;
-  margin-right: 1em;
+  margin: 0 1em;
   resize: none;
   padding: 4px 8px;
   border: none;
@@ -28,4 +27,5 @@
 .error_hint_wrapper{
   display: block;
   min-height: 25px;
+  margin: 0 1em;
 }

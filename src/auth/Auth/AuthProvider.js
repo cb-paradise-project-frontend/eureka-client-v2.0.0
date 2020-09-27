@@ -39,7 +39,7 @@ const AuthProvider = ({children}) => {
   }, [authModalVisible]);
 
   return (
-    <AuthContext.Provider value={currentUser}>
+    <AuthContext.Provider value={{ currentUser }}>
       {children}
     </AuthContext.Provider>
   );

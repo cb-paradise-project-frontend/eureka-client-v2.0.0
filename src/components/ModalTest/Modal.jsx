@@ -1,19 +1,25 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 
 import styles from './Modal.module.scss';
 
 import Overlay from '../Overlay';
 import Button from '../Button';
 
+const modalRoot = document.body;
+
 const Modal = ({ onRequestClose, children }) => (
-  <Overlay>
-    <div className={styles.modal_container} >
-      <div className={styles.close_button_wrapper} >
-        <Button.CloseIcon onClick={onRequestClose} />
+  createPortal(
+    <Overlay>
+      <div className={styles.modal_container} >
+        <div className={styles.close_button_wrapper} >
+          <Button.CloseIcon onClick={onRequestClose} />
+        </div>
+        {children}
       </div>
-      {children}
-    </div>
-  </Overlay>
+    </Overlay>,
+    modalRoot,
+  )
 );
 
 const Header = ({ children }) => (

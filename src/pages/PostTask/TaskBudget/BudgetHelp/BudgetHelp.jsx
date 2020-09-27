@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from '../../PostTaskForm.module.scss'
+import styles from '../../PostTask.module.scss'
 
 import HelpHint from './HelpHint';
 

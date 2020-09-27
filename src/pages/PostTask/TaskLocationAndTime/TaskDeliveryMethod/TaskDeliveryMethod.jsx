@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './TaskDeliveryMethod.module.scss';//TODO try styled component
 
-import Radio from '../../../../../components/Radio';
+import Radio from '../../../../components/Radio';
 
 
 function TaskDeliveryMethod() {

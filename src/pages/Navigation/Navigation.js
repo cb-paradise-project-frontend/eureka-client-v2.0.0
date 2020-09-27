@@ -9,7 +9,7 @@ import SignupModal from '../../components/SignupModal';
 import Categories from '../Navigation/components/Categories';
 import ToggleContent from '../../components/ToggleContent';
 import Button from '../../components/Button';
-import PostTask from '../PostTask/PostTask';
+import PostTask from '../PostTask';
 
 function Navigation() {
   const PostTaskButton = () => (

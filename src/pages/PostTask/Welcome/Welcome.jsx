@@ -1,11 +1,11 @@
 import React from 'react';
 
-import styles from '../PostTaskForm.module.scss';
+import styles from '../PostTask.module.scss';
 
 import WelcomeImg from './WelcomeImg';
 import WelcomeMsg from './WelcomeMsg';
 
-function FirstScreen() {
+function Welcome() {
   return (
     <React.Fragment>
       
@@ -17,5 +17,5 @@ function FirstScreen() {
   )
 }
 
-export default FirstScreen;
+export default Welcome;
 

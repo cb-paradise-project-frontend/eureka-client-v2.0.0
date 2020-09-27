@@ -1,8 +1,8 @@
 import React from 'react';
 
-import styles from '../PostTaskForm.module.scss';
+import styles from '../PostTask.module.scss';
 
-import BudgetRadio from '../../../../components/Radio';
+import BudgetRadio from '../../../components/Radio';
 import BudgetInput from './BudgetInput';
 import BudgetHelp from './BudgetHelp';
 import BudgetDisplay from './BudgetDisplay';

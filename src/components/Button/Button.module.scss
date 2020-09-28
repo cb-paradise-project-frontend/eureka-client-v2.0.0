@@ -7,16 +7,12 @@
   white-space: nowrap;
   cursor: pointer;
   font-family: museo-bold, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-size: 16px;
   color: rgb(255, 255, 255);
   line-height: 24px;
-  letter-spacing: 0.15px;
   width: 100%;
   border-radius: 160px;
   border-color: rgba(0, 0, 0, 0);
-  border-width: 2px;
   border-style: solid;
-  padding: 8px 16px;
   outline: none;
 
   &:disabled{
@@ -32,7 +28,6 @@
   }
 }
 
-// Button color styles
 .green {
   background-color: rgb(125, 179, 67);
 }
@@ -60,6 +55,35 @@
   }
 }
 
+.small{
+  height: 27px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .44px;
+  border-width: 1px;
+}
+
+.medium{
+  padding: 8px 16px;
+  font-size: 16px;
+  border-width: 2px;
+  letter-spacing: 0.15px;
+}
+.large{
+  border-width: 2px;
+  padding: 16px 24px;
+  font-size: 18px;
+  letter-spacing: 0.15px
+}
+
+.norma{
+  width: auto;
+}
+.long{
+  width: 100%;
+}
+
+// ------ icon button -----
 .icon_button{
   display: inline-flex;
   border: none;
@@ -73,6 +97,8 @@
   color: rgb(84, 90, 119);
 }
 
+
+// ------ test button --------
 .text_button{
   text-align: center;
   cursor: pointer;
@@ -85,8 +111,6 @@
   font-weight: 600;
   color: #fff;
 }
-
-// Button.Text styles
 
 .white{
   color: #fff;

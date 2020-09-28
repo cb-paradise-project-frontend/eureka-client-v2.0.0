@@ -6,7 +6,7 @@ import styles from './Button.module.scss';
 const cx = classNames.bind(styles);
 
 const Button = ({
-  children, onClick, color, isDisabled, ...otherProps
+  children, onClick, color, size, length, isDisabled, ...otherProps
 }) => (
   <button
     className={cx(
@@ -19,6 +19,15 @@ const Button = ({
         pink: 'pink',
         transparent: 'transparent',
       }[color] || 'green',
+      {
+        small: 'small',
+        medium: 'medium',
+        large: 'large',
+      }[size] || 'medium',
+      {
+        normal: 'normal',
+        long: 'long',
+      }[length] || 'normal',
     )}
     disabled={isDisabled}
     onClick={onClick}

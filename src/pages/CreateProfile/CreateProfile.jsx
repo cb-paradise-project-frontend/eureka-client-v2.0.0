@@ -13,7 +13,6 @@ import Mobile from './SubPages/Mobile';
 import * as action from './Reducer/Action/actionCreator';
 import Button from '../../components/Button';
 
-// add flag for optional info
 const initialState = {
   photo: '',
   bankAccount: {
@@ -208,7 +207,7 @@ export default function CreateProfile({ pageToggler }) {
   useEffect(() => {
     saveLocalProfile();
   },
-  [photo, bankAccount, billingAddress, birthday, mobile]);
+  [fields]);
 
   const backButton = (
     <Button

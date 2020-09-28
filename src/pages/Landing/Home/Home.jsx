@@ -2,6 +2,8 @@ import React from 'react';
 
 import styles from './Home.module.scss';
 
+import Button from '../../../components/Button';
+
 function Home() {
   return (
     <div className={styles.home__container}>
@@ -9,7 +11,10 @@ function Home() {
         <h1>Connect with experts to get the job done on Airtasker</h1>
         <h4>It’s amazing what you can’t do yourself</h4>
       </div>
-      <button>Get started now</button>
+      {/* <button>Get started now</button> */}
+      <Button color={'pink'} size={'large'} >
+        Get started now
+      </Button>
     </div>
   );
 }

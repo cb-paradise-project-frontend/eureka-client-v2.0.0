@@ -19,6 +19,7 @@ function Navigation() {
           <Button
             color={'pink'}
             onClick={toggler}
+            size={'small'}
           >
             Post a Task
           </Button>
@@ -96,7 +97,10 @@ function Navigation() {
               <SignupButton />
               <LoginButton />
               <div className={styles.becomeTasker} >
-                <Button color={'transparent'} >
+                <Button
+                  color={'transparent'}
+                  size={'small'}
+                >
                   Become a Tasker
                 </Button>
               </div>

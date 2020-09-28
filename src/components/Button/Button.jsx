@@ -6,11 +6,12 @@ import styles from './Button.module.scss';
 const cx = classNames.bind(styles);
 
 const Button = ({
-  children, onClick, color, size, isDisabled, ...otherProps
+  children, onClick, color, size, long, isDisabled, ...otherProps
 }) => (
   <button
     className={cx(
       'button',
+      { long },
       {
         green: 'green',
         blue: 'blue',

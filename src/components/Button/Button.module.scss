@@ -4,12 +4,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: auto;
   white-space: nowrap;
   cursor: pointer;
   font-family: museo-bold, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   color: rgb(255, 255, 255);
   line-height: 24px;
-  width: 100%;
   border-radius: 160px;
   border-color: rgba(0, 0, 0, 0);
   border-style: solid;
@@ -74,13 +74,6 @@
   padding: 16px 24px;
   font-size: 18px;
   letter-spacing: 0.15px
-}
-
-.norma{
-  width: auto;
-}
-.long{
-  width: 100%;
 }
 
 // ------ icon button -----

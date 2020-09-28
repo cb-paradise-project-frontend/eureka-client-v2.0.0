@@ -70,7 +70,7 @@ function Navigation() {
     <AuthContext.Consumer>
       {(currentUser) => (
         <nav>
-          <div className={styles.navMenu}>
+          <div className={styles.navMenu} >
             <Link
               className={styles.logo}
               to="/"
@@ -78,7 +78,7 @@ function Navigation() {
               logo
             </Link>
 
-            <div className={styles.left}>
+            <div className={styles.left} >
               <PostTaskButton />
               <Categories />
               <Link

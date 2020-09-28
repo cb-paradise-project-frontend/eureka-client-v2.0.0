@@ -177,9 +177,9 @@ export default function CreateProfile({ pageToggler }) {
     </div>
   );
 
-  const profileStorage = window.sessionStorage;
+  const profileStorage = window.localStorage;
 
-  const saveSessionProfile = () => {
+  const saveLocalProfile = () => {
     if (!autoSave) return;
     const userProfile = {
       photo, bankAccount, billingAddress, birthday, mobile,
@@ -187,18 +187,27 @@ export default function CreateProfile({ pageToggler }) {
     profileStorage.setItem('userProfile', JSON.stringify(userProfile));
   };
 
-  const getSessionProfile = () => {
+  const getLocalProfile = () => {
     const savedProfile = profileStorage.getItem('userProfile');
-    if (savedProfile) { loadProfile(JSON.parse(savedProfile)); }
+    if (savedProfile) loadProfile(JSON.parse(savedProfile));
+  };
+
+  const removeLocalProfile = () => {
+    profileStorage.removeItem('userProfile');
+  };
+
+  const handleContinueBtnClick = () => {
+    removeLocalProfile();
+    pageToggler();
   };
 
   useEffect(() => {
-    getSessionProfile();
+    getLocalProfile();
   },
   []);
 
   useEffect(() => {
-    saveSessionProfile();
+    saveLocalProfile();
   },
   [photo, bankAccount, billingAddress, birthday, mobile]);
 
@@ -214,7 +223,7 @@ export default function CreateProfile({ pageToggler }) {
 
   const continueButton = (
     <Button
-    onClick={handleBackBtnClick}
+    onClick={handleContinueBtnClick}
     color={'light-blue'}
     long
   >

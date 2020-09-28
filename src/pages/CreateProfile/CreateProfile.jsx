@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 
 import styles from './CreateProfile.module.scss';
 
@@ -146,15 +146,42 @@ export default function CreateProfile({ pageToggler }) {
     </div>
   );
 
-  const footer = (
+  useEffect(() => {
+
+  },
+  []);
+
+  const saveSessionProfile = () => {
+    const profileStorage = window.sessionStorage;
+    profileStorage.setItem('userProfile', fields);
+  };
+
+  const getSesssionProfile = () => {
+    const profileStorage = window.sessionStorage;
+    profileStorage.setItem('userProfile', fields);
+  };
+
+  const backButton = () => (
     <Button
-      onClick={handleBackBtnClick}
-      color={'light-blue'}
-      long
-    >
-      {subPage ? 'Back' : 'Continue'}
-    </Button>
+    onClick={handleBackBtnClick}
+    color={'light-blue'}
+    long
+  >
+    Back
+  </Button>
   );
+
+  const continueButton = () => (
+    <Button
+    onClick={handleBackBtnClick}
+    color={'light-blue'}
+    long
+  >
+    Continue
+  </Button>
+  );
+
+  const footer = subPage ? backButton : continueButton;
 
   return (
     <Modal onRequestClose={pageToggler} >

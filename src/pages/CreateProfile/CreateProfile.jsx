@@ -43,6 +43,9 @@ export default function CreateProfile({ pageToggler }) {
     photo, bankAccount, billingAddress, birthday, mobile, subPage,
   } = fields;
 
+  const loadProfile = (userProfile) => (
+    () => (dispatch(action.loadProfile(userProfile)))
+  );
   const handleProfileBtnClick = (page) => (
     () => (dispatch(action.clickProfileItem(page)))
   );
@@ -50,20 +53,30 @@ export default function CreateProfile({ pageToggler }) {
     dispatch(action.clickBackBtn());
   };
 
+  const saveSessionProfile = () => {
+    const profileStorage = window.sessionStorage;
+    profileStorage.setItem('userProfile', fields);
+  };
+
   const handlePhotoUpload = (input) => {
     dispatch(action.photoUpload(input));
+    saveSessionProfile();
   };
   const handleAccountInput = (input) => {
     dispatch(action.accountInput(input));
+    saveSessionProfile();
   };
   const handleBillingAddressInput = (input) => {
     dispatch(action.billingAddressInput(input));
+    saveSessionProfile();
   };
   const handleBirthdayInput = (input) => {
     dispatch(action.birthdayInput(input));
+    saveSessionProfile();
   };
   const handleMobileInput = (input) => {
     dispatch(action.mobileInput(input));
+    saveSessionProfile();
   };
 
   const isFilled = (stateValue) => {
@@ -146,22 +159,18 @@ export default function CreateProfile({ pageToggler }) {
     </div>
   );
 
+  const getSessionProfile = () => {
+    const profileStorage = window.sessionStorage;
+    const savedProfile = profileStorage.getItem('userProfile');
+    if (savedProfile) { loadProfile(savedProfile); }
+  };
+
   useEffect(() => {
-
+    getSessionProfile();
   },
-  []);
+  [getSessionProfile]);
 
-  const saveSessionProfile = () => {
-    const profileStorage = window.sessionStorage;
-    profileStorage.setItem('userProfile', fields);
-  };
-
-  const getSesssionProfile = () => {
-    const profileStorage = window.sessionStorage;
-    profileStorage.setItem('userProfile', fields);
-  };
-
-  const backButton = () => (
+  const backButton = (
     <Button
     onClick={handleBackBtnClick}
     color={'light-blue'}
@@ -171,7 +180,7 @@ export default function CreateProfile({ pageToggler }) {
   </Button>
   );
 
-  const continueButton = () => (
+  const continueButton = (
     <Button
     onClick={handleBackBtnClick}
     color={'light-blue'}

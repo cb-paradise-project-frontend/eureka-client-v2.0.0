@@ -5,13 +5,13 @@ import styles from './BillingAddress.module.scss';
 import Button from '../../../../components/Button';
 import Input from '../../../../components/Input';
 
-export default function BillingAddress({ onSubmit }) {
-  const [lineOne, setLineOne] = useState('');
-  const [lineTwo, setLineTwo] = useState('');
-  const [suburb, setSuburb] = useState('');
-  const [state, setState] = useState('');
-  const [postcode, setPostcode] = useState('');
-  const [country, setCountry] = useState('');
+export default function BillingAddress({ storedValue, onSubmit }) {
+  const [lineOne, setLineOne] = useState(storedValue.lineOne);
+  const [lineTwo, setLineTwo] = useState(storedValue.lineTwo);
+  const [suburb, setSuburb] = useState(storedValue.suburb);
+  const [state, setState] = useState(storedValue.state);
+  const [postcode, setPostcode] = useState(storedValue.postcode);
+  const [country, setCountry] = useState(storedValue.country);
   const [testing, toggleTest] = useState(false);
 
   const introduction = `Your billing address will be verified before you can receive payments.`;
@@ -25,6 +25,7 @@ export default function BillingAddress({ onSubmit }) {
     },
     {
       label: 'Address Line 2 (optional)',
+      optional: true,
       value: lineTwo,
       handleChange: setLineTwo,
     },
@@ -52,20 +53,22 @@ export default function BillingAddress({ onSubmit }) {
 
   const errorMessage = 'Please enter your complete address.';
 
-  const fieldList = fieldElementList.map(({ label, value, handleChange }) => (
+  const fieldList = fieldElementList.map(({
+    label, value, optional, handleChange,
+  }) => (
     <div className={styles.field_input_wrapper} key={label} >
       <Input.WithErrorMessage
         label={label}
         value={value}
         handleChange={handleChange}
-        isError={testing && !value}
+        isError={testing && !value && !optional}
         errorMessage={errorMessage}
       />
     </div>
   ));
 
   const checkEmpty = () => {
-    const emptyField = fieldElementList.find(({ value }) => !value);
+    const emptyField = fieldElementList.find(({ value, optional }) => !value && !optional);
     return !emptyField;
   };
 

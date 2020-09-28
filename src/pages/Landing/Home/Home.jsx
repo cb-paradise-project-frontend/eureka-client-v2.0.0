@@ -11,7 +11,6 @@ function Home() {
         <h1>Connect with experts to get the job done on Airtasker</h1>
         <h4>It’s amazing what you can’t do yourself</h4>
       </div>
-      {/* <button>Get started now</button> */}
       <Button color={'pink'} size={'large'} >
         Get started now
       </Button>

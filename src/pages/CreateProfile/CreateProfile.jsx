@@ -150,6 +150,7 @@ export default function CreateProfile({ pageToggler }) {
     <Button
       onClick={handleBackBtnClick}
       color={'light-blue'}
+      long
     >
       {subPage ? 'Back' : 'Continue'}
     </Button>

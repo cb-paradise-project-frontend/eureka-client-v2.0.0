@@ -69,7 +69,9 @@ const LoginModal = ({ pageToggler }) => {
               handleChange={handleChange}
             />
           </div>
-          <Button onClick={onLoginWithEmail}>Log in</Button>
+          <Button onClick={onLoginWithEmail} >
+            Log in
+          </Button>
           <div className={styles.separator} >
             or log in with
           </div>

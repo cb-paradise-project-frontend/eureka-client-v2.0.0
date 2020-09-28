@@ -188,6 +188,7 @@ class PostTask extends React.Component {
         <Button
           onClick={this.handleBackClick}
           color={'light-blue'}
+          long
         >
           Back
         </Button>
@@ -196,7 +197,10 @@ class PostTask extends React.Component {
 
     const nextBtn = (
       <div className={styles.button} >
-        <Button onClick={this.handleClickCreator(conditionList[currentScreenIndex])} >
+        <Button
+          onClick={this.handleClickCreator(conditionList[currentScreenIndex])}
+          long
+        >
           Next
         </Button>
       </div>
@@ -204,7 +208,10 @@ class PostTask extends React.Component {
 
     const submitBtn = (
       <div className={styles.button} >
-        <Button onClick={this.handleGetQuoteClick} >
+        <Button 
+          onClick={this.handleGetQuoteClick} 
+          long
+        >
           Get quotes
         </Button>
       </div>

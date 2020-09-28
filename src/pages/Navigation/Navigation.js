@@ -19,6 +19,7 @@ function Navigation() {
           <Button
             color={'pink'}
             onClick={toggler}
+            size={'small'}
           >
             Post a Task
           </Button>
@@ -70,7 +71,7 @@ function Navigation() {
     <AuthContext.Consumer>
       {(currentUser) => (
         <nav>
-          <div className={styles.navMenu}>
+          <div className={styles.navMenu} >
             <Link
               className={styles.logo}
               to="/"
@@ -78,7 +79,7 @@ function Navigation() {
               logo
             </Link>
 
-            <div className={styles.left}>
+            <div className={styles.left} >
               <PostTaskButton />
               <Categories />
               <Link
@@ -96,7 +97,10 @@ function Navigation() {
               <SignupButton />
               <LoginButton />
               <div className={styles.becomeTasker} >
-                <Button color={'transparent'} >
+                <Button
+                  color={'transparent'}
+                  size={'small'}
+                >
                   Become a Tasker
                 </Button>
               </div>

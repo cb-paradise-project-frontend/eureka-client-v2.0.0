@@ -9,16 +9,14 @@ export default function PaymentPanel({ status, budget }) {
   const title = 'TASK BUDGET';
 
   return (
-    <div className = {styles.payment_panel}>
-      <div className = {styles.title}>
+    <div className={styles.payment_panel} >
+      <div className={styles.title} >
         {title}
       </div>
-      <div className = {styles.price}>
+      <div className={styles.price} >
         ${budget}
       </div>
-      <div className = {styles.button_wrapper}>
-        <OfferButton isExpired = {(status === EXPIRED)}/>
-      </div>
+      <OfferButton isExpired={(status === EXPIRED)} />
     </div>
   );
 }

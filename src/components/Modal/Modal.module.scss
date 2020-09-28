@@ -1,72 +1,60 @@
-.container {
+.modal_container{
   position: fixed;
-  left: 50%;
   top: 50%;
+  left: 50%;
   right: auto;
   bottom: auto;
-  transform: translate(-50%, -50%);
-  max-width: 500px;
-  height: auto;
-  max-height: 90%;
   width: auto;
+  max-width: 500px;
+  max-height: 90%;
   border-radius: 5px;
-  padding: 0 20px 20px;
-  animation: 0.4s ease 0s 1 normal none running slideIn;
-  background-color: #ffffff;
-  z-index: 999;
-
-  .header {
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+  
+  .close_button_wrapper{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 60px;
     display: flex;
-    -webkit-box-align: center;
     align-items: center;
-    flex-shrink: 0;
-    min-height: 60px;
-    position: relative;
-    padding: 0px 16px;
-    border-bottom: 1px solid rgb(246, 248, 253);
-    font-weight: 400;
-
-    .heading {
-      -webkit-box-flex: 1;
-      flex-grow: 1;
-      color: rgb(41, 43, 50);
-      font-family: museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-      font-size: 18px;
-      line-height: 24px;
-      letter-spacing: 0.15px;
-      text-align: center;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      padding: 0px 32px;
-      overflow: hidden;
-    }
-
-    .close {
-      display: inline-flex;
-      border: none;
-      margin: 0;
-      text-decoration: none;
-      background: #ffffff;
-      color: rgb(84, 90, 119);;
-      position: absolute;
-      right: 0px;
-      font-size: 1rem;
-      cursor: pointer;
-      text-align: center;
-
-      i {
-        size: 24px;
-      }
-    }
-
-    .button:hover,
-    .button:focus {
-      color: #333333;
-    }
+    padding-right: 20px;
+    z-index: 1;
   }
 
-  .content {
-    padding: 24px 16px;
+  %center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header{
+    @extend %center;
+    flex-grow: 1;
+    min-height: 60px;
+    padding: 0 44px;
+    color: #292b32;
+    font-family: museo-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .content{
+    flex-grow: 1;
+    max-height: 400px;
     overflow: hidden auto;
+    padding: 10px 20px;
+  }
+
+  .footer{
+    @extend %center;
+    padding: 10px 20px;
   }
 }
+

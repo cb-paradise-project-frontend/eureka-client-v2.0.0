@@ -1,8 +1,9 @@
 @import '../scss-partial/status-color-code';
 
 .button {
-  display: inline-block;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   white-space: nowrap;
   cursor: pointer;
   font-family: museo-bold, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -15,7 +16,6 @@
   border-color: rgba(0, 0, 0, 0);
   border-width: 2px;
   border-style: solid;
-  box-sizing: border-box;
   padding: 8px 16px;
   outline: none;
 
@@ -32,6 +32,7 @@
   }
 }
 
+// Button color styles
 .green {
   background-color: rgb(125, 179, 67);
 }
@@ -49,6 +50,15 @@
 .red{
   background-color: rgb(231, 82, 69);
 }
+.transparent{
+  background-color: transparent;
+  border-color: white;
+
+  &:hover{
+    @extend .light-blue;
+    border-color: rgb(0, 143, 180);
+  }
+}
 
 .icon_button{
   display: inline-flex;
@@ -61,4 +71,36 @@
   cursor: pointer;
   text-align: center;
   color: rgb(84, 90, 119);
+}
+
+.text_button{
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  font-size: 13px;
+  letter-spacing: .4px;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  font-weight: 600;
+  color: #fff;
+}
+
+// Button.Text styles
+
+.white{
+  color: #fff;
+  background-color: transparent;
+  
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.grey{
+  color: #545a77;
+
+  &:hover {
+    color: #008fb4;
+  }
 }

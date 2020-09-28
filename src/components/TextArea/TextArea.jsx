@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from './TextArea.module.scss';
 
-import ErrorHint from '../../pages/PostTask/ErrorHint';
+import ErrorMessage from '../ErrorMessage';
 
 const cx = classNames.bind(styles);
 
@@ -32,7 +32,7 @@ const WithErrorHint = ({
     <TextArea {...otherProps} />
     <div className={styles.error_hint_wrapper} >
       {isInputInvalid && errorHint
-        && <ErrorHint>{errorHint}</ErrorHint>
+        && <ErrorMessage>{errorHint}</ErrorMessage>
       }
     </div>
   </>

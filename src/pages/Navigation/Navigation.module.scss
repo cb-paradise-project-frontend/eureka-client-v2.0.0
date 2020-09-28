@@ -3,6 +3,19 @@
   padding: 0;
 }
 
+%nav-button{
+  margin: 0 5px;
+  height: 27px;
+
+  button{
+    padding: 0 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .44px;
+    border-width: 1px;
+  }
+}
+
 nav {
   height: 57px;
   position: fixed;
@@ -50,20 +63,13 @@ nav {
     display: flex;
     align-items: center;
     font-weight: 600;
-    
 
     .post_task_button_wrapper{
+      @extend %nav-button;
       text-shadow: 0 1px 2px rgba(0,0,0,.25);
       height: 27px;
       width: 100px;
       margin-top: 2px; 
-
-      button{
-        padding: 0;
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: .44px;
-      }
     }
     // .categories {
     //   color:#fff;
@@ -130,88 +136,101 @@ nav {
   }
 
   .right {
-    display: block;
+    padding-top: 2px;
+    height: 100%;
     float: right;
+    display: flex;
+    align-items: center;
     font-weight: 600;
 
     .becomeTasker{
-      float: right;
-      margin-top: 13px;
-      margin-right: 4px;
-      font-size: 11px;
-      line-height: 1.4;
-      letter-spacing: .25px;
-      padding: 6px 16px;
+      @extend %nav-button;
       text-shadow: 0 1px 2px rgba(0,0,0,.25);
-      border-radius: 200px;
-      display: inline-block;
-      transition: text-shadow .35s cubic-bezier(.615,.19,.305,.91),border .35s cubic-bezier(.615,.19,.305,.91);
-      text-align: center;
-      // white-space: nowrap;
-      cursor: pointer;
-      box-sizing: border-box;
-      font-weight: 600;
-      background-color: transparent;
-      border: 1px solid #fff;
-      box-shadow: none;
-      color: #fff;
+      height: 27px;
+      // width: 100px;
+      // margin-top: 2px; 
+      // float: right;
+      // margin-top: 13px;
+      // margin-right: 4px;
+      // font-size: 11px;
+      // line-height: 1.4;
+      // letter-spacing: .25px;
+      // padding: 6px 16px;
+      // text-shadow: 0 1px 2px rgba(0,0,0,.25);
+      // border-radius: 200px;
+      // display: inline-block;
+      // transition: text-shadow .35s cubic-bezier(.615,.19,.305,.91),border .35s cubic-bezier(.615,.19,.305,.91);
+      // text-align: center;
+      // // white-space: nowrap;
+      // cursor: pointer;
+      // box-sizing: border-box;
+      // font-weight: 600;
+      // background-color: transparent;
+      // border: 1px solid #fff;
+      // box-shadow: none;
+      // color: #fff;
       // border-top: 2px solid transparent
     }
 
-    .becomeTasker:hover {
-      color: #008fb4;
-      border: 1px solid #008fb4;
-      background-color: #fff;
+    // .becomeTasker:hover {
+    //   color: #008fb4;
+    //   border: 1px solid #008fb4;
+    //   background-color: #fff;
+    // }
+
+    // button {
+    //   background-color: transparent;
+    //   border: none;
+    // }
+
+    .login_button_wrapper, 
+    .signup_button_wrapper{
+      @extend %nav-button;
+      display: flex;
+      align-items: center;
     }
 
-    button {
-      background-color: transparent;
-      border: none;
+    // .logIn {
+    //   color: #fff;
+    //   float: right;
+    //   padding: 0 10px;
+    //   text-align: center;
+    //   cursor: pointer;
+    //   display: block;
+    //   font-size: 13px;
+    //   height: 57px;
+    //   letter-spacing: .4px;
+    //   line-height: 58px;
+    //   position: relative;
+    //   text-decoration: none;
+    //   font-weight: 600;
+    //   // border-top: 2px solid transparent;
+    //   &:hover {
+    //     color: #008fb4;
+    //     // border-top: 2px solid #008fb4;
+    //   }
+    // }
 
-      
-    }
-
-    .logIn {
-      color: #fff;
-      float: right;
-      padding: 0 10px;
-      text-align: center;
-      cursor: pointer;
-      display: block;
-      font-size: 13px;
-      height: 57px;
-      letter-spacing: .4px;
-      line-height: 58px;
-      position: relative;
-      text-decoration: none;
-      font-weight: 600;
-      // border-top: 2px solid transparent;
-      &:hover {
-        color: #008fb4;
-        // border-top: 2px solid #008fb4;
-      }
-    }
-
-    .signUp {
-      color: #fff;
-      float: right;
-      padding: 0 10px;
-      text-align: center;
-      cursor: pointer;
-      display: block;
-      font-size: 13px;
-      height: 57px;
-      letter-spacing: .4px;
-      line-height: 58px;
-      position: relative;
-      text-decoration: none;
-      font-weight: 600;
-      // border-top: 2px solid transparent;
-      &:hover {
-        color: #008fb4;
-        // border-top: 2px solid #008fb4;
-      }
-    }
+    // .signUp {
+    //   color: #fff;
+    //   float: right;
+    //   padding: 0 10px;
+    //   text-align: center;
+    //   cursor: pointer;
+    //   display: block;
+    //   font-size: 13px;
+    //   height: 57px;
+    //   letter-spacing: .4px;
+    //   line-height: 58px;
+    //   position: relative;
+    //   text-decoration: none;
+    //   font-weight: 600;
+    //   // border-top: 2px solid transparent;
+    //   &:hover {
+    //     color: #008fb4;
+    //     // border-top: 2px solid #008fb4;
+    //   }
+    // }
   }
 
   // .categories:hover .category_details {

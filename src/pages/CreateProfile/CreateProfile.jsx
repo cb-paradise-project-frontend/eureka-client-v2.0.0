@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 
 import styles from './CreateProfile.module.scss';
 
-import Modal from '../../components/ModalTest';
+import Modal from '../../components/Modal';
 import profileReducer from './Reducer';
 import ProfileItem from './ProfileItem';
 import Photo from './SubPages/Photo';
@@ -140,7 +140,11 @@ export default function CreateProfile({ pageToggler }) {
     </>
   );
 
-  const content = subPage || profileList;
+  const content = (
+    <div className={styles.content_wrapper} >
+      {subPage || profileList}
+    </div>
+  );
 
   const footer = (
     <Button

@@ -75,10 +75,10 @@ export default function BillingAddress({ storedValue, onSubmit }) {
   const handleSubmit = () => {
     if (checkEmpty()) {
       const billingAddress = {
-        lineOne, lineTwo, suburb, state, postcode, country,
+        lineOne, suburb, state, postcode, country,
       };
+      if (lineTwo) billingAddress.lineTwo = lineTwo;
       onSubmit(billingAddress);
-      toggleTest(false);
     } else {
       toggleTest(true);
     }

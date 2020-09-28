@@ -23,7 +23,6 @@ const initialState = {
   },
   billingAddress: {
     lineOne: '',
-    lineTwo: '',
     suburb: '',
     state: '',
     postcode: '',

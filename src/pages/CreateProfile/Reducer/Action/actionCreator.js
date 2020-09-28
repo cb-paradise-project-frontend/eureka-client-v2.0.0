@@ -11,10 +11,9 @@ export const clickProfileItem = (subPage) => ({
 });
 
 export const photoUpload = (photo) => ({
-    type: ACTION.PHOTO_UPLOAD,
-    payload: { photo }, 
-  }
-};
+  type: ACTION.PHOTO_UPLOAD,
+  payload: { photo },
+});
 
 export const accountInput = (bankAccount) => ({
   type: ACTION.ACCOUNT_INPUT,

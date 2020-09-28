@@ -8,10 +8,10 @@ import ErrorMessage from '../../../../components/ErrorMessage';
 import onlyNumber from '../../../../utils/validators/input';
 import { isDate, isAdult } from '../../../../utils/validators/submit';
 
-export default function BirthDate({ onSubmit }) {
-  const [day, setDay] = useState('');
-  const [month, setMonth] = useState('');
-  const [year, setYear] = useState('');
+export default function BirthDate({ storedValue, onSubmit }) {
+  const [day, setDay] = useState(storedValue.day);
+  const [month, setMonth] = useState(storedValue.month);
+  const [year, setYear] = useState(storedValue.year);
   const [testing, toggleTest] = useState(false);
 
   const formInputElements = [
@@ -67,7 +67,9 @@ export default function BirthDate({ onSubmit }) {
     if (getError()) {
       toggleTest(true);
     } else {
-      const birthday = new Date(year, month - 1, day);
+      const birthday = {
+        day, month, year,
+      };
       onSubmit(birthday);
       toggleTest(false);
     }

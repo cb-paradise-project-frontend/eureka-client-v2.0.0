@@ -6,10 +6,9 @@ import Button from '../../../../components/Button';
 import onlyNumber from '../../../../utils/validators/input';
 import Input from '../../../../components/Input';
 
-export default function Mobile({ verifiedMobile, onSubmit }) {
-  const verified = verifiedMobile || false;
-  const [mobile, setMobile] = useState('');
-  const [isVerified, toggleEdit] = useState(verified);
+export default function Mobile({ storedValue, onSubmit }) {
+  const [mobile, setMobile] = useState(storedValue);
+  const [isVerified, toggleEdit] = useState(!!mobile);
 
   const handleEdit = () => {
     toggleEdit(!isVerified);
@@ -23,7 +22,7 @@ export default function Mobile({ verifiedMobile, onSubmit }) {
   const information = `Verifying your mobile number helps us know you're a genuine human! We won't show it to anyone or sell it on to any 3rd party, it's just for us to send you some good stuff.`;
   const editBtnElements = {
     title: 'Verified mobile number',
-    value: verifiedMobile,
+    value: storedValue,
     color: 'light-blue',
     buttonLabel: 'Edit',
     handleClick: handleEdit,

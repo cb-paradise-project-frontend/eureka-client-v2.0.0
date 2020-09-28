@@ -13,6 +13,7 @@ import Mobile from './SubPages/Mobile';
 import * as action from './Reducer/Action/actionCreator';
 import Button from '../../components/Button';
 
+// add flag for optional info
 const initialState = {
   photo: '',
   bankAccount: {
@@ -35,17 +36,19 @@ const initialState = {
   },
   mobile: '',
   subPage: '',
+  autoSave: false,
 };
 
 export default function CreateProfile({ pageToggler }) {
   const [fields, dispatch] = useReducer(profileReducer, initialState);
+
   const {
-    photo, bankAccount, billingAddress, birthday, mobile, subPage,
+    photo, bankAccount, billingAddress, birthday, mobile, subPage, autoSave,
   } = fields;
 
-  const loadProfile = (userProfile) => (
-    () => (dispatch(action.loadProfile(userProfile)))
-  );
+  const loadProfile = (userProfile) => {
+    dispatch(action.loadProfile(userProfile));
+  };
   const handleProfileBtnClick = (page) => (
     () => (dispatch(action.clickProfileItem(page)))
   );
@@ -53,30 +56,20 @@ export default function CreateProfile({ pageToggler }) {
     dispatch(action.clickBackBtn());
   };
 
-  const saveSessionProfile = () => {
-    const profileStorage = window.sessionStorage;
-    profileStorage.setItem('userProfile', fields);
-  };
-
   const handlePhotoUpload = (input) => {
     dispatch(action.photoUpload(input));
-    saveSessionProfile();
   };
   const handleAccountInput = (input) => {
     dispatch(action.accountInput(input));
-    saveSessionProfile();
   };
   const handleBillingAddressInput = (input) => {
     dispatch(action.billingAddressInput(input));
-    saveSessionProfile();
   };
   const handleBirthdayInput = (input) => {
     dispatch(action.birthdayInput(input));
-    saveSessionProfile();
   };
   const handleMobileInput = (input) => {
     dispatch(action.mobileInput(input));
-    saveSessionProfile();
   };
 
   const isFilled = (stateValue) => {
@@ -85,41 +78,66 @@ export default function CreateProfile({ pageToggler }) {
       const result = valueArray.filter((value) => value);
       return (result.length === valueArray.length);
     }
-    return (stateValue) && true;
+    return !!stateValue;
   };
 
-  const birthdayStatusLabel = isFilled(birthday) &&
-    birthday.toDateString().replace(/[^\s]+/, '');
+  const createBirthdayLabel = () => {
+    if (!isFilled(birthday)) return null;
+    const { day, month, year } = birthday;
+    const birthdayObj = new Date(year, month - 1, day);
+    const formattedBirthday = birthdayObj.toDateString().replace(/[^\s]+/, '');
+    return formattedBirthday;
+  };
 
   const profileItemElementList = [
     {
       name: 'Profile Picture',
       value: photo,
-      page: <Photo url={photo} onSubmit={handlePhotoUpload} />,
+      page: (
+        <Photo
+          onSubmit={handlePhotoUpload}
+          url={photo}
+        />
+      ),
     },
     {
       name: 'Bank Account Details',
       value: bankAccount,
-      page: <BankAccount onSubmit={handleAccountInput} />,
+      page: (
+        <BankAccount
+          onSubmit={handleAccountInput}
+          storedValue={bankAccount}
+        />
+      ),
     },
     {
       name: 'Billing Address',
       value: billingAddress,
-      page: <BillingAddress onSubmit={handleBillingAddressInput} />,
+      page: (
+        <BillingAddress
+          onSubmit={handleBillingAddressInput}
+          storedValue={billingAddress}
+        />
+      ),
     },
     {
       name: 'Date of Birth',
       value: birthday,
-      statusLabel: birthdayStatusLabel,
-      page: <Birthday onSubmit={handleBirthdayInput} />,
+      statusLabel: createBirthdayLabel(),
+      page: (
+        <Birthday
+          onSubmit={handleBirthdayInput}
+          storedValue={birthday}
+        />
+      ),
     },
     {
       name: 'Mobile Number',
       value: mobile,
       statusLabel: mobile,
       page: <Mobile
-        verifiedMobile={mobile}
         onSubmit={handleMobileInput}
+        storedValue={mobile}
       />,
     },
   ];
@@ -159,16 +177,30 @@ export default function CreateProfile({ pageToggler }) {
     </div>
   );
 
+  const profileStorage = window.sessionStorage;
+
+  const saveSessionProfile = () => {
+    if (!autoSave) return;
+    const userProfile = {
+      photo, bankAccount, billingAddress, birthday, mobile,
+    };
+    profileStorage.setItem('userProfile', JSON.stringify(userProfile));
+  };
+
   const getSessionProfile = () => {
-    const profileStorage = window.sessionStorage;
     const savedProfile = profileStorage.getItem('userProfile');
-    if (savedProfile) { loadProfile(savedProfile); }
+    if (savedProfile) { loadProfile(JSON.parse(savedProfile)); }
   };
 
   useEffect(() => {
     getSessionProfile();
   },
-  [getSessionProfile]);
+  []);
+
+  useEffect(() => {
+    saveSessionProfile();
+  },
+  [photo, bankAccount, billingAddress, birthday, mobile]);
 
   const backButton = (
     <Button

@@ -47,6 +47,36 @@ export default function CreateProfile({ pageToggler }) {
   const loadProfile = (userProfile) => {
     dispatch(action.loadProfile(userProfile));
   };
+
+  const profileStorage = window.localStorage;
+
+  const saveLocalProfile = () => {
+    if (!autoSave) return;
+    const userProfile = {
+      photo, bankAccount, billingAddress, birthday, mobile,
+    };
+    profileStorage.setItem('userProfile', JSON.stringify(userProfile));
+  };
+
+  const getLocalProfile = () => {
+    const savedProfile = profileStorage.getItem('userProfile');
+    if (savedProfile) loadProfile(JSON.parse(savedProfile));
+  };
+
+  const removeLocalProfile = () => {
+    profileStorage.removeItem('userProfile');
+  };
+
+  useEffect(() => {
+    getLocalProfile();
+  },
+  [dispatch]);
+
+  useEffect(() => {
+    saveLocalProfile();
+  },
+  [fields]);
+
   const handleProfileBtnClick = (page) => (
     () => (dispatch(action.clickProfileItem(page)))
   );
@@ -68,6 +98,10 @@ export default function CreateProfile({ pageToggler }) {
   };
   const handleMobileInput = (input) => {
     dispatch(action.mobileInput(input));
+  };
+  const handleContinueBtnClick = () => {
+    removeLocalProfile();
+    pageToggler();
   };
 
   const isFilled = (stateValue) => {
@@ -174,40 +208,6 @@ export default function CreateProfile({ pageToggler }) {
       {subPage || profileList}
     </div>
   );
-
-  const profileStorage = window.localStorage;
-
-  const saveLocalProfile = () => {
-    if (!autoSave) return;
-    const userProfile = {
-      photo, bankAccount, billingAddress, birthday, mobile,
-    };
-    profileStorage.setItem('userProfile', JSON.stringify(userProfile));
-  };
-
-  const getLocalProfile = () => {
-    const savedProfile = profileStorage.getItem('userProfile');
-    if (savedProfile) loadProfile(JSON.parse(savedProfile));
-  };
-
-  const removeLocalProfile = () => {
-    profileStorage.removeItem('userProfile');
-  };
-
-  const handleContinueBtnClick = () => {
-    removeLocalProfile();
-    pageToggler();
-  };
-
-  useEffect(() => {
-    getLocalProfile();
-  },
-  []);
-
-  useEffect(() => {
-    saveLocalProfile();
-  },
-  [fields]);
 
   const backButton = (
     <Button

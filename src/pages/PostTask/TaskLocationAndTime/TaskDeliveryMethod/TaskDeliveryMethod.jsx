@@ -5,7 +5,9 @@ import styles from './TaskDeliveryMethod.module.scss';//TODO try styled componen
 import Radio from '../../../../components/Radio';
 
 
-function TaskDeliveryMethod() {
+function TaskDeliveryMethod({
+  handleClick,
+}) {
   return (
     <React.Fragment>
     <div className={styles.box}>
@@ -15,6 +17,7 @@ function TaskDeliveryMethod() {
           radioTitle={"In Person"}
           radioHint={"Select this if you need the Tasker physically there."}
           isChecked={true} 
+          handleClick={handleClick}
         />
       </div>
       <div className={styles.piece}>
@@ -23,6 +26,7 @@ function TaskDeliveryMethod() {
           radioTitle={"Online"}
           radioHint={"Select this if the Tasker can do it from home."}
           isChecked={false}
+          handleClick={handleClick}
         />
       </div>
       </div>

@@ -11,22 +11,25 @@ const PlaceInput = styled.input`
 `
 
 function Place({
-  type
+  type,
+  place,
+  isPlaceInvalid,
+  handleAddressQuery,
 }) {
 
   const typeStr = JSON.stringify(type);
   console.log(typeStr)
 
-  const [ place, setPlace ]  = useState("");
+  //const [ place, setPlace ]  = useState("");
 
   useEffect(() => {
     getLocation("regions", handleAddressQuery);
     // handleAddressQuery();
   }, [getLocation])
 
-  const handleAddressQuery = (addressQuery) => {
-    setPlace(addressQuery)
-  }
+  // const handleAddressQuery = (addressQuery) => {
+  //   setPlace(addressQuery)
+  // }
 
  
   return(
@@ -36,7 +39,7 @@ function Place({
         placeholder="Enter a suburb"
         defaultValue={place}
       />
-      { !place && <ErrorMsg> Please enter a suburb </ErrorMsg>}
+      { isPlaceInvalid && <ErrorMsg> Please enter a suburb </ErrorMsg>}
     </React.Fragment>
   )
 }

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
 import styles from '../PostTask.module.scss';
-import styled from 'styled-components';
 
 import TaskDeliveryMethod from './TaskDeliveryMethod';
-import Place from '../../../utils/getLocation';
 
 function TaskLocationAndTime({
-  taskDatePicker
+  taskDatePicker,
+  taskPlace,
+  handleAddressQuery,
 }) {
   
  //webpack 报的错，没有声明，说明什么，webpack不是默认拿全局，use strict，通过window拿全局
@@ -28,10 +28,16 @@ function TaskLocationAndTime({
 //   const autocomplete = new window.google.maps.places.Autocomplete(input, options);
  
 // }
-const [ method, setMethod ] = useState(true);
+const [ method, setMethod ] = useState();
 
-const handleClick = () => {
-  setMethod(!method);
+const handleOnlineRadioClick = () => {
+  setMethod(false);
+  handleAddressQuery("online");
+}
+
+const handleOfflineRadioClick = () => {
+  setMethod(true);
+  handleAddressQuery(null);
 }
 
   return (
@@ -40,9 +46,12 @@ const handleClick = () => {
         <h2 className={styles.other_heading}> 
           Where do you need it done? 
         </h2>
-        <TaskDeliveryMethod handleClick={handleClick} />
+        <TaskDeliveryMethod 
+          handleOnlineRadioClick={handleOnlineRadioClick}
+          handleOfflineRadioClick={handleOfflineRadioClick}
+        />
         <div className={styles.date_box}>
-        {method && <Place />}
+        {method && taskPlace}
         </div>
         <h2 className={styles.other_heading}> 
           When do you need it done? 

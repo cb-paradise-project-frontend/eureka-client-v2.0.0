@@ -9,6 +9,7 @@ import TaskBudget from './TaskBudget';
 import JobTitleInput from './TaskDescription/JobTitleInput';
 import JobDetailsInput from './TaskDescription/JobDetailsInput';
 import TaskDatePicker from '../../components/DateSelector';
+import Place from '../../utils/getLocation';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 import { withAlert } from './AlertModal';
@@ -21,6 +22,7 @@ class PostTask extends React.Component {
       jobTitle: "",
       jobDetails: "",
       startDate: null,
+      place: null,
       taskBudget: "0",
       budgetHour: "1",
       budgetHourlyWage: "0",
@@ -38,6 +40,7 @@ class PostTask extends React.Component {
     this.onJobDetails = this.onJobDetails.bind(this);
     this.handleGetQuoteClick = this.handleGetQuoteClick.bind(this);
     this.handleDateValue = this.handleDateValue.bind(this);
+    this.handlePlace = this.handlePlace.bind(this);
     this.onTaskBudget = this.onTaskBudget.bind(this);
     this.onBudgetHourlyWage = this.onBudgetHourlyWage.bind(this);
     this.onBudgetHour = this.onBudgetHour.bind(this);
@@ -80,6 +83,10 @@ class PostTask extends React.Component {
     this.setState({ startDate: date });
   }
 
+  handlePlace(addressQuery) {
+    this.setState({ place: addressQuery });
+  }
+
   handleNextClick() {
     this.setState((prevState) => ({
       currentScreenIndex: prevState.currentScreenIndex + 1,
@@ -114,6 +121,12 @@ class PostTask extends React.Component {
     const { startDate, isChecked } = this.state;
 
     return (startDate == null && isChecked);
+  }
+
+  isPlaceValid() {
+    const { place, isChecked } = this.state;
+
+    return (place == null && isChecked);
   }
 
   handleGetQuoteClick() {
@@ -159,6 +172,16 @@ class PostTask extends React.Component {
       />
     )
   }
+  
+  taskPlace() {
+    return(
+      <Place 
+        handleAddressQuery={this.handlePlace}
+        place={this.state.place}
+        isPlaceInvalid={this.isPlaceValid()}
+      />
+    )
+  }
 
   handleClickCreator(condition) {
     const handleClick = () => {
@@ -174,13 +197,13 @@ class PostTask extends React.Component {
 
   render() {
     const {
-      currentScreenIndex, startDate, jobTitle, jobDetails,
+      currentScreenIndex, startDate, jobTitle, jobDetails, place
     } = this.state;
 
     const conditionList = [
       (false),
       (jobTitle.length < this.jobTitleMinLength || jobDetails.length < this.jobDetailsMinLength),
-      (!startDate),
+      (!startDate || !place),
     ];
 
     const backBtn = (
@@ -229,6 +252,8 @@ class PostTask extends React.Component {
         content: (
           <TaskLocationAndTime
             taskDatePicker={this.taskDatePicker()}
+            taskPlace={this.taskPlace()}
+            handleAddressQuery={this.handlePlace}
           />
         ),
       },

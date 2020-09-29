@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 
 import styles from './CreateProfile.module.scss';
 
@@ -22,7 +22,6 @@ const initialState = {
   },
   billingAddress: {
     lineOne: '',
-    lineTwo: '',
     suburb: '',
     state: '',
     postcode: '',
@@ -35,13 +34,48 @@ const initialState = {
   },
   mobile: '',
   subPage: '',
+  autoSave: false,
 };
 
 export default function CreateProfile({ pageToggler }) {
   const [fields, dispatch] = useReducer(profileReducer, initialState);
+
   const {
-    photo, bankAccount, billingAddress, birthday, mobile, subPage,
+    photo, bankAccount, billingAddress, birthday, mobile, subPage, autoSave,
   } = fields;
+
+  const loadProfile = (userProfile) => {
+    dispatch(action.loadProfile(userProfile));
+  };
+
+  const profileStorage = window.localStorage;
+
+  const saveLocalProfile = () => {
+    if (!autoSave) return;
+    const userProfile = {
+      photo, bankAccount, billingAddress, birthday, mobile,
+    };
+    profileStorage.setItem('userProfile', JSON.stringify(userProfile));
+  };
+
+  const getLocalProfile = () => {
+    const savedProfile = profileStorage.getItem('userProfile');
+    if (savedProfile) loadProfile(JSON.parse(savedProfile));
+  };
+
+  const removeLocalProfile = () => {
+    profileStorage.removeItem('userProfile');
+  };
+
+  useEffect(() => {
+    getLocalProfile();
+  },
+  [dispatch]);
+
+  useEffect(() => {
+    saveLocalProfile();
+  },
+  [fields]);
 
   const handleProfileBtnClick = (page) => (
     () => (dispatch(action.clickProfileItem(page)))
@@ -65,6 +99,10 @@ export default function CreateProfile({ pageToggler }) {
   const handleMobileInput = (input) => {
     dispatch(action.mobileInput(input));
   };
+  const handleContinueBtnClick = () => {
+    removeLocalProfile();
+    pageToggler();
+  };
 
   const isFilled = (stateValue) => {
     if (typeof stateValue === 'object') {
@@ -72,41 +110,66 @@ export default function CreateProfile({ pageToggler }) {
       const result = valueArray.filter((value) => value);
       return (result.length === valueArray.length);
     }
-    return (stateValue) && true;
+    return !!stateValue;
   };
 
-  const birthdayStatusLabel = isFilled(birthday) &&
-    birthday.toDateString().replace(/[^\s]+/, '');
+  const createBirthdayLabel = () => {
+    if (!isFilled(birthday)) return null;
+    const { day, month, year } = birthday;
+    const birthdayObj = new Date(year, month - 1, day);
+    const formattedBirthday = birthdayObj.toDateString().replace(/[^\s]+/, '');
+    return formattedBirthday;
+  };
 
   const profileItemElementList = [
     {
       name: 'Profile Picture',
       value: photo,
-      page: <Photo url={photo} onSubmit={handlePhotoUpload} />,
+      page: (
+        <Photo
+          onSubmit={handlePhotoUpload}
+          url={photo}
+        />
+      ),
     },
     {
       name: 'Bank Account Details',
       value: bankAccount,
-      page: <BankAccount onSubmit={handleAccountInput} />,
+      page: (
+        <BankAccount
+          onSubmit={handleAccountInput}
+          storedValue={bankAccount}
+        />
+      ),
     },
     {
       name: 'Billing Address',
       value: billingAddress,
-      page: <BillingAddress onSubmit={handleBillingAddressInput} />,
+      page: (
+        <BillingAddress
+          onSubmit={handleBillingAddressInput}
+          storedValue={billingAddress}
+        />
+      ),
     },
     {
       name: 'Date of Birth',
       value: birthday,
-      statusLabel: birthdayStatusLabel,
-      page: <Birthday onSubmit={handleBirthdayInput} />,
+      statusLabel: createBirthdayLabel(),
+      page: (
+        <Birthday
+          onSubmit={handleBirthdayInput}
+          storedValue={birthday}
+        />
+      ),
     },
     {
       name: 'Mobile Number',
       value: mobile,
       statusLabel: mobile,
       page: <Mobile
-        verifiedMobile={mobile}
         onSubmit={handleMobileInput}
+        storedValue={mobile}
       />,
     },
   ];
@@ -146,15 +209,27 @@ export default function CreateProfile({ pageToggler }) {
     </div>
   );
 
-  const footer = (
+  const backButton = (
     <Button
-      onClick={handleBackBtnClick}
-      color={'light-blue'}
-      long
-    >
-      {subPage ? 'Back' : 'Continue'}
-    </Button>
+    onClick={handleBackBtnClick}
+    color={'light-blue'}
+    long
+  >
+    Back
+  </Button>
   );
+
+  const continueButton = (
+    <Button
+    onClick={handleContinueBtnClick}
+    color={'light-blue'}
+    long
+  >
+    Continue
+  </Button>
+  );
+
+  const footer = subPage ? backButton : continueButton;
 
   return (
     <Modal onRequestClose={pageToggler} >

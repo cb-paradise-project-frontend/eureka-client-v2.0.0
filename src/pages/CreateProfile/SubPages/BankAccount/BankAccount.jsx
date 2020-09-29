@@ -6,10 +6,10 @@ import Button from '../../../../components/Button';
 import { onlyNumber, addDashInNumber } from '../../../../utils/validators/input';
 import Input from '../../../../components/Input';
 
-export default function BankAccount({ onSubmit }) {
-  const [holder, setHolder] = useState('');
-  const [accountNumber, setAccountNumber] = useState('');
-  const [bsb, setBsb] = useState('');
+export default function BankAccount({ storedValue, onSubmit }) {
+  const [holder, setHolder] = useState(storedValue.holder);
+  const [accountNumber, setAccountNumber] = useState(storedValue.accountNumber);
+  const [bsb, setBsb] = useState(storedValue.bsb);
   const [testing, toggleTest] = useState(false);
   const [highlightField, setHighlightField] = useState();
 

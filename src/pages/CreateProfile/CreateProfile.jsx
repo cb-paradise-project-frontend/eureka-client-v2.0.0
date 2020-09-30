@@ -12,6 +12,7 @@ import Birthday from './SubPages/Birthday';
 import Mobile from './SubPages/Mobile';
 import * as action from './Reducer/Action/actionCreator';
 import Button from '../../components/Button';
+import isFormFilled from './utils/isFormFilled';
 
 const initialState = {
   photo: '',
@@ -104,17 +105,8 @@ export default function CreateProfile({ pageToggler }) {
     pageToggler();
   };
 
-  const isFilled = (stateValue) => {
-    if (typeof stateValue === 'object') {
-      const valueArray = Object.values(stateValue);
-      const result = valueArray.filter((value) => value);
-      return (result.length === valueArray.length);
-    }
-    return !!stateValue;
-  };
-
   const createBirthdayLabel = () => {
-    if (!isFilled(birthday)) return null;
+    if (!isFormFilled(birthday)) return null;
     const { day, month, year } = birthday;
     const birthdayObj = new Date(year, month - 1, day);
     const formattedBirthday = birthdayObj.toDateString().replace(/[^\s]+/, '');
@@ -183,7 +175,7 @@ export default function CreateProfile({ pageToggler }) {
           itemName={name}
           handleClick={handleProfileBtnClick(page)}
           statusLabel={statusLabel}
-          checked={isFilled(value)}
+          checked={isFormFilled(value)}
           key={name}
         />
       ))}

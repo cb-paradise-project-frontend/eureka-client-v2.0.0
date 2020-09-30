@@ -18,24 +18,24 @@ class Landing extends React.Component {
         [
           {
             id: 1,
-            articleImg: require("../../assets/garden-party.png"),
-            articleTitle: "How to paint your kitchen cabinets",
+            articleImg: require("../../assets/article-bedroom.png"),
+            articleTitle: "40 Wonderfully white bedroom ideas",
             articleContent:
-              "Looking to refresh the kitchen? It’s easier than you think…",
+              "Gone are the days of boring, stuffy white bedrooms. Infuse light and life into your space with pops of colour and boho touches.",
           },
           {
             id: 2,
-            articleImg: require("../../assets/beautiful-backyard.png"),
-            articleTitle: "Bedroom plants for your room",
+            articleImg: require("../../assets/article-bedroom-black.png"),
+            articleTitle: "35+ Black and white bedroom ideas",
             articleContent:
-              "Create your own lush, indoor jungle with plenty of potted greens!",
+              "Renovating your bedroom? You simply can’t go wrong with this classic colour pairing.",
           },
           {
            id: 3,
-            articleImg: require("../../assets/bedroom-plant.png"),
-            articleTitle: "35 Dreamy boho bedroom ideas",
+            articleImg: require("../../assets/article-curtain.png"),
+            articleTitle: "35 Modern bedroom curtain ideas",
             articleContent:
-              "Take your bedroom from basic to bohemian with these fabulous colourful ideas!",
+              "It’s time to ditch the old musty curtains and frame your windows with something beautiful.",
           },
         ],
 

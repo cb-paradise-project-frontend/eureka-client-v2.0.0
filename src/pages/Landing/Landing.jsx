@@ -6,7 +6,6 @@ import OtherJobs from "./OtherJobs";
 import MeetTasker from "./MeetTasker";
 import ThingsToKnow from "./ThingsToKnow";
 import Articles from "./Articles";
-import TopCategories from "./TopCategories";
 import Footer from "./Footer";
 
 class Landing extends React.Component {

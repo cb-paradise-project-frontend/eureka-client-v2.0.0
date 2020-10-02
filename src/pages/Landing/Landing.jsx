@@ -39,6 +39,52 @@ class Landing extends React.Component {
           },
         ],
 
+        feature: [
+          {
+            img:{
+              featureImg: require("../../assets/secure-payments.png"),
+
+            },
+            content: {
+              subhead:"Secure Payments",
+              describe:"We hold task payments secure with our PCI-DSS compliant Airtasker Pay – so tasks can be completed knowing payment is there when you're done.",
+            },
+          },
+
+          {
+            img:{
+              featureImg: require("../../assets/top-rated-insurance.png"),
+
+            },
+            content: {
+              subhead:"Top rated insurance",
+              describe:"Insurance is there to ease any worries - making sure the Tasker has liability insurance from CGU while performing most task activities. T&C's apply.",
+            },
+          },
+
+          {
+            img:{
+              featureImg: require("../../assets/verified-badges.png"),
+
+            },
+            content: {
+              subhead:"Verified badges",
+              describe:"Badges give members a bit more verified info when deciding who to work with on a task. Each badge has certain requirements that must be met and verified before they’re shown on the member's profile.",
+            },
+          },
+
+          {
+            img:{
+              featureImg: require("../../assets/here-if-you-need-us.png"),
+
+            },
+            content: {
+              subhead:"Here if you need us",
+              describe:"Our comprehensive Help Centre and dedicated Airtasker Support are on hand 24/7 to help with any questions, queries or issues you might have.",
+            },
+          },
+        ],
+
         tasker: [
           {
             img: {
@@ -88,6 +134,8 @@ class Landing extends React.Component {
           },
         ],
 
+
+
       
     };
   }
@@ -100,7 +148,7 @@ class Landing extends React.Component {
       <OtherJobs />
       <TopCategories />
       <MeetTasker data={this.state.tasker}/>
-      <ThingsToKnow />
+      <ThingsToKnow data={this.state.feature}/>
       <Articles data={this.state.article}/>
       <Footer />
     </>

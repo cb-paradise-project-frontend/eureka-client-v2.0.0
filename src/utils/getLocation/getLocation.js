@@ -1,7 +1,7 @@
 function getLocation(type, callback) {
   const options = {
     componentRestrictions: {country: 'au'},
-    types: [`(${type})`],
+    types: [`${type}`], //regions full_address 
   };
   
   const input = document.getElementById('searchTextField');
@@ -16,7 +16,7 @@ function getLocation(type, callback) {
     const addressObj = autocomplete.getPlace();
     if(addressObj) {
       const addressQuery = addressObj.formatted_address;
-      callback(addressQuery);
+      callback(addressQuery); 
     }
   }
 }

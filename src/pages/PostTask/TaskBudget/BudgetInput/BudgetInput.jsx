@@ -37,6 +37,7 @@ function BudgetInput({
             type="text"
             onChange={onBudgetHour}
             onInput={validateInput}
+            defaultValue={"1"}
           />
           <div className={styles.units}> /hrs </div>
         </React.Fragment>

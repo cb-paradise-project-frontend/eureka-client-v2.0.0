@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from '../PostTask.module.scss';
 
-import WelcomeImg from './WelcomeImg';
-import WelcomeMsg from './WelcomeMsg';
+import WelcomeImg from './components/WelcomeImg';
+import WelcomeMsg from './components/WelcomeMsg';
 
 function Welcome() {
   return (

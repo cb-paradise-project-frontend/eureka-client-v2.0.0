@@ -146,9 +146,8 @@ class Landing extends React.Component {
       <Home />
       <TaskCategories />
       <OtherJobs />
-      <TopCategories />
-      <MeetTasker data={this.state.tasker}/>
       <ThingsToKnow data={this.state.feature}/>
+      <MeetTasker data={this.state.tasker}/>
       <Articles data={this.state.article}/>
       <Footer />
     </>

@@ -15,7 +15,7 @@ function ThingsToKnow(props) {
       </div>
 
       {data.map((singleData, index) => (
-        <FeatureBlock key={index} data={singleData} />
+        <FeatureBlock imgFirst={!(index % 2)} key={index} data={singleData} />
       ))}
       
     </div>
@@ -23,3 +23,4 @@ function ThingsToKnow(props) {
 }
 
 export default ThingsToKnow;
+

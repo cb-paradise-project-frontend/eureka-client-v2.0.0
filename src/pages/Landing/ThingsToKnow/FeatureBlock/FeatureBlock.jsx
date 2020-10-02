@@ -7,10 +7,19 @@ import FeatureContent from "./FeatureContent";
 
 function FeatureBlock(props) {
   return (
-    <div className={styles.FeatureContainer}>
+    props.imgFirst ? 
+    (
+      <div className={styles.FeatureContainer}>
       <FeatureImg data ={props.data.img} />
       <FeatureContent data={props.data.content} />
     </div>
+    ) : (
+      <div className={styles.FeatureContainer}>
+      <FeatureContent data={props.data.content} />
+      <FeatureImg data ={props.data.img} />
+    </div>
+    )
+    
   );
 }
 

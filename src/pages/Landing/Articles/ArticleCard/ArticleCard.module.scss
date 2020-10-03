@@ -1,5 +1,6 @@
 .ArticleCard {
   display: inline-block;
+  position: relative;
   width: 300px;
   height: 380px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 15px 0px;
@@ -10,6 +11,7 @@
   border-radius: 4px;
   background: white;
   margin: 16px 16px 0px 0px;
+  overflow: hidden;
 }
 
 .articleTitle {
@@ -48,11 +50,12 @@
 }
 
 .readMore {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
   color: #008fb4;
   text-decoration: none;
   text-align: left;
-  padding: 0px 16px;
-  margin: 8px 0px 0px;
 }
 .readMore :hover {
   content: "";
@@ -71,6 +74,6 @@
   background-position: center top;
 }
 
-// .articleImg:hover {
-//   transform: scale(1.4);
-// }
+.articleImg:hover {
+  transform: scale(1.1);
+}

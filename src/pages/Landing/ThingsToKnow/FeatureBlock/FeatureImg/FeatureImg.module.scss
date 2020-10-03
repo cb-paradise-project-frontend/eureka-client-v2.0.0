@@ -1,0 +1,7 @@
+.FeatureImg {
+    width: 50%;
+    transition: transform 0.5s ease 0s;
+}
+.FeatureImg:hover {
+    transform: scale(1.1);
+  }

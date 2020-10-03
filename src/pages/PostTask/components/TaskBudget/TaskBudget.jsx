@@ -1,11 +1,11 @@
 import React from 'react';
 
-import styles from '../PostTask.module.scss';
+import styles from '../../PostTask.module.scss';
 
-import BudgetRadio from '../../../components/Radio';
-import BudgetInput from './BudgetInput';
-import BudgetHelp from './BudgetHelp';
-import BudgetDisplay from './BudgetDisplay';
+import BudgetRadio from '../../../../components/Radio';
+import BudgetInput from './components/BudgetInput';
+import BudgetHelp from './components/BudgetHelp';
+import BudgetDisplay from './components/BudgetDisplay';
 
 class TaskBudget extends React.Component{
   constructor(props) {

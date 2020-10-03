@@ -5,7 +5,6 @@ import styles from './Radio.module.scss';
 function Radio({
   radioName,
   radioTitle,
-  id,
   radioHint,
   isChecked,
   handleClick,
@@ -16,7 +15,6 @@ function Radio({
         <input 
           className={styles.radio}
           name={radioName}
-          id={id}
           type="radio" 
           defaultChecked={isChecked}
           onClick={handleClick}

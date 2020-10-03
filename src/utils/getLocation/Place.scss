@@ -1,21 +1,24 @@
 .pac-container {
-  padding:0 1px;
+  border-radius: 5px;
   .pac-icon {
-    display: none !important;
+    display: none;
+  }
+  .pac-item { 
+    line-height: 30px;
+    border-bottom: 1px solid transparent;
+    font-size: 13px;
+    font-weight: bold;
+    .pac-item-query {
+      font-size: 12px;
+    }
+   
+    &:hover {
+      background-color: #1590b2;
+      color: white;
+      cursor: pointer;
+    }
   }
 }
 
-.pac-container .pac-item {
-  color: #333;
-  padding: 5px 10px;
-  margin: 0 -1px;
-  display: block;
-  position: relative;
-  line-height: 40px;
-  border-bottom: 1px solid #ccc;
-  font-size: 20px;
-}
 
-.pac-container .pac-item:last-child {
-  border: 0;
-}
+

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import styles from '../../PostTask.module.scss';
+import styles from '../../../../PostTask.module.scss';
 
-import ErrorMessage from '../../../../components/ErrorMessage';
+import ErrorMessage from '../../../../../../components/ErrorMessage';
 
 function BudgetInput({
   isBudgetInvalid,

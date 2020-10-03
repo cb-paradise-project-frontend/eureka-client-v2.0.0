@@ -2,10 +2,10 @@ import React from 'react';
 
 import styles from './PostTask.module.scss';
 
-import Welcome from './Welcome';
+import Welcome from './components/Welcome';
 import TaskDescription from './TaskDescription';
 import TaskLocationAndTime from './TaskLocationAndTime';
-import TaskBudget from './TaskBudget';
+import TaskBudget from './components/TaskBudget';
 import JobTitleInput from './TaskDescription/JobTitleInput';
 import JobDetailsInput from './TaskDescription/JobDetailsInput';
 import TaskDatePicker from '../../components/DateSelector';

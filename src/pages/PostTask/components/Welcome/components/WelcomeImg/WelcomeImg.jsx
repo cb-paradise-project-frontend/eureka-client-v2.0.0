@@ -1,13 +1,19 @@
 import React from 'react';
 
-import styles from '../../PostTask.module.scss';
+import styled from 'styled-components';
 
 import png from './welcome.png';
 
+const Img = styled.img`
+  width: 25em;
+  height: auto;
+  margin-left: 2em;
+  align-items: center;
+`
+
 function WelcomeImg() {
   return (
-    <img
-      className={styles.img}
+    <Img
       src={png}
       alt="Welcome"
     />

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import styles from '../../PostTask.module.scss';
+import styles from '../../../../PostTask.module.scss';
 
-import ErrorMessage from '../../../../components/ErrorMessage';
+import ErrorMessage from '../../../../../../components/ErrorMessage';
 
 function BudgetInput({
   isBudgetInvalid,
@@ -37,6 +37,7 @@ function BudgetInput({
             type="text"
             onChange={onBudgetHour}
             onInput={validateInput}
+            defaultValue={"1"}
           />
           <div className={styles.units}> /hrs </div>
         </React.Fragment>

@@ -2,7 +2,7 @@ import React from 'react'
 
 import styles from '../../PostTask.module.scss'
 
-import TextArea from '../../../../components/TextArea';
+import TextArea from '../../../../../components/TextArea';
 
 export default function JobDetailsInput({
   jobDetails,

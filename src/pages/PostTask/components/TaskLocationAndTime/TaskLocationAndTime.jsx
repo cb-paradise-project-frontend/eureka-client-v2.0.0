@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import styles from '../PostTask.module.scss';
+import styles from '../../PostTask.module.scss';
 
 import TaskDeliveryMethod from './TaskDeliveryMethod';
 

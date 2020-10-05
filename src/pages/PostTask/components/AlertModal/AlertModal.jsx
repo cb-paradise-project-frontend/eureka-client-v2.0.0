@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './AlertModal.module.scss';
 
-import Button from '../../../components/Button';
-import Modal from '../../../components/Modal';
+import Button from '../../../../components/Button';
+import Modal from '../../../../components/Modal';
 
 export default function AlertModal({ onLeftBtnClick, onRightBtnClick, onRequestClose }) {
   const title = 'Sorry to see you go...';

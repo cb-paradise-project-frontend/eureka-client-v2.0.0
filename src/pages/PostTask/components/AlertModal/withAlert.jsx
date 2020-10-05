@@ -1,5 +1,5 @@
 import React from 'react';
-import { useToggleContent } from '../../../components/ToggleContent';
+import { useToggleContent } from '../../../../components/ToggleContent';
 
 import AlertModal from './AlertModal';
 

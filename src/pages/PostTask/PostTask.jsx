@@ -3,16 +3,16 @@ import React from 'react';
 import styles from './PostTask.module.scss';
 
 import Welcome from './components/Welcome';
-import TaskDescription from './TaskDescription';
-import TaskLocationAndTime from './TaskLocationAndTime';
+import TaskDescription from './components/TaskDescription';
+import TaskLocationAndTime from './components/TaskLocationAndTime';
 import TaskBudget from './components/TaskBudget';
-import JobTitleInput from './TaskDescription/JobTitleInput';
-import JobDetailsInput from './TaskDescription/JobDetailsInput';
+import JobTitleInput from './components/TaskDescription/components/JobTitleInput';
+import JobDetailsInput from './components/TaskDescription/components/JobDetailsInput';
 import TaskDatePicker from '../../components/DateSelector';
 import Place from '../../utils/getLocation';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
-import { withAlert } from './AlertModal';
+import { withAlert } from './components/AlertModal';
 
 class PostTask extends React.Component {
   constructor(props) {

@@ -5,12 +5,13 @@ import styles from './Browse.module.scss';
 
 import TaskList from './TaskList';
 import TaskDetail from './TaskDetail';
+import getTaskList from '../../apis/Task/getTaskList';
 
 const testData = {
   title: 'Roof repair',
   status: 'OPEN',
   budget: '120',
-  poster: {
+  postedBy: {
     name: 'Tifa',
     avatar: '',
   },
@@ -50,21 +51,26 @@ class Browse extends Component {
     this.addQuestion = this.addQuestion.bind(this);
   }
 
-  initializeState() {
-    const taskList = [];
+  async initializeState() {
+    // const taskList = [];
     const questionList = [];
-    tasks.forEach(({ id, questions, ...otherInfo }) => {
-      questionList.push({
-        id,
-        questions,
-      });
-      taskList.push({
-        id,
-        ...otherInfo,
-      });
-    });
+    // tasks.forEach(({ id, questions, ...otherInfo }) => {
+    //   questionList.push({
+    //     id,
+    //     questions,
+    //   });
+    //   taskList.push({
+    //     id,
+    //     ...otherInfo,
+    //   });
+    // });
+
+    const { data: { data } } = await getTaskList();
+
+    console.log(data);
+
     this.setState({
-      taskList,
+      taskList: data,
       questionList,
     });
   }
@@ -72,12 +78,6 @@ class Browse extends Component {
   componentDidMount() {
     this.initializeState();
   };
-  //TODO 既要get也要put 龙哥
-  //状态是嵌套array，如果只是为了update一个reply，如果把整个复制拿出来，添加完reply后再上传
-  //task -> question[-> reply] -> desc -> budget -> location -> time -> User[Poster, Tasker]
-  //当添加question的时候，是等待upload成功之后，从后端拿到然后刷新，还是不用等，前端根据state刷新
-  //students.hobbies.basketball
-  //embedded, reference 
 
   addQuestion(taskId) {
     const questionIndex = this.state.questionList.findIndex(
@@ -90,7 +90,7 @@ class Browse extends Component {
           const selectedQuestionObj = newQuestionList[questionIndex];
           const newQuestion = {
             id: selectedQuestionObj.length + 1,
-            poster: user,
+            postedBy: user,
             content: question,
           };
           selectedQuestionObj.questions.unshift(newQuestion);

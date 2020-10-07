@@ -154,24 +154,3 @@
   padding: 0 8px;
 }
 
-%after_slide {
-  display: block;
-  content: " ";
-  height: 3px;
-  background: rgb(125, 179, 67);
-  transition: all 0.8s ease 0s;
-}
-
-.slide_screen {
-  width: 100%;
-  height: 3px;
-  background-color: rgb(246, 248, 253);
-}
-.slide_screen::after {
-  width: var(--width, 30%);
-  display: block;
-  content: " ";
-  height: 3px;
-  background: rgb(125, 179, 67);
-  transition: all 0.8s ease 0s;
-}

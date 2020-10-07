@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 
 import styles from './TaskDetail.module.scss';
 
@@ -11,10 +11,9 @@ import Question from './Question';
 import { TaskProvider } from '../TaskContext';
 import { EXPIRED } from '../../../components/Status';
 
-function TaskDetail({
-  taskList, onAskQuestion, match: { params: { taskId } },
-}) {
-  // TODO: use a default page when no task selected
+export default function TaskDetail({ taskList, onAskQuestion }) {
+  const { params: { taskId } } = useRouteMatch();
+
   const task = taskList.find(task => task.id === taskId);
   if (!task) return null;
 
@@ -48,5 +47,3 @@ function TaskDetail({
     </div>
   );
 }
-
-export default withRouter(TaskDetail);

@@ -9,8 +9,6 @@ function Question({ questionList, addQuestion }) {
   const title = `QUESTION(${questionList.length})`;
   const notice = `Please don't share personal info – insurance won't apply to tasks done privately!`;
 
-  console.log(questionList);
-
   return (
     <div className={styles.question_wrapper} >
       <div className={styles.title} >

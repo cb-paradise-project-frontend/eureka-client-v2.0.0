@@ -22,7 +22,7 @@ const testData = {
             - install synthetic turf
             - landscaping design and install
             - remove and upgrade existing waterfall feature into the pool`,
-  questions: [],
+  comments: [],
 };
 
 function createData(size, data) {
@@ -54,48 +54,22 @@ class Browse extends Component {
   }
 
   async loadTaskList() {
-    // const taskList = [];
-    // tasks.forEach(({ id, questions, ...otherInfo }) => {
-    //   questionList.push({
-    //     id,
-    //     questions,
-    //   });
-    //   taskList.push({
-    //     id,
-    //     ...otherInfo,
-    //   });
-    // });
-
     const { data: { data } } = await getTaskList();
 
+    // without backend
+    const taskList = tasks;
+
+    // with backend
+    // const taskList = data;
+
     this.setState({
-      taskList: data,
+      taskList,
     });
   }
 
   componentDidMount() {
     this.loadTaskList();
   }
-
-  // addQuestion(taskId) {
-  //   const questionIndex = this.state.questionList.findIndex(
-  //     (question) => question.id === taskId,
-  //   );
-  //   return questionIndex >= 0 &&
-  //     ((question, user) => {
-  //       this.setState((prevState) => {
-  //         const newQuestionList = prevState.questionList.map((questionObj) => questionObj);
-  //         const selectedQuestionObj = newQuestionList[questionIndex];
-  //         const newQuestion = {
-  //           id: selectedQuestionObj.length + 1,
-  //           postedBy: user,
-  //           content: question,
-  //         };
-  //         selectedQuestionObj.questions.unshift(newQuestion);
-  //         return { questionList: newQuestionList };
-  //       });
-  //     });
-  // }
 
   async onAskQuestion(taskId, input) {
     await askQuestion(testUserId, taskId, input);

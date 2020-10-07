@@ -6,7 +6,7 @@ import QuestionAvatar from '../QuestionAvatar';
 
 export default function QuestionList({ questions }) {
   const questionList = questions.map(({ 
-    id, poster:{ avatar, name }, content 
+    id, postedBy:{ avatar, name }, content 
   }, index) =>
     <div 
       className={styles.question_wrapper} 

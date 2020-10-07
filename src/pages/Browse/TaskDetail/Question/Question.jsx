@@ -6,7 +6,8 @@ import QuestionInput from './QuestionInput';
 import QuestionList from './QuestionList';
 
 function Question({ questions, askQuestion }) {
-  const title = `QUESTION(${questions.length})`;
+  const questionCount = questions && questions.length;
+  const title = `QUESTION(${questionCount || 0})`;
   const notice = `Please don't share personal info – insurance won't apply to tasks done privately!`;
 
   return (
@@ -20,9 +21,11 @@ function Question({ questions, askQuestion }) {
       <div className={styles.input_wrapper} >
         <QuestionInput onSubmit={askQuestion} />
       </div>
-      <div className={styles.question_list_wrapper}>
-        <QuestionList questions={questions} />
-      </div>
+      {questions &&
+        <div className={styles.question_list_wrapper}>
+          <QuestionList questions={questions} />
+        </div>
+      }
     </div>
   );
 };

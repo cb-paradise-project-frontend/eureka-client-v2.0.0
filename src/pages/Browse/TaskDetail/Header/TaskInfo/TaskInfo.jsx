@@ -6,7 +6,7 @@ import Avatar from '../../../../../components/Avatar';
 
 const cx = classNames.bind(styles);
 
-function TaskInfo({ poster, location, due }) {
+function TaskInfo({ postedBy, location, due }) {
   const TaskInfoItem = ({ title, content }) => {
     const displayContent = content.name || content;
 
@@ -40,7 +40,7 @@ function TaskInfo({ poster, location, due }) {
   const taskInfoList = [
     {
       title: 'POSTED BY',
-      data: poster,
+      data: postedBy,
     },
     {
       title: 'LOCATION',

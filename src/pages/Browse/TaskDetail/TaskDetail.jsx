@@ -18,7 +18,7 @@ function TaskDetail({
   const task = taskList.find(task => task.id === taskId);
   if (!task) return null;
 
-  const { questions } = questionList.find(questionItem => questionItem.id === taskId);
+  const questions = questionList.find(questionItem => questionItem.id === taskId);
   const askQuestion = addQuestion(taskId);
 
   const { status, details } = task;

@@ -129,7 +129,7 @@
   border-radius: 0.5em;
   display: none;
 }
-.want_help:hover .budget_help{
+.want_help:hover .budget_help {
   display: flex;
 }
 
@@ -148,8 +148,30 @@
   margin-block-end: 0.3em;
 }
 
-.button{
+.button {
   width: 100%;
   max-width: 50%; 
   padding: 0 8px;
+}
+
+%after_slide {
+  display: block;
+  content: " ";
+  height: 3px;
+  background: rgb(125, 179, 67);
+  transition: all 0.8s ease 0s;
+}
+
+.slide_screen {
+  width: 100%;
+  height: 3px;
+  background-color: rgb(246, 248, 253);
+}
+.slide_screen::after {
+  width: var(--width, 30%);
+  display: block;
+  content: " ";
+  height: 3px;
+  background: rgb(125, 179, 67);
+  transition: all 0.8s ease 0s;
 }

@@ -54,13 +54,12 @@ class Browse extends Component {
   }
 
   async loadTaskList() {
-    const { data: { data } } = await getTaskList();
-
     // without backend
     const taskList = tasks;
 
     // with backend
     // const taskList = data;
+    // const { data: { data } } = await getTaskList();
 
     this.setState({
       taskList,

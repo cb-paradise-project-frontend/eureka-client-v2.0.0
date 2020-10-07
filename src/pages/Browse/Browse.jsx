@@ -6,6 +6,7 @@ import styles from './Browse.module.scss';
 import TaskList from './TaskList';
 import TaskDetail from './TaskDetail';
 import getTaskList from '../../apis/getTaskList';
+import askQuestion from '../../apis/askQuestion';
 
 const testData = {
   title: 'Roof repair',
@@ -41,19 +42,19 @@ tasks[1].status = 'ASSIGNED';
 tasks[2].status = 'COMPLETED';
 tasks[3].status = 'EXPIRED';
 
+const testUserId = '5f7a9c0079e9c3a3747bb6e1';
+
 class Browse extends Component {
   constructor(props) {
     super(props);
     this.state = {
       taskList: [],
-      questionList: [],
     };
-    this.addQuestion = this.addQuestion.bind(this);
+    this.onAskQuestion = this.onAskQuestion.bind(this);
   }
 
-  async initializeState() {
+  async loadTaskList() {
     // const taskList = [];
-    const questionList = [];
     // tasks.forEach(({ id, questions, ...otherInfo }) => {
     //   questionList.push({
     //     id,
@@ -67,41 +68,43 @@ class Browse extends Component {
 
     const { data: { data } } = await getTaskList();
 
-    console.log(data);
-
     this.setState({
       taskList: data,
-      questionList,
     });
   }
 
   componentDidMount() {
-    this.initializeState();
-  };
+    this.loadTaskList();
+  }
 
-  addQuestion(taskId) {
-    const questionIndex = this.state.questionList.findIndex(
-      (question) => question.id === taskId,
-    );
-    return questionIndex >= 0 &&
-      ((question, user) => {
-        this.setState((prevState) => {
-          const newQuestionList = prevState.questionList.map((questionObj) => questionObj);
-          const selectedQuestionObj = newQuestionList[questionIndex];
-          const newQuestion = {
-            id: selectedQuestionObj.length + 1,
-            postedBy: user,
-            content: question,
-          };
-          selectedQuestionObj.questions.unshift(newQuestion);
-          return { questionList: newQuestionList };
-        });
-      });
+  // addQuestion(taskId) {
+  //   const questionIndex = this.state.questionList.findIndex(
+  //     (question) => question.id === taskId,
+  //   );
+  //   return questionIndex >= 0 &&
+  //     ((question, user) => {
+  //       this.setState((prevState) => {
+  //         const newQuestionList = prevState.questionList.map((questionObj) => questionObj);
+  //         const selectedQuestionObj = newQuestionList[questionIndex];
+  //         const newQuestion = {
+  //           id: selectedQuestionObj.length + 1,
+  //           postedBy: user,
+  //           content: question,
+  //         };
+  //         selectedQuestionObj.questions.unshift(newQuestion);
+  //         return { questionList: newQuestionList };
+  //       });
+  //     });
+  // }
+
+  async onAskQuestion(taskId, input) {
+    await askQuestion(testUserId, taskId, input);
+    this.loadTaskList();
   }
 
   render() {
-    const { taskList, questionList } = this.state;
-    const { props, addQuestion } = this;
+    const { taskList } = this.state;
+    const { props, onAskQuestion } = this;
     const { match: { path } } = props;
     const defaultTaskId = taskList[0] && taskList[0].id;
 
@@ -113,8 +116,7 @@ class Browse extends Component {
           <Route path={`${path}/:taskId`} >
             <TaskDetail
               taskList={taskList}
-              questionList={questionList}
-              addQuestion={addQuestion}
+              onAskQuestion={onAskQuestion}
             />
           </Route>
         </div>

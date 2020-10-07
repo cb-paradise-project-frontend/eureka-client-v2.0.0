@@ -12,14 +12,17 @@ import { TaskProvider } from '../TaskContext';
 import { EXPIRED } from '../../../components/Status';
 
 function TaskDetail({
-  taskList, questionList, addQuestion, match: { params: { taskId } },
+  taskList, onAskQuestion, match: { params: { taskId } },
 }) {
   // TODO: use a default page when no task selected
   const task = taskList.find(task => task.id === taskId);
   if (!task) return null;
 
-  const questions = questionList.find(questionItem => questionItem.id === taskId);
-  const askQuestion = addQuestion(taskId);
+  const questionList = task.comments;
+
+  const addQuestion = (input) => {
+    onAskQuestion(taskId, input);
+  };
 
   const { status, details } = task;
 
@@ -38,8 +41,8 @@ function TaskDetail({
           </div>
         </Section>
         <Question
-          questions={questions}
-          askQuestion={askQuestion}
+          questionList={questionList}
+          addQuestion={addQuestion}
         />
       </TaskProvider>
     </div>

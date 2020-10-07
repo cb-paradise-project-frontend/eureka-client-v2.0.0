@@ -5,10 +5,11 @@ import styles from './Question.module.scss';
 import QuestionInput from './QuestionInput';
 import QuestionList from './QuestionList';
 
-function Question({ questions, askQuestion }) {
-  const questionCount = questions && questions.length;
-  const title = `QUESTION(${questionCount || 0})`;
+function Question({ questionList, addQuestion }) {
+  const title = `QUESTION(${questionList.length})`;
   const notice = `Please don't share personal info – insurance won't apply to tasks done privately!`;
+
+  console.log(questionList);
 
   return (
     <div className={styles.question_wrapper} >
@@ -19,11 +20,11 @@ function Question({ questions, askQuestion }) {
         {notice}
       </div>
       <div className={styles.input_wrapper} >
-        <QuestionInput onSubmit={askQuestion} />
+        <QuestionInput addQuestion={addQuestion} />
       </div>
-      {questions &&
+      {questionList.length > 0 &&
         <div className={styles.question_list_wrapper}>
-          <QuestionList questions={questions} />
+          <QuestionList questions={questionList} />
         </div>
       }
     </div>

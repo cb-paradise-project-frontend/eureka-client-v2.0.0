@@ -18,10 +18,10 @@ const testData = {
   },
   location: 'Kurunjang VIC 3337, Australia',
   due: 'Monday, 24th Aug 2020',
-  details: `-remove existing bamboo fence - supply and install new fence (open for ideas)
-            - install synthetic turf
-            - landscaping design and install
-            - remove and upgrade existing waterfall feature into the pool`,
+  description: `- remove existing bamboo fence - supply and install new fence (open for ideas)
+- install synthetic turf
+- landscaping design and install
+- remove and upgrade existing waterfall feature into the pool`,
   comments: [],
 };
 
@@ -58,8 +58,8 @@ class Browse extends Component {
     const taskList = tasks;
 
     // with backend
-    // const taskList = data;
     // const { data: { data } } = await getTaskList();
+    // const taskList = data;
 
     this.setState({
       taskList,

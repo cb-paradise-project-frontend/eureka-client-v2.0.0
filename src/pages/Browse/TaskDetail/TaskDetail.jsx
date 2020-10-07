@@ -23,7 +23,7 @@ export default function TaskDetail({ taskList, onAskQuestion }) {
     onAskQuestion(taskId, input);
   };
 
-  const { status, details } = task;
+  const { status, description } = task;
 
   return (
     <div className={styles.task_detail} >
@@ -31,7 +31,7 @@ export default function TaskDetail({ taskList, onAskQuestion }) {
         <SideBar />
         <Header />
         <Section title='DETAILS' >
-          {details}
+          {description}
         </Section>
         <Section title='OFFER' >
           <div className={styles.offer_icon} />

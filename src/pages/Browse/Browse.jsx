@@ -5,7 +5,7 @@ import styles from './Browse.module.scss';
 
 import TaskList from './TaskList';
 import TaskDetail from './TaskDetail';
-import getTaskList from '../../apis/Task/getTaskList';
+import getTaskList from '../../apis/getTaskList';
 
 const testData = {
   title: 'Roof repair',

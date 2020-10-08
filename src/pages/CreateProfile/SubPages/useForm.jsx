@@ -1,5 +1,4 @@
 import { useState } from "react";
-import isFormFilled from "../utils/isFormFilled";
 
 export default function useForm(config, initValues) {
   const formKeyArray = Object.keys(config);

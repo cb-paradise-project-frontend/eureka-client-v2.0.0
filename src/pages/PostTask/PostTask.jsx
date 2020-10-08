@@ -11,6 +11,7 @@ import JobDetailsInput from './components/TaskDescription/components/JobDetailsI
 import TaskDatePicker from '../../components/DateSelector';
 import Place from '../../utils/getLocation';
 import Button from '../../components/Button';
+import ProgressBar from './components/ProgressBar';
 import Modal from '../../components/Modal';
 import { withAlert } from './components/AlertModal';
 
@@ -233,7 +234,7 @@ class PostTask extends React.Component {
             taskPlace={taskPlace}
             handleAddressQuery={this.handlePlace}
             onRadioCheck={this.onRadioCheck}
-            method={this.state.method}
+            method={method}
           />
         ),
       },
@@ -241,7 +242,7 @@ class PostTask extends React.Component {
         title: 'Suggest how much',
         content: (
           <TaskBudget
-            taskBudget={this.state.taskBudget}
+            taskBudget={taskBudget}
             isBudgetInvalid={((taskBudget < this.minBudget || taskBudget > this.maxBudget) && touch)}
             handleBudgetWageClick={this.handleBudgetWageClick}
             onBudgetHour={this.onBudgetHour}
@@ -262,11 +263,13 @@ class PostTask extends React.Component {
 
     const { onRequestClose } = this.props;
 
+    
     return (
       <Modal onRequestClose={onRequestClose} >
         <Modal.Header>
           {title}
         </Modal.Header>
+        <ProgressBar currentStep={currentStep} />
         <Modal.Content>
           {content}
         </Modal.Content>

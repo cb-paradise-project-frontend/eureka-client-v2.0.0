@@ -2,10 +2,7 @@ import React from 'react';
 
 import styles from './Question.module.scss';
 
-import QuestionInput from './QuestionInput';
-import QuestionList from './QuestionList';
-
-function Question({ questionList, addQuestion }) {
+function Question({ questionInput, questionList }) {
   const title = `QUESTION(${questionList.length})`;
   const notice = `Please don't share personal info – insurance won't apply to tasks done privately!`;
 
@@ -18,13 +15,11 @@ function Question({ questionList, addQuestion }) {
         {notice}
       </div>
       <div className={styles.input_wrapper} >
-        <QuestionInput addQuestion={addQuestion} />
+        {questionInput}
       </div>
-      {questionList.length > 0 &&
-        <div className={styles.question_list_wrapper}>
-          <QuestionList questions={questionList} />
-        </div>
-      }
+      <div className={styles.question_list_wrapper}>
+        {questionList}
+      </div>
     </div>
   );
 };

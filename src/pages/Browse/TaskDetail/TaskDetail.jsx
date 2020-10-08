@@ -10,6 +10,8 @@ import OfferButton from './OfferButton';
 import Question from './Question';
 import { TaskProvider } from '../TaskContext';
 import { EXPIRED } from '../../../components/Status';
+import QuestionInput from './Question/QuestionInput';
+import QuestionList from './Question/QuestionList';
 
 export default function TaskDetail({ taskList, onAskQuestion }) {
   const { params: { taskId } } = useRouteMatch();
@@ -17,11 +19,19 @@ export default function TaskDetail({ taskList, onAskQuestion }) {
   const task = taskList.find(task => task.id === taskId);
   if (!task) return null;
 
-  const questionList = task.comments;
+  const { comments } = task;
 
   const addQuestion = (input) => {
     onAskQuestion(taskId, input);
   };
+
+  const questionInput = (
+    <QuestionInput addQuestion={addQuestion} />
+  );
+
+  const questionList = (
+    <QuestionList questions={comments} />
+  );
 
   const { status, description } = task;
 
@@ -40,8 +50,8 @@ export default function TaskDetail({ taskList, onAskQuestion }) {
           </div>
         </Section>
         <Question
+          questionInput={questionInput}
           questionList={questionList}
-          addQuestion={addQuestion}
         />
       </TaskProvider>
     </div>

@@ -42,7 +42,7 @@ tasks[1].status = 'ASSIGNED';
 tasks[2].status = 'COMPLETED';
 tasks[3].status = 'EXPIRED';
 
-const testUserId = '5f7a9c0079e9c3a3747bb6e1';
+const testUserId = '5f7e8665b7edfa557c89dbdf';
 
 class Browse extends Component {
   constructor(props) {
@@ -55,11 +55,11 @@ class Browse extends Component {
 
   async loadTaskList() {
     // without backend
-    const taskList = tasks;
+    // const taskList = tasks;
 
     // with backend
-    // const { data: { data } } = await getTaskList();
-    // const taskList = data;
+    const { data: { data } } = await getTaskList();
+    const taskList = data;
 
     this.setState({
       taskList,

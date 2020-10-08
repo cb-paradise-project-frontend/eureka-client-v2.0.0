@@ -175,7 +175,7 @@ export default function CreateProfile({ pageToggler }) {
           itemName={name}
           handleClick={handleProfileBtnClick(page)}
           statusLabel={statusLabel}
-          checked={isFormFilled(value)}
+          checked={isFormFilled(value)} // TODO: bypass optional input "lineTwo" in BillingAddress
           key={name}
         />
       ))}

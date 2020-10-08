@@ -16,13 +16,13 @@ export default function BankAccount({ storedValue, onSubmit }) {
   const introduction = `Please provide your bank details so you can get paid. We don't take any money from your account.`;
   const fieldElementList = [
     {
-      label: 'Account holder name',
+      name: 'Account holder name',
       placeholder: 'Alice',
       value: holder,
       handleChange: setHolder,
     },
     {
-      label: 'Account number',
+      name: 'Account number',
       placeholder: '12345678',
       value: accountNumber,
       maxLength: 9,
@@ -30,7 +30,7 @@ export default function BankAccount({ storedValue, onSubmit }) {
       handleChange: setAccountNumber,
     },
     {
-      label: 'BSB',
+      name: 'BSB',
       placeholder: '000-000',
       value: bsb,
       maxLength: 7,
@@ -41,12 +41,12 @@ export default function BankAccount({ storedValue, onSubmit }) {
 
   const validations = [
     {
-      label: 'Account number',
+      name: 'Account number',
       condition: (accountNumber.length > 4 && accountNumber.length < 10),
       message: 'Invalid account number: must be 5 - 9 digits.',
     },
     {
-      label: 'BSB',
+      name: 'BSB',
       condition: (bsb.length > 6),
       message: 'Invalid routing number for AU. The number must contain both the bank code and the branch code, and should be in the format xxxxxx.',
     },
@@ -57,38 +57,38 @@ export default function BankAccount({ storedValue, onSubmit }) {
   };
 
   const fieldList = fieldElementList.map(({
-    label, placeholder, value, maxLength, validator, handleChange,
+    name, placeholder, value, maxLength, validator, handleChange,
   }) => (
-    <div className={styles.input_wrapper} key={label} >
+    <div className={styles.input_wrapper} key={name} >
       <Input
-        label={label}
+        label={name}
         placeholder={placeholder}
         value={value}
         validator={validator}
         handleChange={handleChange}
-        isError={label === highlightField}
+        isError={name === highlightField}
         maxLength={maxLength}
         onFocus={resetHighLight}
       />
     </div>
   ));
 
-  const checkEmpty = () => {
+  const findEmptyField = () => {
     const emptyField = fieldElementList.find(({ value }) => !value);
     if (!emptyField) return false;
-    const { label } = emptyField;
-    return { label, message: `${label} is required.` };
+    const { name } = emptyField;
+    return { name, message: `${name} is required.` };
   };
 
   const getError = () => {
     const error = validations.find(validation => !validation.condition);
-    return checkEmpty() || error || false;
+    return findEmptyField() || error || false;
   };
 
   const handleSubmit = () => {
     if (getError()) {
       toggleTest(true);
-      setHighlightField(getError().label);
+      setHighlightField(getError().name);
     } else {
       const bankAccount = {
         holder, accountNumber, bsb,

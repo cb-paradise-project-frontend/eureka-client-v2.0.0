@@ -5,8 +5,8 @@ import styles from './Question.module.scss';
 import QuestionInput from './QuestionInput';
 import QuestionList from './QuestionList';
 
-function Question({ questions, askQuestion }) {
-  const title = `QUESTION(${questions.length})`;
+function Question({ questionList, addQuestion }) {
+  const title = `QUESTION(${questionList.length})`;
   const notice = `Please don't share personal info – insurance won't apply to tasks done privately!`;
 
   return (
@@ -18,11 +18,13 @@ function Question({ questions, askQuestion }) {
         {notice}
       </div>
       <div className={styles.input_wrapper} >
-        <QuestionInput onSubmit={askQuestion} />
+        <QuestionInput addQuestion={addQuestion} />
       </div>
-      <div className={styles.question_list_wrapper}>
-        <QuestionList questions={questions} />
-      </div>
+      {questionList.length > 0 &&
+        <div className={styles.question_list_wrapper}>
+          <QuestionList questions={questionList} />
+        </div>
+      }
     </div>
   );
 };

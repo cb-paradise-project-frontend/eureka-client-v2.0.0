@@ -1,28 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import styles from './QuestionInput.module.scss';
 
 import TextArea from '../../../../../components/TextArea';
 import QuestionAvatar from '../QuestionAvatar';
 
-const testUser = {
-  id: 3,
-  name: 'Tony',
-  avatar: '',
-};
-
-export default function QuestionInput({ onSubmit }) {
+export default function QuestionInput({ addQuestion }) {
   const [input, updateInput] = useState('');
-
-  useEffect(() => {
-    updateInput('');
-  }, [onSubmit]);
 
   const placeHolder = 'Ask a question';
   const WORD_LIMIT = 1500;
 
   const handleSubmit = () => {
-    onSubmit(input, testUser);
+    addQuestion(input);
+    updateInput('');
   };
 
   const Footer = () => (

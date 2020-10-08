@@ -12,7 +12,7 @@ export default function TaskList({ taskList }) {
 
   const TaskListItem = ({
     task: {
-      title, status, budget, poster, location, due, id,
+      title, status, budget, postedBy, location, due, id,
     },
   }) => {
     const match = useRouteMatch();
@@ -39,7 +39,7 @@ export default function TaskList({ taskList }) {
         </div>
         <div className={styles.content} >
           <div className={styles.avatar_container} >
-            <Avatar avatarUrl={poster.avatar} />
+            <Avatar avatarUrl={postedBy.avatar || null} />
           </div>
           <div className={styles.location} >
             {location}

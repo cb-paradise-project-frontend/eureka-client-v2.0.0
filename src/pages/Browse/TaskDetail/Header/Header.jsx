@@ -11,7 +11,7 @@ function Header() {
     <div className = {styles.header}>
       <TaskConsumer>
         {({
-          title, status, poster, location, due,
+          title, status, postedBy, location, due,
         }) => (
           <div className = {styles.detail_panel}>
             <div className = {styles.status_bar}>
@@ -21,7 +21,7 @@ function Header() {
               <h1>{title}</h1>
             </div>
             <TaskInfo
-              poster={poster}
+              postedBy={postedBy}
               location={location}
               due={due}
             />

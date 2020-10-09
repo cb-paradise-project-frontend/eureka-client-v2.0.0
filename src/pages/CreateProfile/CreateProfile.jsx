@@ -16,78 +16,119 @@ import useForm from './SubPages/useForm';
 const FORM = {
   photo: {
     label: 'Profile Picture',
-    page: Photo,
+    Page: Photo,
   },
   bankAccount: {
     label: 'Bank Account Details',
-    page: BankAccount,
+    Page: BankAccount,
   },
   billingAddress: {
     label: 'Billing Address',
-    page: BillingAddress,
+    Page: BillingAddress,
   },
   birthday: {
     label: 'Date of Birth',
-    page: Birthday,
+    Page: Birthday,
   },
   mobile: {
     label: 'Mobile Number',
-    page: Mobile,
+    Page: Mobile,
   },
 };
 
+function useLocalStorage() {
+  const { localStorage } = window;
+  const [data, setData] = useState();
+
+  // const currentData = data && Object
+  //   .keys(data)
+  //   .reduce((obj, key) => ({
+  //     ...obj,
+  //     [key]: data[key],
+  //   }), {});
+
+  const getStoredData = () => {
+    const storedData = localStorage.getItem('userProfile');
+    if (storedData) setData(JSON.parse(storedData));
+  };
+
+  const storeData = (currentData) => {
+    console.log(currentData);
+    localStorage.setItem('userProfile', JSON.stringify(currentData));
+  };
+
+  const dropStoredData = () => {
+    localStorage.removeItem('userProfile');
+  };
+
+  useEffect(() => {
+    getStoredData();
+  }, [setData]);
+
+  // useEffect(() => {
+  //   storeData();
+  // }, [data]);
+
+  return [data, storeData, dropStoredData];
+}
+
 export default function CreateProfile({ pageToggler }) {
   const [subPage, loadSubPage] = useState();
+  const [storedData, store, dropStoredData] = useLocalStorage();
+  const [updateFlag, setFlag] = useState(false);
 
-  const form = useForm(FORM);
+  const toggleUpdateFlag = () => {
+    setFlag((prevFlag) => !prevFlag);
+  };
+
+  const form = useForm(FORM, storedData);
 
   const {
     getData,
     setData,
     handleDataChange,
     touched,
-    toggleTouched,
   } = form;
 
   const formData = getData();
 
-  const loadProfile = (userProfile) => {
-    setData(userProfile);
-  };
+  // const loadProfile = (userProfile) => {
+  //   setData(userProfile);
+  // };
 
-  const profileStorage = window.localStorage;
+  // const profileStorage = window.localStorage;
 
-  const saveLocalProfile = () => {
-    if (!touched) return;
-    const userProfile = { ...formData };
-    profileStorage.setItem('userProfile', JSON.stringify(userProfile));
-  };
+  // const saveLocalProfile = () => {
+  //   if (!touched) return;
+  //   const userProfile = { ...formData };
+  //   profileStorage.setItem('userProfile', JSON.stringify(userProfile));
+  // };
 
-  const getLocalProfile = () => {
-    const savedProfile = profileStorage.getItem('userProfile');
-    if (savedProfile) loadProfile(JSON.parse(savedProfile));
-  };
+  // const getLocalProfile = () => {
+  //   const savedProfile = profileStorage.getItem('userProfile');
+  //   if (savedProfile) loadProfile(JSON.parse(savedProfile));
+  // };
 
-  const removeLocalProfile = () => {
-    profileStorage.removeItem('userProfile');
-  };
+  // const removeLocalProfile = () => {
+  //   profileStorage.removeItem('userProfile');
+  // };
 
-  useEffect(() => {
-    getLocalProfile();
-  },
-  []);
+  // useEffect(() => {
+  //   getLocalProfile();
+  // },
+  // []);
 
-  useEffect(() => {
-    saveLocalProfile();
-  },
-  []);
+  // useEffect(() => {
+  //   saveLocalProfile();
+  // },
+  // []);
 
   const handleBackBtnClick = () => {
     loadSubPage('');
   };
 
   const handleContinueBtnClick = () => {
-    removeLocalProfile();
+    dropStoredData();
     pageToggler();
   };
 
@@ -99,23 +140,28 @@ export default function CreateProfile({ pageToggler }) {
     return formattedBirthday;
   };
 
+  useEffect(() => {
+    if (touched) store(formData);
+  }, [updateFlag]);
+
   const profileList = (
     <div className={styles.profile_list_wrapper} >
       {Object.keys(FORM).map((key) => {
-        const { label, page } = FORM[key];
+        const { label, Page } = FORM[key];
         const value = formData[key];
         const handleChange = (input) => {
           handleDataChange(key)(input);
+          toggleUpdateFlag();
           handleBackBtnClick();
         };
-        const SubPage = page;
         let statusLabel;
         if (key === 'birthday') statusLabel = createBirthdayLabel(value);
         if (key === 'mobile') statusLabel = value;
+
         return (
           <ProfileItem
             itemName={label}
-            handleClick={() => loadSubPage(<SubPage storedValue={value} onSubmit={handleChange} />)}
+            handleClick={() => loadSubPage(<Page storedValue={value} onSubmit={handleChange} />)}
             statusLabel={statusLabel}
             checked={isFormFilled(value)} // TODO: bypass optional input "lineTwo" in BillingAddress
             key={key}

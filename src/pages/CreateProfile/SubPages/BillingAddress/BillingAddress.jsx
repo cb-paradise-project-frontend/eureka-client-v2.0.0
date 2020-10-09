@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './BillingAddress.module.scss';
 
@@ -9,12 +9,11 @@ import FORM from './form';
 
 export default function BillingAddress({ storedValue, onSubmit }) {
   const form = useForm(FORM, storedValue);
+  const [testing, toggleTesting] = useState(false);
 
   const {
     getData,
     handleDataChange,
-    touched,
-    toggleTouched,
   } = form;
 
   const formData = getData();
@@ -34,7 +33,7 @@ export default function BillingAddress({ storedValue, onSubmit }) {
           label={label}
           value={value}
           handleChange={handleChange}
-          isError={touched && !value && !optional}
+          isError={testing && !value && !optional}
           errorMessage={errorMessage}
         />
       </div>
@@ -54,7 +53,7 @@ export default function BillingAddress({ storedValue, onSubmit }) {
     if (isFilled()) {
       onSubmit(formData);
     } else {
-      toggleTouched(true);
+      toggleTesting(true);
     }
   };
 

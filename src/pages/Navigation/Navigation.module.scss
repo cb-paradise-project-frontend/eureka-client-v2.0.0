@@ -17,7 +17,8 @@
   background: transparent;
 
   &.active {
-    background-color: pink;
+    background-color: rgb(246, 248, 253);
+    border-bottom: 1px solid rgba(0,0,0,.4);
   }
   
 }

@@ -1,27 +1,41 @@
 import React from 'react';
+import className from 'classnames/bind';
 
 import styles from './Categories.module.scss';
 
 import CategoriesContent from '../CategoriesContent';
+import { NavContext } from '../../NavContext';
+
+const cx = className.bind(styles);
 
 function Categories() {
   return (
-    <div  className = {styles.categories}>
-      <div>Categories</div>
-        <div className = {styles.category_content}>
-          <div className = {styles.category_details_left}>
-            <p>What are you looking for?</p>
-            <p>Pick a type of task.</p>
-            <div className = {styles.category_details_wrapper}>
-              <h3>AS A POSTER</h3>
-              <p>I need to hire some one for ...</p>
+    <NavContext.Consumer>
+      {(navBar) =>(
+        <div  
+          // className = {styles.categories}
+          className={cx({
+            categories: true, 
+            categoriesActive: navBar,
+          })}
+        >
+          <div>Categories</div>
+          <div className = {styles.category_content}>
+            <div className = {styles.category_details_left}>
+              <p>What are you looking for?</p>
+              <p>Pick a type of task.</p>
+              <div className = {styles.category_details_wrapper}>
+                <h3>AS A POSTER</h3>
+                <p>I need to hire some one for ...</p>
+              </div>
+            </div>
+            <div className = {styles.category_details_right}>
+                
             </div>
           </div>
-          <div className = {styles.category_details_right}>
-            
-          </div>
         </div>
-      </div>
+      )}
+    </NavContext.Consumer>
   );
 }
 

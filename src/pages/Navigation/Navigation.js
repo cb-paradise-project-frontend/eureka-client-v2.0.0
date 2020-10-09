@@ -41,7 +41,7 @@ function Navigation() {
       toggle={(toggler) => (
         <div className={styles.login_button_wrapper} >
           <Button.Text
-            color={'white'}
+            color={window.scrollY >= 60 ? "grey" : "white"} 
             onClick={toggler}
           >
             Log in
@@ -59,7 +59,7 @@ function Navigation() {
       toggle={(toggler) => (
         <div className={styles.signup_button_wrapper} >
           <Button.Text
-            color={'white'}
+            color={window.scrollY >= 60 ? "grey" : "white"} 
             onClick={toggler}
           >
             Sign up
@@ -72,16 +72,11 @@ function Navigation() {
     />
   );
 
-  // const navBarBackground = cx({
-  //   navBarBg: true, 
-  //   active: navBar,
-  // });
-
   return (
     <AuthContext.Consumer>
       {(currentUser) => (
         <NavContext.Consumer>
-          {(navBar, browseTasks) => (
+          {(navBar) => (
             <nav className={cx({
               navBar: true, 
               active: navBar,
@@ -121,7 +116,8 @@ function Navigation() {
                   <LoginButton />
                   <div className={styles.becomeTasker} >
                     <Button
-                      color={'transparent'}
+                      color={window.scrollY >= 60 ? "transparentActive" : "transparent"} 
+                      // {'transparent'}
                       size={'small'}
                     >
                       Become a Tasker

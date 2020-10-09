@@ -19,6 +19,8 @@ const Button = ({
         red: 'red',
         pink: 'pink',
         transparent: 'transparent',
+        transparentActive: 'transparentActive',
+
       }[color] || 'green',
       {
         small: 'small',

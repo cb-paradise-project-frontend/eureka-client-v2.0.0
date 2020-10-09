@@ -8,8 +8,11 @@
   display: flex;
   flex-direction: column;
   justify-items: center;
+  // align-content: center;
+  padding: 0 auto;
   margin: 10px auto;
   font-family: "Baloo Tamma 2", cursive;
+  border: 1px solid black;
 
   .OtherJobs__description {
     h5 {
@@ -19,16 +22,19 @@
       letter-spacing: 0.15px;
       margin: 10px;
       padding: 10px;
-      width: 900px;
+      // width: 900px;
+      // height: auto;
       margin: 0 auto 20px;
     }
   }
   
   .OtherJobs__cardGrid {
-    display: grid;
-    grid-template-columns: repeat(4, 320px);
-    grid-template-rows: repeat(2, 170px);
-    margin: 0 auto;
+    // display: grid;
+    // grid-template-columns: repeat(4, 320px);
+    // grid-template-rows: repeat(2, 170px);
+    // margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 

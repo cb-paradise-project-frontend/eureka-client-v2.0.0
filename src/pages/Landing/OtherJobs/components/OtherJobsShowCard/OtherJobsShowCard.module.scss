@@ -4,67 +4,72 @@
 }
 
 .OtherJobsShowCard__container {
-  position: relative;
+  // position: relative;
   margin: 0 auto 30px;
-  height: 50px;
+  // height: 50px;
   
 
   p {
-    color: rgb(41, 43, 50);
+    // color: rgb(41, 43, 50);
     font-family: "Baloo Tamma 2", cursive;
     font-size: 20px;
     line-height: 28px;
     letter-spacing: 0.15px;
     margin: 8px;
     position: relative;
-    width: auto;
+    // width: auto;
     display: inline-block;
     list-style: none;
     margin: 0 30px 0 0;
     padding: 12px 0 16px;
     cursor: pointer;
+    // border: 1px solid pink;
+
+    // &:hover {
+    //   color:purple;
+    // }
   }
 
-  p:visited {
-    color: #008fb4;
-  }
+  // p:visited {
+  //   color: #008fb4;
+  // }
 
-  p:visited::after {
-    color: #008fb4;
-    content: "";
-    background-color: #008fb4;
-    margin: 5px auto 0;
-    transition: all 0.3s ease-in-out;
-    position: relative;
-    display: block;
-    top: 6px;
-    width: 100%;
-    height: 4px;
-    border-radius: 4px;
-    transition: all .15s cubic-bezier(.615,.19,.305,.91);
-    transform: translateY(-4px);
-    // opacity: 0;
-  }
+  // p:visited::after {
+  //   color: #008fb4;
+  //   content: "";
+  //   background-color: #008fb4;
+  //   margin: 5px auto 0;
+  //   transition: all 0.3s ease-in-out;
+  //   position: relative;
+  //   display: block;
+  //   top: 6px;
+  //   // width: 100%;
+  //   height: 4px;
+  //   border-radius: 4px;
+  //   transition: all .15s cubic-bezier(.615,.19,.305,.91);
+  //   transform: translateY(-4px);
+  //   // opacity: 0;
+  // }
 
-  p:hover::after {
-    content: "";
-    background-color: #008fb4;
-    margin: 5px auto 0;
-    transition: all 0.3s ease-in-out;
-    position: relative;
-    display: block;
-    top: 6px;
-    width: 100%;
-    height: 4px;
-    border-radius: 4px;
-    transition: all .15s cubic-bezier(.615,.19,.305,.91);
-    transform: translateY(-4px);
-    // opacity: 0;
-  }
+  // p:hover::after {
+  //   content: "";
+  //   background-color: #008fb4;
+  //   margin: 5px auto 0;
+  //   transition: all 0.3s ease-in-out;
+  //   position: relative;
+  //   display: block;
+  //   top: 6px;
+  //   width: 100%;
+  //   height: 4px;
+  //   border-radius: 4px;
+  //   transition: all .15s cubic-bezier(.615,.19,.305,.91);
+  //   transform: translateY(-4px);
+  //   // opacity: 0;
+  // }
 
-  p:active {
-    color: #008fb4;
-  }
+  // p:active {
+  //   color: #008fb4;
+  // }
 
 
 }

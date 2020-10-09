@@ -9,24 +9,38 @@ h3 {
 .OtherJobs__container {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  margin: auto;
+  justify-content: center;
+  border: 1px solid green;
+  // margin: auto;
   // height: 45vw;
-  width: 90vw;
+  // width: 90vw;
   
   
   .OtherJobs__title {
-    position: relative;
+    // position: relative;
     margin: 0 auto 30px;
     height: 50px;
     display: flex;
     flex-direction: row;
+    // flex-wrap: wrap;
+
+    // p::after {
+    //   content: "";
+    //   background-color: pink;
+    //   display: block;
+    //   height: 2px;
+    //   width: 2;
+    //   margin: 5px auto 0;
+    // }
     
     p:hover {
       color: pink;
     }
-    P:active {
+    p:active {
       color: green;
+    }
+    p:visited {
+      color: red;
     }
 
     p:hover::after {
@@ -48,37 +62,37 @@ h3 {
       // transform: translateY(-4px);
       // opacity: 0;
     }
-    p:active::after{
-      content: "";
-      background-color: green;
-      display: block;
-      height: 2px;
-      width: 2;
-      margin: 5px auto 0;
-    }
+    // p:visited::after{
+    //   content: "";
+    //   background-color: green;
+    //   display: block;
+    //   height: 2px;
+    //   width: 2;
+    //   margin: 5px auto 0;
+    // }
 
     
   }
 
-  .OtherJobs__cards {
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    margin: 10px auto;
-  }
+  // .OtherJobs__cards {
+  //   display: flex;
+  //   // flex-direction: column;
+  //   justify-items: center;
+  //   margin: 10px auto;
+  // }
 
-  .OtherJobs__description {
-    h5 {
-      color: rgb(84, 90, 119);
-      font-size: 18px;
-      line-height: 24px;
-      letter-spacing: 0.15px;
-      margin: 10px;
-      padding: 10px;
-      width: 900px;
-      margin: 0 auto 10px;
-    }
-  }
+  // .OtherJobs__description {
+  //   h5 {
+  //     color: rgb(84, 90, 119);
+  //     font-size: 18px;
+  //     line-height: 24px;
+  //     letter-spacing: 0.15px;
+  //     margin: 10px;
+  //     padding: 10px;
+  //     // width: 900px;
+  //     margin: 0 auto 10px;
+  //   }
+  // }
 
   .OtherJobs__button{
     margin: 20px auto;

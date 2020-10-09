@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Redirect, Route, withRouter } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Redirect, Route, useRouteMatch } from 'react-router-dom';
 
 import styles from './Browse.module.scss';
 
@@ -42,60 +42,46 @@ tasks[1].status = 'ASSIGNED';
 tasks[2].status = 'COMPLETED';
 tasks[3].status = 'EXPIRED';
 
-const testUserId = '5f7a9c0079e9c3a3747bb6e1';
+const testUserId = '5f7e8665b7edfa557c89dbdf';
 
-class Browse extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      taskList: [],
-    };
-    this.onAskQuestion = this.onAskQuestion.bind(this);
-  }
+export default function Browse() {
+  const [taskList, setTaskList] = useState([]);
+  const { path } = useRouteMatch();
 
-  async loadTaskList() {
+  const loadTaskList = async () => {
     // without backend
-    const taskList = tasks;
+    const newTaskList = tasks;
 
     // with backend
     // const { data: { data } } = await getTaskList();
-    // const taskList = data;
+    // const newTaskList = data;
 
-    this.setState({
-      taskList,
-    });
-  }
+    setTaskList(newTaskList);
+  };
 
-  componentDidMount() {
-    this.loadTaskList();
-  }
+  useEffect(() => {
+    loadTaskList();
+  }, [setTaskList]);
 
-  async onAskQuestion(taskId, input) {
+  const onAskQuestion = async (taskId, input) => {
     await askQuestion(testUserId, taskId, input);
     this.loadTaskList();
-  }
+  };
 
-  render() {
-    const { taskList } = this.state;
-    const { props, onAskQuestion } = this;
-    const { match: { path } } = props;
-    const defaultTaskId = taskList[0] && taskList[0].id;
+  const defaultTaskId = taskList[0] && taskList[0].id;
 
-    return (
-      <div className={styles.browse_container} >
-        <div className = {styles.browse} >
-          <Redirect to={`${path}/${defaultTaskId}`} />
-          <TaskList taskList={taskList} />
-          <Route path={`${path}/:taskId`} >
-            <TaskDetail
-              taskList={taskList}
-              onAskQuestion={onAskQuestion}
-            />
-          </Route>
-        </div>
+  return (
+    <div className={styles.browse_container} >
+      <div className = {styles.browse} >
+        <Redirect to={`${path}/${defaultTaskId}`} />
+        <TaskList taskList={taskList} />
+        <Route path={`${path}/:taskId`} >
+          <TaskDetail
+            taskList={taskList}
+            onAskQuestion={onAskQuestion}
+          />
+        </Route>
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-export default withRouter(Browse);

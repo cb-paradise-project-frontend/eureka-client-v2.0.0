@@ -3,107 +3,73 @@ import React, { useState } from 'react';
 import styles from './BankAccount.module.scss';
 
 import Button from '../../../../components/Button';
-import { onlyNumber, addDashInNumber } from '../../../../utils/validators/input';
 import Input from '../../../../components/Input';
+import useForm from '../useForm';
+import FORM from './form';
 
 export default function BankAccount({ storedValue, onSubmit }) {
-  const [holder, setHolder] = useState(storedValue.holder);
-  const [accountNumber, setAccountNumber] = useState(storedValue.accountNumber);
-  const [bsb, setBsb] = useState(storedValue.bsb);
-  const [testing, toggleTest] = useState(false);
+  const form = useForm(FORM, storedValue);
+
   const [highlightField, setHighlightField] = useState();
 
-  const introduction = `Please provide your bank details so you can get paid. We don't take any money from your account.`;
-  const fieldElementList = [
-    {
-      name: 'Account holder name',
-      placeholder: 'Alice',
-      value: holder,
-      handleChange: setHolder,
-    },
-    {
-      name: 'Account number',
-      placeholder: '12345678',
-      value: accountNumber,
-      maxLength: 9,
-      validator: onlyNumber,
-      handleChange: setAccountNumber,
-    },
-    {
-      name: 'BSB',
-      placeholder: '000-000',
-      value: bsb,
-      maxLength: 7,
-      validator: addDashInNumber,
-      handleChange: setBsb,
-    },
-  ];
+  const {
+    getData,
+    handleDataChange,
+    findEmptyField,
+    getErrorMessage,
+    touched,
+    toggleTouched,
+  } = form;
 
-  const validations = [
-    {
-      name: 'Account number',
-      condition: (accountNumber.length > 4 && accountNumber.length < 10),
-      message: 'Invalid account number: must be 5 - 9 digits.',
-    },
-    {
-      name: 'BSB',
-      condition: (bsb.length > 6),
-      message: 'Invalid routing number for AU. The number must contain both the bank code and the branch code, and should be in the format xxxxxx.',
-    },
-  ];
+  const formData = getData();
+
+  const introduction = `Please provide your bank details so you can get paid. We don't take any money from your account.`;
 
   const resetHighLight = () => {
     setHighlightField('');
   };
 
-  const fieldList = fieldElementList.map(({
-    name, placeholder, value, maxLength, validator, handleChange,
-  }) => (
-    <div className={styles.input_wrapper} key={name} >
-      <Input
-        label={name}
-        placeholder={placeholder}
-        value={value}
-        validator={validator}
-        handleChange={handleChange}
-        isError={name === highlightField}
-        maxLength={maxLength}
-        onFocus={resetHighLight}
-      />
-    </div>
-  ));
+  const fieldList = Object.keys(FORM).map((key) => {
+    const {
+      label, placeholder, maxLength, validator,
+    } = FORM[key];
+    const value = formData[key];
+    const handleChange = handleDataChange(key);
 
-  const findEmptyField = () => {
-    const emptyField = fieldElementList.find(({ value }) => !value);
-    if (!emptyField) return false;
-    const { name } = emptyField;
-    return { name, message: `${name} is required.` };
-  };
+    return (
+      <div className={styles.input_wrapper} key={key} >
+        <Input
+          label={label}
+          placeholder={placeholder}
+          value={value}
+          validator={validator}
+          handleChange={handleChange}
+          isError={key === highlightField}
+          maxLength={maxLength}
+          onFocus={resetHighLight}
+        />
+      </div>
+    );
+  });
 
-  const getError = () => {
-    const error = validations.find(validation => !validation.condition);
-    return findEmptyField() || error || false;
-  };
+  const error = findEmptyField() || getErrorMessage();
 
   const handleSubmit = () => {
-    if (getError()) {
-      toggleTest(true);
-      setHighlightField(getError().name);
+    if (error) {
+      toggleTouched(true);
+      setHighlightField(error.field);
     } else {
-      const bankAccount = {
-        holder, accountNumber, bsb,
-      };
-      onSubmit(bankAccount);
+      onSubmit(formData);
       setHighlightField('');
-      toggleTest(false);
+      toggleTouched(false);
     }
   };
 
   return (
     <>
-      {testing && getError() &&
+      {touched && error &&
         <div className={styles.message_box} >
-          {getError().message}
+          {error.message}
         </div>
       }
       <div className={styles.introduction} >

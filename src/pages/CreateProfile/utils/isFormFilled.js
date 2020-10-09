@@ -1,8 +1,8 @@
-export default function isFormFilled(stateValue) {
-  if (typeof stateValue === 'object') {
-    const valueArray = Object.values(stateValue);
+export default function isFormFilled(formValue) {
+  if (typeof formValue === 'object') {
+    const valueArray = Object.values(formValue);
     const result = valueArray.filter((value) => value);
     return (result.length === valueArray.length);
   }
-  return !!stateValue;
+  return !!formValue;
 }

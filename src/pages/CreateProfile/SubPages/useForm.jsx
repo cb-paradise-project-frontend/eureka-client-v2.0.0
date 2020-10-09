@@ -6,7 +6,7 @@ export default function useForm(config, initValues) {
   const initFormData = () => (
     formKeyArray.reduce((obj, key) => ({
       ...obj,
-      [key]: initValues[key] || '',
+      [key]: (initValues && initValues[key]) || '',
     }), {})
   );
 
@@ -24,6 +24,7 @@ export default function useForm(config, initValues) {
 
   const handleDataChange = (target) => (
     (input) => {
+      console.log(input);
       setFormData((prevFormData) => ({
         ...prevFormData,
         [target]: input,
@@ -52,8 +53,13 @@ export default function useForm(config, initValues) {
     return { field: errorField, message: errorMessage };
   };
 
+  const setData = (data) => {
+    setFormData(data);
+  };
+
   const form = {};
   form.getData = getData;
+  form.setData = setData;
   form.handleDataChange = handleDataChange;
   form.findEmptyField = findEmptyField;
   form.getErrorMessage = getErrorMessage;

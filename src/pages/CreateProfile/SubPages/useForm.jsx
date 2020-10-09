@@ -24,7 +24,6 @@ export default function useForm(config, initValues) {
 
   const handleDataChange = (target) => (
     (input) => {
-      console.log(input);
       setFormData((prevFormData) => ({
         ...prevFormData,
         [target]: input,

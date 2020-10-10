@@ -9,6 +9,7 @@ import isFormFilled from './utils/isFormFilled';
 import useForm from './SubPages/useForm';
 import FORM from './form';
 import LocalStorage from './utils/LocalStorage';
+import createBirthdayLabel from './utils/createBirthdayLabel';
 
 const { getStoredData, storeData, dropStoredData } = new LocalStorage('userProfile');
 
@@ -38,32 +39,47 @@ export default function CreateProfile({ pageToggler }) {
     loadSubPage('');
   };
 
+  const backButton = (
+    <Button
+    onClick={handleBackBtnClick}
+    color={'light-blue'}
+    long
+  >
+    Back
+  </Button>
+  );
+
   const handleContinueBtnClick = () => {
     dropStoredData();
     pageToggler();
   };
 
-  const createBirthdayLabel = (birthday) => {
-    if (!isFormFilled(birthday)) return null;
-    const { day, month, year } = birthday;
-    const birthdayObj = new Date(year, month - 1, day);
-    const formattedBirthday = birthdayObj.toDateString().replace(/[^\s]+/, '');
-    return formattedBirthday;
-  };
+  const continueButton = (
+    <Button
+    onClick={handleContinueBtnClick}
+    color={'light-blue'}
+    long
+  >
+    Continue
+  </Button>
+  );
 
   const profileList = (
     <div className={styles.profile_list_wrapper} >
       {Object.keys(FORM).map((key) => {
         const { label, Page } = FORM[key];
         const value = formData[key];
+
         const handleChange = (input) => {
           handleDataChange(key)(input);
           toggleUpdateFlag();
           handleBackBtnClick();
         };
-        let statusLabel;
-        if (key === 'birthday') statusLabel = createBirthdayLabel(value);
-        if (key === 'mobile') statusLabel = value;
+
+        const statusLabel = {
+          birthday: createBirthdayLabel(value),
+          mobile: value,
+        }[key] || null;
 
         return (
           <ProfileItem
@@ -95,26 +111,6 @@ export default function CreateProfile({ pageToggler }) {
     <div className={styles.content_wrapper} >
       {subPage || profileList}
     </div>
-  );
-
-  const backButton = (
-    <Button
-    onClick={handleBackBtnClick}
-    color={'light-blue'}
-    long
-  >
-    Back
-  </Button>
-  );
-
-  const continueButton = (
-    <Button
-    onClick={handleContinueBtnClick}
-    color={'light-blue'}
-    long
-  >
-    Continue
-  </Button>
   );
 
   const footer = subPage ? backButton : continueButton;

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './TaskInfo.module.scss';
 import Avatar from '../../../../../components/Avatar';
+import { TaskContext } from '../../../TaskContext';
 
 const cx = classNames.bind(styles);
 
-function TaskInfo({ postedBy, location, due }) {
+function TaskInfo() {
+  const { postedBy, location, due } = useContext(TaskContext);
+
   const TaskInfoItem = ({ title, content }) => {
     const displayContent = content.name || content;
 

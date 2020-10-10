@@ -8,28 +8,15 @@ import Button from '../../components/Button';
 import isFormFilled from './utils/isFormFilled';
 import useForm from './SubPages/useForm';
 import FORM from './form';
+import LocalStorage from './utils/LocalStorage';
 
-function useLocalStorage() {
-  const { localStorage } = window;
-
-  const storedData = JSON.parse(localStorage.getItem('userProfile'));
-
-  const storeData = (currentData) => {
-    localStorage.setItem('userProfile', JSON.stringify(currentData));
-  };
-
-  const dropStoredData = () => {
-    localStorage.removeItem('userProfile');
-  };
-
-  return [storedData, storeData, dropStoredData];
-}
+const { getStoredData, storeData, dropStoredData } = new LocalStorage('userProfile');
 
 export default function CreateProfile({ pageToggler }) {
   const [subPage, loadSubPage] = useState();
-  const [storedData, store, dropStoredData] = useLocalStorage();
+
+  const form = useForm(FORM, getStoredData());
   const [updateFlag, setFlag] = useState(false);
-  const form = useForm(FORM, storedData);
 
   const toggleUpdateFlag = () => {
     setFlag((prevFlag) => !prevFlag);
@@ -44,7 +31,7 @@ export default function CreateProfile({ pageToggler }) {
   const formData = getData();
 
   useEffect(() => {
-    if (touched) store(formData);
+    if (touched) storeData(formData);
   }, [updateFlag]);
 
   const handleBackBtnClick = () => {

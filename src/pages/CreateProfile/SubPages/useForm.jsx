@@ -17,12 +17,14 @@ export default function useForm(config, initValues) {
       ...obj,
       [key]: formData[key],
     }), {});
+
     return data;
   };
 
   const handleDataChange = (target) => (
     (input) => {
       toggleTouched(true);
+
       setFormData((prevFormData) => ({
         ...prevFormData,
         [target]: input,
@@ -42,12 +44,14 @@ export default function useForm(config, initValues) {
     const errorField = formKeyArray.find((key) => {
       const value = formData[key];
       const getError = config[key].getErrorMessage;
+
       return getError && getError(value);
     });
 
     if (!errorField) return false;
 
     const errorMessage = config[errorField].getErrorMessage(formData[errorField]);
+
     return { field: errorField, message: errorMessage };
   };
 

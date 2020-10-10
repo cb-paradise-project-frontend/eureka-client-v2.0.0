@@ -84,7 +84,12 @@ export default function CreateProfile({ pageToggler }) {
         return (
           <ProfileItem
             itemName={label}
-            handleClick={() => loadSubPage(<Page storedValue={value} onSubmit={handleChange} />)}
+            handleClick={() => loadSubPage(
+              <Page
+                storedValue={value}
+                onSubmit={handleChange}
+              />
+            )}
             statusLabel={statusLabel}
             checked={isFormFilled(value)} // TODO: bypass optional input "lineTwo" in BillingAddress
             key={key}

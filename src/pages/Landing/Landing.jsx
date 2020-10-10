@@ -6,7 +6,6 @@ import OtherJobs from "./OtherJobs";
 import MeetTasker from "./MeetTasker";
 import ThingsToKnow from "./ThingsToKnow";
 import Articles from "./Articles";
-import TopCategories from "./TopCategories";
 import Footer from "./Footer";
 
 class Landing extends React.Component {
@@ -18,24 +17,70 @@ class Landing extends React.Component {
         [
           {
             id: 1,
-            articleImg: require("../../assets/garden-party.png"),
-            articleTitle: "How to paint your kitchen cabinets",
+            articleImg: require("../../assets/article-bedroom.png"),
+            articleTitle: "40 Wonderfully white bedroom ideas",
             articleContent:
-              "Looking to refresh the kitchen? It’s easier than you think…",
+              "Gone are the days of boring, stuffy white bedrooms. Infuse light and life into your space with pops of colour and boho touches.",
           },
           {
             id: 2,
-            articleImg: require("../../assets/beautiful-backyard.png"),
-            articleTitle: "Bedroom plants for your room",
+            articleImg: require("../../assets/article-bedroom-black.png"),
+            articleTitle: "35+ Black and white bedroom ideas",
             articleContent:
-              "Create your own lush, indoor jungle with plenty of potted greens!",
+              "Renovating your bedroom? You simply can’t go wrong with this classic colour pairing.",
           },
           {
-            id: 3,
-            articleImg: require("../../assets/bedroom-plant.png"),
-            articleTitle: "35 Dreamy boho bedroom ideas",
+           id: 3,
+            articleImg: require("../../assets/article-curtain.png"),
+            articleTitle: "35 Modern bedroom curtain ideas",
             articleContent:
-              "Take your bedroom from basic to bohemian with these fabulous colourful ideas!",
+              "It’s time to ditch the old musty curtains and frame your windows with something beautiful.",
+          },
+        ],
+
+        feature: [
+          {
+            img:{
+              featureImg: require("../../assets/secure-payments.png"),
+
+            },
+            content: {
+              subhead:"Secure Payments",
+              describe:"We hold task payments secure with our PCI-DSS compliant Airtasker Pay – so tasks can be completed knowing payment is there when you're done.",
+            },
+          },
+
+          {
+            img:{
+              featureImg: require("../../assets/top-rated-insurance.png"),
+
+            },
+            content: {
+              subhead:"Top rated insurance",
+              describe:"Insurance is there to ease any worries - making sure the Tasker has liability insurance from CGU while performing most task activities. T&C's apply.",
+            },
+          },
+
+          {
+            img:{
+              featureImg: require("../../assets/verified-badges.png"),
+
+            },
+            content: {
+              subhead:"Verified badges",
+              describe:"Badges give members a bit more verified info when deciding who to work with on a task. Each badge has certain requirements that must be met and verified before they’re shown on the member's profile.",
+            },
+          },
+
+          {
+            img:{
+              featureImg: require("../../assets/here-if-you-need-us.png"),
+
+            },
+            content: {
+              subhead:"Here if you need us",
+              describe:"Our comprehensive Help Centre and dedicated Airtasker Support are on hand 24/7 to help with any questions, queries or issues you might have.",
+            },
           },
         ],
 
@@ -88,6 +133,7 @@ class Landing extends React.Component {
           },
         ],
 
+
         JobsCards: [
           {
             id:"Moving home",
@@ -132,6 +178,7 @@ class Landing extends React.Component {
 
         ],
 
+
       
     };
   }
@@ -143,10 +190,9 @@ class Landing extends React.Component {
 
       <Home />
       <TaskCategories />
-      <OtherJobs data={this.state.JobsCards}/>
-      <TopCategories />
+      <OtherJobs  data={this.state.JobsCards}/>
+      <ThingsToKnow data={this.state.feature}/>
       <MeetTasker data={this.state.tasker}/>
-      <ThingsToKnow />
       <Articles data={this.state.article}/>
       <Footer />
     </>

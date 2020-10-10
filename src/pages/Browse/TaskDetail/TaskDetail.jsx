@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 
 import styles from './TaskDetail.module.scss';
 
@@ -10,18 +10,30 @@ import OfferButton from './OfferButton';
 import Question from './Question';
 import { TaskProvider } from '../TaskContext';
 import { EXPIRED } from '../../../components/Status';
+import QuestionInput from './Question/QuestionInput';
+import QuestionList from './Question/QuestionList';
 
-function TaskDetail({
-  taskList, questionList, addQuestion, match: { params: { taskId } },
-}) {
-  // TODO: use a default page when no task selected
+export default function TaskDetail({ taskList, onAskQuestion }) {
+  const { params: { taskId } } = useRouteMatch();
+
   const task = taskList.find(task => task.id === taskId);
   if (!task) return null;
 
-  const { questions } = questionList.find(questionItem => questionItem.id === taskId);
-  const askQuestion = addQuestion(taskId);
+  const { comments } = task;
 
-  const { status, details } = task;
+  const addQuestion = (input) => {
+    onAskQuestion(taskId, input);
+  };
+
+  const questionInput = (
+    <QuestionInput addQuestion={addQuestion} />
+  );
+
+  const questionList = (
+    <QuestionList questions={comments} />
+  );
+
+  const { status, description } = task;
 
   return (
     <div className={styles.task_detail} >
@@ -29,7 +41,7 @@ function TaskDetail({
         <SideBar />
         <Header />
         <Section title='DETAILS' >
-          {details}
+          {description}
         </Section>
         <Section title='OFFER' >
           <div className={styles.offer_icon} />
@@ -38,12 +50,10 @@ function TaskDetail({
           </div>
         </Section>
         <Question
-          questions={questions}
-          askQuestion={askQuestion}
+          questionInput={questionInput}
+          questionList={questionList}
         />
       </TaskProvider>
     </div>
   );
 }
-
-export default withRouter(TaskDetail);

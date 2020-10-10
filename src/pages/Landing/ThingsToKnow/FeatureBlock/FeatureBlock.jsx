@@ -1,16 +1,26 @@
 import React from "react";
 
-import FeatureContent from "./FeatureContent/FeaturePostion";
-import FeaturePostion from "./FeatureContent/FeaturePostion";
+import styles from "./FeatureBlock.module.scss";
 
+import FeatureImg from "./FeatureImg";
+import FeatureContent from "./FeatureContent";
 
+function FeatureBlock(props) {
+  return (
+    props.imgFirst ? 
+    (
+      <div className={styles.FeatureContainer}>
+      <FeatureImg data ={props.data.img} />
+      <FeatureContent data={props.data.content} />
+    </div>
+    ) : (
+      <div className={styles.FeatureContainer}>
+      <FeatureContent data={props.data.content} />
+      <FeatureImg data ={props.data.img} />
+    </div>
+    )
+    
+  );
+}
 
-export const FeatureBlock = (props) => (
-  <React.Fragment>
-    <FeaturePostion ImgLeft />
-    <FeaturePostion />
-    <FeaturePostion ImgLeft />
-    <FeaturePostion />
-  </React.Fragment>
-);
-
+export default FeatureBlock;

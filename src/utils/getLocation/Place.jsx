@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import styled from 'styled-components';
-import StyleSheet from './Place.module.scss';
+import './Place.scss';
 
 import ErrorMsg from '../../components/ErrorMessage';
 
@@ -17,13 +17,8 @@ function Place({
   handleAddressQuery,
 }) {
 
-  const typeStr = JSON.stringify(type);
-  console.log(typeStr)
-
-  //const [ place, setPlace ]  = useState("");
-
   useEffect(() => {
-    getLocation("regions", handleAddressQuery);
+    getLocation(`${type}`, handleAddressQuery); //"regions" 
     // handleAddressQuery();
   }, [getLocation])
 

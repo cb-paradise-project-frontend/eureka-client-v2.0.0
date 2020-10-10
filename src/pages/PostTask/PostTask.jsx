@@ -2,23 +2,24 @@ import React from 'react';
 
 import styles from './PostTask.module.scss';
 
-import Welcome from './Welcome';
-import TaskDescription from './TaskDescription';
-import TaskLocationAndTime from './TaskLocationAndTime';
-import TaskBudget from './TaskBudget';
-import JobTitleInput from './TaskDescription/JobTitleInput';
-import JobDetailsInput from './TaskDescription/JobDetailsInput';
+import Welcome from './components/Welcome';
+import TaskDescription from './components/TaskDescription';
+import TaskLocationAndTime from './components/TaskLocationAndTime';
+import TaskBudget from './components/TaskBudget';
+import JobTitleInput from './components/TaskDescription/components/JobTitleInput';
+import JobDetailsInput from './components/TaskDescription/components/JobDetailsInput';
 import TaskDatePicker from '../../components/DateSelector';
 import Place from '../../utils/getLocation';
 import Button from '../../components/Button';
+import ProgressBar from './components/ProgressBar';
 import Modal from '../../components/Modal';
-import { withAlert } from './AlertModal';
+import { withAlert } from './components/AlertModal';
 
 class PostTask extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentScreenIndex: 0,
+      currentStep: 0,
       jobTitle: "",
       jobDetails: "",
       startDate: null,
@@ -26,7 +27,8 @@ class PostTask extends React.Component {
       taskBudget: "0",
       budgetHour: "1",
       budgetHourlyWage: "0",
-      isChecked: false,
+      touch: false,
+      method: "offline",
     }
 
     this.jobTitleMinLength = 10;
@@ -38,6 +40,7 @@ class PostTask extends React.Component {
     this.handleBackClick = this.handleBackClick.bind(this);
     this.onJobTitle = this.onJobTitle.bind(this);
     this.onJobDetails = this.onJobDetails.bind(this);
+    this.onRadioCheck = this.onRadioCheck.bind(this);
     this.handleGetQuoteClick = this.handleGetQuoteClick.bind(this);
     this.handleDateValue = this.handleDateValue.bind(this);
     this.handlePlace = this.handlePlace.bind(this);
@@ -55,6 +58,12 @@ class PostTask extends React.Component {
     this.setState({ jobDetails: value });
   }
 
+  onRadioCheck(value) {
+    this.setState({
+      method: value,
+    });
+  }
+
   onTaskBudget() {
     this.setState((prevState) => ({
       taskBudget: prevState.budgetHourlyWage * prevState.budgetHour,
@@ -66,7 +75,7 @@ class PostTask extends React.Component {
       { budgetHour: value },
       this.onTaskBudget,
     );
-  }
+  } //hook TODO
 
   onBudgetHourlyWage(value) {
     this.setState(
@@ -89,107 +98,34 @@ class PostTask extends React.Component {
 
   handleNextClick() {
     this.setState((prevState) => ({
-      currentScreenIndex: prevState.currentScreenIndex + 1,
+      currentStep: prevState.currentStep + 1,
     }));
   }
 
   handleBackClick() {
     this.setState((prevState) => ({
-      currentScreenIndex: prevState.currentScreenIndex - 1,
+      currentStep: prevState.currentStep - 1,
     }));
-  }
-
-  isJobTitleInvalid() {
-    const { jobTitle, isChecked } = this.state;
-
-    return (jobTitle.length < this.jobTitleMinLength && isChecked);
-  }
-
-  isJobDetailsInvalid() {
-    const { jobDetails, isChecked } = this.state;
-
-    return (jobDetails.length < this.jobDetailsMinLength && isChecked);
-  }
-
-  isBudgetInvalid() {
-    const { taskBudget, isChecked } = this.state;
-
-    return ((taskBudget < this.minBudget || taskBudget > this.maxBudget) && isChecked);
-  }
-
-  isTaskDateValid() {
-    const { startDate, isChecked } = this.state;
-
-    return (startDate == null && isChecked);
-  }
-
-  isPlaceValid() {
-    const { place, isChecked } = this.state;
-
-    return (place == null && isChecked);
   }
 
   handleGetQuoteClick() {
     const { taskBudget } = this.state;
 
-    if (taskBudget === 0) {
-      this.setState({ isChecked: true });
+    if (taskBudget < this.minBudget || taskBudget > this.maxBudget) {
+      this.setState({ touch: true });
     } else {
-      this.setState({ isChecked: false });
+      this.setState({ touch: false });
       //this.link to task page or profile()
     }
-  }
-
-  jobTitleInput() {
-    return (
-      <JobTitleInput
-        jobTitle={this.state.jobTitle}
-        isJobTitleInvalid={this.isJobTitleInvalid()}
-        onJobTitle={this.onJobTitle}
-        errorHint= {"Please enter at least 10 characters and a maximum of 50 "}
-      />
-    );
-  }
-
-  jobDetailsInput() {
-    return (
-      <JobDetailsInput
-        jobDetails={this.state.jobDetails}
-        isJobDetailsInvalid={this.isJobDetailsInvalid()}
-        onJobDetails={this.onJobDetails}
-        errorHint= {"Please enter at least 25 characters and a maximum of 1000 "}
-      />
-    );
-  }
-
-  taskDatePicker() {
-    return (
-      <TaskDatePicker
-        startDate={this.state.startDate}
-        onDateChange={this.handleDateValue}
-        isDateInvalid={this.isTaskDateValid()}
-        errorHint={"Please select the date you would like the task to be done"}
-      />
-    )
-  }
-  
-  taskPlace() {
-    return(
-      <Place 
-        handleAddressQuery={this.handlePlace}
-        place={this.state.place}
-        isPlaceInvalid={this.isPlaceValid()}
-      />
-    )
   }
 
   handleClickCreator(condition) {
     const handleClick = () => {
       if (condition) {
-        this.setState({ isChecked: true });
+        this.setState({ touch: true });
       } else {
-        this.handleNextClick();
-        this.setState({ isChecked: false });
+        this.handleNextClick(); //current step + 1, jump to next page
+        this.setState({ touch: false });
       }
     }
     return handleClick;
@@ -197,13 +133,13 @@ class PostTask extends React.Component {
 
   render() {
     const {
-      currentScreenIndex, startDate, jobTitle, jobDetails, place
+      currentStep, jobTitle, jobDetails, place, startDate, touch, method, taskBudget,
     } = this.state;
 
     const conditionList = [
       (false),
-      (jobTitle.length < this.jobTitleMinLength || jobDetails.length < this.jobDetailsMinLength),
-      (!startDate || !place),
+      ((jobTitle.length < this.jobTitleMinLength || jobDetails.length < this.jobDetailsMinLength)),
+      ((method === "offline") ? (!startDate || !place) : (!startDate)),
     ];
 
     const backBtn = (
@@ -221,7 +157,7 @@ class PostTask extends React.Component {
     const nextBtn = (
       <div className={styles.button} >
         <Button
-          onClick={this.handleClickCreator(conditionList[currentScreenIndex])}
+          onClick={this.handleClickCreator(conditionList[currentStep])}
           long
         >
           Next
@@ -240,6 +176,42 @@ class PostTask extends React.Component {
       </div>
     );
 
+    const jobTitleInput = (
+      <JobTitleInput
+        jobTitle={jobTitle}
+        isJobTitleInvalid={(jobTitle.length < this.jobTitleMinLength && touch)}
+        onJobTitle={this.onJobTitle}
+        errorHint= {"Please enter at least 10 characters and a maximum of 50 "}
+      />
+    );
+
+    const jobDetailsInput = (
+      <JobDetailsInput
+        jobDetails={jobDetails}
+        isJobDetailsInvalid={(jobDetails.length < this.jobDetailsMinLength && touch)}
+        onJobDetails={this.onJobDetails}
+        errorHint= {"Please enter at least 25 characters and a maximum of 1000 "}
+      />
+    );
+
+    const taskPlace = (
+      <Place 
+        handleAddressQuery={this.handlePlace}
+        place={place}
+        type="(regions)"
+        isPlaceInvalid={(place == null && touch)}
+      />
+    );
+
+    const taskDatePicker = (
+      <TaskDatePicker
+        startDate={startDate}
+        onDateChange={this.handleDateValue}
+        isDateInvalid={(startDate == null && touch)}
+        errorHint={"Please select the date you would like the task to be done"}
+      />
+    );
+
     const pages = [
       {
         title: '',
@@ -249,8 +221,8 @@ class PostTask extends React.Component {
         title: 'Tell us what you need done?',
         content: (
           <TaskDescription
-            jobTitleInput={this.jobTitleInput()}
-            jobDetailsInput={this.jobDetailsInput()}
+            jobTitleInput={jobTitleInput}
+            jobDetailsInput={jobDetailsInput}
           />
         ),
       },
@@ -258,9 +230,11 @@ class PostTask extends React.Component {
         title: 'Say where & when',
         content: (
           <TaskLocationAndTime
-            taskDatePicker={this.taskDatePicker()}
-            taskPlace={this.taskPlace()}
+            taskDatePicker={taskDatePicker}
+            taskPlace={taskPlace}
             handleAddressQuery={this.handlePlace}
+            onRadioCheck={this.onRadioCheck}
+            method={method}
           />
         ),
       },
@@ -268,8 +242,8 @@ class PostTask extends React.Component {
         title: 'Suggest how much',
         content: (
           <TaskBudget
-            taskBudget={this.state.taskBudget}
-            isBudgetInvalid={this.isBudgetInvalid()}
+            taskBudget={taskBudget}
+            isBudgetInvalid={((taskBudget < this.minBudget || taskBudget > this.maxBudget) && touch)}
             handleBudgetWageClick={this.handleBudgetWageClick}
             onBudgetHour={this.onBudgetHour}
             onBudgetHourlyWage={this.onBudgetHourlyWage}
@@ -280,20 +254,22 @@ class PostTask extends React.Component {
 
     const postTaskBottom = (
       <div className={styles.bottom} >
-        { currentScreenIndex === 0 || backBtn }
-        { currentScreenIndex === pages.length - 1 ? submitBtn : nextBtn }
+        { (currentStep === 0)|| backBtn }
+        { currentStep === pages.length - 1 ? submitBtn : nextBtn }
       </div>
     );
 
-    const { title, content } = pages[currentScreenIndex];
+    const { title, content } = pages[currentStep];
 
     const { onRequestClose } = this.props;
 
+    
     return (
       <Modal onRequestClose={onRequestClose} >
         <Modal.Header>
           {title}
         </Modal.Header>
+        <ProgressBar currentStep={currentStep} />
         <Modal.Content>
           {content}
         </Modal.Content>

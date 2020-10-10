@@ -46,7 +46,12 @@ const testUserId = '5f7e8665b7edfa557c89dbdf';
 
 export default function Browse() {
   const [taskList, setTaskList] = useState([]);
+  const [updateFlag, setUpdateFlag] = useState(false);
   const { path } = useRouteMatch();
+
+  const toggleUpdateFlag = () => {
+    setUpdateFlag((prevFlag) => !prevFlag);
+  };
 
   const loadTaskList = async () => {
     // without backend
@@ -61,11 +66,11 @@ export default function Browse() {
 
   useEffect(() => {
     loadTaskList();
-  }, [setTaskList]);
+  }, [updateFlag]);
 
-  const onAskQuestion = async (taskId, input) => {
-    await askQuestion(testUserId, taskId, input);
-    this.loadTaskList();
+  const onAskQuestion = (taskId, input) => {
+    askQuestion(testUserId, taskId, input);
+    toggleUpdateFlag();
   };
 
   const defaultTaskId = taskList[0] && taskList[0].id;

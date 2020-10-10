@@ -4,11 +4,12 @@ import styles from './OtherJobs.module.scss';
 
 import OtherJobsNav from './components/OtherJobsNav'
 
-function OtherJobs() {
+function OtherJobs(props) {
+  const {data} = props
 	return (
     <div className={styles.OtherJobs__container}>
       <h3>See what others are getting done</h3>
-      <OtherJobsNav />
+      <OtherJobsNav data={data}/>
     </div>
 	);
 }

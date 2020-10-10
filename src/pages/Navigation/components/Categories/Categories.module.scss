@@ -19,6 +19,13 @@
     color: #008fb4;
     border-top: 2px solid #008fb4;
   }
+  &.categoriesActive {
+    color: #545a77;
+    &:hover {
+      color: #008fb4;
+      border-top: 2px solid #008fb4;
+    }
+  }
 
   .category_content{
     font-family: "Baloo Tamma 2", cursive;

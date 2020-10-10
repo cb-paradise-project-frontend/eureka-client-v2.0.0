@@ -54,6 +54,16 @@
   }
 }
 
+.transparentActive{
+  background-color: #f6f8fd;
+  color: #008fb4;
+  border-color: rgba(41, 43, 50, .3);
+
+  &:hover{
+    background-color:white;
+  }
+}
+
 .small{
   padding: 5px 10px;
   height: 27px;
@@ -121,6 +131,7 @@
 
 .grey{
   color: #545a77;
+  background-color: transparent;
 
   &:hover {
     color: #008fb4;

@@ -52,6 +52,7 @@ export default function TaskDetail({ taskList, onAskQuestion }) {
         <Question
           questionInput={questionInput}
           questionList={questionList}
+          questionCount={comments.length}
         />
       </TaskProvider>
     </div>

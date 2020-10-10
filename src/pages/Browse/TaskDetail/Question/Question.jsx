@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './Question.module.scss';
 
-function Question({ questionInput, questionList }) {
-  const title = `QUESTION(${questionList.length})`;
+function Question({ questionInput, questionList, questionCount }) {
+  const title = `QUESTION(${questionCount})`;
   const notice = `Please don't share personal info – insurance won't apply to tasks done privately!`;
 
   return (

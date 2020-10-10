@@ -38,22 +38,10 @@ const FORM = {
 
 function useLocalStorage() {
   const { localStorage } = window;
-  const [data, setData] = useState();
 
-  // const currentData = data && Object
-  //   .keys(data)
-  //   .reduce((obj, key) => ({
-  //     ...obj,
-  //     [key]: data[key],
-  //   }), {});
-
-  const getStoredData = () => {
-    const storedData = localStorage.getItem('userProfile');
-    if (storedData) setData(JSON.parse(storedData));
-  };
+  const storedData = JSON.parse(localStorage.getItem('userProfile'));
 
   const storeData = (currentData) => {
-    console.log(currentData);
     localStorage.setItem('userProfile', JSON.stringify(currentData));
   };
 
@@ -61,67 +49,30 @@ function useLocalStorage() {
     localStorage.removeItem('userProfile');
   };
 
-  useEffect(() => {
-    getStoredData();
-  }, [setData]);
-
-  // useEffect(() => {
-  //   storeData();
-  // }, [data]);
-
-  return [data, storeData, dropStoredData];
+  return [storedData, storeData, dropStoredData];
 }
 
 export default function CreateProfile({ pageToggler }) {
   const [subPage, loadSubPage] = useState();
   const [storedData, store, dropStoredData] = useLocalStorage();
   const [updateFlag, setFlag] = useState(false);
+  const form = useForm(FORM, storedData);
 
   const toggleUpdateFlag = () => {
     setFlag((prevFlag) => !prevFlag);
   };
 
-  const form = useForm(FORM, storedData);
-
   const {
     getData,
-    setData,
     handleDataChange,
     touched,
   } = form;
 
   const formData = getData();
 
-  // const loadProfile = (userProfile) => {
-  //   setData(userProfile);
-  // };
-
-  // const profileStorage = window.localStorage;
-
-  // const saveLocalProfile = () => {
-  //   if (!touched) return;
-  //   const userProfile = { ...formData };
-  //   profileStorage.setItem('userProfile', JSON.stringify(userProfile));
-  // };
-
-  // const getLocalProfile = () => {
-  //   const savedProfile = profileStorage.getItem('userProfile');
-  //   if (savedProfile) loadProfile(JSON.parse(savedProfile));
-  // };
-
-  // const removeLocalProfile = () => {
-  //   profileStorage.removeItem('userProfile');
-  // };
-
-  // useEffect(() => {
-  //   getLocalProfile();
-  // },
-  // []);
-
-  // useEffect(() => {
-  //   saveLocalProfile();
-  // },
-  // []);
+  useEffect(() => {
+    if (touched) store(formData);
+  }, [updateFlag]);
 
   const handleBackBtnClick = () => {
     loadSubPage('');
@@ -139,10 +90,6 @@ export default function CreateProfile({ pageToggler }) {
     const formattedBirthday = birthdayObj.toDateString().replace(/[^\s]+/, '');
     return formattedBirthday;
   };
-
-  useEffect(() => {
-    if (touched) store(formData);
-  }, [updateFlag]);
 
   const profileList = (
     <div className={styles.profile_list_wrapper} >

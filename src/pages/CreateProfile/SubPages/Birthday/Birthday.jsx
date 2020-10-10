@@ -9,9 +9,9 @@ import onlyNumber from '../../../../utils/validators/input';
 import { isDate, isAdult } from '../../../../utils/validators/submit';
 
 export default function BirthDate({ storedValue, onSubmit }) {
-  const [day, setDay] = useState(storedValue.day);
-  const [month, setMonth] = useState(storedValue.month);
-  const [year, setYear] = useState(storedValue.year);
+  const [day, setDay] = useState(storedValue.day || '');
+  const [month, setMonth] = useState(storedValue.month || '');
+  const [year, setYear] = useState(storedValue.year || '');
   const [testing, toggleTest] = useState(false);
 
   const formInputElements = [

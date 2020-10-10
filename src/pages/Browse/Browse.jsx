@@ -55,11 +55,11 @@ export default function Browse() {
 
   const loadTaskList = async () => {
     // without backend
-    const newTaskList = tasks;
+    // const newTaskList = tasks;
 
     // with backend
-    // const { data: { data } } = await getTaskList();
-    // const newTaskList = data;
+    const { data: { data } } = await getTaskList();
+    const newTaskList = data;
 
     setTaskList(newTaskList);
   };

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import styles from './PaymentPanel.module.scss';
 
 import OfferButton from '../../OfferButton';
 import { EXPIRED } from '../../../../../components/Status';
+import { TaskContext } from '../../../TaskContext';
 
-export default function PaymentPanel({ status, budget }) {
+export default function PaymentPanel() {
+  const { status, budget } = useContext(TaskContext);
+
   const title = 'TASK BUDGET';
 
   return (

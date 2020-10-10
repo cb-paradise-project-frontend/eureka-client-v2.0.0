@@ -1,1 +1,1 @@
-export {TaskProvider, TaskConsumer} from './TaskContext';
+export { TaskProvider, TaskConsumer, TaskContext } from './TaskContext';

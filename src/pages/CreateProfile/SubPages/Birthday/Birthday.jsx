@@ -8,18 +8,7 @@ import ErrorMessage from '../../../../components/ErrorMessage';
 import onlyNumber from '../../../../utils/validators/input';
 import { isDate, isAdult } from '../../../../utils/validators/submit';
 import useForm from '../useForm';
-
-const FORM = {
-  day: {
-    placeholder: 'DD',
-  },
-  month: {
-    placeholder: 'MM',
-  },
-  year: {
-    placeholder: 'YYYY',
-  },
-};
+import FORM from './form';
 
 export default function Birthday({ storedValue, onSubmit }) {
   const form = useForm(FORM, storedValue);

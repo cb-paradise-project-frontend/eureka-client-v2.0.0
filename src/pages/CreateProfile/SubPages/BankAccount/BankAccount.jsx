@@ -4,7 +4,7 @@ import styles from './BankAccount.module.scss';
 
 import Button from '../../../../components/Button';
 import Input from '../../../../components/Input';
-import useForm from '../../../../components/useForm';
+import useForm from '../useForm';
 import FORM from './form';
 
 export default function BankAccount({ storedValue, onSubmit }) {

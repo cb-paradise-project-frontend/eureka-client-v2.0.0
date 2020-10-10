@@ -4,37 +4,10 @@ import styles from './CreateProfile.module.scss';
 
 import Modal from '../../components/Modal';
 import ProfileItem from './ProfileItem';
-import Photo from './SubPages/Photo';
-import BankAccount from './SubPages/BankAccount';
-import BillingAddress from './SubPages/BillingAddress';
-import Birthday from './SubPages/Birthday';
-import Mobile from './SubPages/Mobile';
 import Button from '../../components/Button';
 import isFormFilled from './utils/isFormFilled';
 import useForm from './SubPages/useForm';
-
-const FORM = {
-  photo: {
-    label: 'Profile Picture',
-    Page: Photo,
-  },
-  bankAccount: {
-    label: 'Bank Account Details',
-    Page: BankAccount,
-  },
-  billingAddress: {
-    label: 'Billing Address',
-    Page: BillingAddress,
-  },
-  birthday: {
-    label: 'Date of Birth',
-    Page: Birthday,
-  },
-  mobile: {
-    label: 'Mobile Number',
-    Page: Mobile,
-  },
-};
+import FORM from './form';
 
 function useLocalStorage() {
   const { localStorage } = window;

@@ -66,7 +66,7 @@ export default function Birthday({ storedValue, onSubmit }) {
         <div className={styles.input_wrapper} >
           {formInputs}
         </div>
-        <div className={styles.message_wrapper}>
+        <div className={styles.message_wrapper} >
           {testing && getError() &&
             <ErrorMessage>
               {getError()}

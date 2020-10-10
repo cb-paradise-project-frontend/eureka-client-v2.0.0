@@ -18,7 +18,7 @@ export default function BillingAddress({ storedValue, onSubmit }) {
 
   const formData = getData();
 
-  const introduction = `Your billing address will be verified before you can receive payments.`;
+  const introduction = 'Your billing address will be verified before you can receive payments.';
   const information = 'Your address will never been shown publicly, it is only used for account verification purposes.';
   const errorMessage = 'Please enter your complete address.';
 

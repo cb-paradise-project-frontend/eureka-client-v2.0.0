@@ -2,9 +2,11 @@ import React from 'react';
 
 import styles from './Question.module.scss';
 
-function Question({ questionInput, questionList, questionCount }) {
+export default function Question({
+  questionInput, questionList, questionCount,
+}) {
   const title = `QUESTION(${questionCount})`;
-  const notice = `Please don't share personal info – insurance won't apply to tasks done privately!`;
+  const notice = "Please don't share personal info – insurance won't apply to tasks done privately!";
 
   return (
     <div className={styles.question_wrapper} >
@@ -22,6 +24,4 @@ function Question({ questionInput, questionList, questionCount }) {
       </div>
     </div>
   );
-};
-
-export default Question;
+}

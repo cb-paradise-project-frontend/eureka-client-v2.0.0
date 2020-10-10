@@ -90,7 +90,7 @@ export default function CreateProfile({ pageToggler }) {
               />
             )}
             statusLabel={statusLabel}
-            checked={!!value} // TODO: bypass optional input "lineTwo" in BillingAddress
+            filled={!!value}
             key={key}
           />
         );

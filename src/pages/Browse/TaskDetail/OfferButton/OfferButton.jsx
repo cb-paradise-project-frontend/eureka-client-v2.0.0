@@ -13,11 +13,11 @@ export default function OfferButton({ isExpired }) {
   return (
     <>
       <Button
-          onClick={toggler}
-          isDisabled={isExpired}
-        >
-          {label}
-        </Button>
+        onClick={toggler}
+        isDisabled={isExpired}
+      >
+        {label}
+      </Button>
       <Content>
         <CreateProfile pageToggler={toggler} />
       </Content>

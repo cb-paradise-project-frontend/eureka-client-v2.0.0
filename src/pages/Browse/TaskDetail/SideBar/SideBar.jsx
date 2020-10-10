@@ -6,7 +6,7 @@ import PaymentPanel from './PaymentPanel';
 
 export default function SideBar() {
   return (
-    <div className = {styles.side_bar} >
+    <div className={styles.side_bar} >
       <PaymentPanel />
     </div>
   );

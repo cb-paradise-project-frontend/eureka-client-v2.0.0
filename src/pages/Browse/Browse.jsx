@@ -77,7 +77,7 @@ export default function Browse() {
 
   return (
     <div className={styles.browse_container} >
-      <div className = {styles.browse} >
+      <div className={styles.browse} >
         <Redirect to={`${path}/${defaultTaskId}`} />
         <TaskList taskList={taskList} />
         <Route path={`${path}/:taskId`} >

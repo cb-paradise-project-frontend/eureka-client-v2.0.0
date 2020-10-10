@@ -14,7 +14,7 @@ export default function StatusList() {
   const statusNameList = Object.values(STATUS);
   const statusList = statusNameList.map((statusName) => (
     <div
-      className = {cx(
+      className={cx(
         {
           status: true,
           active: status === statusName,

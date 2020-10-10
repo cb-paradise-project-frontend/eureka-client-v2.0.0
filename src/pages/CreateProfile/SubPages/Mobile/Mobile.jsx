@@ -18,8 +18,8 @@ export default function Mobile({ storedValue, onSubmit }) {
     onSubmit(mobile);
   };
 
-  const introduction = `We'll keep you up to date about the latest happenings on your tasks by SMS.`;
-  const information = `Verifying your mobile number helps us know you're a genuine human! We won't show it to anyone or sell it on to any 3rd party, it's just for us to send you some good stuff.`;
+  const introduction = "We'll keep you up to date about the latest happenings on your tasks by SMS.";
+  const information = "Verifying your mobile number helps us know you're a genuine human! We won't show it to anyone or sell it on to any 3rd party, it's just for us to send you some good stuff.";
   const editBtnElements = {
     title: 'Verified mobile number',
     value: storedValue,
@@ -36,10 +36,9 @@ export default function Mobile({ storedValue, onSubmit }) {
     handleClick: handleSubmit,
   };
 
-  const buttonElement = isVerified ? editBtnElements : sendBtnElements;
   const {
     title, value, color, notice, buttonLabel, handleClick,
-  } = buttonElement;
+  } = isVerified ? editBtnElements : sendBtnElements;
 
   return (
     <>

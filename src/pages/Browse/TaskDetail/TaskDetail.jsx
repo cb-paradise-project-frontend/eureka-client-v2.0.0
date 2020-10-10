@@ -16,7 +16,7 @@ import QuestionList from './Question/QuestionList';
 export default function TaskDetail({ taskList, onAskQuestion }) {
   const { params: { taskId } } = useRouteMatch();
 
-  const task = taskList.find(task => task.id === taskId);
+  const task = taskList.find(target => target.id === taskId);
   if (!task) return null;
 
   const { comments } = task;

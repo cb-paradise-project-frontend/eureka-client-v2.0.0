@@ -22,7 +22,7 @@ export default function BankAccount({ storedValue, onSubmit }) {
 
   const formData = getData();
 
-  const introduction = `Please provide your bank details so you can get paid. We don't take any money from your account.`;
+  const introduction = "Please provide your bank details so you can get paid. We don't take any money from your account.";
 
   const resetHighLight = () => {
     setHighlightField('');

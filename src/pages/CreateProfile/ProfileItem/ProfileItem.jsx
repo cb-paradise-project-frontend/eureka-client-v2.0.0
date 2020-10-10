@@ -6,13 +6,13 @@ import styles from './ProfileItem.module.scss';
 const cx = classNames.bind(styles);
 
 export default function ProfileItem({
-  itemName, handleClick, checked, statusLabel,
+  itemName, handleClick, filled, statusLabel,
 }) {
   const checkIcon = String.fromCharCode(10003);
   const arrowIcon = String.fromCharCode(10095);
 
   const title = `Provide your ${itemName}`;
-  const prefix = checked ? 'Update' : 'Enter';
+  const prefix = filled ? 'Update' : 'Enter';
   const label = statusLabel || `${prefix} your ${itemName}`;
 
   return (
@@ -26,8 +26,8 @@ export default function ProfileItem({
       >
         <div className={cx({
           check_icon: true,
-          checked,
-        })} >
+          checked: filled,
+        })}>
           {checkIcon}
         </div>
         <div className={styles.label} >

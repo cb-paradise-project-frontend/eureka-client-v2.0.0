@@ -5,7 +5,6 @@ import styles from './CreateProfile.module.scss';
 import Modal from '../../components/Modal';
 import ProfileItem from './ProfileItem';
 import Button from '../../components/Button';
-import isFormFilled from './utils/isFormFilled';
 import useForm from './SubPages/useForm';
 import FORM from './form';
 import LocalStorage from './utils/LocalStorage';
@@ -91,7 +90,7 @@ export default function CreateProfile({ pageToggler }) {
               />
             )}
             statusLabel={statusLabel}
-            checked={isFormFilled(value)} // TODO: bypass optional input "lineTwo" in BillingAddress
+            checked={!!value} // TODO: bypass optional input "lineTwo" in BillingAddress
             key={key}
           />
         );

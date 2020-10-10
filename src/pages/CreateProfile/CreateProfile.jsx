@@ -5,7 +5,7 @@ import styles from './CreateProfile.module.scss';
 import Modal from '../../components/Modal';
 import ProfileItem from './ProfileItem';
 import Button from '../../components/Button';
-import useForm from './SubPages/useForm';
+import useForm from '../../components/useForm';
 import FORM from './form';
 import LocalStorage from './utils/LocalStorage';
 import createBirthdayLabel from './utils/createBirthdayLabel';

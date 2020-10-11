@@ -10,4 +10,4 @@ export default function QuestionAvatar({ avatarUrl }) {
       <Avatar avatarUrl={avatarUrl} />
     </div>
   );
-};
+}

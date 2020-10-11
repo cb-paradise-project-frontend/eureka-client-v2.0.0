@@ -3,14 +3,12 @@ import { useState } from "react";
 export default function useForm(config, initValues) {
   const formKeyArray = Object.keys(config);
 
-  const initFormData = () => (
-    formKeyArray.reduce((obj, key) => ({
-      ...obj,
-      [key]: initValues[key] || '',
-    }), {})
-  );
+  const initFormData = formKeyArray.reduce((obj, key) => ({
+    ...obj,
+    [key]: (initValues && initValues[key]) || '',
+  }), {});
 
-  const [formData, setFormData] = useState(initFormData());
+  const [formData, setFormData] = useState(initFormData);
 
   const [touched, toggleTouched] = useState(false);
 
@@ -19,11 +17,14 @@ export default function useForm(config, initValues) {
       ...obj,
       [key]: formData[key],
     }), {});
+
     return data;
   };
 
   const handleDataChange = (target) => (
     (input) => {
+      toggleTouched(true);
+
       setFormData((prevFormData) => ({
         ...prevFormData,
         [target]: input,
@@ -43,12 +44,14 @@ export default function useForm(config, initValues) {
     const errorField = formKeyArray.find((key) => {
       const value = formData[key];
       const getError = config[key].getErrorMessage;
+
       return getError && getError(value);
     });
 
     if (!errorField) return false;
 
     const errorMessage = config[errorField].getErrorMessage(formData[errorField]);
+
     return { field: errorField, message: errorMessage };
   };
 
@@ -58,7 +61,6 @@ export default function useForm(config, initValues) {
   form.findEmptyField = findEmptyField;
   form.getErrorMessage = getErrorMessage;
   form.touched = touched;
-  form.toggleTouched = toggleTouched;
 
   return form;
 }

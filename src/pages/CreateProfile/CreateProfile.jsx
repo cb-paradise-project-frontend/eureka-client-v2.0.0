@@ -1,184 +1,100 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styles from './CreateProfile.module.scss';
 
 import Modal from '../../components/Modal';
-import profileReducer from './Reducer';
 import ProfileItem from './ProfileItem';
-import Photo from './SubPages/Photo';
-import BankAccount from './SubPages/BankAccount';
-import BillingAddress from './SubPages/BillingAddress';
-import Birthday from './SubPages/Birthday';
-import Mobile from './SubPages/Mobile';
-import * as action from './Reducer/Action/actionCreator';
 import Button from '../../components/Button';
-import isFormFilled from './utils/isFormFilled';
+import useForm from './SubPages/useForm';
+import FORM from './form';
+import LocalStorage from './utils/LocalStorage';
+import createBirthdayLabel from './utils/createBirthdayLabel';
 
-const initialState = {
-  photo: '',
-  bankAccount: {
-    holder: '',
-    accountNumber: '',
-    bsb: '',
-  },
-  billingAddress: {
-    lineOne: '',
-    suburb: '',
-    state: '',
-    postcode: '',
-    country: '',
-  },
-  birthday: {
-    day: '',
-    month: '',
-    year: '',
-  },
-  mobile: '',
-  subPage: '',
-  autoSave: false,
-};
+const { getStoredData, storeData, dropStoredData } = new LocalStorage('userProfile');
 
 export default function CreateProfile({ pageToggler }) {
-  const [fields, dispatch] = useReducer(profileReducer, initialState);
+  const [subPage, loadSubPage] = useState();
+
+  const form = useForm(FORM, getStoredData());
+  const [updateFlag, setFlag] = useState(false);
+
+  const toggleUpdateFlag = () => {
+    setFlag((prevFlag) => !prevFlag);
+  };
 
   const {
-    photo, bankAccount, billingAddress, birthday, mobile, subPage, autoSave,
-  } = fields;
+    getData,
+    handleDataChange,
+    touched,
+  } = form;
 
-  const loadProfile = (userProfile) => {
-    dispatch(action.loadProfile(userProfile));
-  };
-
-  const profileStorage = window.localStorage;
-
-  const saveLocalProfile = () => {
-    if (!autoSave) return;
-    const userProfile = {
-      photo, bankAccount, billingAddress, birthday, mobile,
-    };
-    profileStorage.setItem('userProfile', JSON.stringify(userProfile));
-  };
-
-  const getLocalProfile = () => {
-    const savedProfile = profileStorage.getItem('userProfile');
-    if (savedProfile) loadProfile(JSON.parse(savedProfile));
-  };
-
-  const removeLocalProfile = () => {
-    profileStorage.removeItem('userProfile');
-  };
+  const formData = getData();
 
   useEffect(() => {
-    getLocalProfile();
-  },
-  [dispatch]);
+    if (touched) storeData(formData);
+  }, [updateFlag]);
 
-  useEffect(() => {
-    saveLocalProfile();
-  },
-  [fields]);
-
-  const handleProfileBtnClick = (page) => (
-    () => (dispatch(action.clickProfileItem(page)))
-  );
   const handleBackBtnClick = () => {
-    dispatch(action.clickBackBtn());
+    loadSubPage('');
   };
 
-  const handlePhotoUpload = (input) => {
-    dispatch(action.photoUpload(input));
-  };
-  const handleAccountInput = (input) => {
-    dispatch(action.accountInput(input));
-  };
-  const handleBillingAddressInput = (input) => {
-    dispatch(action.billingAddressInput(input));
-  };
-  const handleBirthdayInput = (input) => {
-    dispatch(action.birthdayInput(input));
-  };
-  const handleMobileInput = (input) => {
-    dispatch(action.mobileInput(input));
-  };
+  const backButton = (
+    <Button
+    onClick={handleBackBtnClick}
+    color={'light-blue'}
+    long
+  >
+    Back
+  </Button>
+  );
+
   const handleContinueBtnClick = () => {
-    removeLocalProfile();
+    dropStoredData();
     pageToggler();
   };
 
-  const createBirthdayLabel = () => {
-    if (!isFormFilled(birthday)) return null;
-    const { day, month, year } = birthday;
-    const birthdayObj = new Date(year, month - 1, day);
-    const formattedBirthday = birthdayObj.toDateString().replace(/[^\s]+/, '');
-    return formattedBirthday;
-  };
-
-  const profileItemElementList = [
-    {
-      name: 'Profile Picture',
-      value: photo,
-      page: (
-        <Photo
-          onSubmit={handlePhotoUpload}
-          url={photo}
-        />
-      ),
-    },
-    {
-      name: 'Bank Account Details',
-      value: bankAccount,
-      page: (
-        <BankAccount
-          onSubmit={handleAccountInput}
-          storedValue={bankAccount}
-        />
-      ),
-    },
-    {
-      name: 'Billing Address',
-      value: billingAddress,
-      page: (
-        <BillingAddress
-          onSubmit={handleBillingAddressInput}
-          storedValue={billingAddress}
-        />
-      ),
-    },
-    {
-      name: 'Date of Birth',
-      value: birthday,
-      statusLabel: createBirthdayLabel(),
-      page: (
-        <Birthday
-          onSubmit={handleBirthdayInput}
-          storedValue={birthday}
-        />
-      ),
-    },
-    {
-      name: 'Mobile Number',
-      value: mobile,
-      statusLabel: mobile,
-      page: <Mobile
-        onSubmit={handleMobileInput}
-        storedValue={mobile}
-      />,
-    },
-  ];
+  const continueButton = (
+    <Button
+    onClick={handleContinueBtnClick}
+    color={'light-blue'}
+    long
+  >
+    Continue
+  </Button>
+  );
 
   const profileList = (
     <div className={styles.profile_list_wrapper} >
-      {profileItemElementList.map(({
-        name, value, statusLabel, page,
-      }) => (
-        <ProfileItem
-          itemName={name}
-          handleClick={handleProfileBtnClick(page)}
-          statusLabel={statusLabel}
-          checked={isFormFilled(value)} // TODO: bypass optional input "lineTwo" in BillingAddress
-          key={name}
-        />
-      ))}
+      {Object.keys(FORM).map((key) => {
+        const { label, Page } = FORM[key];
+        const value = formData[key];
+
+        const handleChange = (input) => {
+          handleDataChange(key)(input);
+          toggleUpdateFlag();
+          handleBackBtnClick();
+        };
+
+        const statusLabel = {
+          birthday: createBirthdayLabel(value),
+          mobile: value,
+        }[key] || null;
+
+        return (
+          <ProfileItem
+            itemName={label}
+            handleClick={() => loadSubPage(
+              <Page
+                storedValue={value}
+                onSubmit={handleChange}
+              />
+            )}
+            statusLabel={statusLabel}
+            filled={!!value}
+            key={key}
+          />
+        );
+      })}
     </div>
   );
 
@@ -199,26 +115,6 @@ export default function CreateProfile({ pageToggler }) {
     <div className={styles.content_wrapper} >
       {subPage || profileList}
     </div>
-  );
-
-  const backButton = (
-    <Button
-    onClick={handleBackBtnClick}
-    color={'light-blue'}
-    long
-  >
-    Back
-  </Button>
-  );
-
-  const continueButton = (
-    <Button
-    onClick={handleContinueBtnClick}
-    color={'light-blue'}
-    long
-  >
-    Continue
-  </Button>
   );
 
   const footer = subPage ? backButton : continueButton;

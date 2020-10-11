@@ -7,71 +7,56 @@ import Button from '../../../../components/Button';
 import ErrorMessage from '../../../../components/ErrorMessage';
 import onlyNumber from '../../../../utils/validators/input';
 import { isDate, isAdult } from '../../../../utils/validators/submit';
+import useForm from '../useForm';
+import FORM from './form';
 
-export default function BirthDate({ storedValue, onSubmit }) {
-  const [day, setDay] = useState(storedValue.day);
-  const [month, setMonth] = useState(storedValue.month);
-  const [year, setYear] = useState(storedValue.year);
+export default function Birthday({ storedValue, onSubmit }) {
+  const form = useForm(FORM, storedValue);
+
+  const {
+    getData,
+    handleDataChange,
+  } = form;
+
+  const formData = getData();
+
   const [testing, toggleTest] = useState(false);
 
-  const formInputElements = [
-    {
-      placeholder: 'DD',
-      value: day,
-      handleChange: setDay,
-    },
-    {
-      placeholder: 'MM',
-      value: month,
-      handleChange: setMonth,
-    },
-    {
-      placeholder: 'YYYY',
-      value: year,
-      handleChange: setYear,
-    },
-  ];
+  const formInputs = Object.keys(FORM).map((key) => {
+    const { placeholder } = FORM[key];
+    const value = formData[key];
 
-  const formInputs = formInputElements.map(({ placeholder, value, handleChange }) => (
-    <div
-      className={styles.input_wrapper}
-      key={placeholder}
-    >
-      <Input
-        placeholder={placeholder}
-        value={value}
-        validator={onlyNumber}
-        handleChange={handleChange}
-        maxLength={placeholder.length}
-      />
-    </div>
-  ));
+    const handleChange = handleDataChange(key);
 
-  const validations = [
-    {
-      condition: (isDate(day, month, year)),
-      message: 'Please enter a valid date.',
-    },
-    {
-      condition: (isAdult(day, month, year)),
-      message: 'You must be 18 years or older to make an offer.',
-    },
-  ];
+    return (
+      <div
+        className={styles.input_wrapper}
+        key={placeholder}
+      >
+        <Input
+          placeholder={placeholder}
+          value={value}
+          validator={onlyNumber}
+          handleChange={handleChange}
+          maxLength={placeholder.length}
+        />
+      </div>
+    );
+  });
 
   const getError = () => {
-    const error = validations.find(validation => validation.condition === false);
-    return error ? error.message : false;
-  }
+    const { day, month, year } = formData;
+
+    return (!isDate(day, month, year) && 'Please enter a valid date.')
+      || (!isAdult(day, month, year) && 'You must be 18 years or older to make an offer.')
+      || false;
+  };
 
   const handleSubmit = () => {
     if (getError()) {
       toggleTest(true);
     } else {
-      const birthday = {
-        day, month, year,
-      };
-      onSubmit(birthday);
-      toggleTest(false);
+      onSubmit(formData);
     }
   };
 
@@ -81,8 +66,8 @@ export default function BirthDate({ storedValue, onSubmit }) {
         <div className={styles.input_wrapper} >
           {formInputs}
         </div>
-        <div className={styles.message_wrapper}>
-          {(testing && getError()) &&
+        <div className={styles.message_wrapper} >
+          {testing && getError() &&
             <ErrorMessage>
               {getError()}
             </ErrorMessage>

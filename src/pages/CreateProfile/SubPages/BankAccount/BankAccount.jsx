@@ -10,6 +10,7 @@ import FORM from './form';
 export default function BankAccount({ storedValue, onSubmit }) {
   const form = useForm(FORM, storedValue);
 
+  const [testing, toggleTesting] = useState(false);
   const [highlightField, setHighlightField] = useState();
 
   const {
@@ -17,13 +18,11 @@ export default function BankAccount({ storedValue, onSubmit }) {
     handleDataChange,
     findEmptyField,
     getErrorMessage,
-    touched,
-    toggleTouched,
   } = form;
 
   const formData = getData();
 
-  const introduction = `Please provide your bank details so you can get paid. We don't take any money from your account.`;
+  const introduction = "Please provide your bank details so you can get paid. We don't take any money from your account.";
 
   const resetHighLight = () => {
     setHighlightField('');
@@ -56,18 +55,16 @@ export default function BankAccount({ storedValue, onSubmit }) {
 
   const handleSubmit = () => {
     if (error) {
-      toggleTouched(true);
+      toggleTesting(true);
       setHighlightField(error.field);
     } else {
       onSubmit(formData);
-      setHighlightField('');
-      toggleTouched(false);
     }
   };
 
   return (
     <>
-      {touched && error &&
+      {testing && error &&
         <div className={styles.message_box} >
           {error.message}
         </div>

@@ -4,7 +4,7 @@ import styles from './Photo.module.scss';
 
 import Button from '../../../../components/Button';
 
-export default function Photo({ url, onSubmit }) {
+export default function Photo({ storedValue, onSubmit }) {
   const handleChange = ({ target: { files } }) => {
     if (files[0]) {
       onSubmit(URL.createObjectURL(files[0]));
@@ -15,8 +15,8 @@ export default function Photo({ url, onSubmit }) {
     <div className={styles.form_wrapper} >
       <div className={styles.row} >
         <div className={styles.avatar_wrapper} >
-          {url &&
-            <img src={url} alt="avatar" />
+          {storedValue &&
+            <img src={storedValue} alt="avatar" />
           }
         </div>
         <div className={styles.button_wrapper} >

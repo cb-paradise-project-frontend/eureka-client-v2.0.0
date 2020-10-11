@@ -10,7 +10,7 @@
     font-style: initial;
     white-space: initial;
     text-decoration: initial;
-    margin: 0px 0px 8px;
+    margin: auto;
  
 
 }
@@ -31,14 +31,14 @@
     padding: 0;
 }
 
-.FeatureContent {
+.feature_content {
     width: 50%;
     margin: auto; 
     padding-right: 50px;
     align-items: center;
 }
 
-.readMore {
+.read_more {
     color: #008fb4;
     text-decoration: none;
     text-align: left;
@@ -55,7 +55,7 @@
     }
 }
 
-.readMore:hover::after {
+.read_more:hover::after {
         content: "";
         position: relative;
         display: block;
@@ -66,3 +66,23 @@
         background: #008fb4;
 
 }
+
+@media screen and (max-width: 767px)
+  {
+    .feature_content {
+        order: 1;
+        width: 50%;
+        margin-left:50px; 
+        align-items: center;
+    }
+    .FeatureImg {
+        display: flex;
+        width: 50%;
+        justify-content: center;
+        transition: transform 0.5s ease 0s;
+    }
+    .FeatureImg:hover {
+        transform: scale(1.1);
+      }
+  }
+  

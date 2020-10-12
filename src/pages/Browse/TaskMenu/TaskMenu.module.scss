@@ -1,7 +1,9 @@
 .task_menu_wrapper{
   width: 100%;
   background-color: #f6f8fd;
+  border: solid 1px #dcdee2;
   box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  box-sizing: border-box;
 
   .task_menu{
     position: relative;

@@ -56,7 +56,7 @@ const SignupModal = ({ pageToggler }) => {
               placeholder="Email"
               required
               value={userCredentials.email}
-              handleChange={handleChange}
+              onChange={handleChange}
             />
           </div>
           <div className={styles.input_wrapper} >
@@ -67,7 +67,7 @@ const SignupModal = ({ pageToggler }) => {
               placeholder="Password"
               required
               value={userCredentials.password}
-              handleChange={handleChange}
+              onChange={handleChange}
             />
           </div>
           <div className={styles.input_wrapper} >
@@ -78,7 +78,7 @@ const SignupModal = ({ pageToggler }) => {
               placeholder="Confirm Password"
               required
               value={userCredentials.confirmPassword}
-              handleChange={handleChange}
+              onChange={handleChange}
             />
           </div>
           <Button type="submit" onClick={onSignUp}>Sign up</Button>

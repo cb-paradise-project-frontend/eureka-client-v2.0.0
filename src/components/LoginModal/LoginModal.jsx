@@ -56,7 +56,7 @@ const LoginModal = ({ pageToggler }) => {
               type="email"
               placeholder="Email"
               value={form.email}
-              handleChange={handleChange}
+              onChange={handleChange}
             />
           </div>
           <div className={styles.input_wrapper} >
@@ -66,7 +66,7 @@ const LoginModal = ({ pageToggler }) => {
               type="password"
               placeholder="Password"
               value={form.password}
-              handleChange={handleChange}
+              onChange={handleChange}
             />
           </div>
           <Button onClick={onLoginWithEmail} >

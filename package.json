@@ -9,7 +9,7 @@
     "axios": "^0.20.0",
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
-    "firebase": "^7.19.1",
+    "firebase": "^7.23.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-datepicker": "^3.1.3",

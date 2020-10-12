@@ -48,26 +48,29 @@ const testUserId = '5f7e8665b7edfa557c89dbdf';
 export default function Browse() {
   const [taskList, setTaskList] = useState([]);
   const [updateFlag, setUpdateFlag] = useState(false);
+
+  const [keyword, updateKeyword] = useState('');
+
   const { path } = useRouteMatch();
 
   const toggleUpdateFlag = () => {
     setUpdateFlag((prevFlag) => !prevFlag);
   };
 
-  const loadTaskList = async () => {
+  const loadTaskList = async (inputKeyword) => {
     // without backend
     // const newTaskList = tasks;
 
     // with backend
-    const { data: { data } } = await getTaskList();
+    const { data: { data } } = await getTaskList(inputKeyword);
     const newTaskList = data;
 
     setTaskList(newTaskList);
   };
 
   useEffect(() => {
-    loadTaskList();
-  }, [updateFlag]);
+    loadTaskList(keyword);
+  }, [updateFlag, keyword]);
 
   const onAskQuestion = (taskId, input) => {
     askQuestion(testUserId, taskId, input);
@@ -80,7 +83,9 @@ export default function Browse() {
     <>
       <Redirect to={`${path}/${defaultTaskId}`} />
       <div className={styles.browse_container} >
-        <TaskMenu />
+        <TaskMenu
+          onKeywordChange={updateKeyword}
+        />
         <div className={styles.browse} >
           <TaskList taskList={taskList} />
           <Route path={`${path}/:taskId`} >

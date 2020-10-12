@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 57px;
+  margin: 0;
   text-align: center;
   font-family: museo_sans,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
   font-weight: 300;
   font-size: 14px;
   line-height: 1.4;
-  padding-top: 58px;
-  margin: 0;
   color: #545A7B;
 
   .browse{
@@ -19,7 +19,7 @@
     width: 100%;
     max-width: 1024px;
     margin: 0 auto;
-    height: calc(100vh - 106px);
+    height: calc(100vh - 110px);
     display: flex;
     word-wrap: break-word;
 

@@ -1,11 +1,20 @@
-.task_menu{
-  display: flex;
-  align-items: center;
-  height: 48px;
+.task_menu_wrapper{
   width: 100%;
   background-color: #f6f8fd;
 
-  .search{
-    width: 200px;
+  .task_menu{
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 48px;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+
+    .search{
+      position: absolute;
+      right: 0;
+      width: 200px;
+    }
   }
 }

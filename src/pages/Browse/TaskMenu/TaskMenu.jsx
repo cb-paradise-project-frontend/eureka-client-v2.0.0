@@ -12,14 +12,16 @@ export default function TaskMenu({ onKeywordChange }) {
   };
 
   return (
-    <div className={styles.task_menu} >
-      <div className={styles.search} >
-        <Input.Search
-          placeholder="Search for a task"
-          value={keyword}
-          handleChange={inputKeyword}
-          onSubmit={handleSubmit}
-        />
+    <div className={styles.task_menu_wrapper} >
+      <div className={styles.task_menu} >
+        <div className={styles.search} >
+          <Input.Search
+            placeholder="Search for a task"
+            value={keyword}
+            handleChange={inputKeyword}
+            onSubmit={handleSubmit}
+          />
+        </div>
       </div>
     </div>
   );

@@ -25,71 +25,72 @@
     text-decoration: none;
     color: white;
   }
-}
 
-.green {
-  background-color: rgb(125, 179, 67);
-}
-.blue {
-  background-color: #4c8bf5;
-}
-.light-blue {
-  color: rgb(0, 143, 180);
-  border-color: rgb(231, 235, 251);
-  background-color: rgb(246, 248, 253);
-}
-.pink {
-  background-color: #e0446d;
-}
-.red{
-  background-color: rgb(231, 82, 69);
-}
-.transparent{
-  background-color: transparent;
-  border-color: white;
-
-  &:hover{
-    @extend .light-blue;
-    border-color: rgb(0, 143, 180);
+  &.green {
+    background-color: rgb(125, 179, 67);
+  }
+  &.blue {
+    background-color: #4c8bf5;
+  }
+  &.light-blue {
+    color: rgb(0, 143, 180);
+    border-color: rgb(231, 235, 251);
+    background-color: rgb(246, 248, 253);
+  }
+  &.pink {
+    background-color: #e0446d;
+  }
+  &.red{
+    background-color: rgb(231, 82, 69);
+  }
+  &.transparent{
+    background-color: transparent;
+    border-color: white;
+  
+    &:hover{
+      @extend .light-blue;
+      border-color: rgb(0, 143, 180);
+    }
+  }
+  
+  &.transparentActive{
+    background-color: #f6f8fd;
+    color: #008fb4;
+    border-color: rgba(41, 43, 50, .3);
+  
+    &:hover{
+      background-color:white;
+    }
+  }
+  
+  &.small{
+    padding: 5px 10px;
+    height: 27px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .44px;
+    border-width: 1px;
+  }
+  
+  &.medium{
+    padding: 8px 16px;
+    font-size: 16px;
+    border-width: 2px;
+    letter-spacing: 0.15px;
+  }
+  
+  &.large{
+    border-width: 2px;
+    padding: 16px 24px;
+    font-size: 20px;
+    letter-spacing: 0.15px
+  }
+  
+  &.long{
+    width: 100%;
   }
 }
 
-.transparentActive{
-  background-color: #f6f8fd;
-  color: #008fb4;
-  border-color: rgba(41, 43, 50, .3);
-
-  &:hover{
-    background-color:white;
-  }
-}
-
-.small{
-  padding: 5px 10px;
-  height: 27px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: .44px;
-  border-width: 1px;
-}
-
-.medium{
-  padding: 8px 16px;
-  font-size: 16px;
-  border-width: 2px;
-  letter-spacing: 0.15px;
-}
-
-.large{
-  border-width: 2px;
-  padding: 16px 24px;
-  font-size: 20px;
-  letter-spacing: 0.15px
-}
-
-.long{
-  width: 100%;
-}
 
 // ------ icon button -----
 .icon_button{
@@ -130,26 +131,25 @@
   outline: none;
   font-weight: 600;
   color: #fff;
-}
-
-.white{
-  color: #fff;
   background-color: transparent;
-  
-  &:hover {
-    opacity: 0.6;
+
+  &.white{
+    color: #fff;
+    
+    &:hover {
+      opacity: 0.6;
+    }
   }
-}
-
-.grey{
-  color: #545a77;
-  background-color: transparent;
-
-  &:hover {
+  
+  &.grey{
+    color: #545a77;
+  
+    &:hover {
+      color: #008fb4;
+    }
+  }
+  
+  &.light-blue{
     color: #008fb4;
   }
-}
-
-.light-blue{
-  color: #008fb4;
 }

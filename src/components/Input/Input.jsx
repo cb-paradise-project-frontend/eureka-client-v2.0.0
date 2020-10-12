@@ -53,17 +53,27 @@ const WithErrorMessage = ({
 );
 
 const Search = ({
-  placeholder, handleChange,
-}) => (
-  <div className={styles.search_wrapper} >
-    <input
-      className={styles.search}
-      placeholder={placeholder}
-      onChange={({ target: { value } }) => handleChange(value)}
-    />
-    <Button.SearchIcon />
-  </div>
-);
+  placeholder, handleChange, onSubmit,
+}) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    onSubmit();
+  };
+
+  return (
+    <form onSubmit={handleSubmit} >
+      <div className={styles.search_wrapper} >
+        <input
+          className={styles.search}
+          placeholder={placeholder}
+          onChange={({ target: { value } }) => handleChange(value)}
+        />
+        <Button.SearchIcon onClick={handleSubmit} />
+      </div>
+    </form>
+  );
+};
 
 Input.WithErrorMessage = WithErrorMessage;
 Input.Search = Search;

@@ -83,16 +83,16 @@ export default function Browse() {
     <>
       <Redirect to={`${path}/${defaultTaskId}`} />
       <div className={styles.browse_container} >
-        <TaskMenu
-          onKeywordChange={updateKeyword}
-        />
+        <TaskMenu onKeywordChange={updateKeyword} />
         <div className={styles.browse} >
           <TaskList taskList={taskList} />
           <Route path={`${path}/:taskId`} >
-            <TaskDetail
-              taskList={taskList}
-              onAskQuestion={onAskQuestion}
-            />
+            <div className={styles.task_detail_wrapper} >
+              <TaskDetail
+                taskList={taskList}
+                onAskQuestion={onAskQuestion}
+              />
+            </div>
           </Route>
         </div>
       </div>

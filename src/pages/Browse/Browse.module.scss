@@ -13,11 +13,18 @@
 
   .browse{
     position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex: 1 1;
     width: 100%;
     max-width: 1024px;
     margin: 0 auto;
     height: calc(100vh - 106px);
     display: flex;
     word-wrap: break-word;
+
+    .task_detail_wrapper{
+      flex: 1 1;
+    }
   }
 }

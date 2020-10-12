@@ -4,3 +4,15 @@
     /* justify-content: center; */
     margin: 50px auto;
   }
+
+  @media screen and (max-width: 767px)
+{
+  .FeatureContainer{
+    display: relative;
+    flex-direction: column;
+    width: 700px;   
+    justify-content: center; 
+    margin: 50px auto;
+  }
+}
+

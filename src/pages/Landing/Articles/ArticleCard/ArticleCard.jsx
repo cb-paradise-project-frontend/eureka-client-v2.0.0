@@ -5,17 +5,20 @@ import styles from "./ArticleCard.module.scss";
 function ArticleCard({ articleImg, articleTitle, articleContent }) {
   return (
     <div>
-      <div className={styles.ArticleCard}>
-        <img
+      <div className={styles.article_card}>
+      <div className={styles.img_container}>
+      <img
           src={articleImg}
           alt="articleImgName"
-          className={styles.articleImg}
+          className={styles.article_img}
         ></img>
-        <div className={styles.articleTitle}>{articleTitle}</div>
-        <div className={styles.articleContent}>{articleContent}</div>
+      </div>
+        
+        <div className={styles.article_title}>{articleTitle}</div>
+        <div className={styles.article_content}>{articleContent}</div>
         <a
           href="https://support.airtasker.com/hc/en-au/categories/200049939-Payments"
-          className={styles.readMore}
+          className={styles.read_more}
         >
           Read more
         </a>

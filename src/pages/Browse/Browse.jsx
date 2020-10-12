@@ -7,6 +7,7 @@ import TaskList from './TaskList';
 import TaskDetail from './TaskDetail';
 import getTaskList from '../../apis/getTaskList';
 import askQuestion from '../../apis/askQuestion';
+import TaskMenu from './TaskMenu/TaskMenu';
 
 const testData = {
   title: 'Roof repair',
@@ -76,17 +77,20 @@ export default function Browse() {
   const defaultTaskId = taskList[0] && taskList[0].id;
 
   return (
-    <div className={styles.browse_container} >
-      <div className={styles.browse} >
-        <Redirect to={`${path}/${defaultTaskId}`} />
-        <TaskList taskList={taskList} />
-        <Route path={`${path}/:taskId`} >
-          <TaskDetail
-            taskList={taskList}
-            onAskQuestion={onAskQuestion}
-          />
-        </Route>
+    <>
+      <Redirect to={`${path}/${defaultTaskId}`} />
+      <div className={styles.browse_container} >
+        <TaskMenu />
+        <div className={styles.browse} >
+          <TaskList taskList={taskList} />
+          <Route path={`${path}/:taskId`} >
+            <TaskDetail
+              taskList={taskList}
+              onAskQuestion={onAskQuestion}
+            />
+          </Route>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

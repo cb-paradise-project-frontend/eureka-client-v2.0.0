@@ -38,17 +38,17 @@ const WithErrorMessage = ({
   isError, errorMessage, ...otherProps
 }) => (
   <div className={styles.input_with_error_message}>
-      <Input
-        {...otherProps}
-      />
-      <div className={styles.error_message_wrapper} >
-        {isError && errorMessage &&
-          <ErrorMessage>
-            {errorMessage}
-          </ErrorMessage>
-        }
-      </div>
+    <Input
+      {...otherProps}
+    />
+    <div className={styles.error_message_wrapper} >
+      {isError && errorMessage &&
+        <ErrorMessage>
+          {errorMessage}
+        </ErrorMessage>
+      }
     </div>
+  </div>
 );
 
 Input.WithErrorMessage = WithErrorMessage;

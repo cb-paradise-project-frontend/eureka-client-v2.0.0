@@ -43,7 +43,7 @@ class TaskCategories extends React.Component {
     return (
       <div className={styles.taskCategories__container}>
         <h3>What do you need done?</h3>
-        <div>
+        <div className={styles.iconContainer}>
           {
             data.map((item, index) => {
               console.log(item)

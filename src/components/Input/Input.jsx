@@ -51,6 +51,17 @@ const WithErrorMessage = ({
   </div>
 );
 
+const Search = ({
+  placeholder, handleChange,
+}) => (
+  <input
+    className={styles.search}
+    placeholder={placeholder}
+    onChange={({ target: { value } }) => handleChange(value)}
+  />
+);
+
 Input.WithErrorMessage = WithErrorMessage;
+Input.Search = Search;
 
 export default Input;

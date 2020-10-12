@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from './Input.module.scss';
 import ErrorMessage from '../ErrorMessage';
+import Button from '../Button';
 
 const cx = classNames.bind(styles);
 
@@ -54,11 +55,14 @@ const WithErrorMessage = ({
 const Search = ({
   placeholder, handleChange,
 }) => (
-  <input
-    className={styles.search}
-    placeholder={placeholder}
-    onChange={({ target: { value } }) => handleChange(value)}
-  />
+  <div className={styles.search_wrapper} >
+    <input
+      className={styles.search}
+      placeholder={placeholder}
+      onChange={({ target: { value } }) => handleChange(value)}
+    />
+    <Button.SearchIcon />
+  </div>
 );
 
 Input.WithErrorMessage = WithErrorMessage;

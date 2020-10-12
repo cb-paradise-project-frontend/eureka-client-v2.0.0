@@ -1,7 +1,9 @@
 .task_menu{
-  background-color: #f6f8fd;
+  display: flex;
+  align-items: center;
   height: 48px;
   width: 100%;
+  background-color: #f6f8fd;
 
   .search{
     width: 200px;

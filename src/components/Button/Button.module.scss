@@ -105,6 +105,18 @@
   color: rgb(84, 90, 119);
 }
 
+.search_icon_wrapper{
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  color: rgb(170, 170, 170);
+
+  &:hover{
+    color: #008fb4;
+  }
+}
+
 
 // ------ text button --------
 .text_button{

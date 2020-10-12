@@ -57,6 +57,14 @@ const BackIcon = ({ onClick }) => (
   </IconButton>
 );
 
+const SearchIcon = ({ onClick }) => (
+  <IconButton onClick={onClick} >
+    <div className={styles.search_icon_wrapper} >
+      <i className="ri-search-line" />
+    </div>
+  </IconButton>
+);
+
 const Text = ({ onClick, children, color }) => (
   <button
     onClick={onClick}
@@ -74,6 +82,7 @@ const Text = ({ onClick, children, color }) => (
 
 Button.CloseIcon = CloseIcon;
 Button.BackIcon = BackIcon;
+Button.SearchIcon = SearchIcon;
 Button.Text = Text;
 
 export default Button;

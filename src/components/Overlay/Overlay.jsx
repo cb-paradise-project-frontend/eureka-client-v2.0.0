@@ -8,6 +8,6 @@ const Overlay = ({ children }) => {
       {children}
     </div>
   );
-}
+};
 
 export default Overlay;

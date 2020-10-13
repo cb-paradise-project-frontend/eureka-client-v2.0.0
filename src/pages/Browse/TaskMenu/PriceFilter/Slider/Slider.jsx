@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 
+import styles from './Slider.module.scss';
+
 export default function Slider({
-  defaultValue, min, max, onChange,
+  defaultValue, min, max, onChange, label,
 }) {
-  const [value, setValue] = useState(defaultValue);
+  const [value, setValue] = useState(defaultValue || '');
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -16,13 +18,19 @@ export default function Slider({
   };
 
   return (
-    <input
-      type="range"
-      value={value}
-      onChange={handleChange}
-      min={min}
-      max={max}
-      onMouseUp={onChange && handleMouseUp}
-    />
+    <>
+      {label &&
+        <div className={styles.label} >{label}</div>
+      }
+      <input
+        className={styles.slider}
+        type="range"
+        value={value}
+        onChange={handleChange}
+        min={min}
+        max={max}
+        onMouseUp={onChange && handleMouseUp}
+      />
+    </>
   );
 }

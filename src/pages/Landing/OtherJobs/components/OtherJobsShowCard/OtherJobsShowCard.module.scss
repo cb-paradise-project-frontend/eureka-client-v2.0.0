@@ -70,6 +70,13 @@
   // p:active {
   //   color: #008fb4;
   // }
+}
 
-
+@media screen and (max-width) {
+  .OtherJobsShowCard__container {
+    p {
+      margin: 0 15px 0 0;
+      padding: 6px 0 8px;
+    }
+  }
 }

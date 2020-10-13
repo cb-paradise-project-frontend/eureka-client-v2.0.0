@@ -76,7 +76,22 @@ function Navigation() {
     <AuthContext.Consumer>
       {(currentUser) => (
         <NavContext.Consumer>
+          {/* <div className={styles.menu-mobile}>
+            <div className={styles.responsiveButton}>
+              <span className={styles.responsiveBar}></span>
+              <span className={styles.responsiveBar}></span>
+              <span className={styles.responsiveBar}></span>
+            </div>
+
+            <div></div>
+
+            <div className={styles.responsivePostTask}>
+              <span className={styles.responsiveBar}></span>
+              <span className={styles.responsiveBar}></span>
+            </div>
+          </div> */}
           {(navBar) => (
+            <div className={styles.web}>
             <nav className={cx({
               navBar: true, 
               active: navBar,
@@ -124,9 +139,12 @@ function Navigation() {
                     </Button>
                   </div>
                 </div>
+              
               </div>
             </nav>
+          </div>
           )}
+
         </NavContext.Consumer>
       )}
     </AuthContext.Consumer>

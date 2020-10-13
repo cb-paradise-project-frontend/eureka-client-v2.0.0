@@ -12,7 +12,7 @@
   padding: 0 auto;
   margin: 10px auto;
   font-family: "Baloo Tamma 2", cursive;
-  border: 1px solid black;
+  // border: 1px solid black;
 
   .OtherJobs__description {
     h5 {
@@ -35,6 +35,8 @@
     // margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
   }
 }
 

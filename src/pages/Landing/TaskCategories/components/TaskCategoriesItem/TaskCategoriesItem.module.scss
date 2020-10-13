@@ -1,20 +1,16 @@
-*, *::after, *::before {
-  margin: 0;
-  padding: 0;
-}
+
 
 .taskCategoriesItem__button {
   display: inline-flex;
   position: relative;
   flex-direction: column;
-  -webkit-box-align: center;
   align-items: center;
+  // justify-content: center;
   background-color: rgba(0, 0, 0, 0);
   border: none;
+  // border: 1px solid black;
 
-  button {
-    
-  }
+
 
   div {
     display: flex;
@@ -34,6 +30,8 @@
 
 
 
+
+
     img {
       position: absolute;
       height: 38px;
@@ -45,5 +43,13 @@
   div:hover {
     background-color: rgb(224, 68, 109);
     transform: scale(1.08);
+  }
+}
+
+@media screen and (max-width:767px)
+{
+  img {
+    height: 28px;
+    width: 28px;
   }
 }

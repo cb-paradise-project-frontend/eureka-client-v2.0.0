@@ -1,8 +1,11 @@
 {
   "name": "eureka",
+  "description": "Team Callback Paradise Project #3",
+  "homepage": "https://cb-paradise-project-frontend.github.io/eureka-client-v2.0.0/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "-": "0.0.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -10,6 +13,7 @@
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
     "firebase": "^7.23.0",
+    "gh-pages": "^3.1.0",
     "jwt-decode": "^3.0.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
@@ -18,13 +22,16 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "remixicon": "^2.5.0",
+    "save-dev": "0.0.1-security",
     "styled-components": "^5.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -18,17 +18,14 @@ export default function Slider({
   };
 
   return (
-    <div className={styles.slider_wrapper}>
-      <input
-        className={styles.slider}
-        type="range"
-        value={value}
-        onChange={handleChange}
-        min={min}
-        max={max}
-        onMouseUp={onChange && handleMouseUp}
-      />
-      <div className={styles.display} >{value}</div>
-    </div>
+    <input
+      className={styles.slider}
+      type="range"
+      value={value}
+      onChange={handleChange}
+      min={min}
+      max={max}
+      onMouseUp={onChange && handleMouseUp}
+    />
   );
 }

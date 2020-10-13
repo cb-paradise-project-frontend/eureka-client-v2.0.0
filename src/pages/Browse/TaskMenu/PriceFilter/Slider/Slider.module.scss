@@ -1,27 +1,16 @@
-.slider_wrapper{
-  display: flex;
-  align-items: center;
-  max-width: 100%;
-  box-sizing: border-box;
+.slider{
+  height: 25px;
+  outline: none;
+  width: 100%;
 
-  .slider{
-    height: 25px;
-    outline: none;
-    flex: 1 1;
-  
-    &::-webkit-slider-thumb {
-      -webkit-appearance: none; 
-      appearance: none;
-      width: 25px;
-      height: 25px; 
-      background: #4CAF50; 
-      cursor: pointer; 
-    }
-  }
-
-  .display{
-    width: 30px;
-    margin-left: 10px;
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none; 
+    appearance: none;
+    width: 25px;
+    height: 25px; 
+    background: #4CAF50; 
+    cursor: pointer; 
   }
 }
+
 

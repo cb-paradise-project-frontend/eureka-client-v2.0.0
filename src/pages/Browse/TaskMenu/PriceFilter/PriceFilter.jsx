@@ -7,14 +7,30 @@ import { useToggleContent } from '../../../../components/ToggleContent';
 import Slider from './Slider/Slider';
 
 const dropdownIcon = String.fromCharCode(9660);
-const MAX_PRICE = '9999';
-const MIN_PRICE = '5';
 
-export default function PriceFilter() {
+const SCALE_LIST = [
+  5,
+  10,
+  20,
+  50,
+  100,
+  200,
+  500,
+  1000,
+  1500,
+  2000,
+  5000,
+  9999,
+];
+
+const MAX_SCALE = SCALE_LIST.length - 1;
+const MIN_SCALE = 0;
+
+export default function PriceFilter({ onSubmit }) {
   const [DropDown, toggleDropDown] = useToggleContent();
 
-  const [min, setMin] = useState(MIN_PRICE);
-  const [max, setMax] = useState(MAX_PRICE);
+  const [min, setMin] = useState(MIN_SCALE);
+  const [max, setMax] = useState(MAX_SCALE);
 
   const handleMinUpdate = (newMin) => {
     setMin(newMin);
@@ -26,7 +42,11 @@ export default function PriceFilter() {
     setMin((prevMin) => Math.min(newMax, prevMin));
   };
 
-  const priceRange = `$${min}-$${max}`;
+  const handleSubmit = () => {
+    onSubmit(SCALE_LIST[min], SCALE_LIST[max]);
+  };
+
+  const priceRange = `$${SCALE_LIST[min]}-$${SCALE_LIST[max]}`;
 
   const CancelButton = () => (
     <Button.Text
@@ -40,6 +60,7 @@ export default function PriceFilter() {
   const ConfirmButton = () => (
     <Button
       size="small"
+      onClick={handleSubmit}
     >
       Apply
     </Button>
@@ -73,8 +94,8 @@ export default function PriceFilter() {
     defaultValue, onChange, label,
   }) => (
     <WrappedSlider
-      min={MIN_PRICE}
-      max={MAX_PRICE}
+      min={MIN_SCALE}
+      max={MAX_SCALE}
       defaultValue={defaultValue}
       onChange={onChange}
       label={label}

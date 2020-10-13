@@ -28,6 +28,7 @@ export default function Slider({
         max={max}
         onMouseUp={onChange && handleMouseUp}
       />
+      <div className={styles.display} >{value}</div>
     </div>
   );
 }

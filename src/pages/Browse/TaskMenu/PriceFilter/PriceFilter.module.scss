@@ -1,0 +1,45 @@
+.dropdown{
+  position: absolute;
+  left: 0;
+  top: calc(100% - 4px);
+  background: #fff;
+  width: 345px;
+  padding: 16px;
+  box-shadow: 0 5px 6px rgba(42,44,45,.2);
+  box-sizing: border-box;
+  -webkit-animation: fadeInFromBelow .15s ease-out;
+  animation: fadeInFromBelow .15s ease-out;
+  border: 1px solid #bbc2dc;
+  border-radius: 4px;
+  max-height: calc(90vh - 100px);
+  overflow-y: auto;
+  z-index: 1;
+
+  .header{
+    text-align: left;
+  }
+
+  .content{
+    padding: 16px 0;
+
+    .slider_wrapper{
+      display: flex;
+      width: 100%;
+      margin: 10px 0;
+
+      .label{
+        margin-right: 10px;
+      }
+
+      .slider{
+        flex: 1 1;
+      }
+    }
+  }
+
+  .footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

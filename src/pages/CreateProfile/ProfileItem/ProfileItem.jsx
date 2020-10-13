@@ -5,11 +5,12 @@ import styles from './ProfileItem.module.scss';
 
 const cx = classNames.bind(styles);
 
+const checkIcon = String.fromCharCode(10003);
+const arrowIcon = String.fromCharCode(10095);
+
 export default function ProfileItem({
   itemName, handleClick, filled, statusLabel,
 }) {
-  const checkIcon = String.fromCharCode(10003);
-  const arrowIcon = String.fromCharCode(10095);
 
   const title = `Provide your ${itemName}`;
   const prefix = filled ? 'Update' : 'Enter';

@@ -4,7 +4,7 @@ import styles from './PriceFilter.module.scss';
 
 import Button from '../../../../components/Button';
 import { useToggleContent } from '../../../../components/ToggleContent';
-import Slider from './Slider/Slider';
+import Slider from '../../../../components/Slider/Slider';
 
 const dropdownIcon = String.fromCharCode(9660);
 

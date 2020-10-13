@@ -14,13 +14,6 @@
   border-style: solid;
   outline: none;
 
-  &:disabled{
-    background-color: lighten($expired-color, 25%);
-    color: darken($expired-color, 10%);
-    cursor: auto;
-    pointer-events: none;
-  }
-
   a{
     text-decoration: none;
     color: white;
@@ -63,6 +56,13 @@
     }
   }
   
+  &:disabled{
+    background-color: lighten($expired-color, 25%);
+    color: darken($expired-color, 10%);
+    cursor: auto;
+    pointer-events: none;
+  }
+
   &.small{
     padding: 5px 10px;
     height: 27px;

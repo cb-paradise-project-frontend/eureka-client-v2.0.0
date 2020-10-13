@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styles from './Slider.module.scss';
 
 export default function Slider({
-  defaultValue, min, max, onChange, label,
+  defaultValue, min, max, onChange,
 }) {
   const [value, setValue] = useState(defaultValue || '');
 
@@ -18,10 +18,7 @@ export default function Slider({
   };
 
   return (
-    <>
-      {label &&
-        <div className={styles.label} >{label}</div>
-      }
+    <div className={styles.slider_wrapper}>
       <input
         className={styles.slider}
         type="range"
@@ -31,6 +28,6 @@ export default function Slider({
         max={max}
         onMouseUp={onChange && handleMouseUp}
       />
-    </>
+    </div>
   );
 }

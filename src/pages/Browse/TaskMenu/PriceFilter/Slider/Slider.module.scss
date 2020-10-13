@@ -1,14 +1,7 @@
-.label{
-  color: #292b32;
-  font-size: 14px;
-  font-weight: 300;
-  text-align: center;
-}
-
 .slider{
-  width: 100%;
   height: 25px;
   outline: none;
+  width: 100%;
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none; 
@@ -19,3 +12,4 @@
     cursor: pointer; 
   }
 }
+

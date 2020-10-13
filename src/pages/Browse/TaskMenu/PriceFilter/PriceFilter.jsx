@@ -4,38 +4,22 @@ import styles from './PriceFilter.module.scss';
 
 import Button from '../../../../components/Button';
 import { useToggleContent } from '../../../../components/ToggleContent';
-import Slider from '../../../../components/Slider/Slider';
+import Slider from '../../../../components/Slider';
+import Scale from './scale';
 
 const dropdownIcon = String.fromCharCode(9660);
 
-const SCALE_LIST = [
-  0,
-  5,
-  10,
-  20,
-  50,
-  100,
-  200,
-  500,
-  1000,
-  1500,
-  2000,
-  5000,
-  9999,
-];
-
-const MAX_SCALE = SCALE_LIST.length - 1;
-const MIN_SCALE = 1;
+const { List, Min, Max } = Scale;
 
 export default function PriceFilter({ onSubmit }) {
   const [DropDown, toggleDropDown] = useToggleContent();
 
-  const [min, setMin] = useState(MIN_SCALE);
-  const [max, setMax] = useState(MAX_SCALE);
+  const [min, setMin] = useState(Min);
+  const [max, setMax] = useState(Max);
 
-  const priceRangeLabel = `$${SCALE_LIST[min]}-$${SCALE_LIST[max]}`;
+  const priceRangeLabel = `$${List[min]}-$${List[max]}`;
 
-  const buttonLabel = ((min > MIN_SCALE || max < MAX_SCALE) && priceRangeLabel)
+  const buttonLabel = ((min > Min || max < Max) && priceRangeLabel)
     || 'Any price';
 
   const handleMinUpdate = (newMin) => {
@@ -49,7 +33,7 @@ export default function PriceFilter({ onSubmit }) {
   };
 
   const handleSubmit = () => {
-    onSubmit(SCALE_LIST[min], SCALE_LIST[max]);
+    onSubmit(List[min], List[max]);
     toggleDropDown();
   };
 
@@ -99,8 +83,8 @@ export default function PriceFilter({ onSubmit }) {
     defaultValue, onChange, label,
   }) => (
     <WrappedSlider
-      min={MIN_SCALE}
-      max={MAX_SCALE}
+      min={Min}
+      max={Max}
       defaultValue={defaultValue}
       onChange={onChange}
       label={label}

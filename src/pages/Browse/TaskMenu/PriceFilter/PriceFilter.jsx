@@ -32,6 +32,11 @@ export default function PriceFilter({ onSubmit }) {
   const [min, setMin] = useState(MIN_SCALE);
   const [max, setMax] = useState(MAX_SCALE);
 
+  const priceRangeLabel = `$${SCALE_LIST[min]}-$${SCALE_LIST[max]}`;
+
+  const buttonLabel = ((min !== MIN_SCALE || max !== MAX_SCALE) && priceRangeLabel)
+    || 'Any price';
+
   const handleMinUpdate = (newMin) => {
     setMin(newMin);
     setMax((prevMax) => Math.max(newMin, prevMax));
@@ -45,8 +50,6 @@ export default function PriceFilter({ onSubmit }) {
   const handleSubmit = () => {
     onSubmit(SCALE_LIST[min], SCALE_LIST[max]);
   };
-
-  const priceRange = `$${SCALE_LIST[min]}-$${SCALE_LIST[max]}`;
 
   const CancelButton = () => (
     <Button.Text
@@ -109,7 +112,7 @@ export default function PriceFilter({ onSubmit }) {
         color="light-blue"
         onClick={toggleDropDown}
       >
-        Any price {dropdownIcon}
+        {buttonLabel}{dropdownIcon}
       </Button.Text>
       <DropDown>
         <div className={styles.dropdown} >
@@ -117,7 +120,7 @@ export default function PriceFilter({ onSubmit }) {
             Task price
           </div>
           <div className={styles.content} >
-            {priceRange}
+            {priceRangeLabel}
             {sliders}
           </div>
           <div className={styles.footer} >

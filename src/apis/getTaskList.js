@@ -14,8 +14,5 @@ export default function getTaskList(filter) {
       : `${url}${key}=${filter[key]}&`
   ), '?');
 
-  // const config = stringConfig
-  //   .slice(0, stringConfig.length - 1);
-
   return taskData.get(urlConfig);
 }

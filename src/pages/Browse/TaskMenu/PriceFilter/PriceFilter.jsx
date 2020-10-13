@@ -6,6 +6,7 @@ import Button from '../../../../components/Button';
 import { useToggleContent } from '../../../../components/ToggleContent';
 import Slider from '../../../../components/Slider';
 import Scale from './scale';
+import MenuMask from '../MenuMask';
 
 const dropdownIcon = String.fromCharCode(9660);
 
@@ -101,6 +102,7 @@ export default function PriceFilter({ onSubmit }) {
         {buttonLabel}{dropdownIcon}
       </Button.Text>
       <DropDown>
+        <MenuMask />
         <div className={styles.dropdown} >
           <div className={styles.header} >
             Task price

@@ -9,6 +9,7 @@ import Slider from './Slider/Slider';
 const dropdownIcon = String.fromCharCode(9660);
 
 const SCALE_LIST = [
+  0,
   5,
   10,
   20,
@@ -24,7 +25,7 @@ const SCALE_LIST = [
 ];
 
 const MAX_SCALE = SCALE_LIST.length - 1;
-const MIN_SCALE = 0;
+const MIN_SCALE = 1;
 
 export default function PriceFilter({ onSubmit }) {
   const [DropDown, toggleDropDown] = useToggleContent();

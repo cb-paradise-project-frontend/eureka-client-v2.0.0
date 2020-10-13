@@ -34,7 +34,7 @@ export default function PriceFilter({ onSubmit }) {
 
   const priceRangeLabel = `$${SCALE_LIST[min]}-$${SCALE_LIST[max]}`;
 
-  const buttonLabel = ((min !== MIN_SCALE || max !== MAX_SCALE) && priceRangeLabel)
+  const buttonLabel = ((min > MIN_SCALE || max < MAX_SCALE) && priceRangeLabel)
     || 'Any price';
 
   const handleMinUpdate = (newMin) => {
@@ -49,6 +49,7 @@ export default function PriceFilter({ onSubmit }) {
 
   const handleSubmit = () => {
     onSubmit(SCALE_LIST[min], SCALE_LIST[max]);
+    toggleDropDown();
   };
 
   const CancelButton = () => (

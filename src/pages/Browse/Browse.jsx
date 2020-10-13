@@ -49,7 +49,7 @@ export default function Browse() {
   const [taskList, setTaskList] = useState([]);
   const [updateFlag, setUpdateFlag] = useState(false);
 
-  const [keyword, updateKeyword] = useState('');
+  const [filter, updateFilter] = useState('');
 
   const { path } = useRouteMatch();
 
@@ -57,20 +57,31 @@ export default function Browse() {
     setUpdateFlag((prevFlag) => !prevFlag);
   };
 
-  const loadTaskList = async (inputKeyword) => {
+  const loadTaskList = async () => {
     // without backend
     // const newTaskList = tasks;
 
     // with backend
-    const { data: { data } } = await getTaskList(inputKeyword);
+    const { data: { data } } = await getTaskList(filter);
     const newTaskList = data;
 
     setTaskList(newTaskList);
   };
 
+  const {
+    keyword,
+    maxPrice,
+    minPrice,
+  } = filter;
+
   useEffect(() => {
-    loadTaskList(keyword);
-  }, [updateFlag, keyword]);
+    loadTaskList();
+  }, [
+    updateFlag,
+    keyword,
+    maxPrice,
+    minPrice,
+  ]);
 
   const onAskQuestion = (taskId, input) => {
     askQuestion(testUserId, taskId, input);
@@ -83,7 +94,7 @@ export default function Browse() {
     <>
       <Redirect to={`${path}/${defaultTaskId}`} />
       <div className={styles.browse_container} >
-        <TaskMenu onKeywordChange={updateKeyword} />
+        <TaskMenu onFilterChange={updateFilter} />
         <div className={styles.browse} >
           <TaskList taskList={taskList} />
           <Route path={`${path}/:taskId`} >

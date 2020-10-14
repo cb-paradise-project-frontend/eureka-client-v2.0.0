@@ -1,6 +1,7 @@
 @import '../../../components/scss-partial/icon-url';
 
 .task_detail{
+  max-height: 100%;
   overflow-y: scroll;
 }
 

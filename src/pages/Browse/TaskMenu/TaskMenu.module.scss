@@ -1,0 +1,25 @@
+.task_menu_wrapper{
+  width: 100%;
+  background-color: #f6f8fd;
+  border: solid 1px #dcdee2;
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  box-sizing: border-box;
+
+  .task_menu{
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 48px;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 8px;
+    box-sizing: border-box;
+
+    .search{
+      position: absolute;
+      right: 0;
+      width: 200px;
+    }
+  }
+}

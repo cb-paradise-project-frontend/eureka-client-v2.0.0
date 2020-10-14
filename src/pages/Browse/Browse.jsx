@@ -7,6 +7,7 @@ import TaskList from './TaskList';
 import TaskDetail from './TaskDetail';
 import getTaskList from '../../apis/getTaskList';
 import askQuestion from '../../apis/askQuestion';
+import TaskMenu from './TaskMenu/TaskMenu';
 
 const testData = {
   title: 'Roof repair',
@@ -47,6 +48,9 @@ const testUserId = '5f7e8665b7edfa557c89dbdf';
 export default function Browse() {
   const [taskList, setTaskList] = useState([]);
   const [updateFlag, setUpdateFlag] = useState(false);
+
+  const [filter, updateFilter] = useState('');
+
   const { path } = useRouteMatch();
 
   const toggleUpdateFlag = () => {
@@ -58,15 +62,26 @@ export default function Browse() {
     const newTaskList = tasks;
 
     // with backend
-    // const { data: { data } } = await getTaskList();
+    // const { data: { data } } = await getTaskList(filter);
     // const newTaskList = data;
 
     setTaskList(newTaskList);
   };
 
+  const {
+    keyword,
+    maxPrice,
+    minPrice,
+  } = filter;
+
   useEffect(() => {
     loadTaskList();
-  }, [updateFlag]);
+  }, [
+    updateFlag,
+    keyword,
+    maxPrice,
+    minPrice,
+  ]);
 
   const onAskQuestion = (taskId, input) => {
     askQuestion(testUserId, taskId, input);
@@ -76,17 +91,22 @@ export default function Browse() {
   const defaultTaskId = taskList[0] && taskList[0].id;
 
   return (
-    <div className={styles.browse_container} >
-      <div className={styles.browse} >
-        <Redirect to={`${path}/${defaultTaskId}`} />
-        <TaskList taskList={taskList} />
-        <Route path={`${path}/:taskId`} >
-          <TaskDetail
-            taskList={taskList}
-            onAskQuestion={onAskQuestion}
-          />
-        </Route>
+    <>
+      <Redirect to={`${path}/${defaultTaskId}`} />
+      <div className={styles.browse_container} >
+        <TaskMenu onFilterChange={updateFilter} />
+        <div className={styles.browse} >
+          <TaskList taskList={taskList} />
+          <Route path={`${path}/:taskId`} >
+            <div className={styles.task_detail_wrapper} >
+              <TaskDetail
+                taskList={taskList}
+                onAskQuestion={onAskQuestion}
+              />
+            </div>
+          </Route>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

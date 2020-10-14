@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from './Input.module.scss';
 import ErrorMessage from '../ErrorMessage';
+import Button from '../Button';
 
 const cx = classNames.bind(styles);
 
@@ -38,19 +39,43 @@ const WithErrorMessage = ({
   isError, errorMessage, ...otherProps
 }) => (
   <div className={styles.input_with_error_message}>
-      <Input
-        {...otherProps}
-      />
-      <div className={styles.error_message_wrapper} >
-        {isError && errorMessage &&
-          <ErrorMessage>
-            {errorMessage}
-          </ErrorMessage>
-        }
-      </div>
+    <Input
+      {...otherProps}
+    />
+    <div className={styles.error_message_wrapper} >
+      {isError && errorMessage &&
+        <ErrorMessage>
+          {errorMessage}
+        </ErrorMessage>
+      }
     </div>
+  </div>
 );
 
+const Search = ({
+  placeholder, handleChange, onSubmit,
+}) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    onSubmit();
+  };
+
+  return (
+    <form onSubmit={handleSubmit} >
+      <div className={styles.search_wrapper} >
+        <input
+          className={styles.search}
+          placeholder={placeholder}
+          onChange={({ target: { value } }) => handleChange(value)}
+        />
+        <Button.SearchIcon onClick={handleSubmit} />
+      </div>
+    </form>
+  );
+};
+
 Input.WithErrorMessage = WithErrorMessage;
+Input.Search = Search;
 
 export default Input;

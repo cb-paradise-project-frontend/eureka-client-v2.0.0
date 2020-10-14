@@ -16,23 +16,31 @@ export default function CreateProfile({ pageToggler }) {
   const [subPage, loadSubPage] = useState();
 
   const form = useForm(FORM, getStoredData());
-  const [updateFlag, setFlag] = useState(false);
-
-  const toggleUpdateFlag = () => {
-    setFlag((prevFlag) => !prevFlag);
-  };
 
   const {
     getData,
     handleDataChange,
-    touched,
   } = form;
 
   const formData = getData();
 
+  const {
+    photo,
+    bankAccount,
+    billingAddress,
+    birthday,
+    mobile,
+  } = formData;
+
   useEffect(() => {
-    if (touched) storeData(formData);
-  }, [updateFlag]);
+    storeData(formData);
+  }, [
+    photo,
+    bankAccount,
+    billingAddress,
+    birthday,
+    mobile,
+  ]);
 
   const handleBackBtnClick = () => {
     loadSubPage('');
@@ -71,7 +79,6 @@ export default function CreateProfile({ pageToggler }) {
 
         const handleChange = (input) => {
           handleDataChange(key)(input);
-          toggleUpdateFlag();
           handleBackBtnClick();
         };
 

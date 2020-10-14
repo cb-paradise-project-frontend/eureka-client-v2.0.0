@@ -10,8 +10,6 @@ export default function useForm(config, initValues) {
 
   const [formData, setFormData] = useState(initFormData);
 
-  const [touched, toggleTouched] = useState(false);
-
   const getData = () => {
     const data = formKeyArray.reduce((obj, key) => ({
       ...obj,
@@ -23,8 +21,6 @@ export default function useForm(config, initValues) {
 
   const handleDataChange = (target) => (
     (input) => {
-      toggleTouched(true);
-
       setFormData((prevFormData) => ({
         ...prevFormData,
         [target]: input,
@@ -60,7 +56,6 @@ export default function useForm(config, initValues) {
   form.handleDataChange = handleDataChange;
   form.findEmptyField = findEmptyField;
   form.getErrorMessage = getErrorMessage;
-  form.touched = touched;
 
   return form;
 }

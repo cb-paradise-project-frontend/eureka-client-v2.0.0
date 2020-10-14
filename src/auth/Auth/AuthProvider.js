@@ -10,6 +10,7 @@ const AuthProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (!token) return;
     const decoded = jwt_decode(token);
+    console.log(decoded);
     setCurrentUser(decoded);
   };
 
@@ -18,7 +19,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={currentUser}>
+    <AuthContext.Provider value={{ currentUser }}>
       {children}
     </AuthContext.Provider>
   );

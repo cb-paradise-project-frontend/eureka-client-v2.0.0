@@ -23,7 +23,9 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
-      - run: CI=false npm run build
+      - run: npm run build
+        env:
+          CI: false
       - uses: JamesIves/github-pages-deploy-action@3.6.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

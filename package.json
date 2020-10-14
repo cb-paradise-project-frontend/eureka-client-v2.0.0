@@ -1,7 +1,7 @@
 {
   "name": "eureka",
   "description": "Team Callback Paradise Project #3",
-  "homepage": "https://cb-paradise-project-frontend.github.io/eureka-client-v2.0.0/",
+  "homepage": "./",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

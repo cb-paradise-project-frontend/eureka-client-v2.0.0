@@ -5,12 +5,13 @@ import styles from '../../PostTask.module.scss';
 function TaskDescription({
   jobTitleInput,
   jobDetailsInput,
+  jobCategoryInput,
 }) {
     return (
       <React.Fragment>
         <div className={styles.main}>
           {jobTitleInput}
-          <JobCategory />
+          {jobCategoryInput}
           {jobDetailsInput}
           
         </div>

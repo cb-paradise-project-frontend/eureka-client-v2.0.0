@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './JobCategory.module.scss';
 
-export default function JobCategory() {
+export default function JobCategory({
+  jobCategory,
+  onJobCategory,
+}) {
   let option_id = [0, 1, 2];
   let options = [
     {name: 'Clean'},
@@ -11,10 +14,15 @@ export default function JobCategory() {
 
   return (
     <div>
-      <select required defaultValue={''} className={styles}>
+      <select 
+        required  
+        className={styles}
+        onChange={(e) => onJobCategory(e.target.value)}
+        defaultValue={jobCategory}
+      >
         <option value="" disabled>Please select the task category</option>
         {option_id.map(id => {
-          return <option key={id} value={id}> {options[id].name} </option>
+          return <option key={id} value={options[id].name}> {options[id].name} </option>
         })}
       </select>
     </div>

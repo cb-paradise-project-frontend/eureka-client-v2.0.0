@@ -21,9 +21,9 @@ function Radio({
         />
         <p className={styles.radio_title}> {radioTitle} </p>
       </div>
-        <b>
+        <div className={styles.radio_hint}>
           {radioHint}
-        </b>
+        </div>
     </React.Fragment>
   )
 }

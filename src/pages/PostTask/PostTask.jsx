@@ -85,7 +85,10 @@ class PostTask extends React.Component {
   }
 
   handleBudgetWageClick() {
-    this.setState({ budgetHour: 1 });
+    this.setState(
+      { budgetHour: 1 },
+      this.onTaskBudget,
+    );
   }
 
   handleDateValue(date) {

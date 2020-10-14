@@ -23,18 +23,10 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
-      - run: CI=false npm run build
-      - run: git config --global user.name hachilam92
-      - run: git config --global user.email ziweilan92@gmail.com
-      - run: git remote set-url origin https://github.com/cb-paradise-project-frontend/eureka-client-v2.0.0.git
-      - run: CI=false npm run deploy
-        env:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-
-      # - uses: JamesIves/github-pages-deploy-action@3.6.1
-      #   with:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     BRANCH: gh-pages
-      #     FOLDER: dist/build
-      #     CLEAN: true
+      - run: npm run build
+      - uses: JamesIves/github-pages-deploy-action@3.6.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist
+          CLEAN: true

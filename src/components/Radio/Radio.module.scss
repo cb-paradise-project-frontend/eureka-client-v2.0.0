@@ -1,6 +1,7 @@
 .radio {
   margin-block-start: 0.5em;
   margin-block-end: 0.5em;
+  margin: 7px 4px 5px 6px;
 }
 
 .radio_title {
@@ -8,10 +9,15 @@
   margin-block-end: 0.1em;
   margin-left: 0.2em;
   flex-grow: 1;
+  padding: 2px 2px;
 }
 
 .task_radio {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+.radio_hint {
+  padding: 5px 6px;
 }

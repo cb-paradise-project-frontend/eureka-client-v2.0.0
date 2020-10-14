@@ -38,9 +38,9 @@ const SignupModal = ({ pageToggler }) => {
     console.log(userCredentials);
   }, [userCredentials]);
 
-  const { currentUser } = useContext(AuthContext);
+  const currentUser = useContext(AuthContext);
+  console.log(currentUser);
   if (currentUser) {
-    console.log(currentUser);
     return (<Redirect to="/profile" />);
   }
 

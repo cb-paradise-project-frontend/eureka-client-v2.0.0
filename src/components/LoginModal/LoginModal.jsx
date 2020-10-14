@@ -38,7 +38,7 @@ const LoginModal = ({ pageToggler }) => {
     console.log('form', form);
   }, [form]);
 
-  const { currentUser } = useContext(AuthContext);
+  const currentUser = useContext(AuthContext);
 
   if (currentUser) {
     return <Redirect to="/profile" />;

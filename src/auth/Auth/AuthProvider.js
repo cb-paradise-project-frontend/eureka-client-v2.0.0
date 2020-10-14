@@ -4,9 +4,7 @@ import jwt_decode from 'jwt-decode';
 import AuthContext from './AuthContext';
 
 const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState({
-    currentUser: null,
-  });
+  const [currentUser, setCurrentUser] = useState(null);
 
   const extractUserFromToken = () => {
     const token = localStorage.getItem('token');
@@ -20,7 +18,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ currentUser }}>
+    <AuthContext.Provider value={currentUser}>
       {children}
     </AuthContext.Provider>
   );

@@ -8,6 +8,7 @@ import TaskLocationAndTime from './components/TaskLocationAndTime';
 import TaskBudget from './components/TaskBudget';
 import JobTitleInput from './components/TaskDescription/components/JobTitleInput';
 import JobDetailsInput from './components/TaskDescription/components/JobDetailsInput';
+import JobCategory from './components/TaskDescription/components/JobCategory';
 import TaskDatePicker from '../../components/DateSelector';
 import Place from '../../utils/getLocation';
 import Button from '../../components/Button';
@@ -22,6 +23,7 @@ class PostTask extends React.Component {
       currentStep: 0,
       jobTitle: "",
       jobDetails: "",
+      jobCategory: "",
       startDate: null,
       place: null,
       taskBudget: "0",
@@ -40,6 +42,7 @@ class PostTask extends React.Component {
     this.handleBackClick = this.handleBackClick.bind(this);
     this.onJobTitle = this.onJobTitle.bind(this);
     this.onJobDetails = this.onJobDetails.bind(this);
+    this.onJobCategory = this.onJobCategory.bind(this);
     this.onRadioCheck = this.onRadioCheck.bind(this);
     this.handleGetQuoteClick = this.handleGetQuoteClick.bind(this);
     this.handleDateValue = this.handleDateValue.bind(this);
@@ -56,6 +59,10 @@ class PostTask extends React.Component {
 
   onJobDetails(value) {
     this.setState({ jobDetails: value });
+  }
+
+  onJobCategory(value) {
+    this.setState({ jobCategory: value });
   }
 
   onRadioCheck(value) {
@@ -136,7 +143,7 @@ class PostTask extends React.Component {
 
   render() {
     const {
-      currentStep, jobTitle, jobDetails, place, startDate, touch, method, taskBudget,
+      currentStep, jobTitle, jobDetails, jobCategory, place, startDate, touch, method, taskBudget,
     } = this.state;
 
     const conditionList = [
@@ -197,6 +204,13 @@ class PostTask extends React.Component {
       />
     );
 
+    const jobCategoryInput = (
+      <JobCategory
+        onJobCategory={this.onJobCategory}
+        jobCategory={jobCategory}
+      />
+    )
+
     const taskPlace = (
       <Place 
         handleAddressQuery={this.handlePlace}
@@ -226,6 +240,7 @@ class PostTask extends React.Component {
           <TaskDescription
             jobTitleInput={jobTitleInput}
             jobDetailsInput={jobDetailsInput}
+            jobCategoryInput={jobCategoryInput}
           />
         ),
       },

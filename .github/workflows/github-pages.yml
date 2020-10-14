@@ -23,12 +23,12 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
-      - run: npm run deploy
+      - run: npm run build
         env:
           CI: false
       - uses: JamesIves/github-pages-deploy-action@3.6.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
+          BRANCH: master
           FOLDER: build
           CLEAN: true

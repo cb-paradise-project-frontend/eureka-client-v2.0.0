@@ -26,9 +26,16 @@ jobs:
       - run: yarn run build
         env: 
           CI: false
-      - uses: JamesIves/github-pages-deploy-action@3.6.1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: dist/build
-          CLEAN: true
+      - name: Deploy
+        run: |
+          git remote set-url origin https://${github_token}@github.com/${repository}
+          npm run deploy
+        env:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+      # - uses: JamesIves/github-pages-deploy-action@3.6.1
+      #   with:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     BRANCH: gh-pages
+      #     FOLDER: dist/build
+      #     CLEAN: true

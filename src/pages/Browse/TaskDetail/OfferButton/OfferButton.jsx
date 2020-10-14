@@ -5,7 +5,7 @@ import Button from '../../../../components/Button';
 import { AuthContext } from '../../../../auth/Auth';
 import { useToggleContent } from '../../../../components/ToggleContent';
 import CreateProfile from '../../../CreateProfile';
-import SignupModal from '../../../../components/SignupModal/SignupModal';
+import SignupModal from '../../../../components/SignupModal';
 
 export default function OfferButton({ isExpired }) {
   const [Content, toggler] = useToggleContent();

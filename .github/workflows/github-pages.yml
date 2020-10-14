@@ -22,6 +22,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - name: Set email
+        run: git config --global user.email "${{ secrets.adminemail }}"
+      - name: Set username
+        run: git config --global user.name "${{ secrets.adminname }}"
       - run: npm ci
       - run: npm run build
         env:
@@ -30,5 +34,5 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: dist
+          FOLDER: dist/build
           CLEAN: true

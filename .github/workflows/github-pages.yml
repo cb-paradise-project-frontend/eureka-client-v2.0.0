@@ -24,8 +24,6 @@ jobs:
           node-version: 12
       - run: yarn install --frozen-lockfile
       - run: yarn run build
-        env: 
-          CI: false
       - name: Deploy
         run: |
           git remote set-url origin https://${github_token}@github.com/${repository}
@@ -33,6 +31,7 @@ jobs:
         env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
+          CI: false
       # - uses: JamesIves/github-pages-deploy-action@3.6.1
       #   with:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

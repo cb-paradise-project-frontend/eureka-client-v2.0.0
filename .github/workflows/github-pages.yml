@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm install --frozen-lockfile
+      - run: npm ci
 
   publish:
     needs: ci
@@ -22,9 +22,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm install --frozen-lockfile
+      - run: npm ci
       - run: CI=false npm run build
-      - run: git remote set-url origin https://${github_token}@github.com/${repository}
+      - run: git remote set-url origin https://github.com/cb-paradise-project-frontend/eureka-client-v2.0.0.git
       - run: CI=false npm run deploy
         env:
           github_token: ${{ secrets.GITHUB_TOKEN }}

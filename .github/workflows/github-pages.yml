@@ -25,7 +25,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: CI=false yarn run build
       - run: git remote set-url origin https://${github_token}@github.com/${repository}
-      - run: npm run deploy
+      - run: CI=false yarn run deploy
         env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}

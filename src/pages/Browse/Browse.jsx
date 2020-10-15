@@ -5,8 +5,8 @@ import styles from './Browse.module.scss';
 
 import TaskList from './TaskList';
 import TaskDetail from './TaskDetail';
-import getTaskList from '../../apis/getTaskList';
-import askQuestion from '../../apis/askQuestion';
+import getTaskList from '../../apis/Task/getTaskList';
+import askQuestion from '../../apis/Task/askQuestion';
 import TaskMenu from './TaskMenu/TaskMenu';
 
 const testData = {

@@ -1,4 +1,4 @@
-import axiosInstance from './axiosInstance';
+import axiosInstance from '../axiosInstance';
 
 export default function getTaskList(filter) {
   const filterKeyArray = filter && Object.keys(filter);

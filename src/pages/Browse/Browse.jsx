@@ -62,8 +62,9 @@ export default function Browse() {
     // const newTaskList = tasks;
 
     // with backend
-    const { data: { data } } = await getTaskList(filter);
-    const newTaskList = data;
+    const newTaskList = await getTaskList(filter) || tasks;
+
+    console.log(newTaskList);
 
     setTaskList(newTaskList);
   };

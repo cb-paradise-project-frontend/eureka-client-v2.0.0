@@ -1,7 +1,9 @@
 import axiosInstance from '../axiosInstance';
+import destructure from '../utils/destructure';
 
 export default async function getProfile(userId) {
-  const { data: { data } } = await axiosInstance.get(`/profiles/${userId}`);
+  const response = await axiosInstance.get(`/profiles/${userId}`);
+  const data = destructure(response);
 
-  return data && data.length && data;
+  return data.length && data[0];
 }

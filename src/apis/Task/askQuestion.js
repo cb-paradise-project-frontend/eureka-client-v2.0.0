@@ -1,4 +1,4 @@
-import axiosInstance from './axiosInstance';
+import axiosInstance from '../axiosInstance';
 
 export default async function askQuestion(userId, taskId, question) {
   const comment = {

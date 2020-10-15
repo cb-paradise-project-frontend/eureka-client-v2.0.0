@@ -1,4 +1,4 @@
-import taskData from './axiosInstance';
+import axiosInstance from './axiosInstance';
 
 export default function getTaskList(filter) {
   const filterKeyArray = filter && Object.keys(filter);
@@ -6,7 +6,7 @@ export default function getTaskList(filter) {
   const filteredConfig = filterKeyArray && filterKeyArray
     .filter((key) => filter[key]);
 
-  if (!filteredConfig) return taskData.get();
+  if (!filteredConfig) return axiosInstance.get('/tasks');
 
   const urlConfig = filteredConfig.reduce((url, key, index) => (
     index === filteredConfig.length - 1
@@ -14,5 +14,5 @@ export default function getTaskList(filter) {
       : `${url}${key}=${filter[key]}&`
   ), '?');
 
-  return taskData.get(urlConfig);
+  return axiosInstance.get(`/tasks/${urlConfig}`);
 }

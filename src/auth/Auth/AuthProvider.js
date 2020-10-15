@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
     if (!token) return;
     const decoded = jwt_decode(token);
     console.log(decoded);
-    setCurrentUser(decoded);
+    setCurrentUser(decoded.user.id);
   };
 
   useEffect(() => {

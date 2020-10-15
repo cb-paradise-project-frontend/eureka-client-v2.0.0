@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6bb8d5d9ac67ec9d01e0fb2b75e15218",
+    "revision": "e8440825a4448dd5883b1f96ece4d768",
     "url": "/eureka-client-v2.0.0/index.html"
   },
   {
-    "revision": "ca616d1fab43eb7d411f",
+    "revision": "19a495512f12773558bd",
     "url": "/eureka-client-v2.0.0/static/css/2.bd6d7e67.chunk.css"
   },
   {
-    "revision": "c99265fb56d1690dd0d0",
-    "url": "/eureka-client-v2.0.0/static/css/main.f852b1ae.chunk.css"
+    "revision": "d9b00b227263273da711",
+    "url": "/eureka-client-v2.0.0/static/css/main.65e13480.chunk.css"
   },
   {
-    "revision": "ca616d1fab43eb7d411f",
-    "url": "/eureka-client-v2.0.0/static/js/2.c9a2cd64.chunk.js"
+    "revision": "19a495512f12773558bd",
+    "url": "/eureka-client-v2.0.0/static/js/2.5ed32468.chunk.js"
   },
   {
     "revision": "389dcf58863ebee857265f957b53dc84",
-    "url": "/eureka-client-v2.0.0/static/js/2.c9a2cd64.chunk.js.LICENSE.txt"
+    "url": "/eureka-client-v2.0.0/static/js/2.5ed32468.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c99265fb56d1690dd0d0",
-    "url": "/eureka-client-v2.0.0/static/js/main.769a8578.chunk.js"
+    "revision": "d9b00b227263273da711",
+    "url": "/eureka-client-v2.0.0/static/js/main.d678e95b.chunk.js"
   },
   {
     "revision": "5ee4ab44f84cd5a22b8f",
@@ -36,12 +36,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/eureka-client-v2.0.0/static/media/article-bedroom.208be142.png"
   },
   {
+    "revision": "29be801c0836a71eeb1c0759adc6850f",
+    "url": "/eureka-client-v2.0.0/static/media/article-bg.29be801c.svg"
+  },
+  {
     "revision": "5cf4c9cbe4627aad9a5db4904823b72b",
     "url": "/eureka-client-v2.0.0/static/media/article-curtain.5cf4c9cb.png"
   },
   {
     "revision": "cad175ee56e5feee6dcebfb97efe5e9a",
     "url": "/eureka-client-v2.0.0/static/media/background_img.cad175ee.png"
+  },
+  {
+    "revision": "145cdefd4050fa074e30150f1974745d",
+    "url": "/eureka-client-v2.0.0/static/media/everydaytasks-bg.145cdefd.svg"
+  },
+  {
+    "revision": "57b07b43cd8af97d8060f76bf557b2aa",
+    "url": "/eureka-client-v2.0.0/static/media/footer-bg.57b07b43.svg"
   },
   {
     "revision": "921d522ead73031a49d47b463abdc1d0",
@@ -82,6 +94,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "0d1726ec8ed1e871f92f1dd4187aedc7",
     "url": "/eureka-client-v2.0.0/static/media/tasker-Emily.0d1726ec.png"
+  },
+  {
+    "revision": "5a113ae2bbbcc61e5a359774d83afb32",
+    "url": "/eureka-client-v2.0.0/static/media/tasker-bg.5a113ae2.svg"
   },
   {
     "revision": "0333205cd9edf52f9513fe670f782184",

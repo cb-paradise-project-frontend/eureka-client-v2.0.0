@@ -22,7 +22,6 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "remixicon": "^2.5.0",
-    "save-dev": "0.0.1-security",
     "styled-components": "^5.1.1"
   },
   "scripts": {

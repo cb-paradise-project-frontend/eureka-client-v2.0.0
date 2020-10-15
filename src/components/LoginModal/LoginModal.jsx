@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Redirect } from 'react-router-dom';
-import { signInWithGoogle, auth } from '../../firebase';
+import { useHistory } from 'react-router-dom';
+import { signInWithGoogle } from '../../firebase';
 
 import styles from './LoginModal.module.scss';
 
 import { AuthContext } from '../../auth/Auth';
+import { api } from './../../apis';
 import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';
 
 const LoginModal = ({ pageToggler }) => {
+  const history = useHistory();
+
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -23,10 +26,21 @@ const LoginModal = ({ pageToggler }) => {
     });
   }
 
-  const onLoginWithEmail = (e) => {
+  const onLoginWithEmail = async (e) => {
     e.preventDefault();
     const {email, password} = form;
-    auth.signInWithEmailAndPassword(email, password);
+    try {
+      const res = await api.post('/users/login', {email, password});
+      const token = res.headers['x-auth-token'];
+      console.log(token);
+      if (token) {
+        localStorage.setItem('token', token);
+      }
+      history.push('/profile');
+      pageToggler();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const onLoginWithGoogle = (e) => {
@@ -38,11 +52,11 @@ const LoginModal = ({ pageToggler }) => {
     console.log('form', form);
   }, [form]);
 
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
 
-  if (currentUser) {
-    return <Redirect to="/profile" />;
-  }
+  // if (currentUser) {
+  //   return <Redirect to="/profile" />;
+  // }
 
   return (
     <Modal onRequestClose={pageToggler} >

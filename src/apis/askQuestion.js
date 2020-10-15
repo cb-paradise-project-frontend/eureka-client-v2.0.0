@@ -1,4 +1,4 @@
-import taskData from './axiosInstance';
+import axiosInstance from './axiosInstance';
 
 export default async function askQuestion(userId, taskId, question) {
   const comment = {
@@ -6,7 +6,7 @@ export default async function askQuestion(userId, taskId, question) {
     message: question,
   };
 
-  const updatesTask = await taskData.put(`/comment/${taskId}`, comment);
+  const updatesTask = await axiosInstance.put(`/tasks/comment/${taskId}`, comment);
 
   return updatesTask;
 }

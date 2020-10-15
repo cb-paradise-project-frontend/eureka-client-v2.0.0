@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Redirect } from 'react-router-dom';
-import { auth } from '../../firebase';
+import { useHistory } from 'react-router-dom';
+// import { auth } from '../../firebase';
 
 import styles from './SignupModal.module.scss';
 
 import { AuthContext } from '../../auth/Auth';
+import { api } from './../../apis';
 import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';
 
 const SignupModal = ({ pageToggler }) => {
+  const history = useHistory();
+
   const [userCredentials, setUserCredentials] = useState({
     email: '',
     password: '',
@@ -27,22 +30,29 @@ const SignupModal = ({ pageToggler }) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     const { email, password } = userCredentials;
-    auth.createUserWithEmailAndPassword(email, password)
-      .then((u) => { console.log(u); })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      const res = await api.post('/users', {email, password});
+      const token = res.headers['x-auth-token'];
+      console.log(token);
+      if (token) {
+        localStorage.setItem('token', token);
+      }
+      history.push('/profile');
+      pageToggler();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
     console.log(userCredentials);
   }, [userCredentials]);
 
-  const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
-  if (currentUser) {
-    return (<Redirect to="/profile" />);
-  }
+  // const { currentUser } = useContext(AuthContext);
+  // console.log(currentUser);
+  // if (currentUser) {
+  //   return (<Redirect to="/profile" />);
+  // }
 
   return (
     <Modal onRequestClose={pageToggler} >

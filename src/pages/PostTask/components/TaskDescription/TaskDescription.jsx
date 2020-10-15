@@ -13,7 +13,6 @@ function TaskDescription({
           {jobTitleInput}
           {jobCategoryInput}
           {jobDetailsInput}
-          
         </div>
       </React.Fragment>
     )

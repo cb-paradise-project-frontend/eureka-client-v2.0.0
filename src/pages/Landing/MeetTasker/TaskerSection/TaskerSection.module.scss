@@ -1,7 +1,7 @@
 .tasker_card {
   position: relative;
   display: block;
-  width: 1000px;
+  width: 800px;
   height: 460px;
   border-radius: 8px;
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -9,7 +9,7 @@
   background: #fff;
   margin-bottom: 16px;
   overflow: hidden;
-  margin: 30px auto;
+  margin: 30px -80px;
 }
 
 .container {
@@ -56,6 +56,7 @@
       width: calc(50% - 10px);
 
       .trust {
+        width: 200px;
         .title {
           font-size: 15px;
           letter-spacing: 0.8px;
@@ -75,13 +76,10 @@
           margin: 0;
           padding: 0;
         }
-        padding-left: 50px;
-        margin: 30px 0;
       }
 
       .review {
         height: 150px;
-        padding-left: 50px;
         padding-top: 30px;
 
         .title {
@@ -121,7 +119,7 @@
         flex-direction: column;
         width: 350px;
         height: 300px;
-        padding-left: 50px;
+        padding-left: 70px;
         padding-top: 50px;
 
         .title {
@@ -151,12 +149,13 @@
       ::after {
         content: "";
         display: block;
-        height: 216px;
-        width: 1px;
+        height: 300px;
+        width: 2px;
         background-color: #f6f8fd;
         position: absolute;
-        left: -20px;
-        top: 0;
+        left: -30px;
+        top: -50px;
+        
       }
       
     }

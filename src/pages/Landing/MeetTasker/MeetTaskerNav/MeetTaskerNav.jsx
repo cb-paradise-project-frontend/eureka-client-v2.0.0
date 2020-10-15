@@ -1,4 +1,4 @@
-import React, { Component, Children } from 'react';
+import React, { Component } from 'react';
 
 import styles from './MeetTaskerNav.module.scss';
 
@@ -83,8 +83,8 @@ class MeetTaskerNav extends Component {
     const { currentComponentIndex } = this.state;
 
     return (
-      <div className={styles.OtherJobs__container}>
-          <div className={styles.OtherJobs__title}>
+      <div className={styles.MTNav__container}>
+          <div className={styles.MTNav__title}>
             <MTShowCard onClick={this.handleShowingBlock}>Samantha</MTShowCard>
             <MTShowCard onClick={this.handleShowingBlock}>Emily</MTShowCard>
             <MTShowCard onClick={this.handleShowingBlock}>Brendan</MTShowCard>

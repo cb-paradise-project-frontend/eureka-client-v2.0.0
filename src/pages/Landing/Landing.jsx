@@ -4,9 +4,9 @@ import Home from "./Home";
 import TaskCategories from "./TaskCategories";
 import OtherJobs from "./OtherJobs";
 import MeetTasker from "./MeetTasker";
-import ThingsToKnow from "./ThingsToKnow";
 import Articles from "./Articles";
 import Footer from "./Footer";
+import EverydayTasks from "./EverydayTasks/EverydayTasks";
 
 class Landing extends React.Component {
   constructor(props) {
@@ -191,7 +191,7 @@ class Landing extends React.Component {
       <Home />
       <TaskCategories />
       <OtherJobs  data={this.state.JobsCards}/>
-      <ThingsToKnow data={this.state.feature}/>
+      <EverydayTasks/>
       <MeetTasker data={this.state.tasker}/>
       <Articles data={this.state.article}/>
       <Footer />

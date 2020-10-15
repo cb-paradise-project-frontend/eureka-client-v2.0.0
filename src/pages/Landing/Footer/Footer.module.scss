@@ -1,31 +1,17 @@
-
-
 .footer{
-    text-align: center;
-    position: relative;
-    display: block;
-    background-color: #292b32;
-    padding: 32px 0px 4px;
+  background: url("../../../assets/footer-bg.svg") no-repeat;
+  height:300px;
+  background-position: center bottom;
+  background-size:100%;
   }
 
-  .title {
-    color: rgb(41, 43, 50);
-    font-family: "Baloo Tamma 2", cursive;
-    font-weight: 600;
-    font-size: 30px;
-    line-height: 32px;
-    letter-spacing: -0.15px;
-    text-align: center;
-    vertical-align: initial;
-    font-style: initial;
-    white-space: initial;
-    text-decoration: initial;
-    margin: 0px 0px 8px;
-    padding-top: 100px;
+  .wrapper{
+    width: 50%;
+    margin: 0 auto;
+  
   }
-
 .logo {
-    background-color: #333535;
+  justify-content: center;
     color: #545a77;
-    padding: 16px 0 9px;
+
 }

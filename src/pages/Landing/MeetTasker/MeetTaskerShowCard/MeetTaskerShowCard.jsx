@@ -1,4 +1,4 @@
-import React, { Component, Children } from 'react';
+import React from 'react';
 
 import styles from './MeetTaskerShowCard.module.scss'
 

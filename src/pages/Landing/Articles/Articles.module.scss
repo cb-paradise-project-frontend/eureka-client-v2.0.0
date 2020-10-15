@@ -1,10 +1,18 @@
 .article {
   text-align: center;
   position: relative;
-  display: block;
-  background-color: #ffffff;
+  display: block; 
   padding: 32px 0px 4px;
+  background: url("../../../assets/article-bg.svg") no-repeat;
+  background-position: left center;
+  background-size: 1440px 754px;
+  height: 700px;
+.wrapper{
+  width:900px;
+      float: right;
+        margin:50px;
 
+}
   .title {
     color: rgb(41, 43, 50);
     font-family: "Baloo Tamma 2", cursive;

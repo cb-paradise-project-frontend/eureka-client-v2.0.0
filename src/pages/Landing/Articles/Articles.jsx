@@ -5,9 +5,10 @@ import styles from "./Articles.module.scss";
 function Articles(props){
   const { data } = props;
   return (
-    
+    <React.Fragment>
     <div className={styles.article}>
-      <div className={styles.title}>Articles, stories and more</div>
+    <div className={styles.wrapper}>
+    <div className={styles.title}>Articles, stories and more</div>
       <div className={styles.article_container}>
         {data.map((data, index) => {
           return (
@@ -22,6 +23,10 @@ function Articles(props){
       </div>
       <button className={styles.articleButton}>Visit our blog</button>
     </div>
+    </div>
+      
+    </React.Fragment>
+    
   );
 
 }

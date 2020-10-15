@@ -148,7 +148,7 @@ class PostTask extends React.Component {
 
     const conditionList = [
       (false),
-      ((jobTitle.length < this.jobTitleMinLength || jobDetails.length < this.jobDetailsMinLength)),
+      ((jobTitle.length < this.jobTitleMinLength || jobDetails.length < this.jobDetailsMinLength || jobCategory.length === 0)),
       ((method === "offline") ? (!startDate || !place) : (!startDate)),
     ];
 
@@ -208,6 +208,7 @@ class PostTask extends React.Component {
       <JobCategory
         onJobCategory={this.onJobCategory}
         jobCategory={jobCategory}
+        isJobCategoryNull={(jobCategory.length === 0 && touch)}
       />
     )
 

@@ -1,9 +1,17 @@
 select:required:invalid {
   color: gray;
+  margin-right: 0.5em;
 }
 option[value=""][disabled] {
   display: none;
 }
 option {
   color: black;
+}
+
+.job_category_box {
+  display: flex;
+  margin-left: 1em;
+  margin-bottom: 0.4em;
+  margin-top: 0.2em;
 }

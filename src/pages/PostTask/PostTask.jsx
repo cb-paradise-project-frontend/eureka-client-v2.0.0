@@ -15,6 +15,7 @@ import Button from '../../components/Button';
 import ProgressBar from './components/ProgressBar';
 import Modal from '../../components/Modal';
 import { withAlert } from './components/AlertModal';
+import postTask from '../../apis/postTask';
 
 class PostTask extends React.Component {
   constructor(props) {
@@ -24,8 +25,8 @@ class PostTask extends React.Component {
       jobTitle: "",
       jobDetails: "",
       jobCategory: "",
-      startDate: null,
-      place: null,
+      startDate: null, //dueDate
+      place: null, 
       taskBudget: "0",
       budgetHour: "1",
       budgetHourlyWage: "0",
@@ -120,12 +121,13 @@ class PostTask extends React.Component {
 
   handleGetQuoteClick() {
     const { taskBudget } = this.state;
-
+    
     if (taskBudget < this.minBudget || taskBudget > this.maxBudget) {
       this.setState({ touch: true });
     } else {
       this.setState({ touch: false });
       //this.link to task page or profile()
+      postTask("5f87e83d914f3af07a665501", this.state);
     }
   }
 

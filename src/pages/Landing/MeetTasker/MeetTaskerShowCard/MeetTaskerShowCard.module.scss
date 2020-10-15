@@ -1,18 +1,13 @@
-*, *::after, *::before {
-  margin: 0;
-  padding: 0;
-}
-
 .MeetTaskerShowCard__container {
   position: relative;
-  margin: 0 auto 30px;
+  margin: 50px auto 30px;
   height: 50px;
   
 
   p {
     color: rgb(41, 43, 50);
     font-family: "Baloo Tamma 2", cursive;
-    font-size: 20px;
+    font-size: 2em;
     line-height: 28px;
     letter-spacing: 0.15px;
     margin: 8px;

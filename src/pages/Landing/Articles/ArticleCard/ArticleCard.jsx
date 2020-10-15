@@ -4,8 +4,8 @@ import styles from "./ArticleCard.module.scss";
 
 function ArticleCard({ articleImg, articleTitle, articleContent }) {
   return (
-    <div>
-      <div className={styles.article_card}>
+    <React.Fragment>
+    <div className={styles.article_card}>
       <div className={styles.img_container}>
       <img
           src={articleImg}
@@ -23,7 +23,9 @@ function ArticleCard({ articleImg, articleTitle, articleContent }) {
           Read more
         </a>
       </div>
-    </div>
+    </React.Fragment>
+    
+      
   );
 }
 

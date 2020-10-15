@@ -1,0 +1,50 @@
+.everyday_tasks {
+  background: url("../../../assets/everydaytasks-bg.svg") no-repeat;
+  background-position: left center;
+  background-size: 1028px 658px;
+  height: 700px;
+  .wrapper {
+      width:700px;
+      float: right;
+        margin:50px;
+      background-color: rgba(247,252,250,0.8);
+      border-radius: 8px;
+    
+      .container{
+        text-align: center;
+      }
+
+    .title {
+      color: rgb(41, 43, 50);
+    font-family: "Baloo Tamma 2", cursive;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 32px;
+    letter-spacing: -0.15px;
+    text-align: center;
+    vertical-align: initial;
+    font-style: initial;
+    white-space: initial;
+    text-decoration: initial;
+    margin: 30px 0;
+    }
+
+    .content {
+      font-family: "Baloo Tamma 2", cursive;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    text-align: left;
+    vertical-align: initial;
+    font-style: initial;
+    white-space: initial;
+    text-decoration: initial;
+    font-size: 16px;
+    color: rgb(84, 90, 119);
+    text-overflow: ellipsis;
+    padding: 0px 16px;
+    margin-top: 20px;
+    overflow: hidden;
+    }
+  }
+}

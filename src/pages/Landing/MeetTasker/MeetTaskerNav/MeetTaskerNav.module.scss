@@ -1,21 +1,21 @@
-*, *::after, *::before {
-  margin: 0;
-  padding: 0;
-}
+
 h3 {
   margin: 20px auto 10px;
 }
 
-.OtherJobs__container {
+.MTNav__container {
   display: flex;
   flex-direction: column;
-  justify-content: start;
   margin: auto;
   // height: 45vw;
   width: 90vw;
+  position:center;
+    text-align: center;
+    margin: 0 auto;
+    width:600px;
   
   
-  .OtherJobs__title {
+  .MTNav__title {
     position: relative;
     margin: 0 auto 30px;
     height: 50px;

@@ -25,7 +25,7 @@ export default function OfferButton({ isExpired }) {
   };
 
   useEffect(() => {
-    checkProfile();
+    if (currentUser) checkProfile();
   }, []);
 
   const modal = (!currentUser && <SignupModal pageToggler={toggler} />)

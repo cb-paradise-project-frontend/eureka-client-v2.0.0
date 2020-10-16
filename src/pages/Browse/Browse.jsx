@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Redirect, Route, useRouteMatch } from 'react-router-dom';
 
 import styles from './Browse.module.scss';
@@ -7,7 +7,9 @@ import TaskList from './TaskList';
 import TaskDetail from './TaskDetail';
 import getTaskList from '../../apis/Task/getTaskList';
 import askQuestion from '../../apis/Task/askQuestion';
-import TaskMenu from './TaskMenu/TaskMenu';
+import TaskMenu from './TaskMenu';
+import LoadingPage from '../../components/LoadingPage';
+import { AuthContext } from '../../auth/Auth';
 
 const testData = {
   title: 'Roof repair',
@@ -43,29 +45,23 @@ tasks[1].status = 'ASSIGNED';
 tasks[2].status = 'COMPLETED';
 tasks[3].status = 'EXPIRED';
 
-const testUserId = '5f7e8665b7edfa557c89dbdf';
-
 export default function Browse() {
   const [taskList, setTaskList] = useState([]);
   const [updateFlag, setUpdateFlag] = useState(false);
-
   const [filter, updateFilter] = useState('');
 
+  const [loading, setLoading] = useState(true);
+
   const { path } = useRouteMatch();
+
+  const { currentUser } = useContext(AuthContext);
 
   const toggleUpdateFlag = () => {
     setUpdateFlag((prevFlag) => !prevFlag);
   };
 
   const loadTaskList = async () => {
-    // without backend
-    // const newTaskList = tasks;
-
-    // with backend
     const newTaskList = await getTaskList(filter) || tasks;
-
-    console.log(newTaskList);
-
     setTaskList(newTaskList);
   };
 
@@ -84,8 +80,14 @@ export default function Browse() {
     minPrice,
   ]);
 
+  useEffect(() => {
+    if (taskList.length && loading === true) {
+      setLoading(false);
+    }
+  }, [taskList.length, loading]);
+
   const onAskQuestion = (taskId, input) => {
-    askQuestion(testUserId, taskId, input);
+    askQuestion(currentUser, taskId, input);
     toggleUpdateFlag();
   };
 
@@ -93,21 +95,25 @@ export default function Browse() {
 
   return (
     <>
-      <Redirect to={`${path}/${defaultTaskId}`} />
-      <div className={styles.browse_container} >
-        <TaskMenu onFilterChange={updateFilter} />
-        <div className={styles.browse} >
-          <TaskList taskList={taskList} />
-          <Route path={`${path}/:taskId`} >
-            <div className={styles.task_detail_wrapper} >
-              <TaskDetail
-                taskList={taskList}
-                onAskQuestion={onAskQuestion}
-              />
+      {loading ? <LoadingPage /> :
+        <>
+          <Redirect to={`${path}/${defaultTaskId}`} />
+          <div className={styles.browse_container} >
+            <TaskMenu onFilterChange={updateFilter} />
+            <div className={styles.browse} >
+              <TaskList taskList={taskList} />
+              <Route path={`${path}/:taskId`} >
+                <div className={styles.task_detail_wrapper} >
+                  <TaskDetail
+                    taskList={taskList}
+                    onAskQuestion={onAskQuestion}
+                  />
+                </div>
+              </Route>
             </div>
-          </Route>
-        </div>
-      </div>
+          </div>
+        </>
+      }
     </>
   );
 }

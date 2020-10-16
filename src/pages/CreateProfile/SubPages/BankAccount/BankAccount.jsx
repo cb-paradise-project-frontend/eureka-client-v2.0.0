@@ -6,6 +6,7 @@ import Button from '../../../../components/Button';
 import Input from '../../../../components/Input';
 import useForm from '../useForm';
 import FORM from './form';
+import onlyNumber from '../../../../utils/validators/input';
 
 export default function BankAccount({ storedValue, onSubmit }) {
   const form = useForm(FORM, storedValue);
@@ -58,7 +59,11 @@ export default function BankAccount({ storedValue, onSubmit }) {
       toggleTesting(true);
       setHighlightField(error.field);
     } else {
-      onSubmit(formData);
+      const formatData = {
+        ...formData,
+        bsb: onlyNumber(formData.bsb),
+      };
+      onSubmit(formatData);
     }
   };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import styles from './CreateProfile.module.scss';
 
@@ -9,17 +9,34 @@ import useForm from './SubPages/useForm';
 import FORM from './form';
 import LocalStorage from './utils/LocalStorage';
 import createBirthdayLabel from './utils/createBirthdayLabel';
+import { getProfile, saveProfile } from '../../apis';
+import { AuthContext } from '../../auth/Auth';
+import MessageBox from '../../components/MessageBox';
+import MakeOffer from './SubPages/MakeOffer';
+
+const successMessage = 'Your profile is saved! Now you can start to make money!.';
+
+const SuccessMessage = ({ onRequestClose }) => (
+  <MessageBox
+    info={successMessage}
+    onRequestClose={onRequestClose}
+  />
+);
 
 const { getStoredData, storeData, dropStoredData } = new LocalStorage('userProfile');
 
 export default function CreateProfile({ pageToggler }) {
   const [subPage, loadSubPage] = useState();
 
+  const { currentUser } = useContext(AuthContext);
+  const [profileFilled, setProfileFilled] = useState(false);
+
   const form = useForm(FORM, getStoredData());
 
   const {
     getData,
     handleDataChange,
+    findEmptyField,
   } = form;
 
   const formData = getData();
@@ -32,8 +49,13 @@ export default function CreateProfile({ pageToggler }) {
     mobile,
   } = formData;
 
+  const checkProfile = () => {
+    if (!findEmptyField()) setProfileFilled(true);
+  };
+
   useEffect(() => {
     storeData(formData);
+    checkProfile();
   }, [
     photo,
     bankAccount,
@@ -41,6 +63,15 @@ export default function CreateProfile({ pageToggler }) {
     birthday,
     mobile,
   ]);
+
+  const requestProfile = async () => {
+    const profile = await getProfile(currentUser);
+    if (profile) setProfileFilled(true);
+  };
+
+  useEffect(() => {
+    requestProfile();
+  }, []);
 
   const handleBackBtnClick = () => {
     loadSubPage('');
@@ -56,20 +87,32 @@ export default function CreateProfile({ pageToggler }) {
   </Button>
   );
 
-  const handleContinueBtnClick = () => {
-    dropStoredData();
-    pageToggler();
+  const handleContinueBtnClick = async () => {
+    // dropStoredData();
+
+    const result = await saveProfile(currentUser, formData);
+
+    if (result) {
+      setProfileFilled(true);
+    }
+
+    // pageToggler();
   };
 
   const continueButton = (
     <Button
-    onClick={handleContinueBtnClick}
-    color={'light-blue'}
-    long
-  >
-    Continue
-  </Button>
+      onClick={handleContinueBtnClick}
+      color={'light-blue'}
+      isDisabled={!profileFilled}
+      long
+    >
+      Continue
+    </Button>
   );
+
+  // const handleNextBtnClick = () => {
+
+  // };
 
   const profileList = (
     <div className={styles.profile_list_wrapper} >
@@ -120,17 +163,22 @@ export default function CreateProfile({ pageToggler }) {
 
   const content = (
     <div className={styles.content_wrapper} >
-      {subPage || profileList}
+      {(profileFilled && <MakeOffer />)
+        || subPage
+        || profileList
+      }
     </div>
   );
 
   const footer = subPage ? backButton : continueButton;
 
   return (
-    <Modal onRequestClose={pageToggler} >
-      <Modal.Header>{header}</Modal.Header>
-      <Modal.Content>{content}</Modal.Content>
-      <Modal.Footer>{footer}</Modal.Footer>
-    </Modal>
+    <>
+      <Modal onRequestClose={pageToggler} >
+        <Modal.Header>{header}</Modal.Header>
+        <Modal.Content>{content}</Modal.Content>
+        <Modal.Footer>{footer}</Modal.Footer>
+      </Modal>
+    </>
   );
 }

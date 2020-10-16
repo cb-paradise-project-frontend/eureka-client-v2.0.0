@@ -1,24 +1,22 @@
-*, *::after, *::before {
-  margin: 0;
-  padding: 0;
-}
-
 
 .OtherJobs__cards {
   display: flex;
   flex-direction: column;
   justify-items: center;
+  align-items: center;
   // align-content: center;
   padding: 0 auto;
-  margin: 10px auto;
-  font-family: "Baloo Tamma 2", cursive;
-  // border: 1px solid black;
+  margin: 0px auto;
+  // font-family: "Baloo Tamma 2", cursive;
+  // border: 1px solid red;
 
   .OtherJobs__description {
-    h5 {
-      color: rgb(84, 90, 119);
-      font-size: 18px;
-      line-height: 24px;
+    width: 740px;
+    h4 {
+      color: #4E4673;
+      font-size: 16px;
+      line-height: 19px;
+      font-weight: 400;
       letter-spacing: 0.15px;
       margin: 10px;
       padding: 10px;

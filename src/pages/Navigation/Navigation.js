@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import className from 'classnames/bind';
 
 import styles from './Navigation.module.scss';
+import logo from '../../assets/logo.svg';
 
 import { AuthContext } from './../../auth/Auth';
-import { NavContext } from './NavContext';
+// import { NavContext } from './NavContext';
 import LoginModal from '../../components/LoginModal';
 import SignupModal from '../../components/SignupModal';
 import Categories from '../Navigation/components/Categories';
@@ -22,9 +23,9 @@ function Navigation() {
       toggle={(toggler) => (
         <div className={styles.post_task_button_wrapper} >
           <Button
-            color={'pink'}
+            color={'navy'}
             onClick={toggler}
-            size={'small'}
+            size={'navbar'}
           >
             Post a Task
           </Button>
@@ -41,7 +42,7 @@ function Navigation() {
       toggle={(toggler) => (
         <div className={styles.login_button_wrapper} >
           <Button.Text
-            color={window.scrollY >= 60 ? "grey" : "white"} 
+            color={'navy'}
             onClick={toggler}
           >
             Log in
@@ -59,7 +60,7 @@ function Navigation() {
       toggle={(toggler) => (
         <div className={styles.signup_button_wrapper} >
           <Button.Text
-            color={window.scrollY >= 60 ? "grey" : "white"} 
+            color={'navy'}
             onClick={toggler}
           >
             Sign up
@@ -75,77 +76,48 @@ function Navigation() {
   return (
     <AuthContext.Consumer>
       {(currentUser) => (
-        <NavContext.Consumer>
-          {/* <div className={styles.menu-mobile}>
-            <div className={styles.responsiveButton}>
-              <span className={styles.responsiveBar}></span>
-              <span className={styles.responsiveBar}></span>
-              <span className={styles.responsiveBar}></span>
-            </div>
+        // <NavContext.Consumer>
+        <div className={styles.web}>
+          <nav className={styles.navBar}>
+            <div className={styles.navWebMenu}>
+              <Link
+                className={styles.logo}
+                to="/"
+              >
+                <img src={logo} />
+                <p>Brand</p>
+              </Link>
 
-            <div></div>
-
-            <div className={styles.responsivePostTask}>
-              <span className={styles.responsiveBar}></span>
-              <span className={styles.responsiveBar}></span>
-            </div>
-          </div> */}
-          {(navBar) => (
-            <div className={styles.web}>
-            <nav className={cx({
-              navBar: true, 
-              active: navBar,
-            })}>
-              <div className={styles.navMenu}>
+              <div className={styles.left} >
+                <PostTaskButton/>
+                <Categories />
                 <Link
-                  className={styles.logo}
-                  to="/"
+                  className={styles.browseTasks}
+                  to="/tasks"
                 >
-                  logo
+                  Browse tasks
                 </Link>
-
-                <div className={styles.left} >
-                  <PostTaskButton />
-                  <Categories />
-                  <Link
-                    className={cx({
-                      browseTasks: true, 
-                      browseTasksActive: navBar,
-                    })}
-                    to="/tasks"
-                    >
-                    {console.log(navBar)}
-                    Browse tasks
-                  </Link>
-                  <div className={cx({
-                      howItWorks: true, 
-                      howItWorksActive: navBar,
-                    })} 
-                  >
+                {/* <div className={styles.howItWorks}>
                     How it works
-                  </div>
-                </div>
-
-                <div className={styles.right} >
-                  <SignupButton />
-                  <LoginButton />
-                  <div className={styles.becomeTasker} >
-                    <Button
-                      color={window.scrollY >= 60 ? "transparentActive" : "transparent"} 
-                      // {'transparent'}
-                      size={'small'}
-                    >
-                      Become a Tasker
-                    </Button>
-                  </div>
-                </div>
-              
+                </div> */}
               </div>
-            </nav>
-          </div>
-          )}
 
-        </NavContext.Consumer>
+              <div className={styles.right} >
+                <SignupButton />
+                <LoginButton />
+                <div className={styles.becomeTasker} >
+                  <Button
+                    color={'transparent'}
+                    size={'small'}
+                  >
+                    Become a Tasker
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        // </NavContext.Consumer>
       )}
     </AuthContext.Consumer>
   );

@@ -33,58 +33,46 @@ class TaskCategories extends React.Component {
           type: "delivery",
           title: "Delivery",
         },
+
+        {
+          id: 5, 
+          type: "delivery",
+          title: "Delivery",
+        },
+        
+        {
+          id: 6, 
+          type: "delivery",
+          title: "Delivery",
+        },
       ]
     };
   }
 
   render() {
     const {data, } = this.state;
-    
     return (
       <div className={styles.taskCategories__container}>
-        <h3>What do you need done?</h3>
-        <div className={styles.iconContainer}>
-          {
-            data.map((item, index) => {
-              console.log(item)
-              return (
-                <TaskCategoriesItem
-                key = {item.id}
-                type = {item.type}
-                title = {item.title}
-                />
-              )
-            })
-          }
+        <div className={styles.taskCategoriesContent}>
+          <h3>What do you need done?</h3>
+          <div className={styles.iconContainer}>
+            {
+              data.map((item, index) => {
+                // console.log(item)
+                return (
+                  <TaskCategoriesItem
+                  key = {item.id}
+                  type = {item.type}
+                  title = {item.title}
+                  />
+                )
+              })
+            }
+          </div>
         </div>
       </div>
-  );
+    );
+  }
 }
-
-/* 
-<TaskCategoriesItem 
-                key = {id}
-                type = {data.type}
-              >
-                
-                {data.title}
-                
-              </TaskCategoriesItem>} */}
-
-// function TaskCategories() {
-// 	return (
-//     <div className={styles.taskCategories__container}>
-//       <h3>What do you need done?</h3>
-//       <div>
-//         <TaskCategoriesItem type="house">House</TaskCategoriesItem>
-//         <TaskCategoriesItem type="house">Used</TaskCategoriesItem>
-//         <TaskCategoriesItem type="house">Clean</TaskCategoriesItem>
-//         <TaskCategoriesItem type="house">House</TaskCategoriesItem>
-//         <TaskCategoriesItem type="house">Used</TaskCategoriesItem>
-//         <TaskCategoriesItem type="house">Clean</TaskCategoriesItem>
-//       </div>
-//     </div>
-// 	);
-// }
 
 export default TaskCategories;

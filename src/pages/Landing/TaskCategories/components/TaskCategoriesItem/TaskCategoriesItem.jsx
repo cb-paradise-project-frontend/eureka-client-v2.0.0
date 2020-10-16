@@ -6,7 +6,7 @@ import houseIcon from '../../../../../assets/house.svg';
 
 function TaskCategoriesItem ({
   type,
-  title
+  title,
 }) {
   return (
     <div className={styles.taskCategoriesItem}>
@@ -31,6 +31,4 @@ function TaskCategoriesItem ({
 //     </div>
 // 	);
 // }
-
-
 export default TaskCategoriesItem;

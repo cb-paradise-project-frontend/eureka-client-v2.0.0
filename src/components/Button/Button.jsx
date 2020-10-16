@@ -18,6 +18,8 @@ const Button = ({
         'light-blue': 'light-blue',
         red: 'red',
         pink: 'pink',
+        mint: 'mint',
+        navy: 'navy',
         transparent: 'transparent',
         transparentActive: 'transparentActive',
 
@@ -26,6 +28,7 @@ const Button = ({
         small: 'small',
         medium: 'medium',
         large: 'large',
+        navbar: 'navbar',
       }[size] || 'medium',
     )}
     disabled={isDisabled}
@@ -73,6 +76,7 @@ const Text = ({ onClick, children, color }) => (
       {
         white: 'white',
         grey: 'grey',
+        navy: 'navy',
         'light-blue': 'light-blue',
       }[color] || 'grey',
     )}

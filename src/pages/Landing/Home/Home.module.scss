@@ -1,60 +1,85 @@
-*, *::after, *::before {
-  margin: 0;
-  padding: 0;
-}
-
 .home__container {
-  width: 100vw;
-  height: 620px;
+  // width: 1440px;
+  height: 720px;
+  position: relative;
   background-position: center;
-  background-image: url(../../../assets/background_img.png);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  // background-image: url(../../../assets/background_img.png);
+  background-image: url(../../../assets/bg-home.svg);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 1024px 654px;
+  // border: 1px solid black;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // flex-direction: column;
 
-    div {
-      display: flex;
-      flex-direction: column;
-      color: white;
-      font-family: "Baloo Tamma 2", cursive;
-      line-height: 1.2;
-      width: 60vw;
+  .home__content {
+    position: relative;
+    left: 132px;
+    top: 180px;
+    width: 475px;
 
-      h1 {
-        font-size: 60px;
-        font-weight: 1200;
-        line-height: 52px;
-        // letter-spacing: -0.25px;
-        padding: 30px 0;
-      }
+    display: flex;
+    flex-direction: column;
+    color: white;
+    // font-family: "Baloo Tamma 2", cursive;
+    // line-height: 1.2;
+    // width: 60vw;
 
-      h4 {
-        font-family: "Baloo Tamma 2", cursive;
-        font-size: 34px;
-        line-height: 40px;
-        letter-spacing: -0.15px;
-        padding-bottom: 50px;
-      }
+    h2 {
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 40px;
+      color: #606d8e;
+      margin-bottom: 16px;
+      // letter-spacing: -0.25px;
+      // padding: 30px 0;
     }
 
-    button {
-      font-family: "Baloo Tamma 2", cursive;
-      font-weight: bold;
+    h1 {
+      font-size: 60px;
+      font-weight: 700;
+      line-height: 72px;
+      color: #313849;
+      margin-bottom: 64px;
     }
+    
+    p {
+      font-size: 23px;
+      font-weight: 400;
+      line-height: 26px;
+      color: #606d8e;
+      margin-bottom: 80px;
+    }
+      // h4 {
+      //   font-family: "Baloo Tamma 2", cursive;
+      //   font-size: 34px;
+      //   line-height: 40px;
+      //   letter-spacing: -0.15px;
+      //   padding-bottom: 50px;
+      // }
+      // div {
+      //   border: 1px solid black;
+      //   height: 168px;
+      //   width: 55px;
+      // }
+    }
+
+
 }
 
-@media screen and (max-width: 767px)
-{
+// @media screen and (max-width: 767px)
+// {
 
-  h1 {
-    color: black;
-    font-size: 20px;
-    line-height: 18px;
-    padding: 10px 0;
+//   h1 {
+//     color: black;
+//     font-size: 20px;
+//     line-height: 18px;
+//     padding: 10px 0;
 
-  }
-  h4 {
-    font-size:10px;
-  }
-}
+//   }
+//   h4 {
+//     font-size:10px;
+//   }
+// }

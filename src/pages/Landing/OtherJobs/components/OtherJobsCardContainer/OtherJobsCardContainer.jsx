@@ -20,7 +20,7 @@ class OtherJobsCardContainer extends React.Component {
     return (
       <div className={styles.OtherJobs__cards}>
         <div className={styles.OtherJobs__description}>
-          <h5>{this.props.tabDescription}</h5>
+          <h4>{this.props.tabDescription}</h4>
         </div>
 
         <div className={styles.OtherJobs__cardGrid}>

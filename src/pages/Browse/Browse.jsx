@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Redirect, Route, useRouteMatch } from 'react-router-dom';
+import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 
 import styles from './Browse.module.scss';
 
@@ -8,8 +8,8 @@ import TaskDetail from './TaskDetail';
 import getTaskList from '../../apis/Task/getTaskList';
 import askQuestion from '../../apis/Task/askQuestion';
 import TaskMenu from './TaskMenu';
-import LoadingPage from '../../components/LoadingPage';
 import { AuthContext } from '../../auth/Auth';
+import useLoadingPage from '../../components/LoadingPage/useLoadingPage';
 
 const testData = {
   title: 'Roof repair',
@@ -50,7 +50,7 @@ export default function Browse() {
   const [updateFlag, setUpdateFlag] = useState(false);
   const [filter, updateFilter] = useState('');
 
-  const [loading, setLoading] = useState(true);
+  const [LoadingMask, toggleLoadingMask, loadingStatus] = useLoadingPage();
 
   const { path } = useRouteMatch();
 
@@ -81,10 +81,10 @@ export default function Browse() {
   ]);
 
   useEffect(() => {
-    if (taskList.length && loading === true) {
-      setLoading(false);
+    if (taskList.length && loadingStatus === true) {
+      toggleLoadingMask(false);
     }
-  }, [taskList.length, loading]);
+  }, [taskList.length, loadingStatus]);
 
   const onAskQuestion = (taskId, input) => {
     askQuestion(currentUser, taskId, input);
@@ -94,26 +94,24 @@ export default function Browse() {
   const defaultTaskId = taskList[0] && taskList[0].id;
 
   return (
-    <>
-      {loading ? <LoadingPage /> :
-        <>
-          <Redirect to={`${path}/${defaultTaskId}`} />
-          <div className={styles.browse_container} >
-            <TaskMenu onFilterChange={updateFilter} />
-            <div className={styles.browse} >
-              <TaskList taskList={taskList} />
-              <Route path={`${path}/:taskId`} >
-                <div className={styles.task_detail_wrapper} >
-                  <TaskDetail
-                    taskList={taskList}
-                    onAskQuestion={onAskQuestion}
-                  />
-                </div>
-              </Route>
-            </div>
-          </div>
-        </>
-      }
-    </>
+    <LoadingMask>
+      <div className={styles.browse_container} >
+        <TaskMenu onFilterChange={updateFilter} />
+        <div className={styles.browse} >
+          <TaskList taskList={taskList} />
+          <Switch>
+            <Route path={`${path}/:taskId`} >
+              <div className={styles.task_detail_wrapper} >
+                <TaskDetail
+                  taskList={taskList}
+                  onAskQuestion={onAskQuestion}
+                />
+              </div>
+            </Route>
+            <Redirect to={`${path}/${defaultTaskId}`} />
+          </Switch>
+        </div>
+      </div>
+    </LoadingMask>
   );
 }

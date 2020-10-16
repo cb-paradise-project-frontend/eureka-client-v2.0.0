@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Profiler } from 'react';
 
 import styles from './PostTask.module.scss';
 
@@ -8,12 +8,14 @@ import TaskLocationAndTime from './components/TaskLocationAndTime';
 import TaskBudget from './components/TaskBudget';
 import JobTitleInput from './components/TaskDescription/components/JobTitleInput';
 import JobDetailsInput from './components/TaskDescription/components/JobDetailsInput';
+import JobCategory from './components/TaskDescription/components/JobCategory';
 import TaskDatePicker from '../../components/DateSelector';
 import Place from '../../utils/getLocation';
 import Button from '../../components/Button';
 import ProgressBar from './components/ProgressBar';
 import Modal from '../../components/Modal';
 import { withAlert } from './components/AlertModal';
+import postTask from '../../apis/postTask';
 
 class PostTask extends React.Component {
   constructor(props) {
@@ -22,8 +24,9 @@ class PostTask extends React.Component {
       currentStep: 0,
       jobTitle: "",
       jobDetails: "",
-      startDate: null,
-      place: null,
+      jobCategory: "",
+      startDate: null, //dueDate
+      place: null, 
       taskBudget: "0",
       budgetHour: "1",
       budgetHourlyWage: "0",
@@ -40,6 +43,7 @@ class PostTask extends React.Component {
     this.handleBackClick = this.handleBackClick.bind(this);
     this.onJobTitle = this.onJobTitle.bind(this);
     this.onJobDetails = this.onJobDetails.bind(this);
+    this.onJobCategory = this.onJobCategory.bind(this);
     this.onRadioCheck = this.onRadioCheck.bind(this);
     this.handleGetQuoteClick = this.handleGetQuoteClick.bind(this);
     this.handleDateValue = this.handleDateValue.bind(this);
@@ -56,6 +60,10 @@ class PostTask extends React.Component {
 
   onJobDetails(value) {
     this.setState({ jobDetails: value });
+  }
+
+  onJobCategory(value) {
+    this.setState({ jobCategory: value });
   }
 
   onRadioCheck(value) {
@@ -85,7 +93,10 @@ class PostTask extends React.Component {
   }
 
   handleBudgetWageClick() {
-    this.setState({ budgetHour: 1 });
+    this.setState(
+      { budgetHour: 1 },
+      this.onTaskBudget,
+    );
   }
 
   handleDateValue(date) {
@@ -110,12 +121,19 @@ class PostTask extends React.Component {
 
   handleGetQuoteClick() {
     const { taskBudget } = this.state;
-
+    
     if (taskBudget < this.minBudget || taskBudget > this.maxBudget) {
       this.setState({ touch: true });
     } else {
       this.setState({ touch: false });
       //this.link to task page or profile()
+      //console.log(this.state);
+      return useID = getUser();
+      if(!useID){
+        login()
+      }
+      postTask("5f893a17914f3af07a66550c", this.state);
+      //profile 
     }
   }
 
@@ -133,12 +151,12 @@ class PostTask extends React.Component {
 
   render() {
     const {
-      currentStep, jobTitle, jobDetails, place, startDate, touch, method, taskBudget,
+      currentStep, jobTitle, jobDetails, jobCategory, place, startDate, touch, method, taskBudget,
     } = this.state;
 
     const conditionList = [
       (false),
-      ((jobTitle.length < this.jobTitleMinLength || jobDetails.length < this.jobDetailsMinLength)),
+      ((jobTitle.length < this.jobTitleMinLength || jobDetails.length < this.jobDetailsMinLength || jobCategory.length === 0)),
       ((method === "offline") ? (!startDate || !place) : (!startDate)),
     ];
 
@@ -194,6 +212,14 @@ class PostTask extends React.Component {
       />
     );
 
+    const jobCategoryInput = (
+      <JobCategory
+        onJobCategory={this.onJobCategory}
+        jobCategory={jobCategory}
+        isJobCategoryNull={(jobCategory.length === 0 && touch)}
+      />
+    )
+
     const taskPlace = (
       <Place 
         handleAddressQuery={this.handlePlace}
@@ -223,6 +249,7 @@ class PostTask extends React.Component {
           <TaskDescription
             jobTitleInput={jobTitleInput}
             jobDetailsInput={jobDetailsInput}
+            jobCategoryInput={jobCategoryInput}
           />
         ),
       },

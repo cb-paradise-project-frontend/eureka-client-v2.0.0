@@ -12,7 +12,7 @@ import createBirthdayLabel from './utils/createBirthdayLabel';
 import { getProfile, saveProfile } from '../../apis';
 import { AuthContext } from '../../auth/Auth';
 import MessageBox from '../../components/MessageBox';
-import MakeOffer from './SubPages/MakeOffer/MakeOffer';
+import MakeOffer from './SubPages/MakeOffer';
 
 const successMessage = 'Your profile is saved! Now you can start to make money!.';
 

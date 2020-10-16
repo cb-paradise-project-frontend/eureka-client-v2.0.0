@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Profiler } from 'react';
 
 import styles from './PostTask.module.scss';
 
@@ -127,7 +127,13 @@ class PostTask extends React.Component {
     } else {
       this.setState({ touch: false });
       //this.link to task page or profile()
-      postTask("5f87e83d914f3af07a665501", this.state);
+      //console.log(this.state);
+      return useID = getUser();
+      if(!useID){
+        login()
+      }
+      postTask("5f893a17914f3af07a66550c", this.state);
+      //profile 
     }
   }
 

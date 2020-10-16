@@ -1,28 +1,37 @@
-*, *::after, *::before {
-  margin: 0;
-  padding: 0;
-}
-
 .OtherJobs__container {
-  // height: 55vh;
+  // position: relative;
+  height: 820px;
   // width: 100vw;
-  background-color: rgb(246, 248, 253);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-items: center;
-  
-  // border: 1px solid red;
+  background-image: url(../../../assets/bg-otherJobs.svg);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 1440px 784px ;
+  // border: 1px solid black;
+  // background-color: rgb(246, 248, 253);
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-items: center;
 
-  h3 {
-    color: rgb(41, 43, 50);
-    font-family: "Baloo Tamma 2", cursive;
-    font-size: 30px;
-    line-height: 40px;
-    letter-spacing: -0.15px;
-    text-align: center;
-    margin: 30px 0px 5px;
-    padding: 20px 0;
+  .OtherJobsContent {
+    position: relative;
+    top: 80px;
+    left: 80px;
+    width: 850px;
+    // border: 1px solid black;
+    // background-color: rgba(247, 252, 250, 0.8);
+    // border-radius: 8px;
+    h3 {
+      color: rgb(41, 43, 50);
+      // font-family: "Baloo Tamma 2", cursive;
+      font-size: 28px;
+      line-height: 33px;
+      font-weight: 600;
+      letter-spacing: -0.15px;
+      text-align: center;
+      margin: 30px 0px
+      // padding: 20px 0;
+    }
   }
 
 }

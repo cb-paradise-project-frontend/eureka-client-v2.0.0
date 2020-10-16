@@ -7,13 +7,17 @@ import Button from '../../../components/Button';
 function Home() {
   return (
     <div className={styles.home__container}>
-      <div>
-        <h1>Connect with experts to get the job done on Airtasker</h1>
-        <h4>It’s amazing what you can’t do yourself</h4>
+      <div className={styles.home__content}>
+        <h2>Connect with experts to get the job done</h2>
+        <h1>on Airtasker</h1>
+        <p>It’s amazing what you can’t do yourself</p>
+
+        <div>
+          <Button color={'mint'}>
+            Get started now
+          </Button>
+        </div>
       </div>
-      <Button color={'pink'} size={'large'} >
-        Get started now
-      </Button>
     </div>
   );
 }

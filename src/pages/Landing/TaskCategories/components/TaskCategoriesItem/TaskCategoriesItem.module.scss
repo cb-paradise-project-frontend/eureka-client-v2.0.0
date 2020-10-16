@@ -1,4 +1,7 @@
-
+.taskCategoriesItem {
+  // border: 1px solid red;
+  margin: 0 20px 20px;
+}
 
 .taskCategoriesItem__button {
   display: inline-flex;
@@ -9,9 +12,6 @@
   background-color: rgba(0, 0, 0, 0);
   border: none;
   // border: 1px solid black;
-
-
-
   div {
     display: flex;
     -webkit-box-pack: center;
@@ -20,7 +20,7 @@
     align-items: center;
     width: 100px;
     height: 100px;
-    background-color: rgb(84, 90, 119);
+    background-color: #3abef9;
     color: white;
     position: relative;
     cursor: pointer;
@@ -41,15 +41,15 @@
   }
 
   div:hover {
-    background-color: rgb(224, 68, 109);
+    background-color: #29c4c5;
     transform: scale(1.08);
   }
 }
 
-@media screen and (max-width:767px)
-{
-  img {
-    height: 28px;
-    width: 28px;
-  }
-}
+// @media screen and (max-width:767px)
+// {
+//   img {
+//     height: 28px;
+//     width: 28px;
+//   }
+// }

@@ -1,16 +1,16 @@
-import React, { Component, Children } from 'react';
+import React from 'react';
 
 import styles from './OtherJobsShowCard.module.scss'
 
 class ShowCard extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    this.props.onClick(this.props.children)
+    this.props.onClick(this.props.children);
   }
 
   render() {

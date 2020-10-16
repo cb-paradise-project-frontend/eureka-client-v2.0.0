@@ -18,6 +18,7 @@ const Button = ({
         'light-blue': 'light-blue',
         red: 'red',
         pink: 'pink',
+        mint: 'mint',
         transparent: 'transparent',
         transparentActive: 'transparentActive',
 

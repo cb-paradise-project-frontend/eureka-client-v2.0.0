@@ -9,23 +9,24 @@
   position: relative;
   display: inline-block;
   vertical-align: top;
-  width: 300px;
-  height: 150px;
+  width: 195px;
+  height: 128px;
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px;
-  margin: 10px 10px;
-  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 5px 2px;
+  margin: 16px 8px;
+  border-radius: 20px;
   transition: transform 0.4s ease 0s;
   cursor: pointer;
   font-family: "Baloo Tamma 2", cursive;
   
 
   h4 {
-    font-weight: 300px;    
+    color: #313849;
+    font-weight: 400;    
     font-size: 14px;
-    line-height: 1.4;
+    line-height: 16px;
     margin: 5px 24px 0;
-    padding-bottom: 5px;
+    padding-bottom: 4px;
     border-bottom: 1px solid rgb(246, 248, 253);
     letter-spacing: 2px;
   }
@@ -35,40 +36,42 @@
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    margin: 12px 24px 2px;
+    margin: 8px 14px 8px;
 
     .card__description {
       display: flex;
       flex-direction: row;
       
       img {
-        height: 32px;
-        width: 32px;
+        height: 25px;
+        width: 25px;
         margin-right: 12px;
         border-radius: 50%;
         background-color: yellow;
       }
 
       p {
-        width: 144px;
-        margin-right: 16px;
-        height: 72px;
+        width: 105px;
+        // margin-right: 16px;
+        // height: 72px;
         white-space: pre-line;
         overflow: hidden;
-        color: rgb(84, 90, 119);
-        font-size: 16px;
-        line-height: 24px;
+        color: #313849;
+        font-size: 12px;
+        line-height: 14px;
+        font-weight: 400;
         letter-spacing: 0.15px;
         // text-align: left;
       }
     }
 
     .card__price{
-      width: 48px;
-      font-size: 22px;
-      margin-top: 0px;
-      color: rgb(41, 43, 50);
-      line-height: 28px;
+      width: 25px;
+      font-size: 14px;
+      font-weight: 400;
+      margin-top: 8px;
+      color: #313849;
+      line-height: 16px;
       letter-spacing: 0.15px;
       text-align: right;
     }
@@ -77,17 +80,21 @@
 
   .card__rating {
     position: absolute;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
     bottom: 0px;
     display: block;
     width: calc(100% - 48px);
     margin: 0px 24px;
     padding: 3px 0px;
     border-top: 1px solid rgb(246, 248, 253);
-    color: rgb(84, 90, 119);
+    color: #313849;
   }
 
 }
 
 .card__container:hover {
     transform: scale(1.02);
+    box-shadow: rgba(0, 0, 0, 0.1) 3px 4px 8px 4px;
 }

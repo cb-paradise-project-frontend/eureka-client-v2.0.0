@@ -128,10 +128,10 @@ class PostTask extends React.Component {
       this.setState({ touch: false });
       //this.link to task page or profile()
       //console.log(this.state);
-      return useID = getUser();
-      if(!useID){
-        login()
-      }
+      // return useID = getUser();
+      // if(!useID){
+      //   login()
+      // }
       postTask("5f893a17914f3af07a66550c", this.state);
       //profile 
     }

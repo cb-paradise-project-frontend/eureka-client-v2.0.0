@@ -40,9 +40,7 @@ export default async function saveProfile(userId, profile) {
     mobile,
   };
 
-  const response = await axiosInstance.put('/profiles', formatData);
+  const { status } = await axiosInstance.put('/profiles', formatData);
 
-  console.log(response);
-
-  return response;
+  return status === 200 || false;
 }

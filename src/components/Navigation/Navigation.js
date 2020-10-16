@@ -12,7 +12,7 @@ import SignupModal from '../../components/SignupModal';
 import Categories from '../Navigation/components/Categories';
 import ToggleContent from '../../components/ToggleContent';
 import Button from '../../components/Button';
-import PostTask from '../PostTask';
+import PostTask from './../../pages/PostTask';
 
 const cx = className.bind(styles);
 

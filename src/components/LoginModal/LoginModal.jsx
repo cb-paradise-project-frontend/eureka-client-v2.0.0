@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { signInWithGoogle } from '../../firebase';
 
 import styles from './LoginModal.module.scss';
 
-import { AuthContext } from '../../auth/Auth';
 import { api } from './../../apis';
 import Modal from '../Modal';
 import Button from '../Button';
@@ -43,20 +41,9 @@ const LoginModal = ({ pageToggler }) => {
     }
   }
 
-  const onLoginWithGoogle = (e) => {
-    e.preventDefault();
-    signInWithGoogle();
-  }
-
   useEffect(() => {
     console.log('form', form);
   }, [form]);
-
-  // const { currentUser } = useContext(AuthContext);
-
-  // if (currentUser) {
-  //   return <Redirect to="/profile" />;
-  // }
 
   return (
     <Modal onRequestClose={pageToggler} >
@@ -85,15 +72,6 @@ const LoginModal = ({ pageToggler }) => {
           </div>
           <Button onClick={onLoginWithEmail} >
             Log in
-          </Button>
-          <div className={styles.separator} >
-            or log in with
-          </div>
-          <Button
-            onClick={onLoginWithGoogle}
-            color={'blue'}
-          >
-            Google
           </Button>
         </div>
       </Modal.Content>

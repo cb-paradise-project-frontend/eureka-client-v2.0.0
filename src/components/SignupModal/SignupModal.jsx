@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-// import { auth } from '../../firebase';
 
 import styles from './SignupModal.module.scss';
 
@@ -47,12 +46,6 @@ const SignupModal = ({ pageToggler }) => {
   useEffect(() => {
     console.log(userCredentials);
   }, [userCredentials]);
-
-  // const { currentUser } = useContext(AuthContext);
-  // console.log(currentUser);
-  // if (currentUser) {
-  //   return (<Redirect to="/profile" />);
-  // }
 
   return (
     <Modal onRequestClose={pageToggler} >

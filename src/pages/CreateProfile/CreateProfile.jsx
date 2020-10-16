@@ -11,23 +11,14 @@ import LocalStorage from './utils/LocalStorage';
 import createBirthdayLabel from './utils/createBirthdayLabel';
 import { getProfile, saveProfile } from '../../apis';
 import { AuthContext } from '../../auth/Auth';
-import { useToggleContent } from '../../components/ToggleContent';
 import MessageBox from '../../components/MessageBox';
 import MakeOffer from './SubPages/MakeOffer/MakeOffer';
 
 const successMessage = 'Your profile is saved! Now you can start to make money!.';
-const errorMessage = 'Profile update failed. Please try again later.';
 
 const SuccessMessage = ({ onRequestClose }) => (
   <MessageBox
     info={successMessage}
-    onRequestClose={onRequestClose}
-  />
-);
-
-const ErrorMessage = ({ onRequestClose }) => (
-  <MessageBox
-    info={errorMessage}
     onRequestClose={onRequestClose}
   />
 );
@@ -38,9 +29,7 @@ export default function CreateProfile({ pageToggler }) {
   const [subPage, loadSubPage] = useState();
 
   const { currentUser } = useContext(AuthContext);
-  const [profileFilled, setProfileFilled] = useState(true);
-
-  const [MessageContent, toggleMessageContent] = useToggleContent();
+  const [profileFilled, setProfileFilled] = useState(false);
 
   const form = useForm(FORM, getStoredData());
 
@@ -60,8 +49,13 @@ export default function CreateProfile({ pageToggler }) {
     mobile,
   } = formData;
 
+  const checkProfile = () => {
+    if (!findEmptyField()) setProfileFilled(true);
+  };
+
   useEffect(() => {
     storeData(formData);
+    checkProfile();
   }, [
     photo,
     bankAccount,
@@ -70,13 +64,13 @@ export default function CreateProfile({ pageToggler }) {
     mobile,
   ]);
 
-  const checkProfile = async () => {
+  const requestProfile = async () => {
     const profile = await getProfile(currentUser);
     if (profile) setProfileFilled(true);
   };
 
   useEffect(() => {
-    checkProfile();
+    requestProfile();
   }, []);
 
   const handleBackBtnClick = () => {
@@ -95,9 +89,6 @@ export default function CreateProfile({ pageToggler }) {
 
   const handleContinueBtnClick = async () => {
     // dropStoredData();
-    if (findEmptyField()) {
-      return toggleMessageContent();
-    }
 
     const result = await saveProfile(currentUser, formData);
 
@@ -110,12 +101,13 @@ export default function CreateProfile({ pageToggler }) {
 
   const continueButton = (
     <Button
-    onClick={handleContinueBtnClick}
-    color={'light-blue'}
-    long
-  >
-    Continue
-  </Button>
+      onClick={handleContinueBtnClick}
+      color={'light-blue'}
+      isDisabled={!profileFilled}
+      long
+    >
+      Continue
+    </Button>
   );
 
   // const handleNextBtnClick = () => {
@@ -181,13 +173,12 @@ export default function CreateProfile({ pageToggler }) {
   const footer = subPage ? backButton : continueButton;
 
   return (
-    <Modal onRequestClose={pageToggler} >
-      <Modal.Header>{header}</Modal.Header>
-      <Modal.Content>{content}</Modal.Content>
-      <Modal.Footer>{footer}</Modal.Footer>
-      <MessageContent>
-        <ErrorMessage onRequestClose={toggleMessageContent} />
-      </MessageContent>
-    </Modal>
+    <>
+      <Modal onRequestClose={pageToggler} >
+        <Modal.Header>{header}</Modal.Header>
+        <Modal.Content>{content}</Modal.Content>
+        <Modal.Footer>{footer}</Modal.Footer>
+      </Modal>
+    </>
   );
 }

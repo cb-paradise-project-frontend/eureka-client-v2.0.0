@@ -5,26 +5,26 @@ import './App.css';
 import 'remixicon/fonts/remixicon.css';
 
 import { AuthProvider } from './auth/Auth';
-import { NavProvider } from './pages/Navigation/NavContext';
+import { NavProvider } from './components/Navigation/NavContext';
 import PrivateRoute from './auth/PrivateRoute';
 import Landing from './pages/Landing';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
-import Navigation from './pages/Navigation';
+import Navigation from './components/Navigation';
 import Browse from './pages/Browse';
 
 const App = () => (
   <AuthProvider>
     <Router>
-      <NavProvider>
-        <Navigation />
+    <NavProvider>
+      <Navigation />
+    </NavProvider>
       <Switch>
-        <Route path="/tasks" component={Browse} />
-        <PrivateRoute path="/profile" component={Profile} />
-        <Route path="/" component={Landing} />
+        <Route path="/" exact component={Landing} />
+        <Route path="/tasks" exact component={Browse} />
+        <PrivateRoute path="/profile" exact component={Profile} />
         <Route component={NotFound} />
       </Switch>
-      </NavProvider>
     </Router>
   </AuthProvider>
 );

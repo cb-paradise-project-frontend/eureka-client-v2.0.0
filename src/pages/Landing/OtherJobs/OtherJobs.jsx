@@ -7,10 +7,14 @@ import OtherJobsNav from './components/OtherJobsNav'
 function OtherJobs(props) {
   const {data} = props;
 	return (
-    <div className={styles.OtherJobs__container}>
-      <div className={styles.OtherJobsContent}>
-        <h3>See what others are getting done</h3>
-        <OtherJobsNav data={data}/>
+    <div className={styles.otherJobs__container}>
+      <div className={styles.bg__wrapper}>
+          <div className={styles.content__wrapper}>
+            <div className={styles.otherJobsContent}>
+              <h3>See what others are getting done</h3>
+              <OtherJobsNav data={data}/>
+            </div>
+          </div>
       </div>
     </div>
 	);

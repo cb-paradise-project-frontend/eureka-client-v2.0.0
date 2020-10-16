@@ -6,7 +6,7 @@ import QuestionAvatar from '../QuestionAvatar';
 
 export default function QuestionList({ questions }) {
   const questionList = questions.map(({
-    _id, askedBy: { avatar, name }, message,
+    _id, askedBy: { avatar, name, _id: userId }, message,
   }) => (
     <div
       className={styles.question_wrapper}
@@ -14,7 +14,7 @@ export default function QuestionList({ questions }) {
     >
       <QuestionAvatar avatarUrl={avatar} />
       <div className={styles.details} >
-        <div className={styles.header} >{name}</div>
+        <div className={styles.header} >{name || `user ${userId}`}</div>
         <div className={styles.content} >{message}</div>
         <div className={styles.footer} >Reply</div>
       </div>

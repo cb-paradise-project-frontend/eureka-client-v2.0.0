@@ -53,22 +53,26 @@ class TaskCategories extends React.Component {
     const {data, } = this.state;
     return (
       <div className={styles.taskCategories__container}>
-        <div className={styles.taskCategoriesContent}>
-          <h3>What do you need done?</h3>
-          <div className={styles.iconContainer}>
-            {
-              data.map((item, index) => {
-                // console.log(item)
-                return (
-                  <TaskCategoriesItem
-                  key = {item.id}
-                  type = {item.type}
-                  title = {item.title}
-                  />
-                )
-              })
-            }
+        <div className={styles.bg__wrapper}>
+          <div className={styles.content__wrapper}>
+            <div className={styles.taskCategoriesContent}>
+              <h3>What do you need done?</h3>
+              <div className={styles.iconContainer}>
+                {
+                  data.map((item, index) => {
+                    // console.log(item)
+                    return (
+                      <TaskCategoriesItem
+                      key = {item.id}
+                      type = {item.type}
+                      title = {item.title}
+                      />
+                    )
+                  })
+                }
+              </div>
           </div>
+        </div>
         </div>
       </div>
     );

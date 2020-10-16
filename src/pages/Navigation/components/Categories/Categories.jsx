@@ -12,12 +12,12 @@ function Categories() {
   return (
     <NavContext.Consumer>
       {(navBar) =>(
-        <div  
-          // className = {styles.categories}
-          className={cx({
-            categories: true, 
-            categoriesActive: navBar,
-          })}
+        <div
+          className = {styles.categories}
+          // className={cx({
+          //   categories: true, 
+          //   categoriesActive: navBar,
+          // })}
         >
           <div>Categories</div>
           <div className = {styles.category_content}>

@@ -35,6 +35,8 @@
     box-shadow: none;
     border-bottom: 1px solid transparent;
     background: rgba(255, 255, 255, 0.8);
+    // font-family: "Baloo Tamma 2", cursive;
+    // font-weight: 600;
 
     .navWebMenu {
       display: block;
@@ -70,202 +72,65 @@
     }
 
     .left {
+      height: 100%;
       margin-left: 20px;
-      border-left: 1px solid rgba(0,0,0,.1);
+      // border-left: 1px solid rgba(0,0,0,.1);
       // border-left: 1px solid transparent;
       float: left;
       display: flex;
       align-items: center;
       font-weight: 600;
-      border: 1px solid black;
+      // border: 1px solid black;
 
       .post_task_button_wrapper{
         text-shadow: 0 1px 2px rgba(0,0,0,.25);
-        width: 100px;
-        margin-top: 2px; 
+        width: 135px;
+        margin: 2px 30px 0px 30px;
+        // font-family: "Baloo Tamma 2", cursive;
       }
-  
+
       .browseTasks {
         color:#426AD2;
         cursor: pointer;
         display: inline-block;
+        height: 72px;
         font-size: 16px;
         font-weight: 600;
-        // height: 72px;
         letter-spacing: .4px;
-        line-height: 18px;
+        line-height: 72px;
         position: relative;
         text-decoration: none;
-        // padding: auto 10px;
-        border-top: 2px solid transparent;
+        padding: 0 10px;
+        margin: 0px 15px;
+        border-top: 4px solid transparent;
         &:hover {
           color: #008fb4;
-          border-top: 2px solid #008fb4;
+          border-top: 4px solid #008fb4;
         }
       }
+    }
 
-      // .howItWorks {
-      //   color:#426AD2;
-      //   cursor: pointer;
-      //   display: inline-block;
-      //   font-size: 13px;
-      //   height: 72px;
-      //   letter-spacing: .4px;
-      //   line-height: 58px;
-      //   position: relative;
-      //   text-decoration: none;
-      //   padding: 0 10px;
-      //   border-top: 2px solid transparent;
-      //   &:hover {
-      //     color: #008fb4;
-      //     border-top: 2px solid #008fb4;
-      //   }
-      // }
+    .right {
+      padding-top: 2px;
+      height: 100%;
+      float: right;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      // border: 1px solid black;
+  
+      .becomeTasker{
+        text-shadow: 0 1px 2px rgba(0,0,0,.25);
+      }
+      .login_button_wrapper, 
+      .signup_button_wrapper{
+        display: flex;
+        align-items: center;
+        margin: 0 25px;
+      }
     }
   }
-
 }
-
-
-// .web {
-//   display: flex;
-//   .navBar {
-//     height: 72px;
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     z-index: 100;
-
-//     display: block;
-//     box-shadow: none;
-//     border-bottom: 1px solid transparent;
-//     background: rgba(255, 255, 255, 0.8);
-
-//     // &.active {
-//     //   background-color: rgb(246, 248, 253);
-//     //   border-bottom: 1px solid rgba(0,0,0,.4);
-//     //   transition: transform 0.5s ease 0s;
-//     // }
-    
-//     .navMenu {
-//       display: block;
-//       height: 72px;
-//       margin: 0 auto;
-//       max-width: 1024px;
-//       position: relative;
-//       // width: 100%;
-//       font-size: 500;
-    
-//       // border: 1px solid red;
-
-    
-//       .logo {
-//         border: 1px solid black;
-//         height: 45px;
-//         width: 100px;
-//         float: left;
-//         position: relative;
-//         margin: 6px;
-//         text-decoration: none;
-//         cursor: pointer;
-//         text-align: center;
-//         color: #fff;
-//       }
-    
-//       .left {
-//         margin-left: 20px;
-//         border-left: 1px solid rgba(0,0,0,.1);
-//         border-left: 1px solid transparent;
-//         float: left;
-//         display: flex;
-//         align-items: center;
-//         font-weight: 600;
-    
-    
-//         .post_task_button_wrapper{
-//           text-shadow: 0 1px 2px rgba(0,0,0,.25);
-//           width: 100px;
-//           margin-top: 2px; 
-//         }
-    
-//         .browseTasks {
-//           color:#fff;
-//           // color: #545a77;
-//           cursor: pointer;
-//           display: inline-block;
-//           font-size: 13px;
-//           height: 57px;
-//           letter-spacing: .4px;
-//           line-height: 58px;
-//           position: relative;
-//           text-decoration: none;
-//           padding: 0 10px;
-//           border-top: 2px solid transparent;
-//           &:hover {
-//             color: #008fb4;
-//             border-top: 2px solid #008fb4;
-//           }
-    
-//           &.browseTasksActive {
-//             color: #545a77;
-//             &:hover {
-//               color: #008fb4;
-//               border-top: 2px solid #008fb4;
-//             }
-//           }
-        
-//         }
-    
-//         .howItWorks {
-//           color:#fff;
-//           cursor: pointer;
-//           display: inline-block;
-//           font-size: 13px;
-//           height: 57px;
-//           letter-spacing: .4px;
-//           line-height: 58px;
-//           position: relative;
-//           text-decoration: none;
-//           padding: 0 10px;
-//           border-top: 2px solid transparent;
-//           &:hover {
-//             color: #008fb4;
-//             border-top: 2px solid #008fb4;
-//           }
-    
-//           &.howItWorksActive {
-//             color: #545a77;
-//             &:hover {
-//               color: #008fb4;
-//               border-top: 2px solid #008fb4;
-//             }
-//           }
-    
-//         }
-//       }
-    
-//       .right {
-//         padding-top: 2px;
-//         height: 100%;
-//         float: right;
-//         display: flex;
-//         align-items: center;
-//         font-weight: 600;
-    
-//         .becomeTasker{
-//           text-shadow: 0 1px 2px rgba(0,0,0,.25);
-//         }
-//         .login_button_wrapper, 
-//         .signup_button_wrapper{
-//           display: flex;
-//           align-items: center;
-//           margin: 0 10px;
-//         }
-//       }
-//     }
-//   }
-// }
 // @media (max-width: 767px)
 // {
 //   nav {

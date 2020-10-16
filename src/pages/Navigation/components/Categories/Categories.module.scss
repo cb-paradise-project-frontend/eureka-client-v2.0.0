@@ -4,28 +4,31 @@
 }
 
 .categories {
-  color:#fff;
+  color:#426AD2;
   cursor: pointer;
   display: inline-block;
   // font-family: "Baloo Tamma 2", cursive;
-  font-size: 13px;
-  height: 57px;
+  font-size: 16px;
+  font-weight: 600;
+  height: 72px;
   letter-spacing: .4px;
-  line-height: 58px;
+  line-height: 72px;
   position: relative;
   text-decoration: none;
   padding: 0 10px;
+  margin: 0px 15px;
+  border-top: 4px solid transparent;
   &:hover {
     color: #008fb4;
-    border-top: 2px solid #008fb4;
+    border-top: 4px solid #008fb4;
   }
-  &.categoriesActive {
-    color: #545a77;
-    &:hover {
-      color: #008fb4;
-      border-top: 2px solid #008fb4;
-    }
-  }
+  // &.categoriesActive {
+  //   color: #545a77;
+  //   &:hover {
+  //     color: #008fb4;
+  //     border-top: 2px solid #008fb4;
+  //   }
+  // }
 
   .category_content{
     font-family: "Baloo Tamma 2", cursive;

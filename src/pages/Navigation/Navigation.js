@@ -6,7 +6,7 @@ import styles from './Navigation.module.scss';
 import logo from '../../assets/logo.svg';
 
 import { AuthContext } from './../../auth/Auth';
-import { NavContext } from './NavContext';
+// import { NavContext } from './NavContext';
 import LoginModal from '../../components/LoginModal';
 import SignupModal from '../../components/SignupModal';
 import Categories from '../Navigation/components/Categories';
@@ -23,9 +23,9 @@ function Navigation() {
       toggle={(toggler) => (
         <div className={styles.post_task_button_wrapper} >
           <Button
-            color={'pink'}
+            color={'navy'}
             onClick={toggler}
-            size={'small'}
+            size={'navbar'}
           >
             Post a Task
           </Button>
@@ -42,7 +42,7 @@ function Navigation() {
       toggle={(toggler) => (
         <div className={styles.login_button_wrapper} >
           <Button.Text
-            color={window.scrollY >= 60 ? 'grey' : 'white'}
+            color={'navy'}
             onClick={toggler}
           >
             Log in
@@ -60,7 +60,7 @@ function Navigation() {
       toggle={(toggler) => (
         <div className={styles.signup_button_wrapper} >
           <Button.Text
-            color={window.scrollY >= 60 ? "grey" : "white"} 
+            color={'navy'}
             onClick={toggler}
           >
             Sign up
@@ -89,7 +89,7 @@ function Navigation() {
               </Link>
 
               <div className={styles.left} >
-                <PostTaskButton />
+                <PostTaskButton/>
                 <Categories />
                 <Link
                   className={styles.browseTasks}
@@ -107,8 +107,7 @@ function Navigation() {
                 <LoginButton />
                 <div className={styles.becomeTasker} >
                   <Button
-                    color={window.scrollY >= 60 ? "transparentActive" : "transparent"} 
-                    // {'transparent'}
+                    color={'transparent'}
                     size={'small'}
                   >
                     Become a Tasker

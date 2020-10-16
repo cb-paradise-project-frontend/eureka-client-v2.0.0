@@ -36,16 +36,20 @@
   &.mint {
     background-color: #29c4c5;
   }
+  &.navy {
+    background-color: #426ad2;
+  }
   &.red{
     background-color: rgb(231, 82, 69);
   }
   &.transparent{
     background-color: transparent;
-    border-color: white;
+    color:  #426ad2;
+    border-color: #426ad2;
   
     &:hover{
       @extend .light-blue;
-      border-color: rgb(0, 143, 180);
+      border-color: #426ad2;
     }
   }
   
@@ -87,6 +91,15 @@
     padding: 16px 24px;
     font-size: 20px;
     letter-spacing: 0.15px
+  }
+
+  &.navbar{
+    height: 35px;
+    width: 135px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
   }
   
   &.long{
@@ -147,6 +160,14 @@
   &.grey{
     color: #545a77;
   
+    &:hover {
+      color: #008fb4;
+    }
+  }
+
+  &.navy{
+    color: #426ad2;
+
     &:hover {
       color: #008fb4;
     }

@@ -4,11 +4,16 @@ import MessageBox from '..';
 export default function useMessageBox() {
   const [message, showMessage] = useState();
 
-  const MessageContent = () => {
+  const MessageContent = ({ onRequestClose }) => {
+    const handleRequestClose = () => {
+      if (onRequestClose) onRequestClose();
+      showMessage('');
+    };
+
     return message ? (
       <MessageBox
         info={message}
-        onRequestClose={() => showMessage('')}
+        onRequestClose={handleRequestClose}
       />
     ) : null;
   };

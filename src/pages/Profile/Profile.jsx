@@ -62,7 +62,7 @@ class Profile extends React.Component {
           postcode: 'postcode',
           country: 'country',
         },
-      }
+      },
     };
 
     this.handleNavChange = this.handleNavChange.bind(this);
@@ -73,7 +73,7 @@ class Profile extends React.Component {
 
   handleNavChange(currentNav) {
     this.setState({
-      currentNav: currentNav,
+      currentNav,
     });
   }
 
@@ -81,11 +81,12 @@ class Profile extends React.Component {
     const { value } = event.target;
 
     this.setState((prevState) => (
-      {account:{
-        ...prevState.account,
-        [key]: value,
-      }
-    }), () => console.log(this.state));
+      {
+        account: {
+          ...prevState.account,
+          [key]: value,
+        },
+      }));
   });
 
   handleBankChange = (value) => {

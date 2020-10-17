@@ -1,0 +1,14 @@
+.profile_content {
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-width: 500px;
+  max-width: 800px;
+  // border: 1px solid blue;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  justify-content: center;
+  overflow: auto;
+  padding: 20px;
+
+  border: 1px solid black;
+}

@@ -1,4 +1,4 @@
-import React, { Profiler } from 'react';
+import React from 'react';
 
 import styles from './PostTask.module.scss';
 
@@ -16,6 +16,8 @@ import ProgressBar from './components/ProgressBar';
 import Modal from '../../components/Modal';
 import { withAlert } from './components/AlertModal';
 import postTask from '../../apis/postTask';
+import { AuthContext } from '../../auth/Auth';
+
 
 class PostTask extends React.Component {
   constructor(props) {
@@ -32,6 +34,7 @@ class PostTask extends React.Component {
       budgetHourlyWage: "0",
       touch: false,
       method: "offline",
+      currentUser: "",
     }
 
     this.jobTitleMinLength = 10;
@@ -53,6 +56,11 @@ class PostTask extends React.Component {
     this.onBudgetHour = this.onBudgetHour.bind(this);
     this.handleBudgetWageClick = this.handleBudgetWageClick.bind(this);
   }
+
+  componentDidMount(){
+    const { currentUser } = this.context;
+    this.setState({ currentUser: currentUser });
+  } //withForm HOC
 
   onJobTitle(value) {
     this.setState({ jobTitle: value });
@@ -151,7 +159,7 @@ class PostTask extends React.Component {
 
   render() {
     const {
-      currentStep, jobTitle, jobDetails, jobCategory, place, startDate, touch, method, taskBudget,
+      currentStep, jobTitle, jobDetails, jobCategory, place, startDate, touch, method, taskBudget, currentUser
     } = this.state;
 
     const conditionList = [
@@ -295,6 +303,7 @@ class PostTask extends React.Component {
       <Modal onRequestClose={onRequestClose} >
         <Modal.Header>
           {title}
+          {console.log(111, currentUser)}
         </Modal.Header>
         <ProgressBar currentStep={currentStep} />
         <Modal.Content>
@@ -307,5 +316,5 @@ class PostTask extends React.Component {
     );
   }
 }
-
+PostTask.contextType = AuthContext;
 export default withAlert(PostTask);

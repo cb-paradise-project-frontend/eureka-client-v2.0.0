@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/eureka-client-v2.0.0/precache-manifest.f2d5acbe69ed0dcb60a2f81dab99742a.js"
+  "/eureka-client-v2.0.0/precache-manifest.31e48d7b90f72cbd6cac11ce669d3b42.js"
 );
 
 self.addEventListener('message', (event) => {

@@ -32,7 +32,6 @@
 
   .header{
     @extend %center;
-    flex-grow: 1;
     min-height: 60px;
     padding: 0 44px;
     color: #292b32;
@@ -47,7 +46,8 @@
   }
 
   .content{
-    flex-grow: 1;
+    flex: 1 1;
+    max-height: 60vh;
     overflow: hidden auto;
     padding: 10px 20px;
   }

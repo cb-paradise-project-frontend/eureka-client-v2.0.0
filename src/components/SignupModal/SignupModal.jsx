@@ -13,8 +13,8 @@ const SignupModal = ({ pageToggler }) => {
   const history = useHistory();
 
   const [userCredentials, setUserCredentials] = useState({
-    firstname: '',
-    lastname: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -30,9 +30,9 @@ const SignupModal = ({ pageToggler }) => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    const { email, password } = userCredentials;
+    const { firstName, lastName, email, password } = userCredentials;
     try {
-      const res = await api.post('/users', {email, password});
+      const res = await api.post('/users', { firstName, lastName, email, password });
       const token = res.headers['x-auth-token'];
       console.log(token);
       if (token) {
@@ -57,7 +57,7 @@ const SignupModal = ({ pageToggler }) => {
           <div className={styles.input_wrapper} >
             <Input
               label="First Name"
-              name="firstname"
+              name="firstName"
               type="string"
               placeholder="First Name"
               required
@@ -68,7 +68,7 @@ const SignupModal = ({ pageToggler }) => {
           <div className={styles.input_wrapper} >
             <Input
               label="Last Name"
-              name="lastname"
+              name="lastName"
               type="string"
               placeholder="Last Name"
               required

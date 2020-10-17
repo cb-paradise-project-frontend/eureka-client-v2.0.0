@@ -13,6 +13,8 @@ const SignupModal = ({ pageToggler }) => {
   const history = useHistory();
 
   const [userCredentials, setUserCredentials] = useState({
+    firstname: '',
+    lastname: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -52,6 +54,28 @@ const SignupModal = ({ pageToggler }) => {
       <Modal.Header>Join us</Modal.Header>
       <Modal.Content>
         <form className={styles.container}>
+          <div className={styles.input_wrapper} >
+            <Input
+              label="First Name"
+              name="firstname"
+              type="string"
+              placeholder="First Name"
+              required
+              value={userCredentials.firstname}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={styles.input_wrapper} >
+            <Input
+              label="Last Name"
+              name="lastname"
+              type="string"
+              placeholder="Last Name"
+              required
+              value={userCredentials.lastname}
+              onChange={handleChange}
+            />
+          </div>
           <div className={styles.input_wrapper} >
             <Input
               label="Email"

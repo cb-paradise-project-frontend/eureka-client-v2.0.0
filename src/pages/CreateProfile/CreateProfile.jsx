@@ -29,7 +29,9 @@ export default function CreateProfile({ pageToggler }) {
   const [subPage, loadSubPage] = useState();
 
   const { currentUser } = useContext(AuthContext);
+
   const [profileFilled, setProfileFilled] = useState(false);
+  const [profileExist, setProfileExist] = useState(false);
 
   const form = useForm(FORM, getStoredData());
 
@@ -66,7 +68,8 @@ export default function CreateProfile({ pageToggler }) {
 
   const requestProfile = async () => {
     const profile = await getProfile(currentUser);
-    if (profile) setProfileFilled(true);
+    console.log(profile);
+    if (profile) setProfileExist(true);
   };
 
   useEffect(() => {
@@ -163,7 +166,7 @@ export default function CreateProfile({ pageToggler }) {
 
   const content = (
     <div className={styles.content_wrapper} >
-      {(profileFilled && <MakeOffer />)
+      {(profileExist && <MakeOffer />)
         || subPage
         || profileList
       }

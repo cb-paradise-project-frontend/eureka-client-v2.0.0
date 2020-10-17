@@ -13,6 +13,8 @@ const SignupModal = ({ pageToggler }) => {
   const history = useHistory();
 
   const [userCredentials, setUserCredentials] = useState({
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -28,14 +30,15 @@ const SignupModal = ({ pageToggler }) => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    const { email, password } = userCredentials;
+    const { firstName, lastName, email, password } = userCredentials;
     try {
-      const res = await api.post('/users', {email, password});
+      const res = await api.post('/users', { firstName, lastName, email, password });
       const token = res.headers['x-auth-token'];
       console.log(token);
-      if (token) {
-        localStorage.setItem('token', token);
+      if (!token) {
+        pageToggler();
       }
+      localStorage.setItem('token', token);
       history.push('/profile');
       pageToggler();
     } catch (error) {
@@ -52,6 +55,28 @@ const SignupModal = ({ pageToggler }) => {
       <Modal.Header>Join us</Modal.Header>
       <Modal.Content>
         <form className={styles.container}>
+          <div className={styles.input_wrapper} >
+            <Input
+              label="First Name"
+              name="firstName"
+              type="string"
+              placeholder="First Name"
+              required
+              value={userCredentials.firstname}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={styles.input_wrapper} >
+            <Input
+              label="Last Name"
+              name="lastName"
+              type="string"
+              placeholder="Last Name"
+              required
+              value={userCredentials.lastname}
+              onChange={handleChange}
+            />
+          </div>
           <div className={styles.input_wrapper} >
             <Input
               label="Email"

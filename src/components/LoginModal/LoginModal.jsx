@@ -31,9 +31,10 @@ const LoginModal = ({ pageToggler }) => {
       const res = await api.post('/users/login', {email, password});
       const token = res.headers['x-auth-token'];
       console.log(token);
-      if (token) {
-        localStorage.setItem('token', token);
+      if (!token) {
+        pageToggler();
       }
+      localStorage.setItem('token', token);
       history.push('/profile');
       pageToggler();
     } catch (error) {

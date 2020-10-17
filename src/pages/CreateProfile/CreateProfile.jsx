@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useRouteMatch } from 'react-router-dom';
 
 import styles from './CreateProfile.module.scss';
 
@@ -9,19 +10,15 @@ import useForm from './SubPages/useForm';
 import FORM from './form';
 import LocalStorage from './utils/LocalStorage';
 import createBirthdayLabel from './utils/createBirthdayLabel';
-import { getProfile, saveProfile } from '../../apis';
+import { getProfile, makeOffer, saveProfile } from '../../apis';
 import { AuthContext } from '../../auth/Auth';
-import MessageBox from '../../components/MessageBox';
 import MakeOffer from './SubPages/MakeOffer';
+import useMessageBox from '../../components/MessageBox/useMessageBox';
 
-const successMessage = 'Your profile is saved! Now you can start to make money!.';
+const OFFER_SUCCESS = 'Offer have been sent to the task owner!';
+const OFFER_FAIL = 'Request sending failed. Please try again later.';
 
-const SuccessMessage = ({ onRequestClose }) => (
-  <MessageBox
-    info={successMessage}
-    onRequestClose={onRequestClose}
-  />
-);
+const SAVE_PROFILE_FAIL = 'Profile saving failed. Please try again later.';
 
 const { getStoredData, storeData, dropStoredData } = new LocalStorage('userProfile');
 
@@ -29,7 +26,12 @@ export default function CreateProfile({ pageToggler }) {
   const [subPage, loadSubPage] = useState();
 
   const { currentUser } = useContext(AuthContext);
+  const { params: { taskId } } = useRouteMatch();
+
   const [profileFilled, setProfileFilled] = useState(false);
+  const [profileExist, setProfileExist] = useState(false);
+
+  const [Message, showMessage] = useMessageBox();
 
   const form = useForm(FORM, getStoredData());
 
@@ -66,7 +68,7 @@ export default function CreateProfile({ pageToggler }) {
 
   const requestProfile = async () => {
     const profile = await getProfile(currentUser);
-    if (profile) setProfileFilled(true);
+    if (profile) setProfileExist(true);
   };
 
   useEffect(() => {
@@ -87,21 +89,29 @@ export default function CreateProfile({ pageToggler }) {
   </Button>
   );
 
-  const handleContinueBtnClick = async () => {
-    // dropStoredData();
-
+  const submitProfile = async () => {
     const result = await saveProfile(currentUser, formData);
 
     if (result) {
-      setProfileFilled(true);
+      setProfileExist(true);
+      // dropStoredData();
+    } else {
+      showMessage(SAVE_PROFILE_FAIL);
     }
+  };
 
-    // pageToggler();
+  const submitOffer = async () => {
+    const result = await makeOffer(currentUser, taskId);
+    const message = result ? OFFER_SUCCESS : OFFER_FAIL;
+
+    return showMessage(message);
   };
 
   const continueButton = (
     <Button
-      onClick={handleContinueBtnClick}
+      onClick={profileExist
+        ? submitOffer
+        : submitProfile}
       color={'light-blue'}
       isDisabled={!profileFilled}
       long
@@ -109,10 +119,6 @@ export default function CreateProfile({ pageToggler }) {
       Continue
     </Button>
   );
-
-  // const handleNextBtnClick = () => {
-
-  // };
 
   const profileList = (
     <div className={styles.profile_list_wrapper} >
@@ -163,7 +169,7 @@ export default function CreateProfile({ pageToggler }) {
 
   const content = (
     <div className={styles.content_wrapper} >
-      {(profileFilled && <MakeOffer />)
+      {(profileExist && <MakeOffer />)
         || subPage
         || profileList
       }
@@ -179,6 +185,7 @@ export default function CreateProfile({ pageToggler }) {
         <Modal.Content>{content}</Modal.Content>
         <Modal.Footer>{footer}</Modal.Footer>
       </Modal>
+      <Message onRequestClose={profileExist && pageToggler} />
     </>
   );
 }

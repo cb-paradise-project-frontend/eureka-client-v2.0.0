@@ -16,12 +16,7 @@ import MakeOffer from './SubPages/MakeOffer';
 
 const successMessage = 'Your profile is saved! Now you can start to make money!.';
 
-const SuccessMessage = ({ onRequestClose }) => (
-  <MessageBox
-    info={successMessage}
-    onRequestClose={onRequestClose}
-  />
-);
+const SAVE_PROFILE_FAIL = 'Profile saving failed. Please try again later.';
 
 const { getStoredData, storeData, dropStoredData } = new LocalStorage('userProfile');
 
@@ -32,6 +27,8 @@ export default function CreateProfile({ pageToggler }) {
 
   const [profileFilled, setProfileFilled] = useState(false);
   const [profileExist, setProfileExist] = useState(false);
+
+  const [message, showMessage] = useState();
 
   const form = useForm(FORM, getStoredData());
 
@@ -90,21 +87,20 @@ export default function CreateProfile({ pageToggler }) {
   </Button>
   );
 
-  const handleContinueBtnClick = async () => {
-    // dropStoredData();
-
+  const submitProfile = async () => {
     const result = await saveProfile(currentUser, formData);
 
-    if (result) {
-      setProfileFilled(true);
+    if (!result) {
+      setProfileExist(true);
+      // dropStoredData();
+    } else {
+      showMessage(SAVE_PROFILE_FAIL);
     }
-
-    // pageToggler();
   };
 
   const continueButton = (
     <Button
-      onClick={handleContinueBtnClick}
+      onClick={submitProfile}
       color={'light-blue'}
       isDisabled={!profileFilled}
       long
@@ -112,10 +108,6 @@ export default function CreateProfile({ pageToggler }) {
       Continue
     </Button>
   );
-
-  // const handleNextBtnClick = () => {
-
-  // };
 
   const profileList = (
     <div className={styles.profile_list_wrapper} >
@@ -182,6 +174,12 @@ export default function CreateProfile({ pageToggler }) {
         <Modal.Content>{content}</Modal.Content>
         <Modal.Footer>{footer}</Modal.Footer>
       </Modal>
+      {message &&
+        <MessageBox
+          info={message}
+          onRequestClose={() => showMessage('')}
+        />
+      }
     </>
   );
 }

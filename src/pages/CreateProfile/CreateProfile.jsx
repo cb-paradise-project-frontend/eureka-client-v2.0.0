@@ -11,8 +11,8 @@ import LocalStorage from './utils/LocalStorage';
 import createBirthdayLabel from './utils/createBirthdayLabel';
 import { getProfile, saveProfile } from '../../apis';
 import { AuthContext } from '../../auth/Auth';
-import MessageBox from '../../components/MessageBox';
 import MakeOffer from './SubPages/MakeOffer';
+import useMessageBox from '../../components/MessageBox/useMessageBox';
 
 const successMessage = 'Your profile is saved! Now you can start to make money!.';
 
@@ -28,7 +28,7 @@ export default function CreateProfile({ pageToggler }) {
   const [profileFilled, setProfileFilled] = useState(false);
   const [profileExist, setProfileExist] = useState(false);
 
-  const [message, showMessage] = useState();
+  const [Message, showMessage] = useMessageBox();
 
   const form = useForm(FORM, getStoredData());
 
@@ -90,7 +90,7 @@ export default function CreateProfile({ pageToggler }) {
   const submitProfile = async () => {
     const result = await saveProfile(currentUser, formData);
 
-    if (!result) {
+    if (result) {
       setProfileExist(true);
       // dropStoredData();
     } else {
@@ -174,12 +174,7 @@ export default function CreateProfile({ pageToggler }) {
         <Modal.Content>{content}</Modal.Content>
         <Modal.Footer>{footer}</Modal.Footer>
       </Modal>
-      {message &&
-        <MessageBox
-          info={message}
-          onRequestClose={() => showMessage('')}
-        />
-      }
+      <Message />
     </>
   );
 }

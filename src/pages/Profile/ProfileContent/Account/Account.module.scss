@@ -1,0 +1,16 @@
+.account_wrapper {
+  // border: 1px solid red;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.input_wrapper {
+  // border: 1px solid green;
+
+  & ~ & {
+    margin-top: 20px;
+  }
+}

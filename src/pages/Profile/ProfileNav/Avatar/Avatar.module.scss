@@ -1,0 +1,32 @@
+.avatar_wrapper {
+  padding-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.icon {
+  border-radius: 50%;
+  border-color: rgb(187, 194, 220);
+  border-width: 2px;
+  border-style: solid;
+  min-width: 128px;
+  min-height: 128px;
+}
+
+.print_name {
+  text-decoration: none;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  font-weight: initial;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: rgb(84, 90, 119);
+}

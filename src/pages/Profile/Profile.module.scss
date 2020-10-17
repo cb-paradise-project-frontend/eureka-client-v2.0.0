@@ -1,0 +1,22 @@
+.profile_wrapper {
+  border: 1px solid black;
+  padding-top: 80px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  // justify-content: center;
+  // align-items: center;
+  background-color: rgb(246, 248, 253);
+  height: 100vh;
+
+}
+
+.profile {
+  // width: 1000px;
+  justify-content: center;
+  width: 100%;
+  margin-left: 90px;
+  margin-right: 90px;
+  display: flex;
+  flex-direction: row;
+}

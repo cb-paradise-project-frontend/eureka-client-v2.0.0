@@ -1,0 +1,21 @@
+.task_wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.task_nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.task_content {
+  position: absolute;
+  margin-top: 100px;
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

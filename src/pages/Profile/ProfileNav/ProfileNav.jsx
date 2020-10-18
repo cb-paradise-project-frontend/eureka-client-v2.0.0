@@ -8,36 +8,27 @@ import Navigation from './Navigation';
 const ProfileNav = ({
   currentNav,
   handleNavChange,
-}) => (
+}) =>{
+  const navList = ['Account', 'Payment', 'Tasks', 'Password'];
+  return (
     <div className={styles.profile_nav}>
-      <Avatar />
+      <Avatar
+        handleNavChange={handleNavChange}
+      />
       <div className={styles.navigation}>
-        <Navigation 
-          handleNavChange={handleNavChange}
-          currentNav={currentNav}
-        >
-          Account
-        </Navigation>
-        <Navigation 
-          handleNavChange={handleNavChange}
-          currentNav={currentNav}
-        >
-          Payment
-        </Navigation>
-        <Navigation 
-          handleNavChange={handleNavChange}
-          currentNav={currentNav}
-        >
-          Tasks
-        </Navigation>
-        <Navigation 
-          handleNavChange={handleNavChange}
-          currentNav={currentNav}
-        >
-          Password
-        </Navigation>
+        {
+          navList.map((nav) => (
+              <Navigation key={nav}
+                handleNavChange={handleNavChange}
+                currentNav={currentNav}
+              >
+                {nav}
+              </Navigation>
+          ))
+        }
       </div>
     </div>
-);
+)};
 
 export default ProfileNav;
+

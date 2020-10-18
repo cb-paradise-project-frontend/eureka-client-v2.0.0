@@ -1,16 +1,23 @@
 .account_wrapper {
-  // border: 1px solid red;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .input_wrapper {
-  // border: 1px solid green;
+  width: 100%;
 
   & ~ & {
     margin-top: 20px;
   }
+
+  &:last-child {
+    margin-bottom: 50px;
+  }
+}
+
+.update_btn {
+  margin-top: 30px;
 }

@@ -2,13 +2,17 @@ import React from 'react';
 
 import styles from './Avatar.module.scss';
 
-const Avatar = () => (
+const Avatar = ({
+  handleNavChange
+}) => (
   <div className={styles.avatar_wrapper}>
     <div className={styles.avatar}>
       <img className={styles.icon}></img>
     </div>
-    <div className={styles.print_name}>
-      {/*这里未来要做一个超链用以点击跳转至profile->personal*/}
+    <div 
+      className={styles.print_name}
+      onClick={() => handleNavChange('Account')}
+    >
       FirstName LastName
     </div>
   </div>

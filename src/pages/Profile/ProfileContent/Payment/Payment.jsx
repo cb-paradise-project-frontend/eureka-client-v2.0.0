@@ -11,8 +11,7 @@ const Payment = ({
   onBillChange,
 }) => {
   const { bankAccount, billingAddress } = paymentContent;
-  
-  
+
   return (
     <React.Fragment>
       <div className={styles.payment_wrapper}>

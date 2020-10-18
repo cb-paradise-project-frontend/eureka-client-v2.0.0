@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-import { AuthContext } from './../../auth/Auth';
-import { logOut } from './../../firebase';
+import { AuthContext } from '../../auth/Auth';
 import ProfileNav from './ProfileNav';
 import ProfileContent from './ProfileContent';
 
@@ -40,6 +39,7 @@ class Profile extends React.Component {
 
     this.state = {
       currentNav: 'Account',
+      currentUser: '',
       account: {
         Firstname: 'firstname',
         Lastname: 'lastname',
@@ -69,6 +69,14 @@ class Profile extends React.Component {
     this.handleInputChangeCreator = this.handleInputChangeCreator.bind(this);
     this.handleBankChange = this.handleBankChange.bind(this);
     this.handleBillChange = this.handleBillChange.bind(this);
+    // this.context = this.contextType;
+  }
+
+  componentDidMount() {
+    const { currentUser } = this.context;
+    this.setState({
+      currentUser,
+    });
   }
 
   handleNavChange(currentNav) {
@@ -77,9 +85,7 @@ class Profile extends React.Component {
     });
   }
 
-  handleInputChangeCreator = (key) => ((event) => {
-    const { value } = event.target;
-
+  handleInputChangeCreator = (key) => ((value) => {
     this.setState((prevState) => (
       {
         account: {
@@ -109,10 +115,11 @@ class Profile extends React.Component {
 
   render() {
     const { history } = this.props;
-    const { currentNav, account, payment } = this.state;
+    const { currentNav, account, payment, currentUser } = this.state;
 
     return (
       <React.Fragment>
+      {console.log(678, currentUser)}
         <button onClick={() => history.push('/')}>Log out</button>
         <div className={styles.profile_wrapper}>
           <div className={styles.profile}>
@@ -120,7 +127,7 @@ class Profile extends React.Component {
               currentNav={currentNav}
               handleNavChange={this.handleNavChange}
             />
-            <ProfileContent 
+            <ProfileContent
               currentNav={currentNav}
               accountContent={account}
               onProfileChange={this.handleInputChangeCreator}
@@ -134,5 +141,7 @@ class Profile extends React.Component {
     );
   }
 }
+
+Profile.contextType = AuthContext;
 
 export default withRouter(Profile);

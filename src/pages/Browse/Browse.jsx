@@ -90,15 +90,15 @@ export default function Browse() {
 
   return (
     <LoadTaskProvider loadTaskList={loadTaskList} >
-      <LoadingMask>
-        <div className={styles.browse} >
-          <TaskMenu onFilterChange={updateFilter} />
+      <div className={styles.browse} >
+        <TaskMenu onFilterChange={updateFilter} />
+        <LoadingMask>
           <TaskList
             taskList={taskList}
             onAskQuestion={onAskQuestion}
           />
-        </div>
-      </LoadingMask>
+        </LoadingMask>
+      </div>
     </LoadTaskProvider>
   );
 }

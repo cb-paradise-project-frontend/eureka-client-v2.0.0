@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import styles from './LoginModal.module.scss';
 
-import { axiosInstance as api, extractTokenFromResponse, extractUserFromToken } from './../../apis';
+import { axiosInstance as api, extractTokenFromResponse, extractInfoFromToken } from './../../apis';
 import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';
@@ -38,7 +38,8 @@ const LoginModal = ({ pageToggler }) => {
 
       await extractTokenFromResponse(res);
 
-      const info = extractUserFromToken();
+      const info = extractInfoFromToken();
+
       if (!info.user) {
         return;
       }

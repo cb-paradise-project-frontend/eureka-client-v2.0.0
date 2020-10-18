@@ -14,8 +14,8 @@ import Navigation from './components/Navigation';
 import Browse from './pages/Browse';
 
 const App = () => (
-  <AuthProvider>
-    <Router>
+  <Router>
+    <AuthProvider>
       <NavProvider>
         <Navigation />
       </NavProvider>
@@ -25,8 +25,8 @@ const App = () => (
         <PrivateRoute path="/profile" exact component={Profile} />
         <Route component={NotFound} />
       </Switch>
-    </Router>
-  </AuthProvider>
+    </AuthProvider>
+  </Router>
 );
 
 export default App;

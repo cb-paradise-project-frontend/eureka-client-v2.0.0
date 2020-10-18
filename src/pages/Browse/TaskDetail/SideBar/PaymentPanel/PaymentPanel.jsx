@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import styles from './PaymentPanel.module.scss';
 
 import OfferButton from '../../OfferButton';
-import { TaskContext } from '../../../TaskContext';
+import { TaskContext } from '../../TaskContext';
 
 export default function PaymentPanel() {
   const { budget } = useContext(TaskContext);

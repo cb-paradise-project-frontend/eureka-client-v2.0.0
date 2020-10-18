@@ -8,11 +8,14 @@ import Section from './Section';
 import SideBar from './SideBar';
 import OfferButton from './OfferButton';
 import Question from './Question';
-import { TaskProvider } from '../TaskContext';
+import { TaskProvider } from './TaskContext';
+import { LoadTaskProvider } from './LoadTaskContext';
 import QuestionInput from './Question/QuestionInput';
 import QuestionList from './Question/QuestionList';
 
-export default function TaskDetail({ taskList, onAskQuestion }) {
+export default function TaskDetail({
+  taskList, loadTaskList, onAskQuestion,
+}) {
   const { params: { taskId } } = useRouteMatch();
 
   const task = taskList.find(target => target.id === taskId);
@@ -36,24 +39,26 @@ export default function TaskDetail({ taskList, onAskQuestion }) {
 
   return (
     <div className={styles.task_detail} >
-      <TaskProvider task={task} >
-        <SideBar />
-        <Header />
-        <Section title='DETAILS' >
-          {description}
-        </Section>
-        <Section title='OFFER' >
-          <div className={styles.offer_icon} />
-          <div className={styles.button_wrapper} >
-            <OfferButton />
-          </div>
-        </Section>
-        <Question
-          questionInput={questionInput}
-          questionList={questionList}
-          questionCount={comments.length}
-        />
-      </TaskProvider>
+      <LoadTaskProvider loadTaskList={loadTaskList} >
+        <TaskProvider task={task} >
+          <SideBar />
+          <Header />
+          <Section title='DETAILS' >
+            {description}
+          </Section>
+          <Section title='OFFER' >
+            <div className={styles.offer_icon} />
+            <div className={styles.button_wrapper} >
+              <OfferButton />
+            </div>
+          </Section>
+          <Question
+            questionInput={questionInput}
+            questionList={questionList}
+            questionCount={comments.length}
+          />
+        </TaskProvider>
+      </LoadTaskProvider>
     </div>
   );
 }

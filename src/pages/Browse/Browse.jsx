@@ -104,6 +104,7 @@ export default function Browse() {
               <div className={styles.task_detail_wrapper} >
                 <TaskDetail
                   taskList={taskList}
+                  loadTaskList={loadTaskList}
                   onAskQuestion={onAskQuestion}
                 />
               </div>

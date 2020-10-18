@@ -6,7 +6,7 @@ import { AuthContext } from '../../../../auth/Auth';
 import { useToggleContent } from '../../../../components/ToggleContent';
 import CreateProfile from '../../../CreateProfile';
 import SignupModal from '../../../../components/SignupModal';
-import { TaskContext } from '../../TaskContext';
+import { TaskContext } from '../TaskContext';
 import { EXPIRED } from '../../../../components/Status';
 
 export default function OfferButton() {
@@ -14,13 +14,15 @@ export default function OfferButton() {
 
   const { currentUser } = useContext(AuthContext);
 
-  const { status, offers } = useContext(TaskContext);
+  const { status, offers, postedBy } = useContext(TaskContext);
 
   const isExpired = (status === EXPIRED);
+  const isOwner = (currentUser === postedBy._id);
   const isOffered = offers.length &&
     offers.find(({ offeredBy: { _id } }) => _id === currentUser);
 
   const label = (isExpired && 'Expired')
+    || (isOwner && 'Your task')
     || (isOffered && 'Offered')
     || 'Make an offer';
 
@@ -32,7 +34,7 @@ export default function OfferButton() {
     <>
       <Button
         onClick={toggler}
-        isDisabled={isExpired || isOffered}
+        isDisabled={isExpired || isOwner || isOffered}
       >
         {label}
       </Button>

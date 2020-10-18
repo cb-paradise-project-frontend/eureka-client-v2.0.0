@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from './TaskInfo.module.scss';
 import Avatar from '../../../../../components/Avatar';
-import { TaskContext } from '../../../TaskContext';
+import { TaskContext } from '../../TaskContext';
 
 const cx = classNames.bind(styles);
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRouteMatch } from 'react-router-dom';
 
 import styles from './TaskDetail.module.scss';
 
@@ -13,17 +12,12 @@ import QuestionInput from './Question/QuestionInput';
 import QuestionList from './Question/QuestionList';
 
 export default function TaskDetail({
-  taskList, onAskQuestion,
+  task, onAskQuestion,
 }) {
-  const { params: { taskId } } = useRouteMatch();
-
-  const task = taskList.find(target => target.id === taskId);
-  if (!task) return null;
-
   const { comments } = task;
 
   const addQuestion = (input) => {
-    onAskQuestion(taskId, input);
+    onAskQuestion(task.id, input);
   };
 
   const questionInput = (

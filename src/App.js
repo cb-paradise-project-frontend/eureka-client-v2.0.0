@@ -12,10 +12,11 @@ import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 import Navigation from './components/Navigation';
 import Browse from './pages/Browse';
+import WrappedLoginModal from './components/WrappedLoginModal';
 
 const App = () => (
-  <AuthProvider>
-    <Router>
+  <Router>
+    <AuthProvider>
       <NavProvider>
         <Navigation />
       </NavProvider>
@@ -23,10 +24,11 @@ const App = () => (
         <Route path="/" exact component={Landing} />
         <Route path="/tasks" component={Browse} />
         <PrivateRoute path="/profile" exact component={Profile} />
+        <Route path="/login" component={WrappedLoginModal} />
         <Route component={NotFound} />
       </Switch>
-    </Router>
-  </AuthProvider>
+    </AuthProvider>
+  </Router>
 );
 
 export default App;

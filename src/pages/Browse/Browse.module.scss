@@ -1,4 +1,4 @@
-.browse_container{
+.browse{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,20 +10,4 @@
   font-size: 14px;
   line-height: 1.4;
   color: #545A7B;
-
-  .browse{
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1024px;
-    margin: 0 auto;
-    height: calc(100vh - 125px);
-    display: flex;
-    word-wrap: break-word;
-
-    .task_detail_wrapper{
-      flex: 1 1;
-    }
-  }
 }

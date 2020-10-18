@@ -4,7 +4,7 @@ import styles from './Header.module.scss';
 
 import TaskInfo from './TaskInfo';
 import StatusList from './StatusList';
-import { TaskContext } from '../../TaskContext';
+import { TaskContext } from '../TaskContext';
 
 function Header() {
   const { title } = useContext(TaskContext);

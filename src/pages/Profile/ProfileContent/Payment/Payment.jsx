@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './Payment.module.scss';
 
-import BankAccount from '../../../CreateProfile/SubPages/BankAccount';
-import BillingAddress from '../../../CreateProfile/SubPages/BillingAddress';
+import BankAccount from '../../../OfferModal/ProfilePage/SubPages/BankAccount';
+import BillingAddress from '../../../OfferModal/ProfilePage/SubPages/BillingAddress';
 
 const Payment = ({
   paymentContent,
@@ -16,13 +16,13 @@ const Payment = ({
     <React.Fragment>
       <div className={styles.payment_wrapper}>
         <div className={styles.bank_wrapper}>
-          <BankAccount 
+          <BankAccount
             storedValue={bankAccount}
             onSubmit={onBankChange}
           />
         </div>
         <div className={styles.bill_wrapper}>
-          <BillingAddress 
+          <BillingAddress
             storedValue={billingAddress}
             onSubmit={onBillChange}
           />

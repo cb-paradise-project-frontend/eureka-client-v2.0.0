@@ -8,21 +8,22 @@ import Section from './Section';
 import SideBar from './SideBar';
 import OfferButton from './OfferButton';
 import Question from './Question';
-import { TaskProvider } from '../TaskContext';
-import { EXPIRED } from '../../../components/Status';
+import { TaskProvider } from './TaskContext';
 import QuestionInput from './Question/QuestionInput';
 import QuestionList from './Question/QuestionList';
 
-export default function TaskDetail({ taskList, onAskQuestion }) {
+export default function TaskDetail({
+  taskList, onAskQuestion,
+}) {
   const { params: { taskId } } = useRouteMatch();
 
-  const task = taskList.find(target => target.id === taskId);
+  const task = taskList.find((taskObj) => taskObj.id === taskId);
   if (!task) return null;
 
   const { comments } = task;
 
   const addQuestion = (input) => {
-    onAskQuestion(taskId, input);
+    onAskQuestion(task.id, input);
   };
 
   const questionInput = (
@@ -33,7 +34,7 @@ export default function TaskDetail({ taskList, onAskQuestion }) {
     <QuestionList questions={comments} />
   );
 
-  const { status, description } = task;
+  const { description } = task;
 
   return (
     <div className={styles.task_detail} >
@@ -46,7 +47,7 @@ export default function TaskDetail({ taskList, onAskQuestion }) {
         <Section title='OFFER' >
           <div className={styles.offer_icon} />
           <div className={styles.button_wrapper} >
-            <OfferButton isExpired={(status === EXPIRED)} />
+            <OfferButton />
           </div>
         </Section>
         <Question

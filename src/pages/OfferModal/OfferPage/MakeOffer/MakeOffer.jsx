@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import styles from './MakeOffer.module.scss';
 
-import { TaskContext } from '../../../Browse/TaskContext';
+import { TaskContext } from '../../../Browse/TaskDetail/TaskContext';
 
 export default function MakeOffer() {
   const { budget } = useContext(TaskContext);

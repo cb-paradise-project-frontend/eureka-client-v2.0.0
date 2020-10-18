@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './StatusList.module.scss';
 
 import * as STATUS from '../../../../../components/Status'; 
-import { TaskContext } from '../../../TaskContext';
+import { TaskContext } from '../../TaskContext';
 
 export default function StatusList() {
   const { status } = useContext(TaskContext);

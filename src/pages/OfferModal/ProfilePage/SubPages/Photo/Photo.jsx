@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './Photo.module.scss';
 
-import Button from '../../../../components/Button';
+import Button from '../../../../../components/Button';
 
 export default function Photo({ storedValue, onSubmit }) {
   const handleChange = ({ target: { files } }) => {

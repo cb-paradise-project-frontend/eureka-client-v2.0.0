@@ -21,7 +21,9 @@ const App = () => (
       </NavProvider>
       <Switch>
         <Route path="/" exact component={Landing} />
-        <Route path="/tasks" component={Browse} />
+        <Route path="/tasks" >
+          <Browse />
+        </Route>
         <PrivateRoute path="/profile" exact component={Profile} />
         <Route component={NotFound} />
       </Switch>

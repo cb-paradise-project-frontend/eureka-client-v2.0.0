@@ -1,4 +1,4 @@
-import { onlyNumber, addDashInNumber } from '../../../../utils/validators/input';
+import { onlyNumber, addDashInNumber } from '../../../../../utils/validators/input';
 
 const FORM = {
   holder: {

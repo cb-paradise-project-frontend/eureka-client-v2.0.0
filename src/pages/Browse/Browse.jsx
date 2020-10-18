@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 
 import styles from './Browse.module.scss';
 
 import TaskList from './TaskList';
-import TaskDetail from './TaskDetail';
 import getTaskList from '../../apis/Task/getTaskList';
 import askQuestion from '../../apis/Task/askQuestion';
 import TaskMenu from './TaskMenu';
 import { AuthContext } from '../../auth/Auth';
 import useLoadingPage from '../../components/LoadingPage/useLoadingPage';
+import { LoadTaskProvider } from './TaskDetail/LoadTaskContext';
 
 const testData = {
   title: 'Roof repair',
@@ -52,8 +51,6 @@ export default function Browse() {
 
   const [LoadingMask, toggleLoadingMask, loadingStatus] = useLoadingPage();
 
-  const { path } = useRouteMatch();
-
   const { currentUser } = useContext(AuthContext);
 
   const toggleUpdateFlag = () => {
@@ -91,27 +88,17 @@ export default function Browse() {
     toggleUpdateFlag();
   };
 
-  const defaultTaskId = taskList[0] && taskList[0].id;
-
   return (
-    <LoadingMask>
-      <div className={styles.browse_container} >
+    <LoadTaskProvider loadTaskList={loadTaskList} >
+      <div className={styles.browse} >
         <TaskMenu onFilterChange={updateFilter} />
-        <div className={styles.browse} >
-          <TaskList taskList={taskList} />
-          <Switch>
-            <Route path={`${path}/:taskId`} >
-              <div className={styles.task_detail_wrapper} >
-                <TaskDetail
-                  taskList={taskList}
-                  onAskQuestion={onAskQuestion}
-                />
-              </div>
-            </Route>
-            <Redirect to={`${path}/${defaultTaskId}`} />
-          </Switch>
-        </div>
+        <LoadingMask>
+          <TaskList
+            taskList={taskList}
+            onAskQuestion={onAskQuestion}
+          />
+        </LoadingMask>
       </div>
-    </LoadingMask>
+    </LoadTaskProvider>
   );
 }

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 import styles from './Mobile.module.scss';
 
-import Button from '../../../../components/Button';
-import onlyNumber from '../../../../utils/validators/input';
-import Input from '../../../../components/Input';
+import Button from '../../../../../components/Button';
+import onlyNumber from '../../../../../utils/validators/input';
+import Input from '../../../../../components/Input';
 
 export default function Mobile({ storedValue, onSubmit }) {
   const [mobile, setMobile] = useState(storedValue);

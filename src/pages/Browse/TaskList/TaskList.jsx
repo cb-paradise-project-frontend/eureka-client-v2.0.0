@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames/bind';
+import { Redirect, Route, Switch, useHistory, useRouteMatch } from 'react-router-dom';
 
 import styles from './TaskList.module.scss';
-import Avatar from '../../../components/Avatar';
+
 import TaskDetail from '../TaskDetail';
+import Avatar from '../../../components/Avatar';
 
 const cx = classNames.bind(styles);
 
@@ -48,27 +50,35 @@ const TaskListItem = ({
 );
 
 export default function TaskList({ taskList, onAskQuestion }) {
-  const [currentTask, selectTask] = useState(taskList[0]);
+  const { path } = useRouteMatch();
+  const history = useHistory();
 
   const displayedTasks = taskList.map((task) => (
     <TaskListItem
       key={task.id}
       task={task}
-      onClick={() => selectTask(task)}
+      onClick={() => history.push(`${path}/${task.id}`)}
     />
   ));
+
+  const defaultTask = taskList.length && taskList[0].id;
 
   return (
     <div className={styles.task_list_wrapper}>
       <div className = {styles.task_list} >
         {displayedTasks}
       </div>
-      <div className={styles.task_detail_wrapper} >
-        <TaskDetail
-          task={currentTask}
-          onAskQuestion={onAskQuestion}
-        />
-      </div>
+      <Switch>
+        <Route path={`${path}/:taskId`} >
+          <div className={styles.task_detail_wrapper} >
+            <TaskDetail
+              taskList={taskList}
+              onAskQuestion={onAskQuestion}
+            />
+          </div>
+        </Route>
+        <Redirect to={`${path}/${defaultTask}`} />
+      </Switch>
     </div>
   );
 }

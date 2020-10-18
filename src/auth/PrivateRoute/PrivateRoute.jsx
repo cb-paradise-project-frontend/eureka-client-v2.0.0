@@ -1,17 +1,19 @@
-import React, { useContext, useEffect } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Route, useHistory } from 'react-router-dom';
 import { AuthContext } from './../Auth';
 import LoginModal from './../../components/LoginModal';
 import { useToggleContent } from './../../components/ToggleContent';
 
 const PrivateRoute = ({component, ...restProps}) => {
+  const history = useHistory();
   const RouteComponent = component;
   const { currentUser } = useContext(AuthContext);
   const [Content, toggler] = useToggleContent(true);
 
-  useEffect(() => {
-    console.log('current user in private route', currentUser);
-  }, [currentUser]);
+  const handleToggle = () => {
+    toggler();
+    history.push('/');
+  };
 
   return (
     <Route
@@ -21,7 +23,7 @@ const PrivateRoute = ({component, ...restProps}) => {
           <RouteComponent {...routeProps} />
         ) : (
           <Content>
-            <LoginModal pageToggler={toggler} />
+            <LoginModal pageToggler={handleToggle} />
           </Content>
         )
       }

@@ -10,6 +10,7 @@ import askQuestion from '../../apis/Task/askQuestion';
 import TaskMenu from './TaskMenu';
 import { AuthContext } from '../../auth/Auth';
 import useLoadingPage from '../../components/LoadingPage/useLoadingPage';
+import { LoadTaskProvider } from './TaskDetail/LoadTaskContext';
 
 const testData = {
   title: 'Roof repair',
@@ -94,25 +95,27 @@ export default function Browse() {
   const defaultTaskId = taskList[0] && taskList[0].id;
 
   return (
-    <LoadingMask>
-      <div className={styles.browse_container} >
-        <TaskMenu onFilterChange={updateFilter} />
-        <div className={styles.browse} >
-          <TaskList taskList={taskList} />
-          <Switch>
-            <Route path={`${path}/:taskId`} >
-              <div className={styles.task_detail_wrapper} >
-                <TaskDetail
-                  taskList={taskList}
-                  loadTaskList={loadTaskList}
-                  onAskQuestion={onAskQuestion}
-                />
-              </div>
-            </Route>
-            <Redirect to={`${path}/${defaultTaskId}`} />
-          </Switch>
+    <LoadTaskProvider loadTaskList={loadTaskList} >
+      <LoadingMask>
+        <div className={styles.browse_container} >
+          <TaskMenu onFilterChange={updateFilter} />
+          <div className={styles.browse} >
+            <TaskList taskList={taskList} />
+            <Switch>
+              <Route path={`${path}/:taskId`} >
+                <div className={styles.task_detail_wrapper} >
+                  <TaskDetail
+                    taskList={taskList}
+                    loadTaskList={loadTaskList}
+                    onAskQuestion={onAskQuestion}
+                  />
+                </div>
+              </Route>
+              <Redirect to={`${path}/${defaultTaskId}`} />
+            </Switch>
+          </div>
         </div>
-      </div>
-    </LoadingMask>
+      </LoadingMask>
+    </LoadTaskProvider>
   );
 }

@@ -14,6 +14,7 @@ import { getProfile, makeOffer, saveProfile } from '../../apis';
 import { AuthContext } from '../../auth/Auth';
 import MakeOffer from './SubPages/MakeOffer';
 import useMessageBox from '../../components/MessageBox/useMessageBox';
+import { LoadTaskContext } from '../Browse/TaskDetail/LoadTaskContext';
 
 const OFFER_SUCCESS = 'Offer have been sent to the task owner!';
 const OFFER_FAIL = 'Request sending failed. Please try again later.';
@@ -27,6 +28,8 @@ export default function CreateProfile({ pageToggler }) {
 
   const { currentUser } = useContext(AuthContext);
   const { params: { taskId } } = useRouteMatch();
+
+  const loadTaskList = useContext(LoadTaskContext);
 
   const [profileFilled, setProfileFilled] = useState(false);
   const [profileExist, setProfileExist] = useState(false);
@@ -73,6 +76,7 @@ export default function CreateProfile({ pageToggler }) {
 
   useEffect(() => {
     requestProfile();
+    return () => loadTaskList();
   }, []);
 
   const handleBackBtnClick = () => {

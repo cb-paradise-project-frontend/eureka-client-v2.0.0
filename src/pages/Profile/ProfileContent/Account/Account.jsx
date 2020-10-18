@@ -2,59 +2,38 @@ import React from 'react';
 
 import styles from './Account.module.scss';
 
-import ProfileInputbox from '../../../../components/ProfileInputbox';
+import Input from '../../../../components/Input';
+import Button from '../../../../components/Button';
 
 const Account = ({
   accountContent,
   onAccountChange,
-}) => (
-  <React.Fragment>
-    <div className={styles.account_wrapper}>
-      <div className={styles.input_wrapper}>
-        <ProfileInputbox
-          label="Firstname"
-          accountContent={accountContent}
-          onAccountChange={onAccountChange}
-        />
-      </div>
-      <div className={styles.input_wrapper}>
-        <ProfileInputbox
-          label="Lastname"
-          accountContent={accountContent}
-          onAccountChange={onAccountChange}
-        />
-      </div>
-      <div className={styles.input_wrapper}>
-        <ProfileInputbox
-          label="Email"
-          accountContent={accountContent}
-          onAccountChange={onAccountChange}
-        />
-      </div>
-      <div className={styles.input_wrapper}>
-        {/* 下面部分可以复用ziwei的components*/}
-        <ProfileInputbox
-          label="DOB"
-          accountContent={accountContent}
-          onAccountChange={onAccountChange}
-        />
-      </div>
-      <div className={styles.input_wrapper}>
-        <ProfileInputbox
-          label="Mobile"
-          accountContent={accountContent}
-          onAccountChange={onAccountChange}
-        />
-      </div>
-      <div className={styles.input_wrapper}>
-        <ProfileInputbox
-          label="Location"
-          accountContent={accountContent}
-          onAccountChange={onAccountChange}
-        />
-      </div>
-    </div>
-  </React.Fragment>
-)
+}) => {
+  const accountData = Object.keys(accountContent).map((key) => {
+    const value = accountContent[key];
+    const handleChange = onAccountChange(key);
 
-export default Account
+    return (
+      <div className={styles.input_wrapper} key={key}>
+        <Input
+          label={key}
+          value={value}
+          handleChange={handleChange}
+        />
+      </div>
+    );
+  });
+
+  return (
+    <React.Fragment >
+      <div className={styles.account_wrapper}>
+        {accountData}
+        <div className={styles.update_btn}>
+          <Button>Update account information</Button>
+        </div>
+      </div>
+    </React.Fragment>
+  );
+};
+
+export default Account;

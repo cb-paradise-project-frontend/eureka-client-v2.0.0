@@ -1,0 +1,30 @@
+.nav{
+  flex: 1;
+  background-color: #426ad2;
+  display: block;
+  height: 36px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 3px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+
+  & ~ & {
+    margin-left: 10px;
+  }
+
+  &:hover {
+    // margin-top: 3px;
+    height: 45px;
+  }
+}
+
+.selected {
+  height: 45px;
+}

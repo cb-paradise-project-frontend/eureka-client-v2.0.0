@@ -3,6 +3,18 @@
 $text-color: #292b32;
 $content-color: #545a77;
 
+.task_list_wrapper{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  height: calc(100vh - 125px);
+  display: flex;
+  word-wrap: break-word;
+}
+
 .task_list{
   background-color: lighten(grey, 40%);
   display: flex;
@@ -10,6 +22,10 @@ $content-color: #545a77;
   overflow-y: scroll;
   min-width: 300px;
   max-height: 100%;
+}
+
+.task_detail_wrapper{
+  flex: 1 1;
 }
 
 .task_list_item{

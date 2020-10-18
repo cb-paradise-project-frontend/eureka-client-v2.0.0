@@ -1,4 +1,4 @@
-import React, { Profiler } from 'react';
+import React from 'react';
 
 import styles from './PostTask.module.scss';
 
@@ -17,7 +17,6 @@ import Modal from '../../components/Modal';
 import { withAlert } from './components/AlertModal';
 import postTask from '../../apis/postTask';
 import { AuthContext } from '../../auth/Auth';
-import SubmitTask from './SubmitTask';
 
 
 class PostTask extends React.Component {
@@ -61,7 +60,7 @@ class PostTask extends React.Component {
   componentDidMount(){
     const { currentUser } = this.context;
     this.setState({ currentUser: currentUser });
-  } 
+  } //withForm HOC
 
   onJobTitle(value) {
     this.setState({ jobTitle: value });

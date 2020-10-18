@@ -17,8 +17,11 @@ const { getStoredData, storeData, dropStoredData } = new LocalStorage('userProfi
 
 export default function useProfilePage(showMessage, setProfileExist) {
   const { currentUser } = useContext(AuthContext);
+
   const [subPage, loadSubPage] = useState();
+
   const [profileFilled, setProfileFilled] = useState(false);
+
   const form = useForm(FORM, getStoredData());
 
   const {

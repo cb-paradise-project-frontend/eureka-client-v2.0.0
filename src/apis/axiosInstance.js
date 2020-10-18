@@ -4,12 +4,32 @@ const axiosInstance = axios.create({
   baseURL: 'http://localhost:5000/api'
 });
 
-export default axiosInstance;
+const setTokenToRequest = (config) => {
+  const token = localStorage.getItem('token');
 
-// import axios from 'axios';
+  if (token) {
+    config.headers = {
+      ...config.headers,
+      'X-Auth-Token': token,
+    };
+  }
 
-// const taskData = axios.create({
-//   baseURL: 'http://localhost:5000/api/tasks',
-// });
+  return config;
+}
 
-// export default taskData;
+const extractTokenFromResponse = (response) => {
+  const token = response.headers['x-auth-token'];
+
+  if (token) {
+    localStorage.setItem('token', token);
+  }
+
+  return response;
+}
+
+const connectAuth = () => {
+  axiosInstance.interceptors.request.use(setTokenToRequest);
+  axiosInstance.interceptors.response.use(extractTokenFromResponse);
+}
+
+export { axiosInstance, connectAuth, setTokenToRequest, extractTokenFromResponse };

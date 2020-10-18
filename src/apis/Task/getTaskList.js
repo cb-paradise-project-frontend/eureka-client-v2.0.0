@@ -1,4 +1,4 @@
-import axiosInstance from '../axiosInstance';
+import { axiosInstance } from '../axiosInstance';
 import destructure from '../utils/destructure';
 
 export default async function getTaskList(filter) {

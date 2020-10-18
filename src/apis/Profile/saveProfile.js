@@ -1,4 +1,4 @@
-import axiosInstance from '../axiosInstance';
+import { axiosInstance } from '../axiosInstance';
 
 export default async function saveProfile(userId, profile) {
   const {

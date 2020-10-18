@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './Payment.module.scss';
 
-import BankAccount from '../../../CreateProfile/SubPages/BankAccount';
-import BillingAddress from '../../../CreateProfile/SubPages/BillingAddress';
+import BankAccount from '../../../OfferModal/SubPages/BankAccount';
+import BillingAddress from '../../../OfferModal/SubPages/BillingAddress';
 
 const Payment = ({
   paymentContent,

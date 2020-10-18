@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 
-import styles from './CreateProfile.module.scss';
+import styles from './OfferModal.module.scss';
 
 import Modal from '../../components/Modal';
 import ProfileItem from './ProfileItem';
@@ -23,19 +23,10 @@ const SAVE_PROFILE_FAIL = 'Profile saving failed. Please try again later.';
 
 const { getStoredData, storeData, dropStoredData } = new LocalStorage('userProfile');
 
-export default function CreateProfile({ pageToggler }) {
-  const [subPage, loadSubPage] = useState();
-
+function useProfilePage(showMessage, setProfileExist) {
   const { currentUser } = useContext(AuthContext);
-  const { params: { taskId } } = useRouteMatch();
-
-  const loadTaskList = useContext(LoadTaskContext);
-
+  const [subPage, loadSubPage] = useState();
   const [profileFilled, setProfileFilled] = useState(false);
-  const [profileExist, setProfileExist] = useState(false);
-
-  const [Message, showMessage] = useMessageBox();
-
   const form = useForm(FORM, getStoredData());
 
   const {
@@ -69,59 +60,21 @@ export default function CreateProfile({ pageToggler }) {
     mobile,
   ]);
 
-  const requestProfile = async () => {
-    const profile = await getProfile(currentUser);
-    if (profile) setProfileExist(true);
-  };
-
-  useEffect(() => {
-    requestProfile();
-    return () => loadTaskList();
-  }, []);
-
   const handleBackBtnClick = () => {
     loadSubPage('');
   };
 
-  const backButton = (
-    <Button
-    onClick={handleBackBtnClick}
-    color={'light-blue'}
-    long
-  >
-    Back
-  </Button>
-  );
-
-  const submitProfile = async () => {
-    const result = await saveProfile(currentUser, formData);
-
-    if (result) {
-      setProfileExist(true);
-      // dropStoredData();
-    } else {
-      showMessage(SAVE_PROFILE_FAIL);
-    }
-  };
-
-  const submitOffer = async () => {
-    const result = await makeOffer(currentUser, taskId);
-    const message = result ? OFFER_SUCCESS : OFFER_FAIL;
-
-    return showMessage(message);
-  };
-
-  const continueButton = (
-    <Button
-      onClick={profileExist
-        ? submitOffer
-        : submitProfile}
-      color={'light-blue'}
-      isDisabled={!profileFilled}
-      long
-    >
-      Continue
-    </Button>
+  const header = (
+    <>
+      {subPage &&
+        <div className={styles.back_button_wrapper} >
+          <Button.BackIcon onClick={handleBackBtnClick} />
+        </div>
+      }
+      <div className={styles.title} >
+        To Start Making Money
+      </div>
+    </>
   );
 
   const profileList = (
@@ -158,29 +111,122 @@ export default function CreateProfile({ pageToggler }) {
     </div>
   );
 
+  const content = (
+    <div className={styles.content_wrapper} >
+      {subPage || profileList}
+    </div>
+  );
+
+  const backButton = (
+    <Button
+    onClick={handleBackBtnClick}
+    color={'light-blue'}
+    long
+  >
+    Back
+  </Button>
+  );
+
+  const submitProfile = async () => {
+    const result = await saveProfile(currentUser, formData);
+
+    if (result) {
+      setProfileExist(true);
+      // dropStoredData();
+    } else {
+      showMessage(SAVE_PROFILE_FAIL);
+    }
+  };
+
+  const continueButton = (
+    <Button
+      onClick={submitProfile}
+      color={'light-blue'}
+      isDisabled={!profileFilled}
+      long
+    >
+      Continue
+    </Button>
+  );
+
+  const footer = subPage ? backButton : continueButton;
+
+  const page = {};
+  page.header = header;
+  page.content = content;
+  page.footer = footer;
+
+  return page;
+}
+
+function useOfferPage(showMessage) {
+  const { currentUser } = useContext(AuthContext);
+  const { params: { taskId } } = useRouteMatch();
+
   const header = (
-    <>
-      {subPage &&
-        <div className={styles.back_button_wrapper} >
-          <Button.BackIcon onClick={handleBackBtnClick} />
-        </div>
-      }
-      <div className={styles.title} >
-        To Start Making Money
-      </div>
-    </>
+    <div className={styles.title} >
+      Make an Offer
+    </div>
   );
 
   const content = (
     <div className={styles.content_wrapper} >
-      {(profileExist && <MakeOffer />)
-        || subPage
-        || profileList
-      }
+      <MakeOffer />
     </div>
   );
 
-  const footer = subPage ? backButton : continueButton;
+  const submitOffer = async () => {
+    const result = await makeOffer(currentUser, taskId);
+    const newMessage = result ? OFFER_SUCCESS : OFFER_FAIL;
+
+    return showMessage(newMessage);
+  };
+
+  const nextButton = (
+    <Button
+      onClick={submitOffer}
+      color={'light-blue'}
+      long
+    >
+      Next
+    </Button>
+  );
+
+  const footer = nextButton;
+
+  const loadTaskList = useContext(LoadTaskContext);
+
+  useEffect(() => (
+    () => loadTaskList()
+  ), []);
+
+  const page = {};
+  page.header = header;
+  page.content = content;
+  page.footer = footer;
+
+  return page;
+}
+
+export default function OfferModal({ pageToggler }) {
+  const { currentUser } = useContext(AuthContext);
+  const [Message, showMessage] = useMessageBox();
+  const [profileExist, setProfileExist] = useState(false);
+  const offerPage = useOfferPage(showMessage);
+  const profilePage = useProfilePage(showMessage, setProfileExist);
+
+  const currentPage = profileExist ? offerPage : profilePage;
+
+  const { header, content, footer } = currentPage;
+
+  const requestProfile = async () => {
+    const profile = await getProfile(currentUser);
+    if (profile) setProfileExist(true);
+  };
+
+  useEffect(() => {
+    requestProfile();
+  }, []);
 
   return (
     <>

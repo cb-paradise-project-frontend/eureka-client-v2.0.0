@@ -4,7 +4,7 @@ import Button from '../../../../components/Button';
 
 import { AuthContext } from '../../../../auth/Auth';
 import { useToggleContent } from '../../../../components/ToggleContent';
-import CreateProfile from '../../../CreateProfile';
+import OfferModal from '../../../OfferModal';
 import SignupModal from '../../../../components/SignupModal';
 import { TaskContext } from '../TaskContext';
 import { EXPIRED } from '../../../../components/Status';
@@ -27,7 +27,7 @@ export default function OfferButton() {
     || 'Make an offer';
 
   const modal = currentUser
-    ? <CreateProfile pageToggler={toggler} />
+    ? <OfferModal pageToggler={toggler} />
     : <SignupModal pageToggler={toggler} />;
 
   return (

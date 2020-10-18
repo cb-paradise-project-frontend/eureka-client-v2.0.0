@@ -1,4 +1,4 @@
-import axiosInstance from '../axiosInstance';
+import { axiosInstance } from '../axiosInstance';
 
 export default async function makeOffer(userId, taskId) {
   const { status } = await axiosInstance

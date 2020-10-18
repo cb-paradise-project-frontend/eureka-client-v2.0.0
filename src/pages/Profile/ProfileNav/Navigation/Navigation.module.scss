@@ -1,0 +1,28 @@
+.navi_item {
+  height: 44px;
+  font-size: 14px;
+  padding-left: 15px;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  overflow: hidden;
+  border-bottom: 1px solid rgb(246, 248, 253);
+  line-height: 44px;
+  letter-spacing: 1px;
+  position: relative;
+  box-sizing: border-box;
+
+  &.selected {
+    background-color: rgb(246, 248, 253);
+    border-left: 2px solid rgb(198, 198, 199);
+  }
+}
+
+.navi_item:hover {
+  background-color: rgb(246, 248, 253);
+}
+
+.active {
+  position: absolute;
+  right: 15px;
+}

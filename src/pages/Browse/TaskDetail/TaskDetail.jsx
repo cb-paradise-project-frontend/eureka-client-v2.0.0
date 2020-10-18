@@ -9,7 +9,6 @@ import SideBar from './SideBar';
 import OfferButton from './OfferButton';
 import Question from './Question';
 import { TaskProvider } from '../TaskContext';
-import { EXPIRED } from '../../../components/Status';
 import QuestionInput from './Question/QuestionInput';
 import QuestionList from './Question/QuestionList';
 
@@ -33,7 +32,7 @@ export default function TaskDetail({ taskList, onAskQuestion }) {
     <QuestionList questions={comments} />
   );
 
-  const { status, description } = task;
+  const { description } = task;
 
   return (
     <div className={styles.task_detail} >
@@ -46,7 +45,7 @@ export default function TaskDetail({ taskList, onAskQuestion }) {
         <Section title='OFFER' >
           <div className={styles.offer_icon} />
           <div className={styles.button_wrapper} >
-            <OfferButton isExpired={(status === EXPIRED)} />
+            <OfferButton />
           </div>
         </Section>
         <Question

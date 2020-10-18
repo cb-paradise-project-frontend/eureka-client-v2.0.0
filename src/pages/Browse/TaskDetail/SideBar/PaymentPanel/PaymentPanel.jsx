@@ -3,11 +3,10 @@ import React, { useContext } from 'react';
 import styles from './PaymentPanel.module.scss';
 
 import OfferButton from '../../OfferButton';
-import { EXPIRED } from '../../../../../components/Status';
 import { TaskContext } from '../../../TaskContext';
 
 export default function PaymentPanel() {
-  const { status, budget } = useContext(TaskContext);
+  const { budget } = useContext(TaskContext);
 
   const title = 'TASK BUDGET';
 
@@ -19,7 +18,7 @@ export default function PaymentPanel() {
       <div className={styles.price} >
         ${budget}
       </div>
-      <OfferButton isExpired={(status === EXPIRED)} />
+      <OfferButton />
     </div>
   );
 }

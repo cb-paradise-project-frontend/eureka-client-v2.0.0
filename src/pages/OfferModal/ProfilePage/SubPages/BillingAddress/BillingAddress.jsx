@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import styles from './BillingAddress.module.scss';
 
-import Button from '../../../../components/Button';
-import Input from '../../../../components/Input';
+import Button from '../../../../../components/Button';
+import Input from '../../../../../components/Input';
 import useForm from '../useForm';
 import FORM from './form';
 

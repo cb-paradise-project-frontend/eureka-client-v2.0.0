@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import styles from './SignupModal.module.scss';
 
 import { AuthContext } from '../../auth/Auth';
-import { api } from './../../apis';
+import { axiosInstance as api, extractTokenFromResponse, extractUserFromToken } from './../../apis';
 import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';
 
 const SignupModal = ({ pageToggler }) => {
   const history = useHistory();
+  const { setUser } = useContext(AuthContext);
 
   const [userCredentials, setUserCredentials] = useState({
     firstName: '',
@@ -30,25 +31,32 @@ const SignupModal = ({ pageToggler }) => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    const { firstName, lastName, email, password } = userCredentials;
     try {
+      const { firstName, lastName, email, password } = userCredentials;
+
       const res = await api.post('/users', { firstName, lastName, email, password });
-      const token = res.headers['x-auth-token'];
-      console.log(token);
-      if (!token) {
+
+      if (!res) {
         pageToggler();
+      };
+
+      await extractTokenFromResponse(res);
+
+      const info = extractUserFromToken();
+      if (!info.user) {
+        return;
       }
-      localStorage.setItem('token', token);
+
+      await setUser(info.user);
+
       history.push('/profile');
+
       pageToggler();
     } catch (error) {
       console.log(error);
+      pageToggler();
     }
   }
-
-  useEffect(() => {
-    console.log(userCredentials);
-  }, [userCredentials]);
 
   return (
     <Modal onRequestClose={pageToggler} >

@@ -22,7 +22,7 @@ const App = () => (
       <Switch>
         <Route path="/" exact component={Landing} />
         <Route path="/tasks" component={Browse} />
-        <Route path="/profile" exact component={Profile} />
+        <PrivateRoute path="/profile" exact component={Profile} />
         <Route component={NotFound} />
       </Switch>
     </Router>

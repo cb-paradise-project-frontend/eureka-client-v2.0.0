@@ -18,5 +18,5 @@ export default async function getTaskList(filter) {
 
   const response = await axiosInstance.get(`${urlConfig}`);
 
-  return destructure(response);
+  return (response.status === 200) && destructure(response);
 }

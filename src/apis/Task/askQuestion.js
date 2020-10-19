@@ -6,7 +6,7 @@ export default async function askQuestion(userId, taskId, question) {
     message: question,
   };
 
-  const updatedTask = await axiosInstance.put(`/tasks/comment/${taskId}`, comment);
+  const { status } = await axiosInstance.put(`/tasks/comment/${taskId}`, comment);
 
-  return updatedTask;
+  return (status === 200);
 }

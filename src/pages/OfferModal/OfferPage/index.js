@@ -1,1 +1,1 @@
-export { default } from './OfferPage';
+export { default } from './useOfferPage';

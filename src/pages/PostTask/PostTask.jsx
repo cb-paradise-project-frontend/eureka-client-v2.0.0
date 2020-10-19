@@ -15,7 +15,7 @@ import Button from '../../components/Button';
 import ProgressBar from './components/ProgressBar';
 import Modal from '../../components/Modal';
 import { withAlert } from './components/AlertModal';
-import postTask from '../../apis/postTask';
+import postTask from '../../apis/Task/postTask';
 
 class PostTask extends React.Component {
   constructor(props) {

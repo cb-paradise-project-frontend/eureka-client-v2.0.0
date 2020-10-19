@@ -1,32 +1,34 @@
-.tasker {
-  margin: 0;
-  padding: 0;
-  background: url("../../../assets/tasker-bg.svg") no-repeat;
+.otherJobs__container {
+  height: 100vh;
+  
+  .bg__wrapper {
+    position: relative;
+
+    background: url("../../../assets/tasker-bg.svg") no-repeat;
   background-position: right center;
   background-size: 1028px 860px;
-  width: 100vw;
   height: auto;
-  text-align: center;
-  position: relative;
-  display: block;
+
+    .content__wrapper {
+      height: 100%;
+      padding: 0 10%;
+      display: flex;
+      justify-content: flex-start;
+    }}}
+
+.tasker__container{
+  border-radius: 8px;
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-font-smoothing: subpixel-antialiased;
-  font-size: 14px;
-  line-height: 1.4;
-  padding: 0;
-  margin: 0;
-}
-.wrapper{
-  width:900px;
-  position: relative;;
-  top:0px;
-  left:0px;
+
+
 }
 
 .taskerButton {
-  display: inline-block;
-  justify-content: center;
+  width: 200px;
   text-align: center;
   white-space: nowrap;
   cursor: pointer;
@@ -44,4 +46,24 @@
   border-width: 2px;
   border-style: solid;
   padding: 16px 24px;
+}
+
+@media screen and (max-width: 767px)
+{
+  .bg__wrapper {
+    position: relative;
+
+    background: none;
+}
+
+  .tasker__container{
+    border-radius: 8px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+  
+  }
 }

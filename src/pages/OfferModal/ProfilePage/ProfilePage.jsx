@@ -49,9 +49,9 @@ const Footer = ({
   </Button>
 );
 
-export default function useProfilePage({
+export default function useProfilePage(
   showMessage, setProfileExist,
-}) {
+) {
   const { currentUser } = useContext(AuthContext);
   const userId = currentUser && currentUser.userId;
 

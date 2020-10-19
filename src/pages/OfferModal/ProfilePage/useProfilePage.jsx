@@ -2,14 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import styles from './ProfilePage.module.scss';
 
-import ProfileItem from './ProfileItem';
 import useForm from './SubPages/useForm';
 import FORM from './form';
-import createBirthdayLabel from './utils/createBirthdayLabel';
 import LocalStorage from './utils/LocalStorage';
 import { AuthContext } from '../../../auth/Auth';
 import { saveProfile } from '../../../apis';
 import ProfilePage from './ProfilePage';
+import ProfileList from './ProfileList';
 
 const SAVE_PROFILE_FAIL = 'Profile saving failed. Please try again later.';
 
@@ -43,6 +42,40 @@ export default function useProfilePage(
     mobile,
   } = formData;
 
+  const goBack = () => {
+    loadSubPage('');
+  };
+
+  const clickHandlers = Object
+    .keys(FORM)
+    .reduce((list, key) => {
+      const value = formData[key];
+
+      const handleChange = (input) => {
+        handleDataChange(key)(input);
+        goBack();
+      };
+
+      const { Page } = FORM[key];
+
+      return {
+        ...list,
+        [key]: () => loadSubPage(
+          <Page
+            storedValue={value}
+            onSubmit={handleChange}
+          />
+        ),
+      };
+    }, {});
+
+  const profileList = (
+    <ProfileList
+      clickHandlers={clickHandlers}
+      formData={formData}
+    />
+  );
+
   const checkProfile = () => {
     if (!findEmptyField()) setProfileFilled(true);
   };
@@ -58,44 +91,6 @@ export default function useProfilePage(
     mobile,
   ]);
 
-  const goBack = () => {
-    loadSubPage('');
-  };
-
-  const profileList = (
-    <div className={styles.profile_list_wrapper} >
-      {Object.keys(FORM).map((key) => {
-        const { label, Page } = FORM[key];
-        const value = formData[key];
-
-        const handleChange = (input) => {
-          handleDataChange(key)(input);
-          goBack();
-        };
-
-        const statusLabel = {
-          birthday: createBirthdayLabel(value),
-          mobile: value,
-        }[key] || null;
-
-        return (
-          <ProfileItem
-            itemName={label}
-            handleClick={() => loadSubPage(
-              <Page
-                storedValue={value}
-                onSubmit={handleChange}
-              />
-            )}
-            statusLabel={statusLabel}
-            filled={!!value}
-            key={key}
-          />
-        );
-      })}
-    </div>
-  );
-
   const submitProfile = async () => {
     const result = await saveProfile(userId, formData);
 
@@ -108,6 +103,7 @@ export default function useProfilePage(
   };
 
   const page = {};
+
   page.header = <ProfilePage.Header goBack={subPage && goBack} />;
   page.content = <ProfilePage.Content content={subPage || profileList} />;
   page.footer = (

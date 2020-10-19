@@ -1,5 +1,5 @@
 import { api } from '../axiosInstance';
-import destructure from '../utils/destructure';
+import { destructure } from '../utils';
 
 export default async function getProfile(userId) {
   const response = await api.get(`/profiles/${userId}`);

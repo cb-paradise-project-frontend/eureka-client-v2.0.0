@@ -1,5 +1,5 @@
 import { api } from '../axiosInstance';
-import destructure from '../utils/destructure';
+import { destructure } from '../utils';
 
 export default async function getTaskList(filter) {
   const filterKeyArray = filter && Object.keys(filter);

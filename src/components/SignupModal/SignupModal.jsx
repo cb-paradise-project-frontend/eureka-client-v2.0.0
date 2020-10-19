@@ -63,27 +63,29 @@ const SignupModal = ({ pageToggler }) => {
       <Modal.Header>Join us</Modal.Header>
       <Modal.Content>
         <form className={styles.container}>
-          <div className={styles.input_wrapper} >
-            <Input
-              label="First Name"
-              name="firstName"
-              type="string"
-              placeholder="First Name"
-              required
-              value={userCredentials.firstname}
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles.input_wrapper} >
-            <Input
-              label="Last Name"
-              name="lastName"
-              type="string"
-              placeholder="Last Name"
-              required
-              value={userCredentials.lastname}
-              onChange={handleChange}
-            />
+          <div className={styles.name_wrapper}>
+            <div className={styles.input_wrapper} >
+              <Input
+                label="First Name"
+                name="firstName"
+                type="string"
+                placeholder="First Name"
+                required
+                value={userCredentials.firstname}
+                onChange={handleChange}
+              />
+            </div>
+            <div className={styles.input_wrapper} >
+              <Input
+                label="Last Name"
+                name="lastName"
+                type="string"
+                placeholder="Last Name"
+                required
+                value={userCredentials.lastname}
+                onChange={handleChange}
+              />
+            </div>
           </div>
           <div className={styles.input_wrapper} >
             <Input

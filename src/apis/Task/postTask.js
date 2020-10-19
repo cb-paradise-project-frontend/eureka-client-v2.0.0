@@ -1,4 +1,4 @@
-import { axiosInstance } from './axiosInstance';
+import { axiosInstance } from '../axiosInstance';
 
 export default function postTask(userID, taskData) {
   const { jobTitle, jobDetails, place, startDate, taskBudget } = taskData; 

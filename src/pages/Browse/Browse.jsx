@@ -51,8 +51,6 @@ export default function Browse() {
 
   const [LoadingMask, toggleLoadingMask, loadingStatus] = useLoadingPage();
 
-  const { currentUser } = useContext(AuthContext);
-
   const loadTaskList = async () => {
     const newTaskList = await getTaskList(filter) || tasks;
     setTaskList(newTaskList);

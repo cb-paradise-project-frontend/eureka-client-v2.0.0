@@ -9,6 +9,7 @@ import useOfferPage from './OfferPage';
 
 export default function OfferModal({ pageToggler }) {
   const { currentUser } = useContext(AuthContext);
+  const userId = currentUser && currentUser.userId;
 
   const [Message, showMessage] = useMessageBox();
 
@@ -22,7 +23,7 @@ export default function OfferModal({ pageToggler }) {
   const { header, content, footer } = currentPage;
 
   const requestProfile = async () => {
-    const profile = await getProfile(currentUser);
+    const profile = await getProfile(userId);
     if (profile) setProfileExist(true);
   };
 

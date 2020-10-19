@@ -15,8 +15,45 @@ const SAVE_PROFILE_FAIL = 'Profile saving failed. Please try again later.';
 
 const { getStoredData, storeData, dropStoredData } = new LocalStorage('userProfile');
 
-export default function useProfilePage(showMessage, setProfileExist) {
+const Header = ({ onGoBack }) => (
+  <>
+    {onGoBack &&
+      <div className={styles.back_button_wrapper} >
+        <Button.BackIcon onClick={onGoBack} />
+      </div>
+    }
+    <div className={styles.title} >
+      To Start Making Money
+    </div>
+  </>
+);
+
+const Content = ({ content }) => (
+  <div className={styles.content_wrapper} >
+    {content}
+  </div>
+);
+
+const Footer = ({
+  onBottomClick,
+  isBottomBtnDisabled,
+  btnLabel,
+}) => (
+  <Button
+    onClick={onBottomClick}
+    color={'light-blue'}
+    isDisabled={isBottomBtnDisabled}
+    long
+  >
+    {btnLabel}
+  </Button>
+);
+
+export default function useProfilePage({
+  showMessage, setProfileExist,
+}) {
   const { currentUser } = useContext(AuthContext);
+  const userId = currentUser && currentUser.userId;
 
   const [subPage, loadSubPage] = useState();
 
@@ -55,22 +92,9 @@ export default function useProfilePage(showMessage, setProfileExist) {
     mobile,
   ]);
 
-  const handleBackBtnClick = () => {
+  const goBack = () => {
     loadSubPage('');
   };
-
-  const header = (
-    <>
-      {subPage &&
-        <div className={styles.back_button_wrapper} >
-          <Button.BackIcon onClick={handleBackBtnClick} />
-        </div>
-      }
-      <div className={styles.title} >
-        To Start Making Money
-      </div>
-    </>
-  );
 
   const profileList = (
     <div className={styles.profile_list_wrapper} >
@@ -80,7 +104,7 @@ export default function useProfilePage(showMessage, setProfileExist) {
 
         const handleChange = (input) => {
           handleDataChange(key)(input);
-          handleBackBtnClick();
+          goBack();
         };
 
         const statusLabel = {
@@ -106,24 +130,8 @@ export default function useProfilePage(showMessage, setProfileExist) {
     </div>
   );
 
-  const content = (
-    <div className={styles.content_wrapper} >
-      {subPage || profileList}
-    </div>
-  );
-
-  const backButton = (
-    <Button
-    onClick={handleBackBtnClick}
-    color={'light-blue'}
-    long
-  >
-    Back
-  </Button>
-  );
-
   const submitProfile = async () => {
-    const result = await saveProfile(currentUser, formData);
+    const result = await saveProfile(userId, formData);
 
     if (result) {
       setProfileExist(true);
@@ -133,23 +141,16 @@ export default function useProfilePage(showMessage, setProfileExist) {
     }
   };
 
-  const continueButton = (
-    <Button
-      onClick={submitProfile}
-      color={'light-blue'}
-      isDisabled={!profileFilled}
-      long
-    >
-      Continue
-    </Button>
-  );
-
-  const footer = subPage ? backButton : continueButton;
-
   const page = {};
-  page.header = header;
-  page.content = content;
-  page.footer = footer;
+  page.header = <Header goBack={subPage && goBack} />;
+  page.content = <Content content={subPage || profileList} />;
+  page.footer = (
+    <Footer
+      onBottomClick={subPage ? goBack : submitProfile}
+      isBottomBtnDisabled={!subPage && !profileFilled}
+      btnLabel={subPage ? 'Back' : 'Continue'}
+    />
+  );
 
   return page;
 }

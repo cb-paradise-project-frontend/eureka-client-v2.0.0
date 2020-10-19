@@ -20,6 +20,7 @@ export default function TaskDetail({ taskList }) {
   const { params: { taskId } } = useRouteMatch();
 
   const { currentUser } = useContext(AuthContext);
+  const userId = currentUser && currentUser.userId;
 
   const loadTaskList = useContext(LoadTaskContext);
 
@@ -31,8 +32,8 @@ export default function TaskDetail({ taskList }) {
   const { comments } = task;
 
   const addQuestion = async (input) => {
-    if (!currentUser) return showMessage('Please login before leaving a message.');
-    await askQuestion(currentUser, taskId, input);
+    if (!userId) return showMessage('Please login before leaving a message.');
+    await askQuestion(userId, taskId, input);
     loadTaskList();
   };
 

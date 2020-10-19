@@ -14,6 +14,8 @@ const OFFER_FAIL = 'Request sending failed. Please try again later.';
 
 export default function useOfferPage(showMessage) {
   const { currentUser } = useContext(AuthContext);
+  const userId = currentUser && currentUser.userId;
+
   const { params: { taskId } } = useRouteMatch();
 
   const header = (
@@ -29,7 +31,7 @@ export default function useOfferPage(showMessage) {
   );
 
   const submitOffer = async () => {
-    const result = await makeOffer(currentUser, taskId);
+    const result = await makeOffer(userId, taskId);
     const newMessage = result ? OFFER_SUCCESS : OFFER_FAIL;
 
     return showMessage(newMessage);

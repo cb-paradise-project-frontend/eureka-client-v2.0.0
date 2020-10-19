@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import styles from './ProfilePage.module.scss';
-
 import useForm from './SubPages/useForm';
 import FORM from './form';
 import LocalStorage from './utils/LocalStorage';

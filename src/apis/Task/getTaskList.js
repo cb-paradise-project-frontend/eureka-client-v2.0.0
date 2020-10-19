@@ -1,4 +1,4 @@
-import { axiosInstance } from '../axiosInstance';
+import { api } from '../axiosInstance';
 import destructure from '../utils/destructure';
 
 export default async function getTaskList(filter) {
@@ -16,7 +16,7 @@ export default async function getTaskList(filter) {
           : `${url}${key}=${filter[key]}&`
       ), '/tasks?');
 
-  const response = await axiosInstance.get(`${urlConfig}`);
+  const response = await api.get(`${urlConfig}`);
 
   return (response.status === 200) && destructure(response);
 }

@@ -1,4 +1,5 @@
-export { axiosInstance, connectAuth, setTokenToRequest, extractTokenFromResponse } from './axiosInstance';
+export { api } from './axiosInstance';
+export { setTokenToRequest, extractTokenFromResponse } from './utils/axiosInterceptors';
 export { default as askQuestion } from './Task/askQuestion';
 export { default as getTaskList } from './Task/getTaskList';
 export { default as makeOffer } from './Task/makeOffer';

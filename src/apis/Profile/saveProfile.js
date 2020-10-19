@@ -1,4 +1,4 @@
-import { axiosInstance } from '../axiosInstance';
+import { api } from '../axiosInstance';
 
 export default async function saveProfile(userId, profile) {
   const {
@@ -40,7 +40,7 @@ export default async function saveProfile(userId, profile) {
     mobile,
   };
 
-  const { status } = await axiosInstance.put('/profiles', formatData);
+  const { status } = await api.put('/profiles', formatData);
 
   return status === 200 || false;
 }

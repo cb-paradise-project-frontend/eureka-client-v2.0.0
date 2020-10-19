@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import styles from './SignupModal.module.scss';
 
 import { AuthContext } from '../../auth/Auth';
-import { axiosInstance as api, extractTokenFromResponse, extractInfoFromToken } from './../../apis';
+import { api, extractTokenFromResponse, extractInfoFromToken } from './../../apis';
 import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';

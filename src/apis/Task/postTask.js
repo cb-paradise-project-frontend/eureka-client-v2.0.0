@@ -1,4 +1,4 @@
-import { axiosInstance } from '../axiosInstance';
+import { api } from '../axiosInstance';
 
 export default function postTask(userID, taskData) {
   const { jobTitle, jobDetails, place, startDate, taskBudget } = taskData; 
@@ -19,7 +19,7 @@ export default function postTask(userID, taskData) {
 
   //const formatted_data = JSON.stringify(data);
 
-  return axiosInstance.post(`/tasks`, data)
+  return api.post(`/tasks`, data)
     .then((response) => console.log(response))
     .catch((error) => console.error(error))
 }

@@ -1,8 +1,7 @@
-import { axiosInstance, connectAuth } from './../axiosInstance';
+import { api } from './../axiosInstance';
 
-const checkUser = async () => {
-  const connectWithAuth = axiosInstance.post('/users/verify');
-  connectAuth(connectWithAuth);
+const checkUser = () => {
+  api.get('/auth');
 };
 
 export default checkUser;

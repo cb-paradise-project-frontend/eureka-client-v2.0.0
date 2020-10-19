@@ -49,7 +49,7 @@ const TaskListItem = ({
     </div>
 );
 
-export default function TaskList({ taskList, onAskQuestion }) {
+export default function TaskList({ taskList }) {
   const { path } = useRouteMatch();
   const history = useHistory();
 
@@ -71,10 +71,7 @@ export default function TaskList({ taskList, onAskQuestion }) {
       <Switch>
         <Route path={`${path}/:taskId`} >
           <div className={styles.task_detail_wrapper} >
-            <TaskDetail
-              taskList={taskList}
-              onAskQuestion={onAskQuestion}
-            />
+            <TaskDetail taskList={taskList} />
           </div>
         </Route>
         <Redirect to={`${path}/${defaultTask}`} />

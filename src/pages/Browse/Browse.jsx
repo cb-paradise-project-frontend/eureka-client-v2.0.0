@@ -46,16 +46,12 @@ tasks[3].status = 'EXPIRED';
 
 export default function Browse() {
   const [taskList, setTaskList] = useState([]);
-  const [updateFlag, setUpdateFlag] = useState(false);
+
   const [filter, updateFilter] = useState('');
 
   const [LoadingMask, toggleLoadingMask, loadingStatus] = useLoadingPage();
 
   const { currentUser } = useContext(AuthContext);
-
-  const toggleUpdateFlag = () => {
-    setUpdateFlag((prevFlag) => !prevFlag);
-  };
 
   const loadTaskList = async () => {
     const newTaskList = await getTaskList(filter) || tasks;
@@ -71,7 +67,6 @@ export default function Browse() {
   useEffect(() => {
     loadTaskList();
   }, [
-    updateFlag,
     keyword,
     maxPrice,
     minPrice,
@@ -83,20 +78,12 @@ export default function Browse() {
     }
   }, [taskList.length, loadingStatus]);
 
-  const onAskQuestion = (taskId, input) => {
-    askQuestion(currentUser, taskId, input);
-    toggleUpdateFlag();
-  };
-
   return (
     <LoadTaskProvider loadTaskList={loadTaskList} >
       <div className={styles.browse} >
         <TaskMenu onFilterChange={updateFilter} />
         <LoadingMask>
-          <TaskList
-            taskList={taskList}
-            onAskQuestion={onAskQuestion}
-          />
+          <TaskList taskList={taskList} />
         </LoadingMask>
       </div>
     </LoadTaskProvider>

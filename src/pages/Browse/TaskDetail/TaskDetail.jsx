@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 
 import styles from './TaskDetail.module.scss';
@@ -11,19 +11,29 @@ import Question from './Question';
 import { TaskProvider } from './TaskContext';
 import QuestionInput from './Question/QuestionInput';
 import QuestionList from './Question/QuestionList';
+import { askQuestion } from '../../../apis';
+import { AuthContext } from '../../../auth/Auth';
+import { LoadTaskContext } from './LoadTaskContext';
+import useMessageBox from '../../../components/MessageBox/useMessageBox';
 
-export default function TaskDetail({
-  taskList, onAskQuestion,
-}) {
+export default function TaskDetail({ taskList }) {
   const { params: { taskId } } = useRouteMatch();
+
+  const { currentUser } = useContext(AuthContext);
+
+  const loadTaskList = useContext(LoadTaskContext);
+
+  const [Message, showMessage] = useMessageBox();
 
   const task = taskList.find((taskObj) => taskObj.id === taskId);
   if (!task) return null;
 
   const { comments } = task;
 
-  const addQuestion = (input) => {
-    onAskQuestion(task.id, input);
+  const addQuestion = async (input) => {
+    if (!currentUser) return showMessage('Please login before leaving a message.');
+    await askQuestion(currentUser, taskId, input);
+    loadTaskList();
   };
 
   const questionInput = (
@@ -56,6 +66,7 @@ export default function TaskDetail({
           questionCount={comments.length}
         />
       </TaskProvider>
+      <Message />
     </div>
   );
 }

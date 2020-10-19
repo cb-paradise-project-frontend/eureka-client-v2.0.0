@@ -6,10 +6,13 @@ import Button from '../../../../../components/Button';
 import Input from '../../../../../components/Input';
 import useForm from '../useForm';
 import FORM from './form';
-import onlyNumber from '../../../../../utils/validators/input';
+import { onlyNumber, addDashInNumber } from '../../../../../utils/validators/input';
 
 export default function BankAccount({ storedValue, onSubmit }) {
-  const form = useForm(FORM, storedValue);
+  const form = useForm(FORM, {
+    ...storedValue,
+    bsb: addDashInNumber(storedValue.bsb),
+  });
 
   const [testing, toggleTesting] = useState(false);
   const [highlightField, setHighlightField] = useState();
@@ -33,7 +36,9 @@ export default function BankAccount({ storedValue, onSubmit }) {
     const {
       label, placeholder, maxLength, validator,
     } = FORM[key];
+
     const value = formData[key];
+
     const handleChange = handleDataChange(key);
 
     return (

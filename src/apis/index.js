@@ -1,11 +1,8 @@
 export { api } from './axiosInstance';
-export { setTokenToRequest, extractTokenFromResponse } from './utils/axiosInterceptors';
+export { setTokenToRequest, extractTokenFromResponse, extractInfoFromToken, checkTokenExpiry, removeLocalToken } from './utils';
 export { default as askQuestion } from './Task/askQuestion';
 export { default as getTaskList } from './Task/getTaskList';
 export { default as makeOffer } from './Task/makeOffer';
 export { default as getProfile } from './Profile/getProfile';
 export { default as saveProfile } from './Profile/saveProfile';
 export { default as checkUser } from './Auth/checkUser';
-export { default as extractInfoFromToken } from './utils/extractInfoFromToken';
-export { default as checkTokenExpiry } from './utils/checkTokenExpiry';
-export { default as removeLocalToken } from './utils/removeLocalToken';

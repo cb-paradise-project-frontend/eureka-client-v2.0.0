@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Profiler } from 'react';
 
 import styles from './PostTask.module.scss';
 
@@ -89,11 +89,6 @@ class PostTask extends React.Component {
     }))
   }
 
-  componentDidMount(){
-    const { currentUser } = this.context;
-    this.setState({ currentUser: currentUser });
-  } //withForm HOC
-
   onJobTitle(value) {
     this.setState({ jobTitle: value });
   }
@@ -161,7 +156,7 @@ class PostTask extends React.Component {
 
   async getQuote() {
     await postTask(this.state);
-    this.props.history.push('/profile');
+    this.props.history.push('/profile/tasks');
     this.togglerMsgBox()
   } //HOC
 
@@ -334,6 +329,7 @@ class PostTask extends React.Component {
       <Modal onRequestClose={onRequestClose} >
         <Modal.Header>
           {title}
+          {console.log(111, currentUser)}
         </Modal.Header>
         <ProgressBar currentStep={currentStep} />
         <Modal.Content>
@@ -354,6 +350,5 @@ class PostTask extends React.Component {
     );
   }
 }
-
 PostTask.contextType = AuthContext;
 export default withAlert(withRouter(PostTask));

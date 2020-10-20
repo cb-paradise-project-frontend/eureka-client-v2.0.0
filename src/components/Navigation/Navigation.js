@@ -105,7 +105,7 @@ class Navigation extends Component {
                   </Link>
 
                   <div className={styles.responsivePostTask}>
-                    <img src={postTaskLogo} />
+                    {/* <img src={postTaskLogo} /> */}
                   </div>
                 </div>
 
@@ -152,14 +152,14 @@ class Navigation extends Component {
                   <div className={styles.right} >
                     <SignupButton />
                     <LoginButton />
-                    <div className={styles.becomeTasker} >
+                    {/* <div className={styles.becomeTasker} >
                       <Button
                         color={'transparent'}
                         size={'small'}
                       >
                         Become a Tasker
                       </Button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </nav>

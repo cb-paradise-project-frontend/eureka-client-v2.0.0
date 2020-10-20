@@ -15,7 +15,7 @@ import Button from '../../components/Button';
 import ProgressBar from './components/ProgressBar';
 import Modal from '../../components/Modal';
 import { withAlert } from './components/AlertModal';
-import postTask from '../../apis/postTask';
+import postTask from '../../apis/Task/postTask';
 import { AuthContext } from '../../auth/Auth';
 import LoginModal from '../../components/LoginModal/LoginModal';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
@@ -334,7 +334,6 @@ class PostTask extends React.Component {
       <Modal onRequestClose={onRequestClose} >
         <Modal.Header>
           {title}
-          {console.log(111, currentUser)}
         </Modal.Header>
         <ProgressBar currentStep={currentStep} />
         <Modal.Content>

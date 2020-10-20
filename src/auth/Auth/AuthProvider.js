@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 // eslint-disable-next-line camelcase
 import AuthContext from './AuthContext';
 import { checkUser, extractInfoFromToken } from './../../apis';
+import checkTokenExpiry from '../../apis/utils/checkTokenExpiry';
+import removeLocalToken from '../../apis/utils/removeLocalToken';
 
 const AuthProvider = ({ children }) => {
   // const history = useHistory();
@@ -15,7 +17,7 @@ const AuthProvider = ({ children }) => {
     const result = checkTokenExpiry(decoded);
     if (!result) {
       removeLocalToken();
-      history.push('/');
+      useHistory.push('/');
     } 
     return decoded;
   }

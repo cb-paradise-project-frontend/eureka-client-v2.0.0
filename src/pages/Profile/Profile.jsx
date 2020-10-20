@@ -4,34 +4,9 @@ import { withRouter } from 'react-router-dom';
 import { AuthContext } from '../../auth/Auth';
 import ProfileNav from './ProfileNav';
 import ProfileContent from './ProfileContent';
+import getProfile from '../../apis/Profile/getProfile.js';
 
 import styles from './Profile.module.scss';
-
-// const Profile = ({ history }) => {
-//   const { currentUser } = useContext(AuthContext);
-//   const { displayName, email } = currentUser;
-
-//   //signOut方法暂时没有调用，等待潘哥处理完firebase登录问题后修复 --维尼
-//   const signOut = () => {
-//     logOut();
-//     if (!currentUser) {
-//       return (<Redirect to="/" />);
-//     }
-//   };
-
-//   //暂时使用了hack方法达成点击logout返回主页面的效果，等待signOut方法修复后再做修改 --维尼
-//   return (
-//     <React.Fragment>
-//       <button onClick={() => history.push('/')}>Log out</button>
-//       <div className={styles.profile_wrapper}>
-//         <div className={styles.profile}>
-//           <ProfileNav />
-//           <ProfileContent />
-//         </div>
-//       </div>
-//     </React.Fragment>
-//   );
-// };
 
 class Profile extends React.Component {
   constructor(props) {
@@ -39,14 +14,17 @@ class Profile extends React.Component {
 
     this.state = {
       currentNav: 'Account',
-      currentUser: '',
       account: {
-        Firstname: 'firstname',
-        Lastname: 'lastname',
-        Email: 'email',
-        DOB: 'DOB',
-        Mobile: 'mobile',
-        Location: 'location',
+        userId: '',
+        email: 'email',
+        firstName: 'firstname',
+        lastName: 'lastname',
+        birthday: {
+          day: 'DD',
+          month: 'MM',
+          year: 'YYYY',
+        },
+        mobile: 'mobile',
       },
       payment: {
         bankAccount: {
@@ -73,10 +51,23 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    const { currentUser } = this.context;
-    this.setState({
-      currentUser,
-    });
+    const {
+      userId, firstName, lastName, email,
+    } = this.context.currentUser;
+
+    getProfile(userId)
+      .then((res) => console.log('reslove', res))
+      .catch((e) => console.log('reject', e));
+
+    this.setState((prevState) => ({
+      account: {
+        ...prevState.account,
+        userId,
+        firstName,
+        lastName,
+        email,
+      },
+    }));
   }
 
   handleNavChange(currentNav) {
@@ -97,35 +88,39 @@ class Profile extends React.Component {
 
   handleBankChange = (value) => {
     this.setState((prevState) => (
-      {payment: {
-        ...prevState.payment,
-        bankAccount: value,
-      }}
+      {
+        payment: {
+          ...prevState.payment,
+          bankAccount: value,
+        },
+      }
     ));
   };
 
   handleBillChange = (value) => {
     this.setState((prevState) => (
-      {payment: {
-        ...prevState.payment,
-        billingAddress: value,
-      }}
+      {
+        payment: {
+          ...prevState.payment,
+          billingAddress: value,
+        },
+      }
     ));
   };
 
   render() {
     const { history } = this.props;
-    const { currentNav, account, payment, currentUser } = this.state;
+    const { currentNav, account, payment } = this.state;
 
     return (
       <React.Fragment>
-      {console.log(678, currentUser)}
         <button onClick={() => history.push('/')}>Log out</button>
         <div className={styles.profile_wrapper}>
           <div className={styles.profile}>
             <ProfileNav
               currentNav={currentNav}
               handleNavChange={this.handleNavChange}
+              userName={account}
             />
             <ProfileContent
               currentNav={currentNav}

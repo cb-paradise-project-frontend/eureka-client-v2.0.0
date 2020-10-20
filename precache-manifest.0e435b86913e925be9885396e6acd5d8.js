@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "543adc07a796caed05ad473889ce3ad0",
+    "revision": "538f784983fdc9d57819bf21f4073936",
     "url": "/eureka-client-v2.0.0/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/eureka-client-v2.0.0/static/css/2.bd6d7e67.chunk.css"
   },
   {
-    "revision": "5144da864c15b0c26771",
-    "url": "/eureka-client-v2.0.0/static/css/main.29ee5d78.chunk.css"
+    "revision": "9d8d995758ffe5938dda",
+    "url": "/eureka-client-v2.0.0/static/css/main.c7fccf56.chunk.css"
   },
   {
     "revision": "f797336ad9dbb3453e25",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/eureka-client-v2.0.0/static/js/2.85c6b156.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5144da864c15b0c26771",
-    "url": "/eureka-client-v2.0.0/static/js/main.6d17503d.chunk.js"
+    "revision": "9d8d995758ffe5938dda",
+    "url": "/eureka-client-v2.0.0/static/js/main.b16cee8a.chunk.js"
   },
   {
     "revision": "5ee4ab44f84cd5a22b8f",

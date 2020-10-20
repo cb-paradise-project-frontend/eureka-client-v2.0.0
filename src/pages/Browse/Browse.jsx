@@ -73,7 +73,7 @@ export default function Browse() {
 
   useEffect(() => {
     if (taskList.length && loadingStatus === true) {
-      toggleLoadingMask(false);
+      toggleLoadingMask();
     }
   }, [taskList.length, loadingStatus]);
 

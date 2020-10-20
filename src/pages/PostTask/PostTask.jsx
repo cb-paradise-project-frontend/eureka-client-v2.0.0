@@ -17,6 +17,7 @@ import Modal from '../../components/Modal';
 import { withAlert } from './components/AlertModal';
 import postTask from '../../apis/postTask';
 import { AuthContext } from '../../auth/Auth';
+import SubmitTask from './SubmitTask';
 
 
 class PostTask extends React.Component {
@@ -60,7 +61,7 @@ class PostTask extends React.Component {
   componentDidMount(){
     const { currentUser } = this.context;
     this.setState({ currentUser: currentUser });
-  } //withForm HOC
+  } 
 
   onJobTitle(value) {
     this.setState({ jobTitle: value });
@@ -134,14 +135,7 @@ class PostTask extends React.Component {
       this.setState({ touch: true });
     } else {
       this.setState({ touch: false });
-      //this.link to task page or profile()
-      //console.log(this.state);
-      // return useID = getUser();
-      // if(!useID){
-      //   login()
-      // }
-      postTask("5f893a17914f3af07a66550c", this.state);
-      //profile 
+      SubmitTask(this.state);
     }
   }
 

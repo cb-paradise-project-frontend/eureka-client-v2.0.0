@@ -7,6 +7,7 @@ import { AuthContext } from '../../../auth/Auth';
 import { saveProfile } from '../../../apis';
 import ProfilePage from './ProfilePage';
 import ProfileList from './ProfileList';
+import useLoadingPage from '../../../components/LoadingPage/useLoadingPage';
 
 const SAVE_PROFILE_FAIL = 'Profile saving failed. Please try again later.';
 
@@ -21,6 +22,8 @@ export default function useProfilePage(
   const [subPage, loadSubPage] = useState();
 
   const [profileFilled, setProfileFilled] = useState(false);
+
+  const [LoadingMask, toggleMask] = useLoadingPage(false);
 
   const form = useForm(FORM, getStoredData());
 
@@ -90,12 +93,15 @@ export default function useProfilePage(
   ]);
 
   const submitProfile = async () => {
+    toggleMask();
+
     const result = await saveProfile(userId, formData);
 
     if (result) {
       setProfileExist(true);
       // dropStoredData();
     } else {
+      toggleMask();
       showMessage(SAVE_PROFILE_FAIL);
     }
   };
@@ -103,7 +109,12 @@ export default function useProfilePage(
   const page = {};
 
   page.header = <ProfilePage.Header goBack={subPage && goBack} />;
-  page.content = <ProfilePage.Content content={subPage || profileList} />;
+  page.content = (
+    <>
+      <LoadingMask />
+      <ProfilePage.Content content={subPage || profileList} />
+    </>
+  );
   page.footer = (
     <ProfilePage.Footer
       onBottomClick={subPage ? goBack : submitProfile}

@@ -1,4 +1,5 @@
 import { api } from '../axiosInstance';
+import { destructure } from '../utils';
 
 export default async function saveProfile(userId, profile) {
   const {
@@ -42,5 +43,5 @@ export default async function saveProfile(userId, profile) {
 
   const { status } = await api.put('/profiles', formatData);
 
-  return status === 200 || false;
+  return (status === 200);
 }

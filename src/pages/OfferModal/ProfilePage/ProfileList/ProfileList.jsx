@@ -14,7 +14,6 @@ const arrowIcon = String.fromCharCode(10095);
 function ProfileItem({
   itemName, handleClick, filled, statusLabel,
 }) {
-
   const title = `Provide your ${itemName}`;
   const prefix = filled ? 'Update' : 'Enter';
   const label = statusLabel || `${prefix} your ${itemName}`;

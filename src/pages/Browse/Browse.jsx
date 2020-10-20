@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styles from './Browse.module.scss';
 
 import TaskList from './TaskList';
 import getTaskList from '../../apis/Task/getTaskList';
-import askQuestion from '../../apis/Task/askQuestion';
 import TaskMenu from './TaskMenu';
-import { AuthContext } from '../../auth/Auth';
 import useLoadingPage from '../../components/LoadingPage/useLoadingPage';
 import { LoadTaskProvider } from './TaskDetail/LoadTaskContext';
 
@@ -73,7 +71,7 @@ export default function Browse() {
 
   useEffect(() => {
     if (taskList.length && loadingStatus === true) {
-      toggleLoadingMask(false);
+      toggleLoadingMask();
     }
   }, [taskList.length, loadingStatus]);
 

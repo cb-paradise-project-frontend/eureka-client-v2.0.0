@@ -42,5 +42,5 @@ export default async function saveProfile(userId, profile) {
 
   const { status } = await api.put('/profiles', formatData);
 
-  return status === 200 || false;
+  return (status === 200);
 }

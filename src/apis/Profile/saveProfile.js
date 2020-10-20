@@ -1,5 +1,4 @@
 import { api } from '../axiosInstance';
-import { destructure } from '../utils';
 
 export default async function saveProfile(userId, profile) {
   const {

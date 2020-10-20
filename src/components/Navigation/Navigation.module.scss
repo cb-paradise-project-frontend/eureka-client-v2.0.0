@@ -1,3 +1,4 @@
+
 .menuMobile {
   display: none;
   .mobileNavBar {
@@ -26,17 +27,12 @@
         // flex: 1;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 21px;
-        margin: 15px 25px;
-      
-        .responsiveBar {
-          height: 3px;
-          width: 100%;
-          background-color: black;
-          border-radius: 10px;
-        }
+        justify-content: start;
+        width: 40px;
+        height: 40px;
+        margin: 12px 25px;
+        font-size: 1.7rem;
+        color:#646464;
       }
 
       .mobileLogo {
@@ -75,7 +71,7 @@
         width: 30px;
         height: 30px;
         margin: 10px 10px;
-        border: 1px solid red;
+        // border: 1px solid red;
         img {
           margin:0px 25px;
           height: 30px;
@@ -84,6 +80,61 @@
       }
     }
 
+    .mobileNavDropDown {
+      display:none;
+      flex-direction: column;
+      width: 100%;
+      height: 300px;
+      position: absolute;
+      top: 50px;
+      left: -120%;
+      opacity: 1;
+      transition: all 0.5s ease;
+
+      .mobileNavDropDownItem {
+        padding-left: 30px;
+        padding: 2rem;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        background-color: #EDF3FD;
+
+        &:hover {
+          background-color: #F7FCFA;
+        }
+      }
+    }
+
+    .mobileNavDropDownActive {
+      display:none;
+      flex-direction: column;
+      width: 100%;
+      height: 300px;
+      position: absolute;
+      top: 50px;
+      left: 0px;
+      opacity: 1;
+      transition: all 0.5s ease;
+      background: #EDF3FD;
+      z-index: 10;
+
+      .mobileNavDropDownItem {
+        padding-left: 30px;
+        padding: 2rem;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        background-color: #EDF3FD;
+
+        &:hover {
+          background-color: #F7FCFA;
+        }
+      }
+    }
   }
 }
 
@@ -200,7 +251,133 @@
   }
 }
 
-@media (max-width: 768px)
+// @media screen and (min-width:768px) and (max-width:960px)
+// {
+//   .web {
+//     display: flex;
+//     // border: 1px solid black;
+  
+//     .navBar{
+//       height: 72px;
+//       position: fixed;
+//       top: 0;
+//       left: 0;
+//       width: 100%;
+//       z-index: 100;
+  
+//       display: block;
+//       box-shadow: none;
+//       border-bottom: 1px solid transparent;
+//       background: rgba(255, 255, 255, 0.8);
+//       // font-family: "Baloo Tamma 2", cursive;
+//       // font-weight: 600;
+  
+//       .navWebMenu {
+//         display: flex;
+//         flex-direction: row;
+//         align-content: center;
+//         height: 72px;
+//         max-width: 960px;
+//         position: relative;
+//         margin: 0 auto;
+//       }
+  
+//       .logo {
+//         border: 1px solid black;
+//         height: 50px;
+//         width: 100px;
+//         float: left;
+//         display: flex;
+//         flex-direction: row;
+//         align-items: center;
+//         position: relative;
+//         margin: 10px;
+//         text-decoration: none;
+//         cursor: pointer;
+//         text-align: center;
+//         color: #646464;
+//         font-size: 18px;
+//         font-weight: 600;
+//         line-height: 20px;
+        
+//         img {
+//           margin-right: 10px;
+//           height: 40px;
+//           width: 40px;
+//         }
+//       }
+  
+//       .left {
+//         height: 100%;
+//         margin-left: 20px;
+//         // border-left: 1px solid rgba(0,0,0,.1);
+//         // border-left: 1px solid transparent;
+//         float: left;
+//         display: flex;
+//         align-items: center;
+//         font-weight: 600;
+//         border: 1px solid black;
+  
+//         .post_task_button_wrapper{
+//           text-shadow: 0 1px 2px rgba(0,0,0,.25);
+//           width: 135px;
+//           margin: 2px 30px 0px 30px;
+//           // font-family: "Baloo Tamma 2", cursive;
+//         }
+  
+//         .browseTasks {
+//           color:#426AD2;
+//           cursor: pointer;
+//           display: block;
+//           // align-items: center;
+//           text-align: center;
+//           justify-content: center;
+//           // align-items: center;
+//           height: 72px;
+//           font-size: 16px;
+//           font-weight: 600;
+//           letter-spacing: .4px;
+//           line-height: 12px;
+//           // position: relative;
+//           text-decoration: none;
+//           padding: 0px 10px;
+//           margin: 0px 15px;
+//           border-top: 4px solid transparent;
+//           &:hover {
+//             color: #008fb4;
+//             border-top: 4px solid #008fb4;
+//           }
+//         }
+//       }
+  
+//       .right {
+//         padding-top: 2px;
+//         height: 100%;
+//         float: right;
+//         display: flex;
+//         align-items: center;
+//         font-weight: 600;
+//         // border: 1px solid black;
+    
+//         .becomeTasker{
+//           text-shadow: 0 1px 2px rgba(0,0,0,.25);
+//         }
+//         .login_button_wrapper, 
+//         .signup_button_wrapper{
+//           display: flex;
+//           align-items: center;
+//           margin: 0 25px;
+//         }
+//       }
+//     }
+//   }
+
+//   .menuMobile {
+//     display: none;
+//   }
+// }
+
+@media screen and (max-width: 768px)
 {
   .web {
     display: none;
@@ -208,5 +385,14 @@
 
   .menuMobile {
     display: flex;
+    .mobileNavBar {
+      .mobileNavDropDown {
+        display: flex;
+      }
+
+      .mobileNavDropDownActive {
+        display: flex;
+      }
+    }
   }
 }

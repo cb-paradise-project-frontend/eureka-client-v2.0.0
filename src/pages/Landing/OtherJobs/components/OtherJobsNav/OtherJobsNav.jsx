@@ -16,6 +16,10 @@ class OtherJobsNav extends Component {
     this.handleComponentShowing = this.handleComponentShowing.bind(this);
     this.handleShowingBlock = this.handleShowingBlock.bind(this);
   }
+  
+  // componentDidMount() {
+  //   this.handleComponentShowing('Moving home');
+  // }
 
   handleShowingBlock(index) {
     this.setState({

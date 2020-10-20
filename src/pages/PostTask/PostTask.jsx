@@ -16,6 +16,10 @@ import ProgressBar from './components/ProgressBar';
 import Modal from '../../components/Modal';
 import { withAlert } from './components/AlertModal';
 import postTask from '../../apis/Task/postTask';
+import { AuthContext } from '../../auth/Auth';
+import LoginModal from '../../components/LoginModal/LoginModal';
+import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import MessageBox from '../../components/MessageBox';
 
 class PostTask extends React.Component {
   constructor(props) {
@@ -32,6 +36,9 @@ class PostTask extends React.Component {
       budgetHourlyWage: "0",
       touch: false,
       method: "offline",
+      showLoginModal: false,
+      successSubmit: false,
+      currentUser: "",
     }
 
     this.jobTitleMinLength = 10;
@@ -52,6 +59,34 @@ class PostTask extends React.Component {
     this.onBudgetHourlyWage = this.onBudgetHourlyWage.bind(this);
     this.onBudgetHour = this.onBudgetHour.bind(this);
     this.handleBudgetWageClick = this.handleBudgetWageClick.bind(this);
+    this.togglerMsgBox = this.togglerMsgBox.bind(this);
+    this.togglerShowLoginModal = this.togglerShowLoginModal.bind(this);
+    }
+
+  componentDidMount(){
+    const { currentUser } = this.context;
+    console.log(this.context);
+    this.setState({ currentUser: currentUser });
+    console.log(433, currentUser);
+  } //withForm HOC
+
+  componentDidUpdate() {
+    const { currentUser } = this.context;
+    if(this.state.currentUser !== currentUser){
+      this.setState({ currentUser: currentUser });
+    }
+  }
+
+  togglerMsgBox() {
+    this.setState((prevState) => ({
+      successSubmit: !prevState.successSubmit, 
+    }))
+  }
+
+  togglerShowLoginModal() {
+    this.setState((prevState) => ({
+      showLoginModal: !prevState.showLoginModal,
+    }))
   }
 
   onJobTitle(value) {
@@ -119,6 +154,12 @@ class PostTask extends React.Component {
     }));
   }
 
+  async getQuote() {
+    await postTask(this.state);
+    this.props.history.push('/profile/tasks');
+    this.togglerMsgBox()
+  } //HOC
+
   handleGetQuoteClick() {
     const { taskBudget } = this.state;
     
@@ -126,14 +167,7 @@ class PostTask extends React.Component {
       this.setState({ touch: true });
     } else {
       this.setState({ touch: false });
-      //this.link to task page or profile()
-      //console.log(this.state);
-      // return useID = getUser();
-      // if(!useID){
-      //   login()
-      // }
-      postTask("5f893a17914f3af07a66550c", this.state);
-      //profile 
+      { this.state.currentUser ? this.getQuote() : this.togglerShowLoginModal() }
     }
   }
 
@@ -151,7 +185,7 @@ class PostTask extends React.Component {
 
   render() {
     const {
-      currentStep, jobTitle, jobDetails, jobCategory, place, startDate, touch, method, taskBudget,
+      currentStep, jobTitle, jobDetails, jobCategory, place, startDate, touch, method, taskBudget, showLoginModal, successSubmit,
     } = this.state;
 
     const conditionList = [
@@ -292,6 +326,7 @@ class PostTask extends React.Component {
 
     
     return (
+      <>
       <Modal onRequestClose={onRequestClose} >
         <Modal.Header>
           {title}
@@ -304,8 +339,15 @@ class PostTask extends React.Component {
           {postTaskBottom}
         </Modal.Footer>
       </Modal>
+      {showLoginModal && <LoginModal pageToggler={this.togglerShowLoginModal} />}
+      {successSubmit && 
+        <MessageBox
+          onRequestClose={this.props.onClose}
+          info="Successfully submit!" 
+        />}
+      </>
     );
   }
 }
-
-export default withAlert(PostTask);
+PostTask.contextType = AuthContext;
+export default withAlert(withRouter(PostTask));

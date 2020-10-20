@@ -71,8 +71,25 @@ class TaskCategories extends React.Component {
                   })
                 }
               </div>
+            </div>
+            <div className={styles.taskCategoriesContent__mobile}>
+              <h3>What do you need done?</h3>
+              <div className={styles.iconContainer}>
+                {
+                  data.map((item, index) => {
+                    // console.log(item)
+                    return (
+                      <TaskCategoriesItem
+                      key = {item.id}
+                      type = {item.type}
+                      title = {item.title}
+                      />
+                    )
+                  })
+                }
+              </div>
+            </div>
           </div>
-        </div>
         </div>
       </div>
     );

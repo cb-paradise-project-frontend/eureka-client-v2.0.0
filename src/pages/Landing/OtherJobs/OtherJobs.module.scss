@@ -13,10 +13,14 @@
       padding: 0 10%;
       display: flex;
       justify-content: flex-start;
+      // border: 1px solid black;
 
       .otherJobsContent {
         position: relative;
         top: 20%;
+        // left: 10%;
+        width: 850px;
+        // border: 1px solid red;
 
         h3 {
           color: rgb(41, 43, 50);
@@ -32,6 +36,18 @@
       }
     }
   }
-  
+}
 
+@media screen and (max-width: 375px)
+{
+  .bg__wrapper {
+    height: 812px;
+    position: relative;
+    background-position: center;
+    background-image: url(../../../assets/responsive/bg-home.svg);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 375px 812px;
+
+  }
 }

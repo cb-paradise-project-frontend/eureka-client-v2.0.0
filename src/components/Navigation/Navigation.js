@@ -4,6 +4,7 @@ import className from 'classnames/bind';
 
 import styles from './Navigation.module.scss';
 import logo from '../../assets/logo.svg';
+import postTaskLogo from '../../assets/postTaskLogo.svg';
 
 import { AuthContext } from './../../auth/Auth';
 // import { NavContext } from './NavContext';
@@ -77,46 +78,76 @@ function Navigation() {
     <AuthContext.Consumer>
       {(currentUser) => (
         // <NavContext.Consumer>
-        <div className={styles.web}>
-          <nav className={styles.navBar}>
-            <div className={styles.navWebMenu}>
-              <Link
-                className={styles.logo}
-                to="/"
-              >
-                <img src={logo} />
-                <p>Brand</p>
-              </Link>
+        <React.Fragment>
+          <div className={styles.menuMobile}>
+            <nav className={styles.mobileNavBar}>
+              <div className={styles.mobileNavMenu}>
+                <div className={styles.responsiveButton}>
+                  <span className={styles.responsiveBar}></span>
+                  <span className={styles.responsiveBar}></span>
+                  <span className={styles.responsiveBar}></span>
+                </div>
 
-              <div className={styles.left} >
-                <PostTaskButton/>
-                <Categories />
                 <Link
-                  className={styles.browseTasks}
-                  to="/tasks"
+                  className={styles.mobileLogo}
+                  to="/"
                 >
-                  Browse tasks
+                  <img src={logo} />
+                  <p>Brand</p>
                 </Link>
-                {/* <div className={styles.howItWorks}>
-                    How it works
-                </div> */}
-              </div>
 
-              <div className={styles.right} >
-                <SignupButton />
-                <LoginButton />
-                <div className={styles.becomeTasker} >
-                  <Button
-                    color={'transparent'}
-                    size={'small'}
-                  >
-                    Become a Tasker
-                  </Button>
+                <div className={styles.responsivePostTask}>
+                  {/* <img src={postTaskLogo} /> */}
                 </div>
               </div>
-            </div>
-          </nav>
-        </div>
+            
+              {/* <div className={styles.mobileNavDropDown>
+                
+              </div> */}
+            </nav>
+          </div>
+
+          <div className={styles.web}>
+            <nav className={styles.navBar}>
+              <div className={styles.navWebMenu}>
+                <Link
+                  className={styles.logo}
+                  to="/"
+                >
+                  <img src={logo} />
+                  <p>Brand</p>
+                </Link>
+
+                <div className={styles.left} >
+                  <PostTaskButton/>
+                  <Categories />
+                  <Link
+                    className={styles.browseTasks}
+                    to="/tasks"
+                  >
+                    Browse tasks
+                  </Link>
+                  {/* <div className={styles.howItWorks}>
+                      How it works
+                  </div> */}
+                </div>
+
+                <div className={styles.right} >
+                  <SignupButton />
+                  <LoginButton />
+                  <div className={styles.becomeTasker} >
+                    <Button
+                      color={'transparent'}
+                      size={'small'}
+                    >
+                      Become a Tasker
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </React.Fragment>
         // </NavContext.Consumer>
       )}
     </AuthContext.Consumer>

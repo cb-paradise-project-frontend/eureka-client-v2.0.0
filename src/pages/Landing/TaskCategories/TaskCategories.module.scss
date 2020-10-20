@@ -1,7 +1,10 @@
+@media screen and (min-width: 768px)
+{
 .taskCategories__container {
   height: 100vh;
 
   .bg__wrapper {
+
     width: 100%;
     height: 100%;
     position: relative;
@@ -15,7 +18,7 @@
       align-items: center;
 
       .taskCategoriesContent {
-        background-color: rgba(247, 252, 250, 0.8);
+        // background-color: rgba(247, 252, 250, 0.8);
         border-radius: 8px;
         width: 500px;
         display: flex;
@@ -31,6 +34,93 @@
           line-height: 35px;
           letter-spacing: -0.15px;
           padding:40px 0;
+        }
+
+        .iconContainer {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+      .taskCategoriesContent__mobile {
+        display: none;
+
+        
+        // .bg__wrapper {
+        //   width: 100%;
+        //   height: 100%;
+        //   position: relative;
+        //   background: url(../../../assets/responsive/bg-categories.svg) no-repeat center/cover;
+        //   border: 1px solid black;
+        // }
+        // .content__wrapper {
+        //   height: 100%;
+        //   display: flex;
+        //   justify-content: flex-end;
+        //   align-items: flex-end;
+        //   // border: 1px solid red;
+        //   .taskCategoriesContent {
+        //     height: 650px;
+        //     border: 1px solid red;
+        //     h3 {
+        //       font-size: 24px;
+        //       line-height: 28px;
+        //       padding: 20px 0;
+        //       border: 1px solid green;
+        //     }
+        //   }
+        // }
+      }
+    }
+  }
+}
+}
+
+@media screen and (max-width: 768px)
+{
+  .taskCategories__container {
+    height: 812px;
+
+    .bg__wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background: url(../../../assets/responsive/bg-categories.svg) no-repeat center/cover;
+      // border: 1px solid black;
+    }
+    .content__wrapper {
+      height: 100%;
+      padding: 0px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      // border: 1px solid red;
+      .taskCategoriesContent {
+        display: none;
+        // height: 650px;
+        // border: 1px solid red;
+        // h3 {
+        //   font-size: 24px;
+        //   line-height: 28px;
+        //   padding: 20px 0;
+        //   border: 1px solid green;
+        // }
+      }
+      .taskCategoriesContent__mobile {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // justify-content: center;
+        // border: 1px solid red;
+        // background-color: rgba(255, 255, 255, 0.6);
+
+        h3 {
+          font-size: 24px;
+          line-height: 28px;
+          margin: 50px 0 470px;
+          // border: 1px solid green;
         }
 
         .iconContainer {

@@ -19,6 +19,19 @@ function Home() {
               </Button>
             </div>
           </div>
+          <div className={styles.home__content__mobile}>
+            <h2>Connect with experts to get the job done</h2>
+            <h3>on</h3>
+            <h1>Airtasker</h1>
+            <div>
+              <Button color={'mint'}>
+                Get started now
+              </Button>
+            </div>
+            <p>It’s amazing </p>
+            <p>what you </p>
+            <p>can’t do yourself</p>
+          </div>
         </div>
       </div>
     </div>

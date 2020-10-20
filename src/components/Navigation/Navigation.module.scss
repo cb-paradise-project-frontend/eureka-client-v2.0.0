@@ -1,23 +1,91 @@
-// .menuMobile {
-//   display: none;
-//   .responsiveButton {
-//     position: absolute;
-//     top: 1.1rem;
-//     left: 1rem;
-//     display: none;
-//     flex-direction: column;
-//     justify-content: space-between;
-//     width: 30px;
-//     height: 21px;
-  
-//     .responsiveBar {
-//       height: 3px;
-//       width: 100%;
-//       background-color: #545a77;
-//       border-radius: 10px;
-//     }
-//   }
-// }
+.menuMobile {
+  display: none;
+  .mobileNavBar {
+    height: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+
+    display: block;
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.8);
+
+    .mobileNavMenu {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-content: center;
+      height: 50px;
+      max-width: 768px;
+      position: relative;
+      margin: 0 auto;
+
+      .responsiveButton {
+        // flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 21px;
+        margin: 15px 25px;
+      
+        .responsiveBar {
+          height: 3px;
+          width: 100%;
+          background-color: black;
+          border-radius: 10px;
+        }
+      }
+
+      .mobileLogo {
+        // border: 1px solid black;
+        height: 30px;
+        width: 50px;
+        // flex: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        // position: relative;
+        // margin: 10px 85px 10px 65px;
+        margin: 10px;
+        text-decoration: none;
+        cursor: pointer;
+        text-align: center;
+        color: #646464;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 20px;
+        // border: 1px solid black;
+        
+        img {
+          margin-right: 10px;
+          height: 40px;
+          width: 40px;
+        }
+      }
+
+      .responsivePostTask {
+        // flex: 1;
+        // float: right;
+        // right: 25px;
+        display: flex;
+        width: 30px;
+        height: 30px;
+        margin: 10px 10px;
+        border: 1px solid red;
+        img {
+          margin:0px 25px;
+          height: 30px;
+          width: 30px;
+        }
+      }
+    }
+
+  }
+}
 
 .web {
   display: flex;
@@ -131,18 +199,14 @@
     }
   }
 }
-// @media (max-width: 767px)
-// {
-//   nav {
-//     display: none;
-//   }
-//   // .responsiveButton {
-//   //   display: flex;
-//   // }
-//   // .left {
-//   //   display: none;
-//   // }
-//   // .right {
-//   //   display: none;
-//   // }
-// }
+
+@media (max-width: 768px)
+{
+  .web {
+    display: none;
+  }
+
+  .menuMobile {
+    display: flex;
+  }
+}

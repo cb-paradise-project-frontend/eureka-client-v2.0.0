@@ -15,7 +15,6 @@ class OtherJobsNav extends Component {
 
     this.handleComponentShowing = this.handleComponentShowing.bind(this);
     this.handleShowingBlock = this.handleShowingBlock.bind(this);
-    // this.result = this.result.bind(this);
   }
 
   handleShowingBlock(index) {
@@ -26,17 +25,18 @@ class OtherJobsNav extends Component {
   
   handleComponentShowing(index) {
     const result = this.props.data.filter(item => item.id === index).map((item, i) => {
-        return <OtherJobsCardContainer
-        tabDescription = {item.tabDescription}
-        title = {item.title}
-        description = {item.description}
-        price = {item.price}
-        rate = {item.rate}
-        />;
+        return (
+          <OtherJobsCardContainer
+            tabDescription = {item.tabDescription}
+            title = {item.title}
+            description = {item.description}
+            price = {item.price}
+            rate = {item.rate}
+          />);
     })
     
 
-    this.setState({selectCard:result[0]}) ;
+    this.setState({currentComponentIndex:result[0]}) ;
   }
 
   render () {
@@ -54,10 +54,10 @@ class OtherJobsNav extends Component {
 
           <div>
             {
-              // this.result(currentComponentIndex)
+              // this.handleComponentShowing(currentComponentIndex)
               // this.handleComponentShowing(currentComponentIndex)
               
-              this.state.selectCard
+              this.state.currentComponentIndex
             }
           </div>
 

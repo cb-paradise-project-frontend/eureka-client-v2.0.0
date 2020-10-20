@@ -22,6 +22,7 @@
     border: 1px solid #bbc2dc;
     box-sizing: border-box;
     outline: none;
+    position: relative;
 
     &:hover,
     &:focus,
@@ -36,6 +37,15 @@
     &:-webkit-autofill:active {
       -webkit-transition-delay: 99999s;
       -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;    
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      border: 1px solid #d3d3d3;
+      
+      &:hover {
+        box-shadow: 0 0 3px 2px rgba(194, 170, 170, 0.29);
+      }
     }
   }
 

@@ -10,7 +10,14 @@ const Account = ({
   onAccountChange,
 }) => {
   const accountData = Object.keys(accountContent).map((key) => {
-    const value = accountContent[key];
+    let value;
+
+    if (key === 'birthday') {
+      value = 'birthday';
+    } else {
+      value = accountContent[key];
+    }
+
     const handleChange = onAccountChange(key);
 
     return (
@@ -19,6 +26,7 @@ const Account = ({
           label={key}
           value={value}
           handleChange={handleChange}
+          disabled={(key === 'email' || key === 'userId')}
         />
       </div>
     );

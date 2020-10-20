@@ -8,12 +8,14 @@ import Navigation from './Navigation';
 const ProfileNav = ({
   currentNav,
   handleNavChange,
-}) =>{
+  userName,
+}) => {
   const navList = ['Account', 'Payment', 'Tasks', 'Password'];
   return (
     <div className={styles.profile_nav}>
       <Avatar
         handleNavChange={handleNavChange}
+        userName={userName}
       />
       <div className={styles.navigation}>
         {

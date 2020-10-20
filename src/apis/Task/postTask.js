@@ -1,7 +1,7 @@
-import { api } from '../axiosInstance';
+import { axiosInstance, setTokenToRequest, extractTokenFromResponse } from './axiosInstance';
 
 
-export default function postTask(userID, taskData) {
+export default function postTask(taskData) {
   const { jobTitle, jobDetails, place, startDate, taskBudget } = taskData; 
 
   const data = { 
@@ -9,7 +9,6 @@ export default function postTask(userID, taskData) {
     title: jobTitle,
     status: "OPEN",
     budget: taskBudget,
-    postedBy: userID,
     location: place,
     dueDate: startDate,
     description: jobDetails
@@ -19,8 +18,10 @@ export default function postTask(userID, taskData) {
   //task3: errorhandler,error_msg handle
 
   //const formatted_data = JSON.stringify(data);
+  axiosInstance.interceptors.request.use(setTokenToRequest);
+  axiosInstance.interceptors.response.use(extractTokenFromResponse);
 
-  return api.post(`/tasks`, data)
+  return axiosInstance.post(`/tasks`, data)
     .then((response) => console.log(response))
     .catch((error) => console.error(error))
 }

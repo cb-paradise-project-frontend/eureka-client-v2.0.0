@@ -8,6 +8,18 @@ const AuthProvider = ({ children }) => {
   // const history = useHistory();
   const [currentUser, setCurrentUser] = useState(null);
 
+  const checkTokenValidity = () => {
+    const decoded = extractInfoFromToken();
+    console.log("authprovider", decoded);
+    if (!decoded) return;
+    const result = checkTokenExpiry(decoded);
+    if (!result) {
+      removeLocalToken();
+      history.push('/');
+    } 
+    return decoded;
+  }
+
   const setUser = (decodedUser) => {
     const { userId, firstName, lastName, email } = decodedUser;
     setCurrentUser({userId, firstName, lastName, email});

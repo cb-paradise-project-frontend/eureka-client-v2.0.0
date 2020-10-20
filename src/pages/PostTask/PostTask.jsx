@@ -17,7 +17,9 @@ import Modal from '../../components/Modal';
 import { withAlert } from './components/AlertModal';
 import postTask from '../../apis/postTask';
 import { AuthContext } from '../../auth/Auth';
-
+import LoginModal from '../../components/LoginModal/LoginModal';
+import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import MessageBox from '../../components/MessageBox';
 
 class PostTask extends React.Component {
   constructor(props) {
@@ -35,6 +37,8 @@ class PostTask extends React.Component {
       touch: false,
       method: "offline",
       currentUser: "",
+      showLoginModal: false,
+      successSubmit: false,
     }
 
     this.jobTitleMinLength = 10;
@@ -55,12 +59,35 @@ class PostTask extends React.Component {
     this.onBudgetHourlyWage = this.onBudgetHourlyWage.bind(this);
     this.onBudgetHour = this.onBudgetHour.bind(this);
     this.handleBudgetWageClick = this.handleBudgetWageClick.bind(this);
+    this.togglerShowLoginModal = this.togglerShowLoginModal.bind(this);
+    this.togglerMsgBox = this.togglerMsgBox.bind(this);
   }
 
   componentDidMount(){
     const { currentUser } = this.context;
+    console.log(this.context);
     this.setState({ currentUser: currentUser });
+    console.log(433, currentUser);
   } //withForm HOC
+
+  componentDidUpdate() {
+    const { currentUser } = this.context;
+    if(this.state.currentUser !== currentUser){
+      this.setState({ currentUser: currentUser });
+    }
+  }
+
+  togglerMsgBox() {
+    this.setState((prevState) => ({
+      successSubmit: !prevState.successSubmit, 
+    }))
+  }
+
+  togglerShowLoginModal() {
+    this.setState((prevState) => ({
+      showLoginModal: !prevState.showLoginModal,
+    }))
+  }
 
   onJobTitle(value) {
     this.setState({ jobTitle: value });
@@ -127,14 +154,20 @@ class PostTask extends React.Component {
     }));
   }
 
+  async getQuote() {
+    await postTask(this.state);
+    this.props.history.push('/profile');
+    this.togglerMsgBox()
+  } //HOC
+
   handleGetQuoteClick() {
-    const { taskBudget } = this.state;
+    const { taskBudget, currentUser } = this.state;
     
     if (taskBudget < this.minBudget || taskBudget > this.maxBudget) {
       this.setState({ touch: true });
     } else {
       this.setState({ touch: false });
-      SubmitTask(this.state);
+      return currentUser ? this.getQuote() : this.togglerShowLoginModal();
     }
   }
 
@@ -291,8 +324,8 @@ class PostTask extends React.Component {
 
     const { onRequestClose } = this.props;
 
-    
     return (
+      <>
       <Modal onRequestClose={onRequestClose} >
         <Modal.Header>
           {title}
@@ -306,8 +339,17 @@ class PostTask extends React.Component {
           {postTaskBottom}
         </Modal.Footer>
       </Modal>
+      { this.state.showLoginModal && <LoginModal  pageToggler={this.togglerShowLoginModal} /> }
+      {this.state.successSubmit && 
+        <MessageBox
+          onRequestClose={this.props.onClose}
+          info="Successfully submit"
+        />
+      }
+      </>
     );
   }
 }
+
 PostTask.contextType = AuthContext;
-export default withAlert(PostTask);
+export default withAlert(withRouter(PostTask));

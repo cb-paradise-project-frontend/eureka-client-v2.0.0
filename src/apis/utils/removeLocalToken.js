@@ -1,5 +1,5 @@
 const removeLocalToken = () => {
-  const token = localStorage.getItem('token');
+  const token = window.localStorage.getItem('token');
   if (!token) return;
   localStorage.removeItem('token');
 }

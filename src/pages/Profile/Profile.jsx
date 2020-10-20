@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { AuthContext } from '../../auth/Auth';
 import ProfileNav from './ProfileNav';
 import ProfileContent from './ProfileContent';
-import getProfile from '../../apis/Profile/getProfile.js';
+import getProfile from '../../apis/Profile/getProfile';
 
 import styles from './Profile.module.scss';
 
@@ -47,13 +47,27 @@ class Profile extends React.Component {
     this.handleInputChangeCreator = this.handleInputChangeCreator.bind(this);
     this.handleBankChange = this.handleBankChange.bind(this);
     this.handleBillChange = this.handleBillChange.bind(this);
-    // this.context = this.contextType;
+    this.handleBirthdayChangeCreator = this.handleBirthdayChangeCreator.bind(this);
+    this.handleDalin = this.handleDalin.bind(this);
+  }
+
+  handleDalin = () => {
+    const pathName = this.props.history.location.pathname;
+
+    if (pathName.includes('tasks')) {
+      this.handleNavChange('Tasks');
+      this.props.history.push('/profile');
+    }
   }
 
   componentDidMount() {
     const {
       userId, firstName, lastName, email,
     } = this.context.currentUser;
+
+    // 给大林设计的那个postTask发送完跳转至Profile->Tasks页面
+    this.handleDalin();
+    // 跳转结束 --- 维尼
 
     getProfile(userId)
       .then((res) => console.log('reslove', res))
@@ -82,6 +96,19 @@ class Profile extends React.Component {
         account: {
           ...prevState.account,
           [key]: value,
+        },
+      }));
+  });
+
+  handleBirthdayChangeCreator = (index) => ((value) => {
+    this.setState((prevState) => (
+      {
+        account: {
+          ...prevState.account,
+          birthday: {
+            ...prevState.account.birthday,
+            [index]: value,
+          },
         },
       }));
   });
@@ -129,6 +156,7 @@ class Profile extends React.Component {
               paymentContent={payment}
               onBankChange={this.handleBankChange}
               onBillChange={this.handleBillChange}
+              onBirthdayChange={this.handleBirthdayChangeCreator}
             />
           </div>
         </div>

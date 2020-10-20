@@ -4,6 +4,10 @@
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+
+  div:nth-child(n+1) {
+    margin-top: 20px;
+  }
 }
 
 .input_wrapper {
@@ -20,4 +24,22 @@
 
 .update_btn {
   margin-top: 30px;
+}
+
+.birthday_wrapper {
+  // border: 1px solid red;
+  width: 100%;
+}
+
+.label_wrapper {
+  display: block;
+  margin-bottom: -30px;
+}
+
+.birthday_input_wrapper {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  // border: 1px solid yellow;
+  justify-content: space-between;
 }

@@ -14,12 +14,14 @@ const ProfileContent = ({
   paymentContent,
   onBankChange,
   onBillChange,
+  onBirthdayChange,
 }) => {
   const contentDisplay = (pageIndex) => (
     {
       Account: <Account
         accountContent={accountContent}
         onAccountChange={onProfileChange}
+        onBirthdayChange={onBirthdayChange}
       />,
       Payment: <Payment
         paymentContent={paymentContent}

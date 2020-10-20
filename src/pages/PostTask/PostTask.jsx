@@ -89,6 +89,11 @@ class PostTask extends React.Component {
     }))
   }
 
+  componentDidMount(){
+    const { currentUser } = this.context;
+    this.setState({ currentUser: currentUser });
+  } //withForm HOC
+
   onJobTitle(value) {
     this.setState({ jobTitle: value });
   }

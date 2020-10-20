@@ -36,6 +36,9 @@ class PostTask extends React.Component {
       budgetHourlyWage: "0",
       touch: false,
       method: "offline",
+      showLoginModal: false,
+      successSubmit: false,
+      currentUser: "",
     }
 
     this.jobTitleMinLength = 10;
@@ -56,7 +59,9 @@ class PostTask extends React.Component {
     this.onBudgetHourlyWage = this.onBudgetHourlyWage.bind(this);
     this.onBudgetHour = this.onBudgetHour.bind(this);
     this.handleBudgetWageClick = this.handleBudgetWageClick.bind(this);
-  }
+    this.togglerMsgBox = this.togglerMsgBox.bind(this);
+    this.togglerShowLoginModal = this.togglerShowLoginModal.bind(this);
+    }
 
   componentDidMount(){
     const { currentUser } = this.context;
@@ -162,14 +167,7 @@ class PostTask extends React.Component {
       this.setState({ touch: true });
     } else {
       this.setState({ touch: false });
-      //this.link to task page or profile()
-      //console.log(this.state);
-      // return useID = getUser();
-      // if(!useID){
-      //   login()
-      // }
-      postTask("5f893a17914f3af07a66550c", this.state);
-      //profile 
+      { this.state.currentUser ? this.getQuote() : this.togglerShowLoginModal() }
     }
   }
 
@@ -187,7 +185,7 @@ class PostTask extends React.Component {
 
   render() {
     const {
-      currentStep, jobTitle, jobDetails, jobCategory, place, startDate, touch, method, taskBudget,
+      currentStep, jobTitle, jobDetails, jobCategory, place, startDate, touch, method, taskBudget, showLoginModal, successSubmit,
     } = this.state;
 
     const conditionList = [
@@ -328,6 +326,7 @@ class PostTask extends React.Component {
 
     
     return (
+      <>
       <Modal onRequestClose={onRequestClose} >
         <Modal.Header>
           {title}
@@ -340,6 +339,13 @@ class PostTask extends React.Component {
           {postTaskBottom}
         </Modal.Footer>
       </Modal>
+      {showLoginModal && <LoginModal pageToggler={this.togglerShowLoginModal} />}
+      {successSubmit && 
+        <MessageBox
+          onRequestClose={this.props.onClose}
+          info="Successfully submit!" 
+        />}
+      </>
     );
   }
 }

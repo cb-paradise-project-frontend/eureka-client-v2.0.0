@@ -24,7 +24,7 @@ const App = () => (
         <Route path="/tasks" >
           <Browse />
         </Route>
-        <PrivateRoute path="/profile" exact component={Profile} />
+        <PrivateRoute path="/profile" component={Profile} />
         <Route component={NotFound} />
       </Switch>
     </AuthProvider>

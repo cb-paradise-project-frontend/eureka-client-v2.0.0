@@ -1,5 +1,5 @@
-import { axiosInstance } from '../axiosInstance';
-import destructure from '../utils/destructure';
+import { api } from '../axiosInstance';
+import { destructure } from '../utils';
 
 export default async function getTaskList(filter) {
   const filterKeyArray = filter && Object.keys(filter);
@@ -16,7 +16,7 @@ export default async function getTaskList(filter) {
           : `${url}${key}=${filter[key]}&`
       ), '/tasks?');
 
-  const response = await axiosInstance.get(`${urlConfig}`);
+  const response = await api.get(`${urlConfig}`);
 
   return (response.status === 200) && destructure(response);
 }

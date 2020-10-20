@@ -1,4 +1,4 @@
-import { axiosInstance } from '../axiosInstance';
+import { api } from '../axiosInstance';
 
 export default async function askQuestion(userId, taskId, question) {
   const comment = {
@@ -6,7 +6,7 @@ export default async function askQuestion(userId, taskId, question) {
     message: question,
   };
 
-  const { status } = await axiosInstance.put(`/tasks/comment/${taskId}`, comment);
+  const { status } = await api.put(`/tasks/comment/${taskId}`, comment);
 
   return (status === 200);
 }

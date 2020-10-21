@@ -25,7 +25,7 @@ class Navigation extends Component {
   }
   
   handleClick = () => {
-    this.setState({ clicked: !this.state.clicked})
+    this.setState((prevState) => ({ clicked: !prevState.clicked}))
   }
   render() {
     const PostTaskButton = () => (

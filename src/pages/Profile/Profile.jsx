@@ -5,6 +5,8 @@ import { AuthContext } from '../../auth/Auth';
 import ProfileNav from './ProfileNav';
 import ProfileContent from './ProfileContent';
 import getProfile from '../../apis/Profile/getProfile';
+import { saveProfile } from '../../apis';
+import { setIntializeBirthday, setIntializePayment, setInitalizeBilling } from './utils';
 
 import styles from './Profile.module.scss';
 
@@ -14,41 +16,28 @@ class Profile extends React.Component {
 
     this.state = {
       currentNav: 'Account',
+      displayName: '',
       account: {
         userId: '',
-        email: 'email',
-        firstName: 'firstname',
-        lastName: 'lastname',
-        birthday: {
-          day: 'DD',
-          month: 'MM',
-          year: 'YYYY',
-        },
-        mobile: 'mobile',
+        email: '',
+        firstName: '',
+        lastName: '',
+        birthday: '',
+        mobile: '',
       },
       payment: {
-        bankAccount: {
-          holder: 'Alice',
-          accountNumber: '12345678',
-          bsb: '000-000',
-        },
-        billingAddress: {
-          lineOne: 'addres line1',
-          lineTwo: 'address line2 optional',
-          suburb: 'suburb',
-          state: 'state',
-          postcode: 'postcode',
-          country: 'country',
-        },
+        bankAccount: '',
+        billingAddress: '',
       },
     };
 
     this.handleNavChange = this.handleNavChange.bind(this);
     this.handleInputChangeCreator = this.handleInputChangeCreator.bind(this);
-    this.handleBankChange = this.handleBankChange.bind(this);
-    this.handleBillChange = this.handleBillChange.bind(this);
+    this.handlePaymentCreator = this.handlePaymentCreator.bind(this);
     this.handleBirthdayChangeCreator = this.handleBirthdayChangeCreator.bind(this);
     this.handleDalin = this.handleDalin.bind(this);
+    this.handleUpdateProfile = this.handleUpdateProfile.bind(this);
+    this.getUserProfile = this.getUserProfile.bind(this);
   }
 
   handleDalin = () => {
@@ -60,6 +49,32 @@ class Profile extends React.Component {
     }
   }
 
+  getUserProfile = async () => {
+    const { userId } = this.state.account;
+    const {
+      accountNumber,
+      accountHolder,
+      billingAddress,
+      birthday,
+      bsb,
+      mobile,
+    } = await getProfile(userId);
+    const bankAccountData = setIntializePayment(accountNumber, accountHolder, bsb);
+    const billingAddressData = setInitalizeBilling(billingAddress);
+
+    this.setState((prevState) => ({
+      account: {
+        ...prevState.account,
+        birthday: setIntializeBirthday(birthday),
+        mobile,
+      },
+      payment: {
+        bankAccount: bankAccountData,
+        billingAddress: billingAddressData,
+      },
+    }));
+  }
+
   componentDidMount() {
     const {
       userId, firstName, lastName, email,
@@ -69,11 +84,8 @@ class Profile extends React.Component {
     this.handleDalin();
     // 跳转结束 --- 维尼
 
-    getProfile(userId)
-      .then((res) => console.log('reslove', res))
-      .catch((e) => console.log('reject', e));
-
     this.setState((prevState) => ({
+      displayName: `${firstName} ${lastName}`,
       account: {
         ...prevState.account,
         userId,
@@ -81,7 +93,7 @@ class Profile extends React.Component {
         lastName,
         email,
       },
-    }));
+    }), () => this.getUserProfile());
   }
 
   handleNavChange(currentNav) {
@@ -113,31 +125,48 @@ class Profile extends React.Component {
       }));
   });
 
-  handleBankChange = (value) => {
+  handlePaymentCreator = (index, objName) => ((value) => {
     this.setState((prevState) => (
       {
         payment: {
           ...prevState.payment,
-          bankAccount: value,
+          [objName]: {
+            ...prevState.payment[objName],
+            [index]: value,
+          },
         },
       }
     ));
-  };
+  });
 
-  handleBillChange = (value) => {
-    this.setState((prevState) => (
-      {
-        payment: {
-          ...prevState.payment,
-          billingAddress: value,
-        },
-      }
-    ));
-  };
+  handleUpdateProfile = async () => {
+    const {
+      account: {
+        userId, birthday, mobile,
+      },
+      payment: {
+        bankAccount, billingAddress,
+      },
+    } = this.state;
+
+    const profile = {
+      bankAccount,
+      billingAddress,
+      birthday,
+      mobile,
+    };
+
+    const res = await saveProfile(userId, profile);
+
+    if (res) {
+      return console.log(204, 'successed updated', res);
+    }
+    return console.log(500, 'failed');
+  }
 
   render() {
     const { history } = this.props;
-    const { currentNav, account, payment } = this.state;
+    const { currentNav, displayName, account, payment } = this.state;
 
     return (
       <React.Fragment>
@@ -147,16 +176,16 @@ class Profile extends React.Component {
             <ProfileNav
               currentNav={currentNav}
               handleNavChange={this.handleNavChange}
-              userName={account}
+              userName={displayName}
             />
             <ProfileContent
               currentNav={currentNav}
               accountContent={account}
               onProfileChange={this.handleInputChangeCreator}
               paymentContent={payment}
-              onBankChange={this.handleBankChange}
-              onBillChange={this.handleBillChange}
+              onPaymentChange={this.handlePaymentCreator}
               onBirthdayChange={this.handleBirthdayChangeCreator}
+              onSubmit={this.handleUpdateProfile}
             />
           </div>
         </div>

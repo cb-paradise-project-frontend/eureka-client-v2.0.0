@@ -1,26 +1,26 @@
 import React from 'react';
-import { useToggleContent } from '../../../../components/ToggleContent';
 
+import { useToggleContent } from '../../../../components/ToggleContent';
 import AlertModal from './AlertModal';
 
 export default function withAlert(Component) {
-  const ModalWithAlert = ({ pageToggler, otherProps }) => {
+  const ModalWithAlert = ({ pageToggler, ...otherProps }) => {
     const [AlertContent, toggleAlert] = useToggleContent();
 
     return (
       <>
-      <Component 
-        onRequestClose={toggleAlert}
-        onClose={pageToggler}
-        {...otherProps}
-      />
-      <AlertContent>
-        <AlertModal
+        <Component
           onRequestClose={toggleAlert}
-          onLeftBtnClick={toggleAlert}
-          onRightBtnClick={pageToggler}
+          onClose={pageToggler}
+          {...otherProps}
         />
-      </AlertContent>
+        <AlertContent>
+          <AlertModal
+            onRequestClose={toggleAlert}
+            onLeftBtnClick={toggleAlert}
+            onRightBtnClick={pageToggler}
+          />
+        </AlertContent>
       </>
     );
   };

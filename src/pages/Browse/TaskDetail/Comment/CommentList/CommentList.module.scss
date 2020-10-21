@@ -1,4 +1,4 @@
-.question_wrapper{
+.comment_wrapper{
   display: flex;
   margin: 15px 0;
   align-items: flex-start;
@@ -15,13 +15,6 @@
 
     .content{
       color: black;
-    }
-
-    .footer{
-      color: #008fb4;
-      line-height: 16px;
-      font-size: 11px;
-      letter-spacing: .15px;
     }
   }
 }

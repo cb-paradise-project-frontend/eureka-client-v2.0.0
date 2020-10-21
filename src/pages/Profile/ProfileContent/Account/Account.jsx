@@ -4,17 +4,13 @@ import styles from './Account.module.scss';
 
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
-
-const ToPascalCase = (inputString) => {
-  const stringStored = inputString.toLowerCase();
-  const pascalString = stringStored.charAt(0).toUpperCase() + stringStored.substr(1).toLowerCase();
-  return pascalString.replace('id', 'ID').replace('name', ' Name');
-};
+import ToPascalCase from '../../utils';
 
 const Account = ({
   accountContent,
   onAccountChange,
   onBirthdayChange,
+  onSubmit,
 }) => {
   const accountData = Object.keys(accountContent).map((key) => {
     const handleChange = onAccountChange(key);
@@ -27,6 +23,7 @@ const Account = ({
         return (
         <Input
           value={birthdayObj[index]}
+          label={ToPascalCase(index)}
           key={index}
           handleChange={handleBirthdayChange}
         />
@@ -63,7 +60,7 @@ const Account = ({
           {accountData}
         </div>
         <div className={styles.update_btn}>
-          <Button>Update account information</Button>
+          <Button onClick={onSubmit}>Update account information</Button>
         </div>
       </div>
     </React.Fragment>

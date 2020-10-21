@@ -1,15 +1,15 @@
 import React from 'react';
 
-import styles from './Question.module.scss';
+import styles from './Comment.module.scss';
 
-export default function Question({
-  questionInput, questionList, questionCount,
+export default function Comment({
+  commentInput, commentList, commentCount,
 }) {
-  const title = `QUESTION(${questionCount})`;
+  const title = `COMMENT(${commentCount})`;
   const notice = "Please don't share personal info – insurance won't apply to tasks done privately!";
 
   return (
-    <div className={styles.question_wrapper} >
+    <div className={styles.comment_wrapper} >
       <div className={styles.title} >
         {title}
       </div>
@@ -17,10 +17,10 @@ export default function Question({
         {notice}
       </div>
       <div className={styles.input_wrapper} >
-        {questionInput}
+        {commentInput}
       </div>
-      <div className={styles.question_list_wrapper}>
-        {questionList}
+      <div className={styles.comment_list_wrapper}>
+        {commentList}
       </div>
     </div>
   );

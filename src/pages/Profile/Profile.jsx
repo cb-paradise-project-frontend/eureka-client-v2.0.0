@@ -26,19 +26,8 @@ class Profile extends React.Component {
         mobile: '',
       },
       payment: {
-        bankAccount: {
-          holder: '',
-          accountNumber: '',
-          bsb: '',
-        },
-        billingAddress: {
-          lineOne: '',
-          lineTwo: '',
-          suburb: '',
-          state: '',
-          postcode: '',
-          country: '',
-        },
+        bankAccount: '',
+        billingAddress: '',
       },
     };
 

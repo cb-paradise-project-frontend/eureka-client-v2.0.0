@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ac1646ce052c22ff81bedd12c750cc2f",
+    "revision": "103c28b9cd47ddf6fe05d625f4a4b498",
     "url": "/eureka-client-v2.0.0/index.html"
   },
   {
-    "revision": "0ff7fbf4fa5cab564013",
+    "revision": "6fa9a7e6f2549e5c75e5",
     "url": "/eureka-client-v2.0.0/static/css/2.bd6d7e67.chunk.css"
   },
   {
-    "revision": "0a43d271cd70942eabd2",
-    "url": "/eureka-client-v2.0.0/static/css/main.4a3ef0e8.chunk.css"
+    "revision": "a2b9279b08a5969f48a8",
+    "url": "/eureka-client-v2.0.0/static/css/main.a21b5fd1.chunk.css"
   },
   {
-    "revision": "0ff7fbf4fa5cab564013",
-    "url": "/eureka-client-v2.0.0/static/js/2.77cf7418.chunk.js"
+    "revision": "6fa9a7e6f2549e5c75e5",
+    "url": "/eureka-client-v2.0.0/static/js/2.208128a9.chunk.js"
   },
   {
     "revision": "d2966845b94a3318bf32eecc7af8015d",
-    "url": "/eureka-client-v2.0.0/static/js/2.77cf7418.chunk.js.LICENSE.txt"
+    "url": "/eureka-client-v2.0.0/static/js/2.208128a9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0a43d271cd70942eabd2",
-    "url": "/eureka-client-v2.0.0/static/js/main.18d55f11.chunk.js"
+    "revision": "a2b9279b08a5969f48a8",
+    "url": "/eureka-client-v2.0.0/static/js/main.6efaaf0e.chunk.js"
   },
   {
     "revision": "5ee4ab44f84cd5a22b8f",
@@ -48,8 +48,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/eureka-client-v2.0.0/static/media/bg-categories.4e883e21.svg"
   },
   {
+    "revision": "7392db8bdd3dea29be78a075624769c8",
+    "url": "/eureka-client-v2.0.0/static/media/bg-categories.7392db8b.svg"
+  },
+  {
     "revision": "023a8c343df5c6bc02803319fa06c88d",
     "url": "/eureka-client-v2.0.0/static/media/bg-home.023a8c34.svg"
+  },
+  {
+    "revision": "81c1ce31b9c5d7cfa5f514a10bb8c1e5",
+    "url": "/eureka-client-v2.0.0/static/media/bg-home.81c1ce31.svg"
   },
   {
     "revision": "8b8ef60ae6e0478633b03ead58133eed",
@@ -74,6 +82,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "7502a439d3426ae7fb2697a399ccfb38",
     "url": "/eureka-client-v2.0.0/static/media/logo.7502a439.svg"
+  },
+  {
+    "revision": "c0d0677d711bf5a7e04a8bbc571e597f",
+    "url": "/eureka-client-v2.0.0/static/media/postTaskLogo.c0d0677d.svg"
   },
   {
     "revision": "31d28485e1cf7369272270fd730327c0",

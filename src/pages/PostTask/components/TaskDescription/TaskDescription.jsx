@@ -1,5 +1,4 @@
 import React from 'react';
-import JobCategory from './components/JobCategory';
 import styles from '../../PostTask.module.scss';
 
 function TaskDescription({

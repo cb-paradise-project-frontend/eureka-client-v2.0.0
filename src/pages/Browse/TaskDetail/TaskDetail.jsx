@@ -33,7 +33,7 @@ export default function TaskDetail({ taskList }) {
 
   const addQuestion = async (input) => {
     if (!userId) return showMessage('Please login before leaving a message.');
-    await askQuestion(userId, taskId, input);
+    await askQuestion(taskId, input);
     loadTaskList();
   };
 

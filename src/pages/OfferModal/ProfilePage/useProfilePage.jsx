@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import useForm from './SubPages/useForm';
 import FORM from './form';
 import LocalStorage from './utils/LocalStorage';
-import { AuthContext } from '../../../auth/Auth';
 import { saveProfile } from '../../../apis';
 import ProfilePage from './ProfilePage';
 import ProfileList from './ProfileList';
@@ -16,9 +15,6 @@ const { getStoredData, storeData, dropStoredData } = new LocalStorage('userProfi
 export default function useProfilePage(
   showMessage, setProfileExist,
 ) {
-  const { currentUser } = useContext(AuthContext);
-  const userId = currentUser && currentUser.userId;
-
   const [subPage, loadSubPage] = useState();
 
   const [profileFilled, setProfileFilled] = useState(false);
@@ -95,7 +91,7 @@ export default function useProfilePage(
   const submitProfile = async () => {
     toggleMask();
 
-    const result = await saveProfile(userId, formData);
+    const result = await saveProfile(formData);
 
     if (result) {
       setProfileExist(true);

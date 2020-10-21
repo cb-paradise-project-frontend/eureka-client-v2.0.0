@@ -1,6 +1,7 @@
 import { api } from '../axiosInstance';
+import { destructure } from '../utils';
 
-export default async function saveProfile(userId, profile) {
+export default async function saveProfile(profile) {
   const {
     bankAccount: {
       holder,
@@ -25,7 +26,6 @@ export default async function saveProfile(userId, profile) {
 
   const formatData = {
     accountHolder: holder,
-    user: userId,
     accountNumber,
     bsb,
     billingAddress: {
@@ -40,7 +40,7 @@ export default async function saveProfile(userId, profile) {
     mobile,
   };
 
-  const { status } = await api.put('/profiles', formatData);
+  const response = await api.put('/profiles', formatData);
 
-  return (status === 200);
+  return (response.status === 200) && destructure(response);
 }

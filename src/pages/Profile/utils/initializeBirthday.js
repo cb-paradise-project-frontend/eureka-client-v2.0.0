@@ -1,5 +1,5 @@
 const converNumber1To01 = (number) => (
-  number < 10 && `0${number}`
+  number < 10 ? `0${number}` : number
 );
 
 const setInitalizeBirthday = (birthday) => {

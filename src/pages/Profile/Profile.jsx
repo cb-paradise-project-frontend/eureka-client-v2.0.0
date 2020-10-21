@@ -61,7 +61,7 @@ class Profile extends React.Component {
     } = await getProfile(userId);
     const bankAccountData = setIntializePayment(accountNumber, accountHolder, bsb);
     const billingAddressData = setInitalizeBilling(billingAddress);
-    console.log(billingAddressData)
+
     this.setState((prevState) => ({
       account: {
         ...prevState.account,

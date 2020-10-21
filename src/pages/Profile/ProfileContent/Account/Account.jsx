@@ -5,6 +5,12 @@ import styles from './Account.module.scss';
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
 
+const ToPascalCase = (inputString) => {
+  const stringStored = inputString.toLowerCase();
+  const pascalString = stringStored.charAt(0).toUpperCase() + stringStored.substr(1).toLowerCase();
+  return pascalString.replace('id', 'ID').replace('name', ' Name');
+};
+
 const Account = ({
   accountContent,
   onAccountChange,
@@ -29,7 +35,7 @@ const Account = ({
       return (
         <div className={styles.birthday_wrapper} key={key}>
           <div className={styles.label_wrapper}>
-            <label>{key}</label>
+            <label>{ToPascalCase(key)}</label>
           </div>
           <div className={styles.birthday_input_wrapper}>
             {birthdayInput}
@@ -42,7 +48,7 @@ const Account = ({
     return (
       <Input
         key={key}
-        label={key}
+        label={ToPascalCase(key)}
         value={value}
         handleChange={handleChange}
         disabled={(key === 'email' || key === 'userId')}

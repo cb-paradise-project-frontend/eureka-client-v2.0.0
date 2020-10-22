@@ -8,9 +8,7 @@ import { TaskContext } from '../../TaskContext';
 const cx = classNames.bind(styles);
 
 function TaskInfoItem({ title, content }) {
-  const displayContent = content.name
-    || (content._id && `user ${content._id}`)
-    || content;
+  const displayContent = content.fullName || content;
 
   return (
     <div className={styles.poster_info_item} >

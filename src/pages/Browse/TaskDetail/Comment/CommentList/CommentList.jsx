@@ -6,7 +6,11 @@ import CommentAvatar from '../CommentAvatar';
 
 export default function CommentList({ comments }) {
   const commentList = comments.map(({
-    _id, askedBy: { avatar, name, _id: userId }, message,
+    _id,
+    askedBy: {
+      avatar, fullName,
+    },
+    message,
   }) => (
     <div
       className={styles.comment_wrapper}
@@ -14,7 +18,7 @@ export default function CommentList({ comments }) {
     >
       <CommentAvatar avatarUrl={avatar} />
       <div className={styles.details} >
-        <div className={styles.header} >{name || `user ${userId}`}</div>
+        <div className={styles.header} >{`${fullName}`}</div>
         <div className={styles.content} >{message}</div>
       </div>
     </div>

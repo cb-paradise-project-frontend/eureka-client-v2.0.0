@@ -7,6 +7,7 @@ import getTaskList from '../../apis/Task/getTaskList';
 import TaskMenu from './TaskMenu';
 import useLoadingPage from '../../components/LoadingPage/useLoadingPage';
 import { LoadTaskProvider } from './TaskDetail/LoadTaskContext';
+import EmptyTask from './EmptyTask/EmptyTask';
 
 const testData = {
   title: 'Roof repair',
@@ -49,10 +50,11 @@ export default function Browse() {
 
   const [LoadingMask, toggleLoadingMask, loadingStatus] = useLoadingPage();
 
-  // TODO-ZIWEI: adjust local testing data
   const loadTaskList = async () => {
-    const newTaskList = await getTaskList(filter) || tasks;
+    const newTaskList = await getTaskList(filter) || [];
     setTaskList(newTaskList);
+
+    if (loadingStatus) toggleLoadingMask();
   };
 
   const {
@@ -69,18 +71,15 @@ export default function Browse() {
     minPrice,
   ]);
 
-  useEffect(() => {
-    if (taskList.length && loadingStatus === true) {
-      toggleLoadingMask();
-    }
-  }, [taskList.length, loadingStatus]);
-
   return (
     <LoadTaskProvider loadTaskList={loadTaskList} >
       <div className={styles.browse} >
         <TaskMenu onFilterChange={updateFilter} />
         <LoadingMask>
-          <TaskList taskList={taskList} />
+          {taskList.length
+            ? <TaskList taskList={taskList} />
+            : <EmptyTask />
+          }
         </LoadingMask>
       </div>
     </LoadTaskProvider>

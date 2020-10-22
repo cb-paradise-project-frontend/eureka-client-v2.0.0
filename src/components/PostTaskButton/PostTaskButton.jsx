@@ -11,15 +11,13 @@ export default function PostTaskButton() {
 
   return (
     <>
-      <div className={styles.post_task_button_wrapper} >
-        <Button
-          color={'navy'}
-          onClick={toggleModal}
-          size={'navbar'}
-        >
-          Post a Task
-        </Button>
-      </div>
+      <Button
+        color={'navy'}
+        onClick={toggleModal}
+        size={'navbar'}
+      >
+        Post a Task
+      </Button>
       <Modal>
         <PostTask pageToggler={toggleModal} />
       </Modal>

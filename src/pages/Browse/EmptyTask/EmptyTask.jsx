@@ -1,7 +1,8 @@
 import React from 'react';
-import PostTaskButton from '../../../components/PostTaskButton';
 
 import styles from './EmptyTask.module.scss';
+
+import PostTaskButton from '../../../components/PostTaskButton';
 
 export default function EmptyTask() {
   return (

@@ -13,7 +13,7 @@ import SignupModal from '../../components/SignupModal';
 import Categories from '../Navigation/components/Categories';
 import ToggleContent from '../../components/ToggleContent';
 import Button from '../../components/Button';
-import PostTask from './../../pages/PostTask';
+import PostTaskButton from '../PostTaskButton';
 
 const cx = className.bind(styles);
 
@@ -23,30 +23,12 @@ class Navigation extends Component {
 
     this.state = { clicked:false }
   }
-  
+
   handleClick = () => {
     this.setState((prevState) => ({ clicked: !prevState.clicked}))
   }
+
   render() {
-    const PostTaskButton = () => (
-      <ToggleContent
-        toggle={(toggler) => (
-          <div className={styles.post_task_button_wrapper} >
-            <Button
-              color={'navy'}
-              onClick={toggler}
-              size={'navbar'}
-            >
-              Post a Task
-            </Button>
-          </div>
-        )}
-        content={(toggler) => (
-          <PostTask pageToggler={toggler} />
-        )}
-      />
-    );
-  
     const LoginButton = () => (
       <ToggleContent
         toggle={(toggler) => (
@@ -64,7 +46,7 @@ class Navigation extends Component {
         )}
       />
     );
-  
+
     const SignupButton = () => (
       <ToggleContent
         toggle={(toggler) => (
@@ -136,7 +118,9 @@ class Navigation extends Component {
                   </Link>
 
                   <div className={styles.left} >
-                    <PostTaskButton/>
+                    <div className={styles.post_task_button_wrapper} >
+                      <PostTaskButton />
+                    </div>
                     <Categories />
                     <Link
                       className={styles.browseTasks}

@@ -3,7 +3,7 @@ const ToPascalCase = (inputString) => {
   const pascalString = stringStored.charAt(0).toUpperCase() + stringStored.substr(1).toLowerCase();
   return pascalString
     .replace('id', 'ID')
-    .replace('name', ' Name')
+    .replace('holder', ' Holder')
     .replace('Bsb', 'BSB')
     .replace('one', 'One')
     .replace('two', 'Two')

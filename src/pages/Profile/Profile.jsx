@@ -50,15 +50,16 @@ class Profile extends React.Component {
   }
 
   getUserProfile = async () => {
-    const { userId } = this.state.account;
     const {
-      accountNumber,
+      // bankAccount,
       accountHolder,
+      accountNumber,
+      bsb,
       billingAddress,
       birthday,
-      bsb,
       mobile,
-    } = await getProfile(userId);
+    } = await getProfile();
+
     const bankAccountData = setIntializePayment(accountNumber, accountHolder, bsb);
     const billingAddressData = setInitalizeBilling(billingAddress);
 
@@ -142,21 +143,30 @@ class Profile extends React.Component {
   handleUpdateProfile = async () => {
     const {
       account: {
-        userId, birthday, mobile,
+        birthday, mobile,
       },
       payment: {
-        bankAccount, billingAddress,
+        bankAccount: {
+          accountHolder,
+          accountNumber,
+          bsb,
+        },
+        billingAddress,
       },
     } = this.state;
 
     const profile = {
-      bankAccount,
+      bankAccount: {
+        holder: accountHolder,
+        accountNumber,
+        bsb,
+      },
       billingAddress,
       birthday,
       mobile,
     };
 
-    const res = await saveProfile(userId, profile);
+    const res = await saveProfile(profile);
 
     if (res) {
       return console.log(204, 'successed updated', res);

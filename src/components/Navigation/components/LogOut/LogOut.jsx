@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../../auth/Auth';
-import { Route, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { removeLocalToken } from '../../../../apis/utils';
+
 
 const LogOut = () => {
   const { setUser } = useContext(AuthContext);

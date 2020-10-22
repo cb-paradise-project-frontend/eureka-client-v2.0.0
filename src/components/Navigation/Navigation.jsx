@@ -6,14 +6,15 @@ import styles from './Navigation.module.scss';
 import logo from '../../assets/logo.svg';
 import postTaskLogo from '../../assets/postTaskLogo.svg';
 
-import { AuthContext } from './../../auth/Auth';
+import { AuthContext } from '../../auth/Auth';
 // import { NavContext } from './NavContext';
-import LoginModal from '../../components/LoginModal';
-import SignupModal from '../../components/SignupModal';
-import Categories from '../Navigation/components/Categories';
-import ToggleContent from '../../components/ToggleContent';
-import Button from '../../components/Button';
+import LoginModal from '../LoginModal';
+import SignupModal from '../SignupModal';
+import Categories from './components/Categories';
+import ToggleContent from '../ToggleContent';
+import Button from '../Button';
 import PostTaskButton from '../PostTaskButton';
+import LogOut from './components/LogOut';
 
 const cx = className.bind(styles);
 
@@ -136,6 +137,7 @@ class Navigation extends Component {
                   <div className={styles.right} >
                     <SignupButton />
                     <LoginButton />
+                    <LogOut />
                     {/* <div className={styles.becomeTasker} >
                       <Button
                         color={'transparent'}

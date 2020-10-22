@@ -180,7 +180,6 @@ class Profile extends React.Component {
 
     return (
       <React.Fragment>
-        <button onClick={() => history.push('/')}>Log out</button>
         <div className={styles.profile_wrapper}>
           <div className={styles.profile}>
             <ProfileNav

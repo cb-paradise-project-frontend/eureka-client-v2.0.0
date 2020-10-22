@@ -6,7 +6,6 @@ import OtherJobs from "./OtherJobs";
 import MeetTasker from "./MeetTasker";
 import Articles from "./Articles";
 import Footer from "./Footer";
-import EverydayTasks from "./EverydayTasks/EverydayTasks";
 
 class Landing extends React.Component {
   constructor(props) {

@@ -5,7 +5,10 @@
     margin: 0 auto;
     width:600px;
 
-    
+    display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
 }
 .title {
     color: rgb(41, 43, 50);

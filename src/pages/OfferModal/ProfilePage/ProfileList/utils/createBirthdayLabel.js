@@ -1,7 +1,11 @@
 export default function createBirthdayLabel(birthday) {
   if (!birthday) return null;
-  const { day, month, year } = birthday;
-  const birthdayObj = new Date(year, month - 1, day);
-  const formattedBirthday = birthdayObj.toDateString().replace(/[^\s]+/, '');
+
+  const date = new Date(birthday);
+
+  const formattedBirthday = date
+    .toDateString()
+    .replace(/[^\s]+/, '');
+
   return formattedBirthday;
 }

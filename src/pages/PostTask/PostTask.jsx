@@ -1,4 +1,4 @@
-import React, { Profiler } from 'react';
+import React from 'react';
 
 import styles from './PostTask.module.scss';
 
@@ -20,6 +20,7 @@ import { AuthContext } from '../../auth/Auth';
 import LoginModal from '../../components/LoginModal/LoginModal';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import MessageBox from '../../components/MessageBox';
+import LoadingPage from '../../components/LoadingPage/LoadingPage';
 
 class PostTask extends React.Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class PostTask extends React.Component {
       jobTitle: "",
       jobDetails: "",
       jobCategory: "",
-      startDate: null, //dueDate
+      dueDate: null,
       place: null, 
       taskBudget: "0",
       budgetHour: "1",
@@ -39,6 +40,7 @@ class PostTask extends React.Component {
       showLoginModal: false,
       successSubmit: false,
       currentUser: "",
+      postStatus: false,
     }
 
     this.jobTitleMinLength = 10;
@@ -61,13 +63,12 @@ class PostTask extends React.Component {
     this.handleBudgetWageClick = this.handleBudgetWageClick.bind(this);
     this.togglerMsgBox = this.togglerMsgBox.bind(this);
     this.togglerShowLoginModal = this.togglerShowLoginModal.bind(this);
+    this.toggleLoadingPage = this.toggleLoadingPage.bind(this);
     }
 
-  componentDidMount(){
+  componentDidMount() {
     const { currentUser } = this.context;
-    console.log(this.context);
     this.setState({ currentUser: currentUser });
-    console.log(433, currentUser);
   } //withForm HOC
 
   componentDidUpdate() {
@@ -75,6 +76,10 @@ class PostTask extends React.Component {
     if(this.state.currentUser !== currentUser){
       this.setState({ currentUser: currentUser });
     }
+  }
+
+  toggleLoadingPage(value) {
+    this.setState({postStatus: value})
   }
 
   togglerMsgBox() {
@@ -135,7 +140,7 @@ class PostTask extends React.Component {
   }
 
   handleDateValue(date) {
-    this.setState({ startDate: date });
+    this.setState({ dueDate: date });
   }
 
   handlePlace(addressQuery) {
@@ -155,7 +160,9 @@ class PostTask extends React.Component {
   }
 
   async getQuote() {
+    this.toggleLoadingPage(true);
     await postTask(this.state);
+    this.toggleLoadingPage(false);
     this.props.history.push('/profile/tasks');
     this.togglerMsgBox()
   } //HOC
@@ -167,7 +174,7 @@ class PostTask extends React.Component {
       this.setState({ touch: true });
     } else {
       this.setState({ touch: false });
-      { this.state.currentUser ? this.getQuote() : this.togglerShowLoginModal() }
+      this.state.currentUser ? this.getQuote() : this.togglerShowLoginModal()
     }
   }
 
@@ -185,13 +192,13 @@ class PostTask extends React.Component {
 
   render() {
     const {
-      currentStep, jobTitle, jobDetails, jobCategory, place, startDate, touch, method, taskBudget, showLoginModal, successSubmit,
+      currentStep, jobTitle, jobDetails, jobCategory, place, dueDate, touch, method, taskBudget, showLoginModal, successSubmit,
     } = this.state;
 
     const conditionList = [
       (false),
       ((jobTitle.length < this.jobTitleMinLength || jobDetails.length < this.jobDetailsMinLength || jobCategory.length === 0)),
-      ((method === "offline") ? (!startDate || !place) : (!startDate)),
+      ((method === "offline") ? (!dueDate || !place) : (!dueDate)),
     ];
 
     const backBtn = (
@@ -210,6 +217,7 @@ class PostTask extends React.Component {
       <div className={styles.button} >
         <Button
           onClick={this.handleClickCreator(conditionList[currentStep])}
+          color={'blue'}
           long
         >
           Next
@@ -221,6 +229,7 @@ class PostTask extends React.Component {
       <div className={styles.button} >
         <Button 
           onClick={this.handleGetQuoteClick} 
+          color={'blue'}
           long
         >
           Get quotes
@@ -265,9 +274,9 @@ class PostTask extends React.Component {
 
     const taskDatePicker = (
       <TaskDatePicker
-        startDate={startDate}
+        dueDate={dueDate}
         onDateChange={this.handleDateValue}
-        isDateInvalid={(startDate == null && touch)}
+        isDateInvalid={(dueDate == null && touch)}
         errorHint={"Please select the date you would like the task to be done"}
       />
     );
@@ -324,10 +333,10 @@ class PostTask extends React.Component {
 
     const { onRequestClose } = this.props;
 
-    
     return (
       <>
       <Modal onRequestClose={onRequestClose} >
+      { this.state.postStatus && <LoadingPage /> }
         <Modal.Header>
           {title}
         </Modal.Header>
@@ -340,14 +349,16 @@ class PostTask extends React.Component {
         </Modal.Footer>
       </Modal>
       {showLoginModal && <LoginModal pageToggler={this.togglerShowLoginModal} />}
-      {successSubmit && 
+      { successSubmit && 
         <MessageBox
           onRequestClose={this.props.onClose}
           info="Successfully submit!" 
-        />}
+        />
+      }
       </>
     );
   }
 }
+
 PostTask.contextType = AuthContext;
 export default withAlert(withRouter(PostTask));

@@ -8,7 +8,7 @@ const ProgressBar = styled.div`
       display: block;
       content: " ";
       height: 3px;
-      background: rgb(125, 179, 67);
+      background:  #4c8bf5;
       transition: all 0.8s ease 0s;
       ${(props) => {
         const style = {

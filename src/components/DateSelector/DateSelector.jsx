@@ -7,7 +7,7 @@ import { addMonths } from 'date-fns';
 import ErrorMessage from '../ErrorMessage';
 
 function DateSelector({
-  startDate,
+  dueDate,
   onDateChange,
   isDateInvalid,
   errorHint,
@@ -16,7 +16,7 @@ function DateSelector({
   return (
     <React.Fragment>
       <DatePicker 
-        selected={startDate}
+        selected={dueDate}
         onChange={onDateChange}
         minDate={new Date()}
         maxDate={addMonths(new Date(), 1)}

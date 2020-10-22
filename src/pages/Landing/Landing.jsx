@@ -150,6 +150,14 @@ class Landing extends React.Component {
             rate : "5 Stars",
           },
           {
+            id:"Moving home",
+            tabDescription : "Got a few boxes to shift, an apartment or entire house? Get your home moved just the way you want, by whom you want, when you want. Let Airtasker shoulder the load.",
+            title : "DELVERY",
+            description : "Deliver 1,000 letterbox flyers in Kellyville",
+            price : "$50",
+            rate : "5 Stars",
+          },
+          {
             id:"Starting a business",
             tabDescription : "Taking a big leap and need some expert advice or assistance? Airtasker can help you get some cracking marketing collateral, admin muscle or a few extra hands to help ease the burden.",
             title : "DESIGN" ,

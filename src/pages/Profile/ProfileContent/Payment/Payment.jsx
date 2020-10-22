@@ -1,32 +1,45 @@
 import React from 'react';
 
-import styles from './Payment.module.scss';
+import Button from '../../../../components/Button';
+import Input from '../../../../components/Input';
+import ToPascalCase from '../../utils';
 
-import BankAccount from '../../../OfferModal/ProfilePage/SubPages/BankAccount';
-import BillingAddress from '../../../OfferModal/ProfilePage/SubPages/BillingAddress';
+import styles from './Payment.module.scss';
 
 const Payment = ({
   paymentContent,
-  onBankChange,
-  onBillChange,
+  onPaymentChange,
+  onSubmit,
 }) => {
   const { bankAccount, billingAddress } = paymentContent;
+  const paymentInputMaker = (props) => (
+    Object.keys(props).map((key) => {
+      const objNameDector = props.hasOwnProperty('bsb') ? 'bankAccount' : 'billingAddress';
+
+      const handleChange = onPaymentChange(key, objNameDector);
+
+      return (
+        <Input
+          key={key}
+          label={ToPascalCase(key)}
+          value={props[key]}
+          handleChange={handleChange}
+        />
+      );
+    })
+  );
 
   return (
     <React.Fragment>
       <div className={styles.payment_wrapper}>
         <div className={styles.bank_wrapper}>
-          <BankAccount
-            storedValue={bankAccount}
-            onSubmit={onBankChange}
-          />
+          {paymentInputMaker(bankAccount)}
         </div>
+        <Button onClick={onSubmit}>Update Bank Detail</Button>
         <div className={styles.bill_wrapper}>
-          <BillingAddress
-            storedValue={billingAddress}
-            onSubmit={onBillChange}
-          />
+          {paymentInputMaker(billingAddress)}
         </div>
+        <Button onClick={onSubmit}>Update Billing Address</Button>
       </div>
     </React.Fragment>
   );

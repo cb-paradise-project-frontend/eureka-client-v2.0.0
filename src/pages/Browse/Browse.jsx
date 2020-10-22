@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styles from './Browse.module.scss';
 
 import TaskList from './TaskList';
 import getTaskList from '../../apis/Task/getTaskList';
-import askQuestion from '../../apis/Task/askQuestion';
 import TaskMenu from './TaskMenu';
-import { AuthContext } from '../../auth/Auth';
 import useLoadingPage from '../../components/LoadingPage/useLoadingPage';
 import { LoadTaskProvider } from './TaskDetail/LoadTaskContext';
 
@@ -46,17 +44,12 @@ tasks[3].status = 'EXPIRED';
 
 export default function Browse() {
   const [taskList, setTaskList] = useState([]);
-  const [updateFlag, setUpdateFlag] = useState(false);
+
   const [filter, updateFilter] = useState('');
 
   const [LoadingMask, toggleLoadingMask, loadingStatus] = useLoadingPage();
 
-  const { currentUser } = useContext(AuthContext);
-
-  const toggleUpdateFlag = () => {
-    setUpdateFlag((prevFlag) => !prevFlag);
-  };
-
+  // TODO-ZIWEI: adjust local testing data
   const loadTaskList = async () => {
     const newTaskList = await getTaskList(filter) || tasks;
     setTaskList(newTaskList);
@@ -71,7 +64,6 @@ export default function Browse() {
   useEffect(() => {
     loadTaskList();
   }, [
-    updateFlag,
     keyword,
     maxPrice,
     minPrice,
@@ -79,24 +71,16 @@ export default function Browse() {
 
   useEffect(() => {
     if (taskList.length && loadingStatus === true) {
-      toggleLoadingMask(false);
+      toggleLoadingMask();
     }
   }, [taskList.length, loadingStatus]);
-
-  const onAskQuestion = (taskId, input) => {
-    askQuestion(currentUser, taskId, input);
-    toggleUpdateFlag();
-  };
 
   return (
     <LoadTaskProvider loadTaskList={loadTaskList} >
       <div className={styles.browse} >
         <TaskMenu onFilterChange={updateFilter} />
         <LoadingMask>
-          <TaskList
-            taskList={taskList}
-            onAskQuestion={onAskQuestion}
-          />
+          <TaskList taskList={taskList} />
         </LoadingMask>
       </div>
     </LoadTaskProvider>

@@ -5,6 +5,7 @@ import styles from '../../../../PostTask.module.scss';
 import ErrorMessage from '../../../../../../components/ErrorMessage';
 
 function BudgetInput({
+  taskBudget,
   isBudgetInvalid,
   minBudget,
   maxBudget,
@@ -27,6 +28,7 @@ function BudgetInput({
           type="text"
           onChange={onBudgetHourlyWage}
           onInput={validateInput}
+          value={taskBudget}
         />
         {switchMode 
           &&

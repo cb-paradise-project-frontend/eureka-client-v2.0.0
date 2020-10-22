@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 
-import styles from './QuestionInput.module.scss';
+import styles from './CommentInput.module.scss';
 
 import TextArea from '../../../../../components/TextArea';
-import QuestionAvatar from '../QuestionAvatar';
+import CommentAvatar from '../CommentAvatar';
 
-export default function QuestionInput({ addQuestion }) {
+export default function CommentInput({ addComment }) {
   const [input, updateInput] = useState('');
 
-  const placeHolder = 'Ask a question';
+  const placeHolder = 'Leave a comment here';
   const WORD_LIMIT = 1500;
 
   const handleSubmit = () => {
-    addQuestion(input);
+    addComment(input);
     updateInput('');
   };
 
@@ -33,7 +33,7 @@ export default function QuestionInput({ addQuestion }) {
 
   return (
     <>
-      <QuestionAvatar />
+      <CommentAvatar />
       <div className={styles.input} >
         <TextArea
           size={'large'}

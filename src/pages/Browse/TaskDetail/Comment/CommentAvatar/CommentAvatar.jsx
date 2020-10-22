@@ -1,10 +1,10 @@
 import React from 'react';
 
-import styles from './QuestionAvatar.module.scss';
+import styles from './CommentAvatar.module.scss';
 
 import Avatar from '../../../../../components/Avatar';
 
-export default function QuestionAvatar({ avatarUrl }) {
+export default function CommentAvatar({ avatarUrl }) {
   return (
     <div className={styles.avatar_wrapper} >
       <Avatar avatarUrl={avatarUrl} />

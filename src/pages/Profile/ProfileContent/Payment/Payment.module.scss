@@ -1,4 +1,25 @@
+.payment_wrapper {
+  width: 100%;
+}
+
+.bank_wrapper {
+  width: 100%;
+  
+  div:nth-child(n+1) {
+    margin-top: 20px;
+  }
+}
+
 .bill_wrapper {
   margin-top: 50px;
   margin-bottom: 50px;
+  width: 100%;
+
+  div:nth-child(n+1) {
+    margin-top: 20px;
+  }
+}
+
+.bank_wrapper, .bill_wrapper {
+  margin-bottom: 40px;
 }

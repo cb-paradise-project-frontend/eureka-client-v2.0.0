@@ -12,19 +12,22 @@ const ProfileContent = ({
   accountContent,
   onProfileChange,
   paymentContent,
-  onBankChange,
-  onBillChange,
+  onPaymentChange,
+  onBirthdayChange,
+  onSubmit,
 }) => {
   const contentDisplay = (pageIndex) => (
     {
       Account: <Account
         accountContent={accountContent}
         onAccountChange={onProfileChange}
+        onBirthdayChange={onBirthdayChange}
+        onSubmit={onSubmit}
       />,
       Payment: <Payment
         paymentContent={paymentContent}
-        onBankChange={onBankChange}
-        onBillChange={onBillChange}
+        onPaymentChange={onPaymentChange}
+        onSubmit={onSubmit}
       />,
       Tasks: <Tasks />,
       Password: <Password />,

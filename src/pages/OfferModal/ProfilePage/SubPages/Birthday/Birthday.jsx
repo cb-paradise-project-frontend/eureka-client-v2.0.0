@@ -5,7 +5,7 @@ import styles from './Birthday.module.scss';
 import Input from '../../../../../components/Input';
 import Button from '../../../../../components/Button';
 import ErrorMessage from '../../../../../components/ErrorMessage';
-import onlyNumber from '../../../../../utils/validators/input';
+import { onlyNumber } from '../../../../../utils/validators/input';
 import { isDate, isAdult } from '../../../../../utils/validators/submit';
 import useForm from '../useForm';
 import FORM from './form';

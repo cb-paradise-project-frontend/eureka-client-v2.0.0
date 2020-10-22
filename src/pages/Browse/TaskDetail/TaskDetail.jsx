@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 
 import styles from './TaskDetail.module.scss';
@@ -7,31 +7,43 @@ import Header from './Header';
 import Section from './Section';
 import SideBar from './SideBar';
 import OfferButton from './OfferButton';
-import Question from './Question';
+import Comment from './Comment';
 import { TaskProvider } from './TaskContext';
-import QuestionInput from './Question/QuestionInput';
-import QuestionList from './Question/QuestionList';
+import CommentInput from './Comment/CommentInput';
+import CommentList from './Comment/CommentList';
+import { addComment } from '../../../apis';
+import { AuthContext } from '../../../auth/Auth';
+import { LoadTaskContext } from './LoadTaskContext';
+import useMessageBox from '../../../components/MessageBox/useMessageBox';
 
-export default function TaskDetail({
-  taskList, onAskQuestion,
-}) {
+export default function TaskDetail({ taskList }) {
   const { params: { taskId } } = useRouteMatch();
+
+  const { currentUser } = useContext(AuthContext);
+  const userId = currentUser && currentUser.userId;
+
+  const loadTaskList = useContext(LoadTaskContext);
+
+  const [Message, showMessage] = useMessageBox();
 
   const task = taskList.find((taskObj) => taskObj.id === taskId);
   if (!task) return null;
 
   const { comments } = task;
 
-  const addQuestion = (input) => {
-    onAskQuestion(task.id, input);
+  const submitComment = async (input) => {
+    if (!userId) return showMessage('Please login before leaving a message.');
+    await addComment(taskId, input);
+
+    return loadTaskList();
   };
 
-  const questionInput = (
-    <QuestionInput addQuestion={addQuestion} />
+  const commentInput = (
+    <CommentInput addComment={submitComment} />
   );
 
-  const questionList = (
-    <QuestionList questions={comments} />
+  const commentList = (
+    <CommentList comments={comments} />
   );
 
   const { description } = task;
@@ -50,12 +62,13 @@ export default function TaskDetail({
             <OfferButton />
           </div>
         </Section>
-        <Question
-          questionInput={questionInput}
-          questionList={questionList}
-          questionCount={comments.length}
+        <Comment
+          commentInput={commentInput}
+          commentList={commentList}
+          commentCount={comments.length}
         />
       </TaskProvider>
+      <Message />
     </div>
   );
 }

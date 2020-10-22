@@ -13,20 +13,21 @@ export default function OfferButton() {
   const [Content, toggler] = useToggleContent();
 
   const { currentUser } = useContext(AuthContext);
+  const userId = currentUser && currentUser.userId;
 
   const { status, offers, postedBy } = useContext(TaskContext);
 
   const isExpired = (status === EXPIRED);
-  const isOwner = (currentUser === postedBy._id);
+  const isOwner = (userId === postedBy._id);
   const isOffered = offers.length &&
-    offers.find(({ offeredBy: { _id } }) => _id === currentUser);
+    offers.find(({ offeredBy: { _id } }) => _id === userId);
 
   const label = (isExpired && 'Expired')
     || (isOwner && 'Your task')
     || (isOffered && 'Offered')
     || 'Make an offer';
 
-  const modal = currentUser
+  const modal = userId
     ? <OfferModal pageToggler={toggler} />
     : <SignupModal pageToggler={toggler} />;
 

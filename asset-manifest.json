@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/eureka-client-v2.0.0/static/css/main.8202edaa.chunk.css",
-    "main.js": "/eureka-client-v2.0.0/static/js/main.009e22c2.chunk.js",
-    "main.js.map": "/eureka-client-v2.0.0/static/js/main.009e22c2.chunk.js.map",
+    "main.js": "/eureka-client-v2.0.0/static/js/main.83763cff.chunk.js",
+    "main.js.map": "/eureka-client-v2.0.0/static/js/main.83763cff.chunk.js.map",
     "runtime-main.js": "/eureka-client-v2.0.0/static/js/runtime-main.f8ca3558.js",
     "runtime-main.js.map": "/eureka-client-v2.0.0/static/js/runtime-main.f8ca3558.js.map",
     "static/css/2.bd6d7e67.chunk.css": "/eureka-client-v2.0.0/static/css/2.bd6d7e67.chunk.css",
     "static/js/2.2de9ae50.chunk.js": "/eureka-client-v2.0.0/static/js/2.2de9ae50.chunk.js",
     "static/js/2.2de9ae50.chunk.js.map": "/eureka-client-v2.0.0/static/js/2.2de9ae50.chunk.js.map",
     "index.html": "/eureka-client-v2.0.0/index.html",
-    "precache-manifest.1d11b6a54512ecf587da09d3ce67518f.js": "/eureka-client-v2.0.0/precache-manifest.1d11b6a54512ecf587da09d3ce67518f.js",
+    "precache-manifest.ac3f57a1935e62731d54c604d93c58a8.js": "/eureka-client-v2.0.0/precache-manifest.ac3f57a1935e62731d54c604d93c58a8.js",
     "service-worker.js": "/eureka-client-v2.0.0/service-worker.js",
     "static/css/2.bd6d7e67.chunk.css.map": "/eureka-client-v2.0.0/static/css/2.bd6d7e67.chunk.css.map",
     "static/css/main.8202edaa.chunk.css.map": "/eureka-client-v2.0.0/static/css/main.8202edaa.chunk.css.map",
@@ -42,6 +42,6 @@
     "static/css/2.bd6d7e67.chunk.css",
     "static/js/2.2de9ae50.chunk.js",
     "static/css/main.8202edaa.chunk.css",
-    "static/js/main.009e22c2.chunk.js"
+    "static/js/main.83763cff.chunk.js"
   ]
 }

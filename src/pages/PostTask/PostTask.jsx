@@ -20,6 +20,7 @@ import { AuthContext } from '../../auth/Auth';
 import LoginModal from '../../components/LoginModal/LoginModal';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import MessageBox from '../../components/MessageBox';
+import LoadingPage from '../../components/LoadingPage/LoadingPage';
 
 class PostTask extends React.Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class PostTask extends React.Component {
       showLoginModal: false,
       successSubmit: false,
       currentUser: "",
+      postStatus: false,
     }
 
     this.jobTitleMinLength = 10;
@@ -61,13 +63,12 @@ class PostTask extends React.Component {
     this.handleBudgetWageClick = this.handleBudgetWageClick.bind(this);
     this.togglerMsgBox = this.togglerMsgBox.bind(this);
     this.togglerShowLoginModal = this.togglerShowLoginModal.bind(this);
+    this.toggleLoadingPage = this.toggleLoadingPage.bind(this);
     }
 
-  componentDidMount(){
+  componentDidMount() {
     const { currentUser } = this.context;
-    console.log(this.context);
     this.setState({ currentUser: currentUser });
-    console.log(433, currentUser);
   } //withForm HOC
 
   componentDidUpdate() {
@@ -75,6 +76,10 @@ class PostTask extends React.Component {
     if(this.state.currentUser !== currentUser){
       this.setState({ currentUser: currentUser });
     }
+  }
+
+  toggleLoadingPage(value) {
+    this.setState({postStatus: value})
   }
 
   togglerMsgBox() {
@@ -155,7 +160,9 @@ class PostTask extends React.Component {
   }
 
   async getQuote() {
+    this.toggleLoadingPage(true);
     await postTask(this.state);
+    this.toggleLoadingPage(false);
     this.props.history.push('/profile/tasks');
     this.togglerMsgBox()
   } //HOC
@@ -329,6 +336,7 @@ class PostTask extends React.Component {
     return (
       <>
       <Modal onRequestClose={onRequestClose} >
+      { this.state.postStatus && <LoadingPage /> }
         <Modal.Header>
           {title}
         </Modal.Header>
@@ -341,11 +349,12 @@ class PostTask extends React.Component {
         </Modal.Footer>
       </Modal>
       {showLoginModal && <LoginModal pageToggler={this.togglerShowLoginModal} />}
-      {successSubmit && 
+      { successSubmit && 
         <MessageBox
           onRequestClose={this.props.onClose}
           info="Successfully submit!" 
-        />}
+        />
+      }
       </>
     );
   }

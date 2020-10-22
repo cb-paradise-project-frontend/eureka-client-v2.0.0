@@ -1,6 +1,6 @@
 import { api } from '../axiosInstance';
 
-export default function postTask(taskData) {
+export default async function postTask(taskData) {
   const { jobTitle, jobDetails, jobCategory, place, dueDate, taskBudget } = taskData;
   
   const data = { 
@@ -13,7 +13,7 @@ export default function postTask(taskData) {
     description: jobDetails
   }
   
-  return api.post(`/tasks`, data)
-    .then((response) => console.log(response))
-    .catch((error) => console.error(error))
+  const { status } = await api.post(`/tasks`, data);
+  // console.log(status);
+  return (status === 200);
 }

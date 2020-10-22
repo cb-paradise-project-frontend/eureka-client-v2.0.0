@@ -2,42 +2,16 @@ import { api } from '../axiosInstance';
 import { destructure } from '../utils';
 
 export default async function saveProfile(profile) {
-  const {
-    bankAccount: {
-      holder,
-      accountNumber,
-      bsb,
-    },
-    billingAddress: {
-      lineOne,
-      lineTwo,
-      suburb,
-      state,
-      postcode,
-      country,
-    },
-    birthday: {
+  const { birthday: {
       day,
       month,
       year,
     },
-    mobile,
   } = profile;
 
   const formatData = {
-    accountHolder: holder,
-    accountNumber,
-    bsb,
-    billingAddress: {
-      lineOne,
-      lineTwo,
-      suburb,
-      state,
-      postcode,
-      country,
-    },
+    ...profile,
     birthday: new Date(year, month - 1, day),
-    mobile,
   };
 
   const response = await api.put('/profiles', formatData);

@@ -17,9 +17,9 @@ class OtherJobsNav extends Component {
     this.handleShowingBlock = this.handleShowingBlock.bind(this);
   }
   
-  // componentDidMount() {
-  //   this.handleComponentShowing('Moving home');
-  // }
+  componentDidMount() {
+    this.handleComponentShowing('Moving home');
+  }
 
   handleShowingBlock(index) {
     this.setState({
@@ -38,8 +38,6 @@ class OtherJobsNav extends Component {
             rate = {item.rate}
           />);
     })
-    
-
     this.setState({currentComponentIndex:result[0]}) ;
   }
 
@@ -57,10 +55,7 @@ class OtherJobsNav extends Component {
           </div>
 
           <div>
-            {
-              // this.handleComponentShowing(currentComponentIndex)
-              // this.handleComponentShowing(currentComponentIndex)
-              
+            {              
               this.state.currentComponentIndex
             }
           </div>

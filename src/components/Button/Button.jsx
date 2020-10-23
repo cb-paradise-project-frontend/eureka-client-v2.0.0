@@ -77,6 +77,7 @@ const Text = ({ onClick, children, color }) => (
         white: 'white',
         grey: 'grey',
         navy: 'navy',
+        navMobile: 'navMobile', 
         'light-blue': 'light-blue',
       }[color] || 'grey',
     )}

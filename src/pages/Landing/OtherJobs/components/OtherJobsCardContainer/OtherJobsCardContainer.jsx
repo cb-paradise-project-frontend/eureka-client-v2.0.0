@@ -10,7 +10,7 @@ class OtherJobsCardContainer extends React.Component {
     super(props);
 
     this.state = {
-      data: [1, 2, 3, 4, 5, 6, 7, 8],
+      data: [1, 2, 3, 4, 5, 6,],
     };
   }
 

@@ -15,6 +15,7 @@ const ProfileContent = ({
   onPaymentChange,
   onBirthdayChange,
   onSubmit,
+  onNameChange,
 }) => {
   const contentDisplay = (pageIndex) => (
     {
@@ -23,6 +24,7 @@ const ProfileContent = ({
         onAccountChange={onProfileChange}
         onBirthdayChange={onBirthdayChange}
         onSubmit={onSubmit}
+        onNameChange={onNameChange}
       />,
       Payment: <Payment
         paymentContent={paymentContent}

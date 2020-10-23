@@ -11,6 +11,7 @@ const Account = ({
   onAccountChange,
   onBirthdayChange,
   onSubmit,
+  onNameChange,
 }) => {
   const accountData = Object.keys(accountContent).map((key) => {
     const handleChange = onAccountChange(key);
@@ -60,7 +61,8 @@ const Account = ({
           {accountData}
         </div>
         <div className={styles.update_btn}>
-          <Button onClick={onSubmit}>Update account information</Button>
+          <Button onClick={onNameChange}>Update My Name</Button>
+          <Button onClick={onSubmit}>Update Birthday & Mobile</Button>
         </div>
       </div>
     </React.Fragment>

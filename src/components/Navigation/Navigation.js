@@ -14,6 +14,7 @@ import Button from '../../components/Button';
 import PostTask from './../../pages/PostTask';
 import NavigationMobile from './components/NavigationMobile';
 import NavigationWeb from './components/NavigationWeb';
+import Public from './Public';
 
 const cx = className.bind(styles);
 
@@ -85,17 +86,19 @@ class Navigation extends Component {
     return (
       <AuthContext.Consumer>
         {(currentUser) => (
+          currentUser ? 
+          <Public /> : <div>123</div>
           // <NavContext.Consumer>
           //curren? <da> : <>
-          <React.Fragment>
-            <div className={styles.menuMobile}>
-              <NavigationMobile />
-            </div>
+          // <React.Fragment>
+          //   <div className={styles.menuMobile}>
+          //     <NavigationMobile />
+          //   </div>
 
-            <div className={styles.web}>
-              <NavigationWeb />
-            </div>
-          </React.Fragment>
+          //   <div className={styles.web}>
+          //     <NavigationWeb />
+          //   </div>
+          // </React.Fragment>
           // </NavContext.Consumer>
         )}
       </AuthContext.Consumer>

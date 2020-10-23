@@ -9,7 +9,7 @@ export default function EmptyTask() {
     <div className={styles.page_wrapper} >
       <div className={styles.background} />
       <div className={styles.notice} >
-        You can post the first task on this website!<br/>Congratulation!
+        Cannot find matched tasks.<br/>How about posting a new task?
       </div>
       <div className={styles.button_wrapper} >
         <PostTaskButton />

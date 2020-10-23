@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import styles from './Public.module.scss';
 
-import NavigationMobile from '../components/NavigationWeb';
+import NavigationMobile from '../components/NavigationMobile';
 import NavigationWeb from '../components/NavigationWeb';
 
 function Public() {

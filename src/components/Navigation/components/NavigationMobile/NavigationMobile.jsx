@@ -137,8 +137,8 @@ class NavigationMobile extends Component {
           </Link>
 
           <div className={styles.responsivePostTask}>
-            <img src={postTaskLogo} />
-            {/* <PostTaskIconButton /> */}
+            {/* <img src={postTaskLogo} /> */}
+            <PostTaskIconButton />
             <div className={this.state.clicked ? styles.postTaskButtonActive : styles.postTaskButton}>
               <PostTaskButton/>
             </div>
@@ -152,7 +152,7 @@ class NavigationMobile extends Component {
           </div>
           <div>
             {/* <div className={styles.mobileNavDropDownItem}>
-              Log in
+              <LoginButton />
             </div> */}
             <LoginButton />
             <SignupButton />

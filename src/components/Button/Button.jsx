@@ -90,5 +90,7 @@ Button.CloseIcon = CloseIcon;
 Button.BackIcon = BackIcon;
 Button.SearchIcon = SearchIcon;
 Button.Text = Text;
+Button.IconButton = IconButton;
+
 
 export default Button;

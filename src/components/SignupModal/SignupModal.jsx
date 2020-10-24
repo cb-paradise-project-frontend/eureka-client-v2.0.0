@@ -24,7 +24,7 @@ const InputWrapper = styled.div`
 const SignupModal = ({ pageToggler }) => {
   const history = useHistory();
   const { setUser } = useContext(AuthContext);
-  const form = useForm();
+  const form = useForm(FORM);
 
   const {
     getData,
@@ -104,61 +104,7 @@ const SignupModal = ({ pageToggler }) => {
       <Modal.Header>Join us</Modal.Header>
       <Modal.Content>
         <ModalContainer>
-          <InputWrapper>
-            <Input
-              label="First Name"
-              name="firstName"
-              type="string"
-              placeholder="First Name"
-              required
-              value={userCredentials.firstname}
-              onChange={handleChange}
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <Input
-              label="Last Name"
-              name="lastName"
-              type="string"
-              placeholder="Last Name"
-              required
-              value={userCredentials.lastname}
-              onChange={handleChange}
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <Input
-              label="Email"
-              name="email"
-              type="email"
-              placeholder="Email"
-              required
-              value={userCredentials.email}
-              onChange={handleChange}
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <Input
-              label="Password"
-              name="password"
-              type="password"
-              placeholder="Password"
-              required
-              value={userCredentials.password}
-              onChange={handleChange}
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <Input
-              label="Confirm Password"
-              name="confirmPassword"
-              type="password"
-              placeholder="Confirm Password"
-              required
-              value={userCredentials.confirmPassword}
-              onChange={handleChange}
-            />
-          </InputWrapper>
+          {fieldList}
           <Button type="submit" onClick={onSignUp}>Sign up</Button>
         </ModalContainer>
       </Modal.Content>

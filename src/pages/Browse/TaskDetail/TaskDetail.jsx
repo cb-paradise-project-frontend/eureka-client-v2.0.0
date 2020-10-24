@@ -22,7 +22,7 @@ export default function TaskDetail({ taskList }) {
   const { currentUser } = useContext(AuthContext);
   const userId = currentUser && currentUser.userId;
 
-  const loadTaskList = useContext(LoadTaskContext);
+  const reload = useContext(LoadTaskContext);
 
   const [Message, showMessage] = useMessageBox();
 
@@ -38,7 +38,7 @@ export default function TaskDetail({ taskList }) {
     if (!userId) return showMessage('Please login before leaving a message.');
     await addComment(taskId, input);
 
-    return loadTaskList();
+    return reload();
   };
 
   const commentInput = (

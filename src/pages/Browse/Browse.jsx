@@ -36,13 +36,11 @@ export default function Browse() {
   const loadTaskList = async () => {
     toggleLoadingMask(true);
 
-    const newTaskList = await getTaskList({
-      ...config,
-      pageSize: taskList.length || DEFAULT_PAGE_SIZE,
-    });
+    const newTaskList = await getTaskList(config);
 
     if (newTaskList.length) {
       setTaskList(newTaskList);
+      setPage(1);
     }
 
     toggleLoadingMask(false);
@@ -79,8 +77,23 @@ export default function Browse() {
     setPage((prevState) => prevState + 1);
   };
 
+  const reload = async () => {
+    toggleLoadingMask(true);
+
+    const newTaskList = await getTaskList({
+      ...config,
+      pageSize: taskList.length,
+    });
+
+    if (newTaskList.length) {
+      setTaskList(newTaskList);
+    }
+
+    toggleLoadingMask(false);
+  };
+
   return (
-    <LoadTaskProvider loadTaskList={loadTaskList} >
+    <LoadTaskProvider reload={reload} >
       <div className={styles.browse} >
         <TaskMenu onFilterChange={updateConfig} />
         <LoadingMask>

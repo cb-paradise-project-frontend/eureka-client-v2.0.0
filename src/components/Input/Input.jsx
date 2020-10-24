@@ -15,6 +15,7 @@ const Input = ({
   validator,
   handleChange,
   isError,
+  errorMessage,
   ...otherProps
 }) => {
   const inputHandler = ({ target: { value } }) => {

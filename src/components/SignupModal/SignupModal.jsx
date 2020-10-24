@@ -6,6 +6,7 @@ import { api, extractTokenFromResponse, extractInfoFromToken } from './../../api
 import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';
+import FORM from './form';
 
 const ModalContainer = styled.div`
   width: 330px;

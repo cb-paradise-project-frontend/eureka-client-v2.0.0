@@ -156,7 +156,7 @@ class Profile extends React.Component {
 
     const profile = {
       bankAccount: {
-        accountHolder: accountHolder,
+        accountHolder,
         accountNumber,
         bsb,
       },

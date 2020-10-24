@@ -27,6 +27,12 @@ export default function Browse() {
 
   const [LoadingMask, toggleLoadingMask] = useLoadingPage();
 
+  const maskWhenFetch = async (fetchFunction) => {
+    toggleLoadingMask(true);
+    await fetchFunction();
+    toggleLoadingMask(false);
+  };
+
   const {
     keyword,
     maxPrice,
@@ -34,20 +40,16 @@ export default function Browse() {
   } = config;
 
   const loadTaskList = async () => {
-    toggleLoadingMask(true);
-
     const newTaskList = await getTaskList(config);
 
     if (newTaskList.length) {
       setTaskList(newTaskList);
       setPage(1);
     }
-
-    toggleLoadingMask(false);
   };
 
   useEffect(() => {
-    loadTaskList();
+    maskWhenFetch(loadTaskList);
   }, [
     keyword,
     maxPrice,
@@ -55,8 +57,6 @@ export default function Browse() {
   ]);
 
   const extendTaskList = async () => {
-    toggleLoadingMask(true);
-
     const newTaskList = await getTaskList({
       ...config,
       page,
@@ -65,12 +65,10 @@ export default function Browse() {
     if (newTaskList.length) {
       setTaskList((prevList) => prevList.concat(newTaskList));
     }
-
-    toggleLoadingMask(false);
   };
 
   useEffect(() => {
-    if (page > 1) extendTaskList();
+    if (page > 1) maskWhenFetch(extendTaskList);
   }, [page]);
 
   const nextPage = () => {
@@ -78,8 +76,6 @@ export default function Browse() {
   };
 
   const reload = async () => {
-    toggleLoadingMask(true);
-
     const newTaskList = await getTaskList({
       ...config,
       pageSize: taskList.length,
@@ -88,12 +84,10 @@ export default function Browse() {
     if (newTaskList.length) {
       setTaskList(newTaskList);
     }
-
-    toggleLoadingMask(false);
   };
 
   return (
-    <LoadTaskProvider reload={reload} >
+    <LoadTaskProvider reload={() => maskWhenFetch(reload)} >
       <div className={styles.browse} >
         <TaskMenu onFilterChange={updateConfig} />
         <LoadingMask>

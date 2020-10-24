@@ -9,14 +9,12 @@ import useLoadingPage from '../../components/LoadingPage/useLoadingPage';
 import { LoadTaskProvider } from './TaskDetail/LoadTaskContext';
 import EmptyTask from './EmptyTask';
 
-const DEFAULT_PAGE_SIZE = 5;
-
 const initConfig = {
   keyword: '',
   maxPrice: '',
   minPrice: '',
   page: 1,
-  pageSize: DEFAULT_PAGE_SIZE,
+  pageSize: 5,
 };
 
 export default function Browse() {

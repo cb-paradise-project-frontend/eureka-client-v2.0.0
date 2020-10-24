@@ -63,7 +63,6 @@ class Profile extends React.Component {
       birthday,
       mobile,
     } = await getProfile();
-
     const bankAccountData = setIntializePayment(accountNumber, accountHolder, bsb);
     const billingAddressData = setInitalizeBilling(billingAddress);
 
@@ -161,7 +160,7 @@ class Profile extends React.Component {
 
     const profile = {
       bankAccount: {
-        accountHolder: accountHolder,
+        accountHolder,
         accountNumber,
         bsb,
       },
@@ -197,7 +196,6 @@ class Profile extends React.Component {
   }
 
   render() {
-    const { history } = this.props;
     const {
       currentNav,
       displayName,

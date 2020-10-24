@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../auth/Auth';
 import { api, extractTokenFromResponse, extractInfoFromToken } from './../../apis';
+import useForm from '../../pages/OfferModal/ProfilePage/SubPages/useForm';
 import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';
@@ -23,6 +24,35 @@ const InputWrapper = styled.div`
 const SignupModal = ({ pageToggler }) => {
   const history = useHistory();
   const { setUser } = useContext(AuthContext);
+  const form = useForm();
+
+  const {
+    getData,
+    handleDataChange,
+    findEmptyField,
+    getErrorMessage,
+  } = form;
+
+  const formData = getData();
+
+  const fieldList = Object.keys(FORM).map((key) => {
+    const { label, name, type, placeholder } = FORM[key];
+    const value = formData[key];
+    const handleChange = handleDataChange(key);
+
+    return (
+      <InputWrapper key={name}>
+        <Input
+          label={label}
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          handleChange={handleChange}
+        />
+      </InputWrapper>
+    )
+  });
 
   const [userCredentials, setUserCredentials] = useState({
     firstName: '',

@@ -1,15 +1,25 @@
 import React, { useState, useContext } from 'react';
+import styled from 'styled-components';
 import { AuthContext } from './../../auth/Auth';
 import { useHistory } from 'react-router-dom';
-import useForm from '../../pages/OfferModal/ProfilePage/SubPages/useForm'
-
-import styles from './LoginModal.module.scss';
-
 import { api, extractTokenFromResponse, extractInfoFromToken } from './../../apis';
+import useForm from '../../pages/OfferModal/ProfilePage/SubPages/useForm';
 import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';
 import FORM from './form';
+
+const ModalContainer = styled.div`
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+`;
+
+const InputWrapper = styled.div`
+  margin-bottom: 24px;
+  width: 100%;
+`;
 
 const LoginModal = ({ pageToggler }) => {
   const history = useHistory();
@@ -31,7 +41,7 @@ const LoginModal = ({ pageToggler }) => {
     const handleChange = handleDataChange(key);
 
     return (
-      <div className={styles.input_wrapper} >
+      <InputWrapper key={name}>
         <Input
           label={label}
           name={name}
@@ -39,14 +49,14 @@ const LoginModal = ({ pageToggler }) => {
           placeholder={placeholder}
           value={value}
           handleChange={handleChange}
-          />
-      </div>
+        />
+      </InputWrapper>
     )
   });
 
   const onLoginWithEmail = async (e) => {
     e.preventDefault();
-    // const {email, password} = form;
+
     try {
       const res = await api.post('/users/login', formData);
 
@@ -77,79 +87,15 @@ const LoginModal = ({ pageToggler }) => {
     <Modal onRequestClose={pageToggler} >
       <Modal.Header>Log In</Modal.Header>
       <Modal.Content>
-        <div className={styles.container}>
+        <ModalContainer>
           {fieldList}
           <Button onClick={onLoginWithEmail} >
             Log in
           </Button>
-        </div>
+        </ModalContainer>
       </Modal.Content>
     </Modal>
   );
 }
 
 export default LoginModal;
-
-
-
-//   // //// Original login form
-//   const history = useHistory();
-//   const { setUser } = useContext(AuthContext);
-
-//   // const [form, setForm] = useState({
-//   //   email: '',
-//   //   password: '',
-//   // });
-
-//   // const handleChange = (e) => {
-//   //   const {name, value} = e.target;
-//   //   setForm({
-//   //     ...form,
-//   //     [name]: value,
-//   //   });
-//   // }
-
-  // const onLoginWithEmail = async (e) => {
-  //   e.preventDefault();
-  //   // const {email, password} = form;
-  //   try {
-  //     const res = await api.post('/users/login', formData);
-
-  //     if (!res) {
-  //       pageToggler();
-  //     };
-
-  //     await extractTokenFromResponse(res);
-
-  //     const info = extractInfoFromToken();
-
-  //     if (!info.user) {
-  //       return;
-  //     }
-
-  //     await setUser(info.user);
-
-  //     history.push('/profile');
-
-  //     pageToggler();
-  //   } catch (error) {
-  //     console.log(error);
-  //     pageToggler();
-  //   }
-  // }
-
-  // return (
-  //   <Modal onRequestClose={pageToggler} >
-  //     <Modal.Header>Log In</Modal.Header>
-  //     <Modal.Content>
-  //       <div className={styles.container}>
-  //         {fieldList}
-  //         <Button onClick={onLoginWithEmail} >
-  //           Log in
-  //         </Button>
-  //       </div>
-  //     </Modal.Content>
-  //   </Modal>
-  // );
-// };
-

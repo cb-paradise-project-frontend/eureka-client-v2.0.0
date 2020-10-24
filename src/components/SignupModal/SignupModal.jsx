@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import styles from './SignupModal.module.scss';
 import { AuthContext } from '../../auth/Auth';
 import { api, extractTokenFromResponse, extractInfoFromToken } from './../../apis';
 import Modal from '../Modal';

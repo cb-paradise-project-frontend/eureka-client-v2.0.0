@@ -3,18 +3,21 @@ import { Link } from 'react-router-dom';
 import className from 'classnames/bind';
 import styles from './Navigation.module.scss';
 
-import logo from '../../assets/logo.svg';
-import postTaskLogo from '../../assets/postTaskLogo.svg';
 
-import { AuthContext } from '../../auth/Auth';
+import { AuthContext } from './../../auth/Auth';
 // import { NavContext } from './NavContext';
-import LoginModal from '../LoginModal';
-import SignupModal from '../SignupModal';
-import Categories from './components/Categories';
-import ToggleContent from '../ToggleContent';
-import Button from '../Button';
+import LoginModal from '../../components/LoginModal';
+import SignupModal from '../../components/SignupModal';
+import Categories from '../Navigation/components/Categories';
+import ToggleContent from '../../components/ToggleContent';
+import Button from '../../components/Button';
+import PostTask from './../../pages/PostTask';
+import NavigationMobile from './components/NavigationMobile';
+import NavigationWeb from './components/NavigationWeb';
+import Public from './Public';
 import PostTaskButton from '../PostTaskButton';
 import LogOut from './components/LogOut';
+
 
 const cx = className.bind(styles);
 
@@ -25,11 +28,30 @@ class Navigation extends Component {
     this.state = { clicked:false }
   }
 
+  
   handleClick = () => {
     this.setState((prevState) => ({ clicked: !prevState.clicked}))
   }
-
   render() {
+    const PostTaskButton = () => (
+      <ToggleContent
+        toggle={(toggler) => (
+          <div className={styles.post_task_button_wrapper} >
+            <Button
+              color={'navy'}
+              onClick={toggler}
+              size={'navbar'}
+            >
+              Post a Task
+            </Button>
+          </div>
+        )}
+        content={(toggler) => (
+          <PostTask pageToggler={toggler} />
+        )}
+      />
+    );
+  
     const LoginButton = () => (
       <ToggleContent
         toggle={(toggler) => (
@@ -47,6 +69,8 @@ class Navigation extends Component {
         )}
       />
     );
+
+
 
     const SignupButton = () => (
       <ToggleContent
@@ -68,6 +92,21 @@ class Navigation extends Component {
     return (
       <AuthContext.Consumer>
         {(currentUser) => (
+
+          //currentUser ? 
+          //<Public /> : <div>123</div>
+          // <NavContext.Consumer>
+          //curren? <da> : <>
+          // <React.Fragment>
+          //   <div className={styles.menuMobile}>
+          //     <NavigationMobile />
+          //   </div>
+
+          //   <div className={styles.web}>
+          //     <NavigationWeb />
+          //   </div>
+          // </React.Fragment>
+
           // <NavContext.Consumer>
           <React.Fragment>
             <div className={styles.menuMobile}>

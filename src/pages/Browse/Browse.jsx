@@ -2,32 +2,48 @@ import React, { useEffect, useState } from 'react';
 
 import styles from './Browse.module.scss';
 
-import TaskList from './TaskList';
+import TaskDisplay from './TaskDisplay';
 import getTaskList from '../../apis/Task/getTaskList';
 import TaskMenu from './TaskMenu';
 import useLoadingPage from '../../components/LoadingPage/useLoadingPage';
 import { LoadTaskProvider } from './TaskDetail/LoadTaskContext';
 import EmptyTask from './EmptyTask';
 
+const DEFAULT_PAGE_SIZE = 5;
+
+const initConfig = {
+  keyword: '',
+  maxPrice: '',
+  minPrice: '',
+  page: 1,
+  pageSize: DEFAULT_PAGE_SIZE,
+};
+
 export default function Browse() {
   const [taskList, setTaskList] = useState([]);
 
-  const [filter, updateFilter] = useState('');
+  const [config, updateConfig] = useState(initConfig);
 
-  const [LoadingMask, toggleLoadingMask, loadingStatus] = useLoadingPage();
-
-  const loadTaskList = async () => {
-    const newTaskList = await getTaskList(filter) || [];
-    setTaskList(newTaskList);
-
-    if (loadingStatus) toggleLoadingMask();
-  };
+  const [LoadingMask, toggleLoadingMask] = useLoadingPage();
 
   const {
     keyword,
     maxPrice,
     minPrice,
-  } = filter;
+    page,
+  } = config;
+
+  const loadTaskList = async () => {
+    toggleLoadingMask(true);
+
+    const newTaskList = await getTaskList(config);
+
+    if (newTaskList.length) {
+      setTaskList((prevList) => prevList.concat(newTaskList));
+    }
+
+    toggleLoadingMask(false);
+  };
 
   useEffect(() => {
     loadTaskList();
@@ -35,15 +51,28 @@ export default function Browse() {
     keyword,
     maxPrice,
     minPrice,
+    page,
   ]);
+
+  const nextPage = () => {
+    updateConfig((prevState) => ({
+      ...prevState,
+      page: prevState.page + 1,
+    }));
+  };
 
   return (
     <LoadTaskProvider loadTaskList={loadTaskList} >
       <div className={styles.browse} >
-        <TaskMenu onFilterChange={updateFilter} />
+        <TaskMenu onFilterChange={updateConfig} />
         <LoadingMask>
           {taskList.length
-            ? <TaskList taskList={taskList} />
+            ? (
+              <TaskDisplay
+                taskList={taskList}
+                nextPage={nextPage}
+              />
+            )
             : <EmptyTask />
           }
         </LoadingMask>

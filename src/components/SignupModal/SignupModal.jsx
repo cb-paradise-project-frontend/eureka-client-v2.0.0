@@ -1,13 +1,24 @@
 import React, { useState, useContext } from 'react';
+import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-
 import styles from './SignupModal.module.scss';
-
 import { AuthContext } from '../../auth/Auth';
 import { api, extractTokenFromResponse, extractInfoFromToken } from './../../apis';
 import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';
+
+const ModalContainer = styled.div`
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+`;
+
+const InputWrapper = styled.div`
+  margin-bottom: 24px;
+  width: 100%;
+`;
 
 const SignupModal = ({ pageToggler }) => {
   const history = useHistory();
@@ -62,32 +73,30 @@ const SignupModal = ({ pageToggler }) => {
     <Modal onRequestClose={pageToggler} >
       <Modal.Header>Join us</Modal.Header>
       <Modal.Content>
-        <form className={styles.container}>
-          <div className={styles.name_wrapper}>
-            <div className={styles.input_wrapper} >
-              <Input
-                label="First Name"
-                name="firstName"
-                type="string"
-                placeholder="First Name"
-                required
-                value={userCredentials.firstname}
-                onChange={handleChange}
-              />
-            </div>
-            <div className={styles.input_wrapper} >
-              <Input
-                label="Last Name"
-                name="lastName"
-                type="string"
-                placeholder="Last Name"
-                required
-                value={userCredentials.lastname}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-          <div className={styles.input_wrapper} >
+        <ModalContainer>
+          <InputWrapper>
+            <Input
+              label="First Name"
+              name="firstName"
+              type="string"
+              placeholder="First Name"
+              required
+              value={userCredentials.firstname}
+              onChange={handleChange}
+            />
+          </InputWrapper>
+          <InputWrapper>
+            <Input
+              label="Last Name"
+              name="lastName"
+              type="string"
+              placeholder="Last Name"
+              required
+              value={userCredentials.lastname}
+              onChange={handleChange}
+            />
+          </InputWrapper>
+          <InputWrapper>
             <Input
               label="Email"
               name="email"
@@ -97,8 +106,8 @@ const SignupModal = ({ pageToggler }) => {
               value={userCredentials.email}
               onChange={handleChange}
             />
-          </div>
-          <div className={styles.input_wrapper} >
+          </InputWrapper>
+          <InputWrapper>
             <Input
               label="Password"
               name="password"
@@ -108,8 +117,8 @@ const SignupModal = ({ pageToggler }) => {
               value={userCredentials.password}
               onChange={handleChange}
             />
-          </div>
-          <div className={styles.input_wrapper} >
+          </InputWrapper>
+          <InputWrapper>
             <Input
               label="Confirm Password"
               name="confirmPassword"
@@ -119,9 +128,9 @@ const SignupModal = ({ pageToggler }) => {
               value={userCredentials.confirmPassword}
               onChange={handleChange}
             />
-          </div>
+          </InputWrapper>
           <Button type="submit" onClick={onSignUp}>Sign up</Button>
-        </form>
+        </ModalContainer>
       </Modal.Content>
     </Modal>
   );

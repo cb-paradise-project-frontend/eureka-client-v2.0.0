@@ -1,21 +1,13 @@
-const setInitializePayment = (
-  accountNumber,
-  accountHolder,
-  bsb,
-) => {
-  if (!accountNumber || !accountHolder || !bsb) {
+const setInitializePayment = (bankAccount) => {
+  if (!bankAccount) {
     return {
-      accountNumber: '',
       accountHolder: '',
+      accountNumber: '',
       bsb: '',
     };
   }
 
-  return {
-    accountHolder,
-    accountNumber,
-    bsb,
-  };
+  return bankAccount;
 
   // return !bankAccountData ? {
   //   holder: '',

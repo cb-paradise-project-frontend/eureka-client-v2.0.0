@@ -7,6 +7,8 @@ import ProfileContent from './ProfileContent';
 import getProfile from '../../apis/Profile/getProfile';
 import { saveProfile } from '../../apis';
 import { setIntializeBirthday, setIntializePayment, setInitalizeBilling } from './utils';
+import updateUserName from '../../apis/Profile/updateUserName';
+import { toDate } from '../OfferModal/ProfilePage/SubPages/Birthday/utils';
 
 import styles from './Profile.module.scss';
 
@@ -38,6 +40,7 @@ class Profile extends React.Component {
     this.handleDalin = this.handleDalin.bind(this);
     this.handleUpdateProfile = this.handleUpdateProfile.bind(this);
     this.getUserProfile = this.getUserProfile.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
   }
 
   handleDalin = () => {
@@ -51,16 +54,12 @@ class Profile extends React.Component {
 
   getUserProfile = async () => {
     const {
-      // bankAccount,
-      accountHolder,
-      accountNumber,
-      bsb,
+      bankAccount,
       billingAddress,
       birthday,
       mobile,
     } = await getProfile();
-
-    const bankAccountData = setIntializePayment(accountNumber, accountHolder, bsb);
+    const bankAccountData = setIntializePayment(bankAccount);
     const billingAddressData = setInitalizeBilling(billingAddress);
 
     this.setState((prevState) => ({
@@ -157,30 +156,52 @@ class Profile extends React.Component {
 
     const profile = {
       bankAccount: {
-        holder: accountHolder,
+        accountHolder,
         accountNumber,
         bsb,
       },
       billingAddress,
-      birthday,
+      birthday: toDate(birthday),
       mobile,
     };
 
     const res = await saveProfile(profile);
 
     if (res) {
-      return console.log(204, 'successed updated', res);
+      return console.log(202, 'succeeded updated', res);
     }
     return console.log(500, 'failed');
   }
 
+  handleNameChange = async () => {
+    const {
+      account: {
+        firstName,
+        lastName,
+      },
+    } = this.state;
+
+    const username = { firstName, lastName };
+    const res = await updateUserName(username);
+
+    if (res) {
+      this.setState({
+        displayName: `${res.firstName} ${res.lastName}`,
+      });
+    }
+  }
+
   render() {
     const { history } = this.props;
-    const { currentNav, displayName, account, payment } = this.state;
+    const {
+      currentNav,
+      displayName,
+      account,
+      payment,
+    } = this.state;
 
     return (
       <React.Fragment>
-        <button onClick={() => history.push('/')}>Log out</button>
         <div className={styles.profile_wrapper}>
           <div className={styles.profile}>
             <ProfileNav
@@ -196,6 +217,7 @@ class Profile extends React.Component {
               onPaymentChange={this.handlePaymentCreator}
               onBirthdayChange={this.handleBirthdayChangeCreator}
               onSubmit={this.handleUpdateProfile}
+              onNameChange={this.handleNameChange}
             />
           </div>
         </div>

@@ -77,6 +77,7 @@ const Text = ({ onClick, children, color }) => (
         white: 'white',
         grey: 'grey',
         navy: 'navy',
+        navMobile: 'navMobile', 
         'light-blue': 'light-blue',
       }[color] || 'grey',
     )}
@@ -89,5 +90,7 @@ Button.CloseIcon = CloseIcon;
 Button.BackIcon = BackIcon;
 Button.SearchIcon = SearchIcon;
 Button.Text = Text;
+Button.IconButton = IconButton;
+
 
 export default Button;

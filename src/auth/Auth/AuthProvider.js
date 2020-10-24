@@ -8,6 +8,10 @@ const AuthProvider = ({ children }) => {
   const [userInitialized, setUserInitialized] = useState(false);
 
   const setUser = (decodedUser) => {
+    if (!decodedUser) {
+      setCurrentUser(null);
+      return;
+    }
     const { userId, firstName, lastName, email } = decodedUser;
     setCurrentUser({userId, firstName, lastName, email});
   }

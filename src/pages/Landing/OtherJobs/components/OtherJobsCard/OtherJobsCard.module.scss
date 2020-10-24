@@ -9,16 +9,14 @@
   position: relative;
   display: inline-block;
   vertical-align: top;
-  width: 195px;
-  height: 128px;
+  width: 250px;
+  height: 150px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 5px 2px;
   margin: 16px 8px;
   border-radius: 20px;
   transition: transform 0.4s ease 0s;
   cursor: pointer;
-  font-family: "Baloo Tamma 2", cursive;
-  
 
   h4 {
     color: #313849;
@@ -43,22 +41,22 @@
       flex-direction: row;
       
       img {
-        height: 25px;
-        width: 25px;
+        height: 30px;
+        width: 30px;
         margin-right: 12px;
         border-radius: 50%;
         background-color: yellow;
       }
 
       p {
-        width: 105px;
+        width: 135px;
         // margin-right: 16px;
         // height: 72px;
         white-space: pre-line;
         overflow: hidden;
         color: #313849;
-        font-size: 12px;
-        line-height: 14px;
+        font-size: 14px;
+        line-height: 18px;
         font-weight: 400;
         letter-spacing: 0.15px;
         // text-align: left;
@@ -66,9 +64,9 @@
     }
 
     .card__price{
-      width: 25px;
-      font-size: 14px;
-      font-weight: 400;
+      width: 32px;
+      font-size: 20px;
+      font-weight: 500;
       margin-top: 8px;
       color: #313849;
       line-height: 16px;
@@ -80,9 +78,10 @@
 
   .card__rating {
     position: absolute;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 16px;
+    letter-spacing: .5px;
     bottom: 0px;
     display: block;
     width: calc(100% - 48px);

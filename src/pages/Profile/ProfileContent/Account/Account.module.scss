@@ -24,6 +24,11 @@
 
 .update_btn {
   margin-top: 30px;
+  display: flex;
+  
+  button ~ button {
+    margin-left: 25px;
+  }
 }
 
 .birthday_wrapper {

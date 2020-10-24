@@ -9,9 +9,10 @@ import { onlyNumber } from '../../../../../utils/validators/input';
 import { isDate, isAdult } from '../../../../../utils/validators/submit';
 import useForm from '../useForm';
 import FORM from './form';
+import { toObject, toDate } from './utils';
 
 export default function Birthday({ storedValue, onSubmit }) {
-  const form = useForm(FORM, storedValue);
+  const form = useForm(FORM, toObject(storedValue));
 
   const {
     getData,
@@ -56,7 +57,7 @@ export default function Birthday({ storedValue, onSubmit }) {
     if (getError()) {
       toggleTest(true);
     } else {
-      onSubmit(formData);
+      onSubmit(toDate(formData));
     }
   };
 

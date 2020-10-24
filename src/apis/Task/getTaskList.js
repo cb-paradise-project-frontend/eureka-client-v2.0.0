@@ -16,7 +16,15 @@ export default async function getTaskList(filter) {
           : `${url}${key}=${filter[key]}&`
       ), '/tasks?');
 
-  const response = await api.get(`${urlConfig}`);
+  let response;
+
+  try {
+    response = await api.get(`${urlConfig}`);
+  } catch(error) {
+    console.log('error: ', error.message);
+
+    return false;
+  }
 
   return (response.status === 200) && destructure(response);
 }

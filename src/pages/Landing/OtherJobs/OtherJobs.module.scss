@@ -19,12 +19,11 @@
         position: relative;
         top: 20%;
         // left: 10%;
-        width: 850px;
+        max-width: 850px;
         // border: 1px solid red;
 
         h3 {
           color: rgb(41, 43, 50);
-          // font-family: "Baloo Tamma 2", cursive;
           font-size: 28px;
           line-height: 33px;
           font-weight: 600;
@@ -38,7 +37,7 @@
   }
 }
 
-// @media screen and (max-width: 375px)
+// @media screen and (max-width: 768px)
 // {
 //   .bg__wrapper {
 //     height: 812px;

@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import className from 'classnames/bind';
 import styles from './Navigation.module.scss';
 
-import logo from '../../assets/logo.svg';
-import postTaskLogo from '../../assets/postTaskLogo.svg';
 
 import { AuthContext } from './../../auth/Auth';
 // import { NavContext } from './NavContext';
@@ -14,6 +12,12 @@ import Categories from '../Navigation/components/Categories';
 import ToggleContent from '../../components/ToggleContent';
 import Button from '../../components/Button';
 import PostTask from './../../pages/PostTask';
+import NavigationMobile from './components/NavigationMobile';
+import NavigationWeb from './components/NavigationWeb';
+import Public from './Public';
+import PostTaskButton from '../PostTaskButton';
+import LogOut from './components/LogOut';
+
 
 const cx = className.bind(styles);
 
@@ -23,6 +27,7 @@ class Navigation extends Component {
 
     this.state = { clicked:false }
   }
+
   
   handleClick = () => {
     this.setState((prevState) => ({ clicked: !prevState.clicked}))
@@ -64,7 +69,9 @@ class Navigation extends Component {
         )}
       />
     );
-  
+
+
+
     const SignupButton = () => (
       <ToggleContent
         toggle={(toggler) => (
@@ -85,6 +92,21 @@ class Navigation extends Component {
     return (
       <AuthContext.Consumer>
         {(currentUser) => (
+
+          //currentUser ? 
+          //<Public /> : <div>123</div>
+          // <NavContext.Consumer>
+          //curren? <da> : <>
+          // <React.Fragment>
+          //   <div className={styles.menuMobile}>
+          //     <NavigationMobile />
+          //   </div>
+
+          //   <div className={styles.web}>
+          //     <NavigationWeb />
+          //   </div>
+          // </React.Fragment>
+
           // <NavContext.Consumer>
           <React.Fragment>
             <div className={styles.menuMobile}>
@@ -100,7 +122,7 @@ class Navigation extends Component {
                     className={styles.mobileLogo}
                     to="/"
                   >
-                    <img src={logo} />
+                    {/* <img src={logo} /> */}
                     <p>Brand</p>
                   </Link>
 
@@ -131,12 +153,14 @@ class Navigation extends Component {
                     className={styles.logo}
                     to="/"
                   >
-                    <img src={logo} />
+                    {/* <img src={logo} /> */}
                     <p>Brand</p>
                   </Link>
 
                   <div className={styles.left} >
-                    <PostTaskButton/>
+                    <div className={styles.post_task_button_wrapper} >
+                      <PostTaskButton />
+                    </div>
                     <Categories />
                     <Link
                       className={styles.browseTasks}
@@ -152,6 +176,7 @@ class Navigation extends Component {
                   <div className={styles.right} >
                     <SignupButton />
                     <LoginButton />
+                    <LogOut />
                     {/* <div className={styles.becomeTasker} >
                       <Button
                         color={'transparent'}

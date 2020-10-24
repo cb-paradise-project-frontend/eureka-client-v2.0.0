@@ -13,7 +13,7 @@
     display: -webkit-flex; 
     align-items:center;
     justify-content: center;
-      transform: translateY(300%);
+      transform: translateY(200%);
   }
 .logo {
   text-align: center;
@@ -32,11 +32,12 @@
   
     }
     .footer__content{
-      display:flex;
-      flex-direction: column;
-      display: -webkit-flex; 
-      align-items:center;
-      justify-content: center;
         transform: translateY(500%);
+        p{
+          margin-top: -20px;
+        }
+    }
+    .logo {
+      padding: 15px 30px;
     }
 }

@@ -23,6 +23,7 @@ export default function Browse() {
   const [taskList, setTaskList] = useState([]);
 
   const [config, updateConfig] = useState(initConfig);
+  const [page, setPage] = useState(1);
 
   const [LoadingMask, toggleLoadingMask] = useLoadingPage();
 
@@ -30,16 +31,18 @@ export default function Browse() {
     keyword,
     maxPrice,
     minPrice,
-    page,
   } = config;
 
   const loadTaskList = async () => {
     toggleLoadingMask(true);
 
-    const newTaskList = await getTaskList(config);
+    const newTaskList = await getTaskList({
+      ...config,
+      pageSize: taskList.length || DEFAULT_PAGE_SIZE,
+    });
 
     if (newTaskList.length) {
-      setTaskList((prevList) => prevList.concat(newTaskList));
+      setTaskList(newTaskList);
     }
 
     toggleLoadingMask(false);
@@ -51,14 +54,29 @@ export default function Browse() {
     keyword,
     maxPrice,
     minPrice,
-    page,
   ]);
 
+  const extendTaskList = async () => {
+    toggleLoadingMask(true);
+
+    const newTaskList = await getTaskList({
+      ...config,
+      page,
+    });
+
+    if (newTaskList.length) {
+      setTaskList((prevList) => prevList.concat(newTaskList));
+    }
+
+    toggleLoadingMask(false);
+  };
+
+  useEffect(() => {
+    if (page > 1) extendTaskList();
+  }, [page]);
+
   const nextPage = () => {
-    updateConfig((prevState) => ({
-      ...prevState,
-      page: prevState.page + 1,
-    }));
+    setPage((prevState) => prevState + 1);
   };
 
   return (
@@ -72,8 +90,7 @@ export default function Browse() {
                 taskList={taskList}
                 nextPage={nextPage}
               />
-            )
-            : <EmptyTask />
+            ) : <EmptyTask />
           }
         </LoadingMask>
       </div>

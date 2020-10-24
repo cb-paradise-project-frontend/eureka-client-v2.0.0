@@ -29,7 +29,10 @@ export default function TaskDetail({ taskList }) {
   const task = taskList.find((taskObj) => taskObj.id === taskId);
   if (!task) return null;
 
-  const { comments } = task;
+  const {
+    comments,
+    description,
+  } = task;
 
   const submitComment = async (input) => {
     if (!userId) return showMessage('Please login before leaving a message.');
@@ -45,8 +48,6 @@ export default function TaskDetail({ taskList }) {
   const commentList = (
     <CommentList comments={comments} />
   );
-
-  const { description } = task;
 
   return (
     <div className={styles.task_detail} >

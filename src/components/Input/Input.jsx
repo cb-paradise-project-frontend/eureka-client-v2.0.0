@@ -8,7 +8,14 @@ import Button from '../Button';
 const cx = classNames.bind(styles);
 
 const Input = ({
-  label, name, type, placeholder, validator, handleChange, isError, ...otherProps
+  label,
+  name,
+  type,
+  placeholder,
+  validator,
+  handleChange,
+  isError,
+  ...otherProps
 }) => {
   const inputHandler = ({ target: { value } }) => {
     const validInput = validator ? validator(value) : value;

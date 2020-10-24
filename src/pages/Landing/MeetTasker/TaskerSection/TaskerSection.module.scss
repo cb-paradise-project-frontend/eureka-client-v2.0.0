@@ -7,9 +7,10 @@
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   background: #fff;
-  margin-bottom: 16px;
+
   overflow: hidden;
-  margin: 30px -80px;
+  margin: 30px -100px;
+  justify-content: center;
 }
 
 .container {
@@ -53,7 +54,7 @@
 
     .left {
       text-align: left;
-      width: calc(50% - 10px);
+      width: 200px;
 
       .trust {
         width: 200px;
@@ -157,6 +158,11 @@
         top: -50px;
         
       }
+      a{
+        margin-top: 20px ;
+        text-decoration: none;
+        color: #008fb4;
+      }
       
     }
     
@@ -173,18 +179,9 @@
 @media screen and (max-width: 767px)
 {
   .tasker_card {
-    position: relative;
-    display: block;
-    flex-direction: column;
-    width: 100%;
     height: auto;
-    border-radius: 8px;
-    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    background: #fff;
-    margin-bottom: 16px;
-    overflow: hidden;
     margin: 30px auto;
+    width: 300px;
   }
 
   .tasker_photo {
@@ -195,4 +192,17 @@
     overflow: hidden;
     border: solid 1px black;
   }  
+  .bottom{
+    flex-direction: column;
+  }
+  .left{
+    margin-left: 50px;
+  }
+  .badges{
+    margin-top: -70px;
+    margin-left: -20px;
+    ::after{
+      display:none!important;
+    }
+  }
 }

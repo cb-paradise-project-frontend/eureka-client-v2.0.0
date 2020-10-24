@@ -6,7 +6,6 @@ import OtherJobs from "./OtherJobs";
 import MeetTasker from "./MeetTasker";
 import Articles from "./Articles";
 import Footer from "./Footer";
-import EverydayTasks from "./EverydayTasks/EverydayTasks";
 
 class Landing extends React.Component {
   constructor(props) {
@@ -30,12 +29,19 @@ class Landing extends React.Component {
               "Renovating your bedroom? You simply can’t go wrong with this classic colour pairing.",
           },
           {
-           id: 3,
-            articleImg: require("../../assets/article-curtain.png"),
-            articleTitle: "35 Modern bedroom curtain ideas",
-            articleContent:
-              "It’s time to ditch the old musty curtains and frame your windows with something beautiful.",
-          },
+            id: 3,
+             articleImg: require("../../assets/article-curtain.png"),
+             articleTitle: "35 Modern bedroom curtain ideas",
+             articleContent:
+               "It’s time to ditch the old musty curtains and frame your windows with something beautiful.",
+           },
+           {
+            id: 4,
+             articleImg: require("../../assets/article-farmhouse.png"),
+             articleTitle: "45+ Farmhouse bedroom ideas",
+             articleContent:
+               "Snug, cosy and timeless, farmhouse bedrooms have an enduring appeal.",
+           },
         ],
 
         feature: [
@@ -199,9 +205,8 @@ class Landing extends React.Component {
       <Home />
       <TaskCategories />
       <OtherJobs  data={this.state.JobsCards}/>
-      <EverydayTasks/>
-      <MeetTasker data={this.state.tasker}/>
       <Articles data={this.state.article}/>
+      <MeetTasker data={this.state.tasker}/>
       <Footer />
     </>
     );

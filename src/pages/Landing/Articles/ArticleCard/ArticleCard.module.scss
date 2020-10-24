@@ -11,7 +11,7 @@
   text-align: left;
   border-radius: 4px;
   background: white;
-  margin: 16px 16px 0px 0px;
+  margin: 25px 25px 0px 0px;
   overflow: hidden;
 
   .img_container {
@@ -33,6 +33,7 @@
   }
   .article_title {
     color: rgb(41, 43, 50);
+    font-family: "Baloo Tamma 2", cursive;
     font-weight: 600;
     font-size: 22px;
     line-height: 32px;
@@ -47,6 +48,8 @@
   }
 
   .article_content {
+    font-family: "Baloo Tamma 2", cursive;
+  
     font-weight: 400;
     line-height: 24px;
     letter-spacing: 0.15px;
@@ -74,7 +77,12 @@
 }
 
 
-
+@media screen and (max-width: 767px)
+{
+  .article_card {
+    margin: 25px 0 25px 0;
+  }
+}
 
 
 

@@ -7,12 +7,12 @@ h3 {
   display: flex;
   flex-direction: column;
   margin: auto;
-  // height: 45vw;
-  width: 90vw;
   position:center;
     text-align: center;
     margin: 0 auto;
     width:600px;
+
+    
   
   
   .MTNav__title {
@@ -89,5 +89,13 @@ h3 {
       border-style: solid;
       padding: 16px 24px;
       }
+  }
+}
+
+@media screen and (max-width: 767px)
+{
+  .MTNav__container {
+  
+      width:300px;
   }
 }

@@ -54,28 +54,10 @@ const SignupModal = ({ pageToggler }) => {
     )
   });
 
-  const [userCredentials, setUserCredentials] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUserCredentials({
-      ...userCredentials,
-      [name]: value,
-    });
-  };
-
   const onSignUp = async (e) => {
     e.preventDefault();
     try {
-      const { firstName, lastName, email, password } = userCredentials;
-
-      const res = await api.post('/users', { firstName, lastName, email, password });
+      const res = await api.post('/users', formData);
 
       if (!res) {
         pageToggler();

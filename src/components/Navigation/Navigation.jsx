@@ -122,7 +122,7 @@ class Navigation extends Component {
                     className={styles.mobileLogo}
                     to="/"
                   >
-                    <img src={logo} />
+                    {/* <img src={logo} /> */}
                     <p>Brand</p>
                   </Link>
 
@@ -153,7 +153,7 @@ class Navigation extends Component {
                     className={styles.logo}
                     to="/"
                   >
-                    <img src={logo} />
+                    {/* <img src={logo} /> */}
                     <p>Brand</p>
                   </Link>
 

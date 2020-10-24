@@ -1,0 +1,19 @@
+.menuMobile {
+  display: none;
+}
+
+.web {
+  display: flex;
+}
+
+
+@media screen and (max-width: 768px)
+{
+  .web {
+    display: none;
+  }
+
+  .menuMobile {
+    display: flex;
+  }
+}

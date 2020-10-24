@@ -76,8 +76,13 @@
 
 @media screen and (max-width: 767px)
 {
+  .bg__wrapper{
+    width: 100%;
+    height: 100%;
+    background: none!important;
+  }
   .article__container {
-    height: 200vh;
+    height: 240vh;
   }
   .content__wrapper {
     height: 100%;

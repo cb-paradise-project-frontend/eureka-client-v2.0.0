@@ -1,4 +1,4 @@
-.otherJobs__container {
+.meettasker__container {
   height: 100vh;
   
   .bg__wrapper {
@@ -50,10 +50,11 @@
 
 @media screen and (max-width: 767px)
 {
+  .meettasker__container {
+    height: 130vh;
   .bg__wrapper {
     position: relative;
-
-    background: none;
+    background: none!important;
 }
 
   .tasker__container{
@@ -66,4 +67,5 @@
   
   
   }
+}
 }

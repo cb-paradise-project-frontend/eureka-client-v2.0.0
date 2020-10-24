@@ -7,7 +7,7 @@ import MeetTaskerNav from "./MeetTaskerNav/MeetTaskerNav";
 
 function MeetTasker() {
   return (
-    <div className={styles.otherJobs__container}>
+    <div className={styles.meettasker__container}>
       <div className={styles.bg__wrapper}>
         <div className={styles.content__wrapper}>
             <div className={styles.tasker__container}>

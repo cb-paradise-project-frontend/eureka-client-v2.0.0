@@ -8,6 +8,7 @@ import getProfile from '../../apis/Profile/getProfile';
 import { saveProfile } from '../../apis';
 import { setIntializeBirthday, setIntializePayment, setInitalizeBilling } from './utils';
 import updateUserName from '../../apis/Profile/updateUserName';
+import { toDate } from '../OfferModal/ProfilePage/SubPages/Birthday/utils';
 
 import styles from './Profile.module.scss';
 
@@ -53,16 +54,17 @@ class Profile extends React.Component {
 
   getUserProfile = async () => {
     const {
-      // bankAccount,
-      accountHolder,
-      accountNumber,
-      bsb,
+      bankAccount: {
+        holder,
+        accountNumber,
+        bsb,
+      },
       billingAddress,
       birthday,
       mobile,
     } = await getProfile();
 
-    const bankAccountData = setIntializePayment(accountNumber, accountHolder, bsb);
+    const bankAccountData = setIntializePayment(accountNumber, holder, bsb);
     const billingAddressData = setInitalizeBilling(billingAddress);
 
     this.setState((prevState) => ({
@@ -164,7 +166,7 @@ class Profile extends React.Component {
         bsb,
       },
       billingAddress,
-      birthday,
+      birthday: toDate(birthday),
       mobile,
     };
 

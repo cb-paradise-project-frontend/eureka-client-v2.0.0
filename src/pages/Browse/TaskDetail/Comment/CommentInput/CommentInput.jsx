@@ -8,7 +8,7 @@ import CommentAvatar from '../CommentAvatar';
 export default function CommentInput({ addComment }) {
   const [input, updateInput] = useState('');
 
-  const placeHolder = 'Leave a comment here';
+  const placeHolder = 'Leave a message here';
   const WORD_LIMIT = 1500;
 
   const handleSubmit = () => {

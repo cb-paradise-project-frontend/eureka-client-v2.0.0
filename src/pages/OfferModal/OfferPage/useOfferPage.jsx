@@ -1,11 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 
+import styles from './OfferPage.module.scss';
+
 import { makeOffer } from '../../../apis';
-import OfferPage from './OfferPage';
+import Button from '../../../components/Button';
+import MakeOffer from './MakeOffer';
 
 const OFFER_SUCCESS = 'Offer have been sent to the task owner!';
 const OFFER_FAIL = 'Request sending failed. Please try again later.';
+
+const Header = () => (
+  <div className={styles.title} >
+    Make an Offer
+  </div>
+);
+
+const Content = () => (
+  <div className={styles.content_wrapper} >
+    <MakeOffer />
+  </div>
+);
+
+const Footer = ({ onBottomClick }) => (
+  <Button
+    onClick={onBottomClick}
+    color={'light-blue'}
+    long
+  >
+    Next
+  </Button>
+);
 
 export default function useOfferPage(showMessage) {
   const { params: { taskId } } = useRouteMatch();
@@ -27,9 +52,9 @@ export default function useOfferPage(showMessage) {
   }, [offered]);
 
   const page = {};
-  page.header = <OfferPage.Header />;
-  page.content = <OfferPage.Content />;
-  page.footer = <OfferPage.Footer onBottomClick={submitOffer} />;
+  page.header = <Header />;
+  page.content = <Content />;
+  page.footer = <Footer onBottomClick={submitOffer} />;
 
   return page;
 }

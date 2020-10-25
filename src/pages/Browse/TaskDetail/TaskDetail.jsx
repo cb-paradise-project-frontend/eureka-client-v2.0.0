@@ -22,20 +22,23 @@ export default function TaskDetail({ taskList }) {
   const { currentUser } = useContext(AuthContext);
   const userId = currentUser && currentUser.userId;
 
-  const loadTaskList = useContext(LoadTaskContext);
+  const reload = useContext(LoadTaskContext);
 
   const [Message, showMessage] = useMessageBox();
 
   const task = taskList.find((taskObj) => taskObj.id === taskId);
   if (!task) return null;
 
-  const { comments } = task;
+  const {
+    comments,
+    description,
+  } = task;
 
   const submitComment = async (input) => {
     if (!userId) return showMessage('Please login before leaving a message.');
     await addComment(taskId, input);
 
-    return loadTaskList();
+    return reload();
   };
 
   const commentInput = (
@@ -45,8 +48,6 @@ export default function TaskDetail({ taskList }) {
   const commentList = (
     <CommentList comments={comments} />
   );
-
-  const { description } = task;
 
   return (
     <div className={styles.task_detail} >

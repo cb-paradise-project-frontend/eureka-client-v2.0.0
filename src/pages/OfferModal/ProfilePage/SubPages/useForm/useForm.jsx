@@ -29,7 +29,9 @@ export default function useForm(config, initValues) {
   );
 
   const findEmptyField = () => {
-    const emptyField = formKeyArray.find((key) => !formData[key]);
+    const emptyField = formKeyArray
+      .find((key) => (!formData[key]
+        && !config[key].optional));
 
     if (!emptyField) return false;
 

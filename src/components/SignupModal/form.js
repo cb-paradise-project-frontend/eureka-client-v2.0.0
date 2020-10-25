@@ -1,4 +1,4 @@
-import { password, confirmPassword } from '../../utils/validators/input';
+import { password, confirmPassword, email } from '../../utils/validators/input';
 
 const FORM = {
   firstName: {
@@ -21,6 +21,9 @@ const FORM = {
     type: 'email',
     placeholder: 'Email',
     required: true,
+    getErrorMessage: (formData) => (
+      formData.email && !email(formData.email) && 'Your email is invalid'
+    ),
   },
   password: {
     label: 'Password',

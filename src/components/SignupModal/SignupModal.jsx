@@ -42,17 +42,16 @@ const SignupModal = ({ pageToggler }) => {
   const formData = getData();
 
   const fieldList = Object.keys(FORM).map((key) => {
-    const { label, name, type, placeholder, width } = FORM[key];
+    const { label, type, placeholder, width } = FORM[key];
     const value = formData[key];
     const handleChange = handleDataChange(key);
     const errorMessage = FORM[key].getErrorMessage && FORM[key].getErrorMessage(value, formData);
     const errorField = (key === errorHighlightField.field ? errorHighlightField.message : null);
 
     return (
-      <InputWrapper key={name} width={width}>
+      <InputWrapper key={key} width={width}>
         <Input.WithErrorMessage
           label={label}
-          name={name}
           type={type}
           placeholder={placeholder}
           value={value}

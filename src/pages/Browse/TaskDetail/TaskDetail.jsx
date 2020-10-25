@@ -58,11 +58,11 @@ export default function TaskDetail({ taskList }) {
   return (
     <div className={styles.task_detail} >
       <TaskProvider task={task} >
-        <SideBar />
         <Header />
         <Section title='DETAILS' >
           {description}
         </Section>
+        <SideBar />
         <Section title='OFFER' >
           <div className={styles.offer_icon} />
           <div className={styles.button_wrapper} >

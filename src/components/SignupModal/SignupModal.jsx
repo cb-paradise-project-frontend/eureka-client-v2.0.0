@@ -20,6 +20,7 @@ const InputWrapper = styled.div`
   display: inline-block;
   margin-bottom: 24px;
   width: ${props => props.width || '100%'};
+  vertical-align: top;
   &:nth-child(1) {
     margin-right: 16px;
   }

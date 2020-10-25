@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { AuthContext } from './../../auth/Auth';
 import { useHistory } from 'react-router-dom';
@@ -25,6 +25,7 @@ const LoginModal = ({ pageToggler }) => {
   const history = useHistory();
   const { setUser } = useContext(AuthContext);
   const form = useForm(FORM);
+  const [errorHighlightField, setErrorHighlightField] = useState('');
 
   const {
     getData,
@@ -39,22 +40,37 @@ const LoginModal = ({ pageToggler }) => {
     const { label, type, placeholder } = FORM[key];
     const value = formData[key];
     const handleChange = handleDataChange(key);
+    const errorMessage = FORM[key].getErrorMessage && FORM[key].getErrorMessage(value);
+    const errorField = (key === errorHighlightField.field ? errorHighlightField.message : null);
 
     return (
       <InputWrapper key={key}>
-        <Input
+        <Input.WithErrorMessage
           label={label}
           type={type}
           placeholder={placeholder}
           value={value}
           handleChange={handleChange}
+          isError={errorField}
+          errorMessage={errorField}
         />
       </InputWrapper>
     )
   });
 
+  const error = findEmptyField() || getErrorMessage();
+
   const onLoginWithEmail = async (e) => {
     e.preventDefault();
+
+    if (error) {
+      console.log('error in login modal', error);
+      setErrorHighlightField({
+        field: error.field,
+        message: error.message,
+      });
+      return;
+    }
 
     try {
       const res = await api.post('/users/login', formData);

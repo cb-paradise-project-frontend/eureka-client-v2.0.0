@@ -1,1 +1,1 @@
-export { OPEN, ASSIGNED, COMPLETED, EXPIRED } from './status';
+export { OPEN, ASSIGNED, COMPLETED } from './status';

@@ -115,7 +115,7 @@ class Navigation extends Component {
                   <div className={styles.responsiveButton}
                     onClick={this.handleClick}
                   >
-                    <i className={this.state.clicked ? 'far fa-times-circle' : 'fas fa-bars'}></i>
+                    <i className={this.state.clicked ? 'ri-close-circle-line' : 'ri-menu-line'}></i>
                   </div>
 
                   <Link

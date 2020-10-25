@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import styles from './TaskDetail.module.scss';
 
@@ -18,6 +18,7 @@ import useMessageBox from '../../../components/MessageBox/useMessageBox';
 
 export default function TaskDetail({ taskList }) {
   const { params: { taskId } } = useRouteMatch();
+  const history = useHistory();
 
   const { currentUser } = useContext(AuthContext);
   const userId = currentUser && currentUser.userId;
@@ -27,6 +28,11 @@ export default function TaskDetail({ taskList }) {
   const [Message, showMessage] = useMessageBox();
 
   const task = taskList.find((taskObj) => taskObj.id === taskId);
+
+  useEffect(() => {
+    if (!task) history.push(`/tasks/${taskList[0].id}`);
+  }, [taskId]);
+
   if (!task) return null;
 
   const {

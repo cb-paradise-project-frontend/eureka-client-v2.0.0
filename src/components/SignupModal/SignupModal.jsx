@@ -25,7 +25,6 @@ const SignupModal = ({ pageToggler }) => {
   const history = useHistory();
   const { setUser } = useContext(AuthContext);
   const form = useForm(FORM);
-  const [errorCleared, setErrorCleared] = useState(false);
   const [errorHighlightField, setErrorHighlightField] = useState('');
 
   const {
@@ -41,7 +40,8 @@ const SignupModal = ({ pageToggler }) => {
     const { label, name, type, placeholder } = FORM[key];
     const value = formData[key];
     const handleChange = handleDataChange(key);
-    const errorMessage = FORM[key].getErrorMessage && FORM[key].getErrorMessage(formData);
+    const errorMessage = FORM[key].getErrorMessage && FORM[key].getErrorMessage(value, formData);
+    const errorField = (key === errorHighlightField.field ? errorHighlightField.message : null);
 
     return (
       <InputWrapper key={name}>
@@ -52,8 +52,8 @@ const SignupModal = ({ pageToggler }) => {
           placeholder={placeholder}
           value={value}
           handleChange={handleChange}
-          isError={errorMessage || (key === errorHighlightField.field ? errorHighlightField.message : '')}
-          errorMessage={errorMessage || (key === errorHighlightField.field ? errorHighlightField.message: '')}
+          isError={errorMessage || errorField}
+          errorMessage={errorMessage || errorField}
         />
       </InputWrapper>
     )
@@ -64,6 +64,7 @@ const SignupModal = ({ pageToggler }) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     console.log('error in onSignUp', error);
+    console.log('getErrorMessage in onSignUp', getErrorMessage());
 
     if (error) {
       setErrorHighlightField({

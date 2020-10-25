@@ -2,9 +2,9 @@ import React, { createContext } from 'react';
 
 export const LoadTaskContext = createContext(null);
 
-export function LoadTaskProvider({ loadTaskList, children }) {
+export function LoadTaskProvider({ reload, children }) {
   return (
-    <LoadTaskContext.Provider value={loadTaskList}>
+    <LoadTaskContext.Provider value={reload}>
       {children}
     </LoadTaskContext.Provider>
   );

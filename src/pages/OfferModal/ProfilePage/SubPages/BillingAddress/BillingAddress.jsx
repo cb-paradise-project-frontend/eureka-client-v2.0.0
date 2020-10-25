@@ -14,6 +14,7 @@ export default function BillingAddress({ storedValue, onSubmit }) {
   const {
     getData,
     handleDataChange,
+    findEmptyField,
   } = form;
 
   const formData = getData();
@@ -40,17 +41,8 @@ export default function BillingAddress({ storedValue, onSubmit }) {
     );
   });
 
-  const isFilled = () => {
-    const emptyField = Object.keys(FORM).find((key) => {
-      const value = formData[key];
-      return (!value && key !== 'lineTwo');
-    });
-
-    return !emptyField;
-  };
-
   const handleSubmit = () => {
-    if (isFilled()) {
+    if (!findEmptyField()) {
       onSubmit(formData);
     } else {
       toggleTesting(true);

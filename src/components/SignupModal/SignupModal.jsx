@@ -26,7 +26,7 @@ const SignupModal = ({ pageToggler }) => {
   const { setUser } = useContext(AuthContext);
   const form = useForm(FORM);
   const [errorCleared, setErrorCleared] = useState(false);
-  const [errorHightlightField, setErrorHightlightField] = useState('');
+  const [errorHighlightField, setErrorHighlightField] = useState('');
 
   const {
     getData,
@@ -52,9 +52,9 @@ const SignupModal = ({ pageToggler }) => {
           placeholder={placeholder}
           value={value}
           handleChange={handleChange}
-          isError={errorMessage}
-          errorMessage={errorMessage}
-          />
+          isError={errorMessage || (key === errorHighlightField.field ? errorHighlightField.message : '')}
+          errorMessage={errorMessage || (key === errorHighlightField.field ? errorHighlightField.message: '')}
+        />
       </InputWrapper>
     )
   });
@@ -65,7 +65,13 @@ const SignupModal = ({ pageToggler }) => {
     e.preventDefault();
     console.log('error in onSignUp', error);
 
-    if (error) return;
+    if (error) {
+      setErrorHighlightField({
+        field: error.field,
+        message: error.message,
+      });
+      return;
+    }
 
     try {
       const res = await api.post('/users', formData);

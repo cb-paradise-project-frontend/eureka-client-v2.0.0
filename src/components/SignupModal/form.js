@@ -7,6 +7,7 @@ const FORM = {
     type: 'string',
     placeholder: 'First Name',
     required: true,
+    width: '157px'
   },
   lastName: {
     label: 'Last Name',
@@ -14,6 +15,7 @@ const FORM = {
     type: 'string',
     placeholder: 'Last Name',
     required: true,
+    width: '157px'
   },
   email: {
     label: 'Email',

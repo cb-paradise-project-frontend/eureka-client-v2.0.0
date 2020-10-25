@@ -17,8 +17,12 @@ const ModalContainer = styled.div`
 `;
 
 const InputWrapper = styled.div`
+  display: inline-block;
   margin-bottom: 24px;
-  width: 100%;
+  width: ${props => props.width || '100%'};
+  &:nth-child(1) {
+    margin-right: 16px;
+  }
 `;
 
 const SignupModal = ({ pageToggler }) => {
@@ -37,14 +41,14 @@ const SignupModal = ({ pageToggler }) => {
   const formData = getData();
 
   const fieldList = Object.keys(FORM).map((key) => {
-    const { label, name, type, placeholder } = FORM[key];
+    const { label, name, type, placeholder, width } = FORM[key];
     const value = formData[key];
     const handleChange = handleDataChange(key);
     const errorMessage = FORM[key].getErrorMessage && FORM[key].getErrorMessage(value, formData);
     const errorField = (key === errorHighlightField.field ? errorHighlightField.message : null);
 
     return (
-      <InputWrapper key={name}>
+      <InputWrapper key={name} width={width}>
         <Input.WithErrorMessage
           label={label}
           name={name}
@@ -104,7 +108,9 @@ const SignupModal = ({ pageToggler }) => {
       <Modal.Header>Join us</Modal.Header>
       <Modal.Content>
         <ModalContainer>
-          {fieldList}
+          <div>
+            {fieldList}
+          </div>
           <Button type="submit" onClick={onSignUp}>Sign up</Button>
         </ModalContainer>
       </Modal.Content>

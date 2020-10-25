@@ -6,6 +6,7 @@ import styles from './OfferPage.module.scss';
 import { makeOffer } from '../../../apis';
 import Button from '../../../components/Button';
 import MakeOffer from './MakeOffer';
+import Modal from '../../../components/Modal';
 
 const OFFER_SUCCESS = 'Offer have been sent to the task owner!';
 const OFFER_FAIL = 'Request sending failed. Please try again later.';
@@ -32,7 +33,7 @@ const Footer = ({ onBottomClick }) => (
   </Button>
 );
 
-export default function useOfferPage(showMessage) {
+export default function OfferPage({ showMessage, pageToggler }) {
   const { params: { taskId } } = useRouteMatch();
   const history = useHistory();
 
@@ -51,10 +52,17 @@ export default function useOfferPage(showMessage) {
     if (offered) return history.push('/profile/tasks');
   }, [offered]);
 
-  const page = {};
-  page.header = <Header />;
-  page.content = <Content />;
-  page.footer = <Footer onBottomClick={submitOffer} />;
-
-  return page;
+  return (
+    <Modal onRequestClose={pageToggler} >
+      <Modal.Header>
+        <Header />
+      </Modal.Header>
+      <Modal.Content>
+        <Content />
+      </Modal.Content>
+      <Modal.Footer>
+        <Footer onBottomClick={submitOffer} />
+      </Modal.Footer>
+    </Modal>
+  );
 }

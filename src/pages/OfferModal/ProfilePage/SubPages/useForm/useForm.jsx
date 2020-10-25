@@ -33,6 +33,7 @@ export default function useForm(config, initValues) {
 
     if (!emptyField) return false;
 
+    // TODO: PASS LABEL, NOT FIELD VALUE
     return { field: emptyField, message: `${emptyField} is required.` };
   };
 

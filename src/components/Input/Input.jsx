@@ -46,17 +46,18 @@ const Input = ({
 const WithErrorMessage = ({
   isError, errorMessage, ...otherProps
 }) => (
-  <div className={styles.input_with_error_message}>
-    <Input
+  <div className={styles.input_wrapper}>
+    <Input className={cx({
+          input: true,
+          error_input: isError,
+        })}
       {...otherProps}
     />
-    <div className={styles.error_message_wrapper} >
-      {isError && errorMessage &&
-        <ErrorMessage>
-          {errorMessage}
-        </ErrorMessage>
-      }
-    </div>
+    {isError && errorMessage &&
+      <ErrorMessage className={styles.error_message_wrapper}>
+        {errorMessage}
+      </ErrorMessage>
+    }
   </div>
 );
 

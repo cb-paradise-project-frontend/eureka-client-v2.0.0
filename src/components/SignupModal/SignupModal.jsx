@@ -25,6 +25,8 @@ const SignupModal = ({ pageToggler }) => {
   const history = useHistory();
   const { setUser } = useContext(AuthContext);
   const form = useForm(FORM);
+  const [errorCleared, setErrorCleared] = useState(false);
+  const [errorHightlightField, setErrorHightlightField] = useState('');
 
   const {
     getData,
@@ -39,23 +41,32 @@ const SignupModal = ({ pageToggler }) => {
     const { label, name, type, placeholder } = FORM[key];
     const value = formData[key];
     const handleChange = handleDataChange(key);
+    const errorMessage = FORM[key].getErrorMessage && FORM[key].getErrorMessage(value);
 
     return (
       <InputWrapper key={name}>
-        <Input
+        <Input.WithErrorMessage
           label={label}
           name={name}
           type={type}
           placeholder={placeholder}
           value={value}
           handleChange={handleChange}
+          isError={errorMessage}
+          errorMessage={errorMessage}
         />
       </InputWrapper>
     )
   });
 
+  const error = findEmptyField() || getErrorMessage();
+
   const onSignUp = async (e) => {
     e.preventDefault();
+    console.log('error in onSignUp', error);
+
+    if (error) return;
+
     try {
       const res = await api.post('/users', formData);
 

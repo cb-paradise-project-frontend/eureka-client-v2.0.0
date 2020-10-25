@@ -63,7 +63,11 @@ export default function TaskDisplay({ taskList, nextPage }) {
       clientHeight,
     } = event.target;
 
-    if (scrollHeight - scrollTop <= clientHeight) {
+    console.log(scrollHeight);
+    console.log(scrollTop);
+    console.log(clientHeight);
+
+    if (scrollHeight - scrollTop - clientHeight < 1) {
       nextPage();
     }
   };

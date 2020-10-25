@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { AuthContext } from './../../auth/Auth';
 import { useHistory } from 'react-router-dom';
@@ -36,15 +36,14 @@ const LoginModal = ({ pageToggler }) => {
   const formData = getData();
 
   const fieldList = Object.keys(FORM).map((key) => {
-    const { label, name, type, placeholder } = FORM[key];
+    const { label, type, placeholder } = FORM[key];
     const value = formData[key];
     const handleChange = handleDataChange(key);
 
     return (
-      <InputWrapper key={name}>
+      <InputWrapper key={key}>
         <Input
           label={label}
-          name={name}
           type={type}
           placeholder={placeholder}
           value={value}

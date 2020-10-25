@@ -28,8 +28,8 @@ const FORM = {
     type: 'password',
     placeholder: '8-16 mixed caps, numbers and special characters',
     required: true,
-    getErrorMessage: (value) => (
-      value && !password(value) && 'Your password must be 8-16 mixed caps, numbers and special characters'
+    getErrorMessage: (formData) => (
+      formData.password && !password(formData.password) && 'Your password must be 8-16 mixed caps, numbers and special characters'
     ),
   },
   confirmPassword: {
@@ -38,10 +38,9 @@ const FORM = {
     type: 'password',
     placeholder: 'Confirm Password',
     required: true,
-    // TODO: PASS PASSWORD TO COMPARE
-    // getErrorMessage: (value) => (
-    //   value && !confirmPassword(value) && 'Your passwords do not match'
-    // ),
+    getErrorMessage: (formData) => (
+      formData.confirmPassword && !confirmPassword(formData.password, formData.confirmPassword) && 'Your passwords do not match'
+    ),
   },
 }
 

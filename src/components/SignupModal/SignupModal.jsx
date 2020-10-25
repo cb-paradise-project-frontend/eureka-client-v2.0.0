@@ -41,7 +41,7 @@ const SignupModal = ({ pageToggler }) => {
     const { label, name, type, placeholder } = FORM[key];
     const value = formData[key];
     const handleChange = handleDataChange(key);
-    const errorMessage = FORM[key].getErrorMessage && FORM[key].getErrorMessage(value);
+    const errorMessage = FORM[key].getErrorMessage && FORM[key].getErrorMessage(formData);
 
     return (
       <InputWrapper key={name}>
@@ -54,7 +54,7 @@ const SignupModal = ({ pageToggler }) => {
           handleChange={handleChange}
           isError={errorMessage}
           errorMessage={errorMessage}
-        />
+          />
       </InputWrapper>
     )
   });

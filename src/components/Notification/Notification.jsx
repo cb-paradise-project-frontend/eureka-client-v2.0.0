@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useToggleContent } from '../ToggleContent';
+
 
 const Wrapper = styled.div`
   padding: 8px 16px;
@@ -20,10 +22,24 @@ const Wrapper = styled.div`
 `;
 
 const Notification = ({ children }) => {
+  const [ToggleContent, toggler] = useToggleContent(true);
+
+  const hideNotification = () => {
+    setTimeout(() => {
+      toggler();
+    }, 3000);
+  }
+
+  useEffect(() => {
+    hideNotification();
+  }, []);
+
   return (
-    <Wrapper>
-      {children}
-    </Wrapper>
+    <ToggleContent toggler={hideNotification}>
+      <Wrapper>
+        {children}
+      </Wrapper>
+    </ToggleContent>
   );
 }
 

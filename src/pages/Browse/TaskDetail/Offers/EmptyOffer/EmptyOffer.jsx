@@ -6,11 +6,11 @@ import OfferButton from '../../OfferButton';
 
 export default function EmptyOffer() {
   return (
-    <>
+    <div className={styles.container} >
       <div className={styles.offer_icon} />
       <div className={styles.button_wrapper} >
         <OfferButton />
       </div>
-    </>
+    </div>
   );
 }

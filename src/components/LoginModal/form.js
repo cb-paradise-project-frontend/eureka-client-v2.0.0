@@ -1,13 +1,16 @@
+import { email } from '../../utils/validators/input';
+
 const FORM = {
   email: {
     label: 'Email',
-    name: 'email',
     type: 'email',
     placeholder: 'Email',
+    getErrorMessage: (value) => (
+      value && !email(value) && 'Your email is invalid'
+    ),
   },
   password: {
     label: 'Password',
-    name: 'password',
     type: 'password',
     placeholder: 'Password',
   },

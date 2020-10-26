@@ -25,6 +25,7 @@ const LoginModal = ({ pageToggler }) => {
   const history = useHistory();
   const { setUser } = useContext(AuthContext);
   const form = useForm(FORM);
+  const [errorHighlightField, setErrorHighlightField] = useState('');
 
   const {
     getData,
@@ -36,26 +37,40 @@ const LoginModal = ({ pageToggler }) => {
   const formData = getData();
 
   const fieldList = Object.keys(FORM).map((key) => {
-    const { label, name, type, placeholder } = FORM[key];
+    const { label, type, placeholder } = FORM[key];
     const value = formData[key];
     const handleChange = handleDataChange(key);
+    const errorMessage = FORM[key].getErrorMessage && FORM[key].getErrorMessage(value);
+    const errorField = (key === errorHighlightField.field ? errorHighlightField.message : null);
 
     return (
-      <InputWrapper key={name}>
+      <InputWrapper key={key}>
         <Input
           label={label}
-          name={name}
           type={type}
           placeholder={placeholder}
           value={value}
           handleChange={handleChange}
+          isError={errorField}
+          errorMessage={errorField}
         />
       </InputWrapper>
     )
   });
 
+  const error = findEmptyField() || getErrorMessage();
+
   const onLoginWithEmail = async (e) => {
     e.preventDefault();
+
+    if (error) {
+      console.log('error in login modal', error);
+      setErrorHighlightField({
+        field: error.field,
+        message: error.message,
+      });
+      return;
+    }
 
     try {
       const res = await api.post('/users/login', formData);

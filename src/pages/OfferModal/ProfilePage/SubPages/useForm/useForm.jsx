@@ -35,6 +35,7 @@ export default function useForm(config, initValues) {
 
     if (!emptyField) return false;
 
+    // TODO: PASS LABEL, NOT FIELD VALUE
     return { field: emptyField, message: `${emptyField} is required.` };
   };
 
@@ -42,13 +43,13 @@ export default function useForm(config, initValues) {
     const errorField = formKeyArray.find((key) => {
       const value = formData[key];
       const getError = config[key].getErrorMessage;
-
-      return getError && getError(value);
+    
+      return getError && getError(value, formData);
     });
 
     if (!errorField) return false;
 
-    const errorMessage = config[errorField].getErrorMessage(formData[errorField]);
+    const errorMessage = config[errorField].getErrorMessage(formData[errorField], formData);
 
     return { field: errorField, message: errorMessage };
   };

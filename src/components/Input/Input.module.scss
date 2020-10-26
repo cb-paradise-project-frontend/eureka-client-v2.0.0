@@ -42,7 +42,7 @@
     &:disabled {
       cursor: not-allowed;
       border: 1px solid #d3d3d3;
-      
+
       &:hover {
         box-shadow: 0 0 3px 2px rgba(194, 170, 170, 0.29);
       }
@@ -59,18 +59,13 @@
       border: 1px solid #CE0E2D;
     }
   }
-}
-
-.input_with_error_message{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
 
   .error_message_wrapper {
     display: block;
     min-height: 14px;
   }
 }
+
 
 .search_wrapper{
   display: flex;

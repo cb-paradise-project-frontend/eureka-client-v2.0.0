@@ -34,18 +34,15 @@
   cursor: pointer;
   box-sizing: border-box;
   color: rgb(255, 255, 255);
-  font-family: museo-bold, "Helvetica Neue", Helvetica, Arial, "Lucida Grande",
-    sans-serif;
   font-size: 18px;
-  line-height: 24px;
   letter-spacing: 0.15px;
   background-color: rgb(125, 179, 67);
   border-radius: 160px;
   margin-bottom: 80px;
   border-color: rgba(0, 0, 0, 0);
-  border-width: 2px;
+  border-width: 1px;
   border-style: solid;
-  padding: 16px 24px;
+  padding: 8px 24px;
 }
 
 @media screen and (max-width: 767px)

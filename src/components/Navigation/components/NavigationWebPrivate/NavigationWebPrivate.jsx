@@ -67,7 +67,7 @@ class NavigationWebPrivate extends Component {
               className={styles.navUser}
               onClick={this.handleClick}
             >
-              <i class="far fa-user-circle"></i>
+              <i class="ri-user-line"></i>
             </div>
           </div>
         </div>

@@ -8,7 +8,6 @@
   white-space: nowrap;
   cursor: pointer;
   color: rgb(255, 255, 255);
-  line-height: 24px;
   border-radius: 160px;
   border-color: rgba(0, 0, 0, 0);
   border-style: solid;
@@ -71,9 +70,8 @@
   }
 
   &.small{
-    padding: 5px 10px;
-    height: 27px;
-    font-size: 11px;
+    padding: 4px 8px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: .44px;
     border-width: 1px;
@@ -82,26 +80,25 @@
   &.medium{
     padding: 8px 16px;
     font-size: 16px;
-    border-width: 2px;
+    border-width: 1px;
     letter-spacing: 0.15px;
   }
-  
+
   &.large{
-    border-width: 2px;
+    border-width: 1px;
     padding: 16px 24px;
     font-size: 20px;
     letter-spacing: 0.15px
   }
 
   &.navbar{
-    height: 35px;
+    height: 34px;
     width: 135px;
     border-radius: 20px;
     font-size: 14px;
     font-weight: 600;
-    line-height: 18px;
   }
-  
+
   &.long{
     width: 100%;
   }
@@ -174,9 +171,9 @@
   }
 
   &.navMobile {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 13px;
+    line-height: 14px;
     font-family: "Baloo Tamma 2", cursive;
     color: #313849;
 

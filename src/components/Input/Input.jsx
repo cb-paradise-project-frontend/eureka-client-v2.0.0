@@ -15,6 +15,7 @@ const Input = ({
   validator,
   handleChange,
   isError,
+  errorMessage,
   ...otherProps
 }) => {
   const inputHandler = ({ target: { value } }) => {
@@ -38,26 +39,14 @@ const Input = ({
         onChange={inputHandler}
         {...otherProps}
       />
-    </div>
-  );
-};
-
-const WithErrorMessage = ({
-  isError, errorMessage, ...otherProps
-}) => (
-  <div className={styles.input_with_error_message}>
-    <Input
-      {...otherProps}
-    />
-    <div className={styles.error_message_wrapper} >
       {isError && errorMessage &&
-        <ErrorMessage>
+        <ErrorMessage className={styles.error_message_wrapper}>
           {errorMessage}
         </ErrorMessage>
       }
     </div>
-  </div>
-);
+  );
+};
 
 const Search = ({
   placeholder, handleChange, onSubmit,
@@ -82,7 +71,6 @@ const Search = ({
   );
 };
 
-Input.WithErrorMessage = WithErrorMessage;
 Input.Search = Search;
 
 export default Input;

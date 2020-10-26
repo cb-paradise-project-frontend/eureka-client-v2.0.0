@@ -35,15 +35,14 @@ export default function useForm(config, initValues) {
 
     if (!emptyField) return false;
 
-    // TODO: PASS LABEL, NOT FIELD VALUE
-    return { field: emptyField, message: `${emptyField} is required.` };
+    return { field: emptyField, message: `${config[emptyField].label} is required.` };
   };
 
   const getErrorMessage = () => {
     const errorField = formKeyArray.find((key) => {
       const value = formData[key];
       const getError = config[key].getErrorMessage;
-    
+
       return getError && getError(value, formData);
     });
 

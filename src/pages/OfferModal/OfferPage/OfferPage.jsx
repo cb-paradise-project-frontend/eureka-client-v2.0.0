@@ -7,6 +7,7 @@ import { makeOffer } from '../../../apis';
 import Button from '../../../components/Button';
 import MakeOffer from './MakeOffer';
 import Modal from '../../../components/Modal';
+import TextArea from '../../../components/TextArea';
 
 const OFFER_SUCCESS = 'Offer have been sent to the task owner!';
 const OFFER_FAIL = 'Request sending failed. Please try again later.';
@@ -17,9 +18,21 @@ const Header = () => (
   </div>
 );
 
-const Content = () => (
+const Content = ({
+  message, setMessage,
+}) => (
   <div className={styles.content_wrapper} >
     <MakeOffer />
+    <div className={styles.message} >
+      Comment (Optional)
+      <TextArea
+        maxLength="1500"
+        size="large"
+        displayValue={message}
+        onInputChange={setMessage}
+        placeHolder="Leave a message to the task owner"
+      />
+    </div>
   </div>
 );
 
@@ -39,8 +52,10 @@ export default function OfferPage({ showMessage, pageToggler }) {
 
   const [offered, setOffered] = useState(false);
 
+  const [message, setMessage] = useState();
+
   const submitOffer = async () => {
-    const result = await makeOffer(taskId);
+    const result = await makeOffer(taskId, message);
     const newMessage = result ? OFFER_SUCCESS : OFFER_FAIL;
 
     if (result) setOffered(true);
@@ -58,7 +73,10 @@ export default function OfferPage({ showMessage, pageToggler }) {
         <Header />
       </Modal.Header>
       <Modal.Content>
-        <Content />
+        <Content
+          message={message}
+          setMessage={setMessage}
+        />
       </Modal.Content>
       <Modal.Footer>
         <Footer onBottomClick={submitOffer} />

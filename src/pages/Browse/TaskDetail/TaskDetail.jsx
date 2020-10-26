@@ -6,7 +6,6 @@ import styles from './TaskDetail.module.scss';
 import Header from './Header';
 import Section from './Section';
 import SideBar from './SideBar';
-import OfferButton from './OfferButton';
 import Comment from './Comment';
 import { TaskProvider } from './TaskContext';
 import CommentInput from './Comment/CommentInput';
@@ -15,6 +14,7 @@ import { addComment } from '../../../apis';
 import { AuthContext } from '../../../auth/Auth';
 import { LoadTaskContext } from './LoadTaskContext';
 import useMessageBox from '../../../components/MessageBox/useMessageBox';
+import OfferList from './Offers';
 
 export default function TaskDetail({ taskList }) {
   const { params: { taskId } } = useRouteMatch();
@@ -64,10 +64,7 @@ export default function TaskDetail({ taskList }) {
         </Section>
         <SideBar />
         <Section title='OFFER' >
-          <div className={styles.offer_icon} />
-          <div className={styles.button_wrapper} >
-            <OfferButton />
-          </div>
+          <OfferList />
         </Section>
         <Comment
           commentInput={commentInput}

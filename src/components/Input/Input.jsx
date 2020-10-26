@@ -39,27 +39,14 @@ const Input = ({
         onChange={inputHandler}
         {...otherProps}
       />
+      {isError && errorMessage &&
+        <ErrorMessage className={styles.error_message_wrapper}>
+          {errorMessage}
+        </ErrorMessage>
+      }
     </div>
   );
 };
-
-const WithErrorMessage = ({
-  isError, errorMessage, ...otherProps
-}) => (
-  <div className={styles.input_wrapper}>
-    <Input className={cx({
-          input: true,
-          error_input: isError,
-        })}
-      {...otherProps}
-    />
-    {isError && errorMessage &&
-      <ErrorMessage className={styles.error_message_wrapper}>
-        {errorMessage}
-      </ErrorMessage>
-    }
-  </div>
-);
 
 const Search = ({
   placeholder, handleChange, onSubmit,
@@ -84,7 +71,6 @@ const Search = ({
   );
 };
 
-Input.WithErrorMessage = WithErrorMessage;
 Input.Search = Search;
 
 export default Input;

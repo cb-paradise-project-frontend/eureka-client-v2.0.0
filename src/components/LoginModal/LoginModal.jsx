@@ -45,7 +45,7 @@ const LoginModal = ({ pageToggler }) => {
 
     return (
       <InputWrapper key={key}>
-        <Input.WithErrorMessage
+        <Input
           label={label}
           type={type}
           placeholder={placeholder}

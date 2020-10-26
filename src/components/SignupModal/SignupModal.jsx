@@ -50,7 +50,7 @@ const SignupModal = ({ pageToggler }) => {
 
     return (
       <InputWrapper key={key} width={width}>
-        <Input.WithErrorMessage
+        <Input
           label={label}
           type={type}
           placeholder={placeholder}

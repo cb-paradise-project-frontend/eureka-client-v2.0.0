@@ -59,12 +59,13 @@
       border: 1px solid #CE0E2D;
     }
   }
+
+  .error_message_wrapper {
+    display: block;
+    min-height: 14px;
+  }
 }
 
-.error_message_wrapper {
-  display: block;
-  min-height: 14px;
-}
 
 .search_wrapper{
   display: flex;

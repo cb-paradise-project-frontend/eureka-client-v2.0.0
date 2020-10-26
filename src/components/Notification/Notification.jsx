@@ -1,7 +1,21 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useToggleContent } from '../ToggleContent';
 
+const slideIn = keyframes`
+  from {
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    top: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+`;
 
 const Wrapper = styled.div`
   padding: 8px 16px;
@@ -19,6 +33,7 @@ const Wrapper = styled.div`
   z-index: 900;
   min-width: 200px;
   pointer-events: none;
+  animation: ${slideIn} ease-in-out 0.5s;
 `;
 
 const Notification = ({ children }) => {

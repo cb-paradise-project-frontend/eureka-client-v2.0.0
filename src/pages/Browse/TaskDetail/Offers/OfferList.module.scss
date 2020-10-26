@@ -24,14 +24,17 @@
     color: black;
     text-align: left;
     max-width: 600px;
+    max-height: 600px;
     word-wrap: break-word;
     padding: 8px;
     background-color: rgb(234, 236, 241);
+    transition: max-height 0.3s ease-in-out 0s;
   }
 
   .isCollapsed{
     max-height: 20px;
     overflow-y: hidden;
+    opacity: 1;
 
     &::after{
       position: absolute;
@@ -41,7 +44,7 @@
       content: "";
       display: block;
       opacity: 1;
-      transition: opacity 0.3s ease-out 0s;
+      transition: opacity 0.3s ease-in-out 0s;
       height: 30px;
       background: linear-gradient(rgba(255, 255, 255, 0), rgb(246, 248, 253));
     }

@@ -20,7 +20,12 @@ export default function OfferList() {
   };
 
   const offerList = offers.map((offer) => {
-    const { offeredBy: { avatar, id, fullName }, message } = offer;
+    const {
+      offeredBy: {
+        avatar, id, fullName,
+      },
+      message,
+    } = offer;
 
     return (
       <div

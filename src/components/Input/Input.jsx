@@ -71,6 +71,26 @@ const Search = ({
   );
 };
 
+const Naked = ({
+  validator,
+  handleChange,
+  ...otherProps
+}) => {
+  const inputHandler = ({ target: { value } }) => {
+    const validInput = validator ? validator(value) : value;
+    handleChange(validInput);
+  };
+
+  return (
+    <input
+      className={styles.naked}
+      onChange={inputHandler}
+      {...otherProps}
+    />
+  );
+};
+
 Input.Search = Search;
+Input.Naked = Naked;
 
 export default Input;

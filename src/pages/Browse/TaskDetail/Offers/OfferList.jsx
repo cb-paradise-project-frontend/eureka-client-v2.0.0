@@ -1,59 +1,45 @@
-import React, { useContext, useState } from 'react';
-import className from 'classnames/bind';
+import React, { useContext } from 'react';
 
 import styles from './OfferList.module.scss';
 
 import { TaskContext } from '../TaskContext';
 import CommentAvatar from '../Comment/CommentAvatar';
 import EmptyOffer from './EmptyOffer';
-import Button from '../../../../components/Button';
+import useCollapsible from './useCollapsible/useCollapsible';
 
-const cx = className.bind(styles);
+function OfferItem({ offer }) {
+  const Collapsible = useCollapsible();
+
+  const {
+    offeredBy: {
+      avatar, fullName,
+    },
+    message,
+  } = offer;
+
+  return (
+    <div className={styles.offer_wrapper} >
+      <div className={styles.header} >
+        <CommentAvatar avatarUrl={avatar} />
+        <div className={styles.name} >
+          {`${fullName}`}
+        </div>
+      </div>
+      <Collapsible>
+        <div className={styles.content}>
+          {message}
+        </div>
+      </Collapsible>
+    </div>
+  );
+}
 
 export default function OfferList() {
   const { offers } = useContext(TaskContext);
 
-  const [isCollapsed, toggleCollapse] = useState(true);
-
-  const handleToggle = () => {
-    toggleCollapse((prevState) => !prevState);
-  };
-
-  const offerList = offers.map((offer) => {
-    const {
-      offeredBy: {
-        avatar, id, fullName,
-      },
-      message,
-    } = offer;
-
-    return (
-      <div
-        className={styles.offer_wrapper}
-        key={id}
-      >
-        <div className={styles.header} >
-          <CommentAvatar avatarUrl={avatar} />
-          <div className={styles.name} >
-            {`${fullName}`}
-          </div>
-        </div>
-        <div className={cx({
-          content: true,
-          isCollapsed,
-        })}>
-          {message}
-        </div>
-        <div className={styles.footer} >
-          <Button.Text
-            onClick={handleToggle}
-          >
-            {isCollapsed ? 'More' : 'Less'}
-          </Button.Text>
-        </div>
-      </div>
-    );
-  });
+  const offerList = offers.map((offer) => (
+    <OfferItem offer={offer} key={offer.id} />
+  ));
 
   return offers.length
     ? (

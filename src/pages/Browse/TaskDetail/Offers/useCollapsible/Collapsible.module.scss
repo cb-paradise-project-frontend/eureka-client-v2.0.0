@@ -1,0 +1,25 @@
+.container{
+  
+  .content{
+    position: relative;
+    max-height: 600px;
+  }
+  
+  .isCollapsed{
+    max-height: 40px;
+    overflow-y: hidden;
+    opacity: 1;
+  
+    &::after{
+      position: absolute;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      content: "";
+      display: block;
+      opacity: 1;
+      height: 30px;
+      background: linear-gradient(rgba(255, 255, 255, 0), rgb(246, 248, 253));
+    }
+  }
+}

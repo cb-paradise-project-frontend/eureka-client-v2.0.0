@@ -14,11 +14,13 @@
   }
 
   .content{
+    width: 100%;
     margin: 0 20px;
-    padding-bottom: 15px;
+    padding: 0 16px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
     white-space: pre-wrap;
   }
 }

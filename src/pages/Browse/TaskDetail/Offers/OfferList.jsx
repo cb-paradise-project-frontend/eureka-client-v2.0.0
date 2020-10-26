@@ -5,7 +5,7 @@ import styles from './OfferList.module.scss';
 import { TaskContext } from '../TaskContext';
 import CommentAvatar from '../Comment/CommentAvatar';
 import EmptyOffer from './EmptyOffer';
-import useCollapsible from './useCollapsible/useCollapsible';
+import useCollapsible from './useCollapsible';
 
 function OfferItem({ offer }) {
   const Collapsible = useCollapsible();

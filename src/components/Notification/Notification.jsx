@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   top: 48px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2010;
+  z-index: 900;
   min-width: 200px;
   pointer-events: none;
 `;

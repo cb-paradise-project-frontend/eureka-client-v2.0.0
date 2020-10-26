@@ -6,6 +6,7 @@ import OtherJobs from "./OtherJobs";
 import MeetTasker from "./MeetTasker";
 import Articles from "./Articles";
 import Footer from "./Footer";
+import { getTasksByCategory } from "../../apis";
 
 class Landing extends React.Component {
   constructor(props) {
@@ -195,6 +196,11 @@ class Landing extends React.Component {
 
       
     };
+  }
+
+  componentDidMount() {
+    const taskCategory = getTasksByCategory('Pickup');
+    console.log(taskCategory);
   }
 
   render() {

@@ -6,8 +6,8 @@ import OtherJobsCardContainer from '../OtherJobsCardContainer';
 import ShowCard from '../OtherJobsShowCard';
 
 class OtherJobsNav extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       currentComponentIndex: "Moving home",
@@ -55,9 +55,7 @@ class OtherJobsNav extends Component {
           </div>
 
           <div>
-            {              
-              this.state.currentComponentIndex
-            }
+            {currentComponentIndex}
           </div>
 
           <div className={styles.OtherJobs__button}>

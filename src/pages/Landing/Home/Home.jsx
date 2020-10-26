@@ -3,8 +3,11 @@ import React from 'react';
 import styles from './Home.module.scss';
 
 import Button from '../../../components/Button';
+import { getTasksByCategory } from '../../../apis';
 
 function Home() {
+  //const categoryTask = getTasksByCategory('Removal');
+  console.log('category',123);
   return (
     <div className={styles.home__container}>
       <div className={styles.bg__wrapper}>

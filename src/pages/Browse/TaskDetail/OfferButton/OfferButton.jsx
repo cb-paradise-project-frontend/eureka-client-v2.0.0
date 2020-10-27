@@ -7,7 +7,7 @@ import { useToggleContent } from '../../../../components/ToggleContent';
 import OfferModal from '../../../OfferModal';
 import SignupModal from '../../../../components/SignupModal';
 import { TaskContext } from '../TaskContext';
-import { EXPIRED } from '../../../../components/Status';
+import { OPEN } from '../../../../components/Status';
 
 export default function OfferButton() {
   const [Content, toggler] = useToggleContent();
@@ -17,12 +17,12 @@ export default function OfferButton() {
 
   const { status, offers, postedBy } = useContext(TaskContext);
 
-  const isExpired = (status === EXPIRED);
+  const isOpen = (status === OPEN);
   const isOwner = (userId === postedBy._id);
   const isOffered = offers.length &&
     offers.find(({ offeredBy: { _id } }) => _id === userId);
 
-  const label = (isExpired && 'Expired')
+  const label = (!isOpen && `${status}`)
     || (isOwner && 'Your task')
     || (isOffered && 'Offered')
     || 'Make an offer';
@@ -35,7 +35,7 @@ export default function OfferButton() {
     <>
       <Button
         onClick={toggler}
-        isDisabled={isExpired || isOwner || isOffered}
+        isDisabled={!isOpen || isOwner || isOffered}
       >
         {label}
       </Button>

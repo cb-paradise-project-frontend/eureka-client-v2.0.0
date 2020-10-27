@@ -63,8 +63,8 @@
   }
   
   &:disabled{
-    background-color: lighten($expired-color, 25%);
-    color: darken($expired-color, 10%);
+    background-color: lighten($disabled-color, 25%);
+    color: darken($disabled-color, 10%);
     cursor: auto;
     pointer-events: none;
   }

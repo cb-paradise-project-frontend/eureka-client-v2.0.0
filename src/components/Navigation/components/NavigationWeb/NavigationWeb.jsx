@@ -5,17 +5,13 @@ import styles from './NavigationWeb.module.scss';
 
 import logo from '../../../../assets/logo.svg';
 
-import { AuthContext } from '../../../../auth/Auth';
-// import { NavContext } from './NavContext';
 import LoginModal from '../../../../components/LoginModal';
 import SignupModal from '../../../../components/SignupModal';
 import Categories from '../../../Navigation/components/Categories';
 import ToggleContent from '../../../../components/ToggleContent';
 import Button from '../../../../components/Button';
 import PostTask from '../.././../../pages/PostTask';
-// import NavigationMobile from './components/NavigationMobile';
 
-const cx = className.bind(styles);
 
 class NavigationWeb extends Component {
   constructor() {

@@ -38,7 +38,7 @@ export default function OfferList() {
   const { offers } = useContext(TaskContext);
 
   const offerList = offers.map((offer) => (
-    <OfferItem offer={offer} key={offer.id} />
+    <OfferItem offer={offer} key={offer._id} />
   ));
 
   return offers.length

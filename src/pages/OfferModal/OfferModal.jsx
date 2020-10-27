@@ -20,11 +20,11 @@ export default function OfferModal({ pageToggler }) {
   }, []);
 
   const CurrentPage = profileExist
-    ? { Content: OfferPage }
-    : {
-      Content: ProfilePage,
+    ? {
+      Content: OfferPage,
       onMessageClose: pageToggler,
-    };
+    }
+    : { Content: ProfilePage };
 
   return (
     <>

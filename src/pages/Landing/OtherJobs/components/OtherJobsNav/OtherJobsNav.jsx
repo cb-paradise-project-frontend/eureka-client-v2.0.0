@@ -32,7 +32,6 @@ class OtherJobsNav extends Component {
       currentCategory: 'Clean',
     }
     this.handleComponentShowing = this.handleComponentShowing.bind(this);
-    this.handleShowingBlock = this.handleShowingBlock.bind(this);
   }
   
   handleComponentShowing(key) {

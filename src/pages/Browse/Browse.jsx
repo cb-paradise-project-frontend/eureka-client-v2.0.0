@@ -25,6 +25,8 @@ export default function Browse() {
 
   const [LoadingMask, toggleLoadingMask] = useLoadingPage();
 
+  const [lastScroll, saveScroll] = useState();
+
   const maskWhenFetch = async (fetchFunction) => {
     toggleLoadingMask(true);
     await fetchFunction();
@@ -94,6 +96,8 @@ export default function Browse() {
               <TaskDisplay
                 taskList={taskList}
                 nextPage={nextPage}
+                lastScroll={lastScroll}
+                saveScroll={saveScroll}
               />
             ) : <EmptyTask />
           }

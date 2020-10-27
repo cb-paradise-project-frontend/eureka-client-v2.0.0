@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { Redirect, Route, Switch, useHistory, useRouteMatch } from 'react-router-dom';
 
@@ -51,9 +51,19 @@ function TaskListItem({
   );
 }
 
-export default function TaskDisplay({ taskList, nextPage }) {
+export default function TaskDisplay({
+  taskList,
+  nextPage,
+  lastScroll,
+  saveScroll,
+}) {
   const history = useHistory();
   const { path } = useRouteMatch();
+
+  useEffect(() => {
+    const taskListNode = document.getElementById('task-list');
+    if (lastScroll) taskListNode.scrollTo(null, lastScroll);
+  }, [lastScroll]);
 
   const handleScroll = (event) => {
     event.preventDefault();
@@ -64,6 +74,7 @@ export default function TaskDisplay({ taskList, nextPage }) {
     } = event.target;
 
     if (scrollHeight - scrollTop - clientHeight < 1) {
+      saveScroll(scrollTop);
       nextPage();
     }
   };
@@ -73,8 +84,10 @@ export default function TaskDisplay({ taskList, nextPage }) {
   return (
     <div className={styles.task_list_wrapper}>
       <div
+        id="task-list"
         className = {styles.task_list}
         onScroll={handleScroll}
+        scrollTop={lastScroll}
       >
         {taskList.map((task) => (
           <TaskListItem

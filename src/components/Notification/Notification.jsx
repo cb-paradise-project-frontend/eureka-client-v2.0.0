@@ -38,7 +38,6 @@ const Wrapper = styled.div`
   -webkit-box-shadow: 0 4px 12px rgba(0,0,0,.15);
   background: #ffffff;
   border-radius: 4px;
-  font-size: 14px;
   color: #292b32;
   font-weight: normal;
   position: fixed;
@@ -49,6 +48,22 @@ const Wrapper = styled.div`
   min-width: 200px;
   pointer-events: none;
   animation: ${slideIn} ease-in-out 3s both;
+  display: flex;
+`;
+
+const theme = {
+  success: '#7db343',
+  error: '#d32f2f',
+};
+
+const StatusIcon = styled.div`
+  color: ${props => theme[props.status]};
+  margin-right: 8px;
+
+  >i {
+    font-size: 18px;
+    vertical-align: middle;
+  }
 `;
 
 const Notification = ({ children, status }) => {
@@ -67,8 +82,10 @@ const Notification = ({ children, status }) => {
   return (
     <ToggleContent toggler={hideNotification}>
       <Wrapper>
+        <StatusIcon status={status}>
         {status === 'success' ? <i className="ri-checkbox-circle-fill" /> : null}
         {status === 'error' ? <i className="ri-error-warning-fill" /> : null}
+        </StatusIcon>
         {children}
       </Wrapper>
     </ToggleContent>

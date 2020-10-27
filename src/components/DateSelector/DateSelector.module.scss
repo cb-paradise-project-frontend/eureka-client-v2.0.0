@@ -1,24 +1,6 @@
-select:required:invalid {
-  color: gray;
-  margin-right: 0.5em;
-}
-option[value=""][disabled] {
-  display: none;
-}
-option {
-  color: black;
-}
-
-.job_category_box {
-  display: flex;
-  margin-left: 1em;
-  margin-bottom: 0.4em;
-  margin-top: 0.2em;
-}
-
 .input {
   display: block;
-  // width: 190px;
+  width: 100%;
   background-color: #ffffff;
   color: rgb(41, 43, 50);
   font-size: 14px;
@@ -45,5 +27,14 @@ option {
   &:-webkit-autofill:active {
     -webkit-transition-delay: 99999s;
     -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;    
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    border: 1px solid #d3d3d3;
+    
+    &:hover {
+      box-shadow: 0 0 3px 2px rgba(194, 170, 170, 0.29);
+    }
   }
 }

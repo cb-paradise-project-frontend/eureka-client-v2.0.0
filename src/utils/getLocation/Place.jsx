@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
-
-import styled from 'styled-components';
 import './Place.scss';
-
 import ErrorMsg from '../../components/ErrorMessage';
-
 import getLocation from './getLocation';
+import Input from '../../components/Input';
+import styled from 'styled-components';
 
-const PlaceInput = styled.input`
+const Wrapper = styled.div`
+  width: 166px;
+  padding: 20px 0px;
 `
+
 
 function Place({
   type,
@@ -28,14 +29,15 @@ function Place({
 
  
   return(
-    <React.Fragment>
-      <PlaceInput 
+    <Wrapper>
+      <Input 
         id="searchTextField" 
         placeholder="Enter a suburb"
         defaultValue={place}
+        handleChange={handleAddressQuery}
       />
       { isPlaceInvalid && <ErrorMsg> Please enter a suburb </ErrorMsg>}
-    </React.Fragment>
+    </Wrapper>
   )
 }
 

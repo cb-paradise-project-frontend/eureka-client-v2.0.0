@@ -7,6 +7,8 @@ import MeetTasker from "./MeetTasker";
 import Articles from "./Articles";
 import Footer from "./Footer";
 import { getTasksByCategory } from "../../apis";
+import { CategoryProvider } from "../categoryContext/categoryContext";
+
 
 class Landing extends React.Component {
   constructor(props) {
@@ -140,16 +142,7 @@ class Landing extends React.Component {
           },
         ],
 
-
         JobsCards: [
-          {
-            id:"Moving home",
-            tabDescription : "Got a few boxes to shift, an apartment or entire house? Get your home moved just the way you want, by whom you want, when you want. Let Airtasker shoulder the load.",
-            title : "DELVERY",
-            description : "Deliver 1,000 letterbox flyers in Kellyville",
-            price : "$50",
-            rate : "5 Stars",
-          },
           {
             id:"Moving home",
             tabDescription : "Got a few boxes to shift, an apartment or entire house? Get your home moved just the way you want, by whom you want, when you want. Let Airtasker shoulder the load.",
@@ -190,31 +183,43 @@ class Landing extends React.Component {
             price : "$575" ,
             rate : "5 Stars" ,
           }
-
         ],
 
-
-      
     };
   }
 
-  componentDidMount() {
-    const taskCategory = getTasksByCategory('Pickup');
-    console.log(taskCategory);
+  categoryTasks = async() => {
+    const Pickup = await getTasksByCategory('Pickup');
+    const Removal = await getTasksByCategory('Removal');
+    const Clean = await getTasksByCategory('Clean');
+    //
+
+    const tasksList = {
+      Pickup,
+      Removal,
+      Clean,
+      //
+    }
+    this.setState({tasksList});
+  } 
+
+  componentDidMount() { 
+    this.categoryTasks();
   }
 
   render() {
-    console.log(456, this.state.JobsCards)
-    return (
-      <>
 
+    return (
+      <CategoryProvider
+        value={this.state.tasksList}
+      >
       <Home />
       <TaskCategories />
       <OtherJobs  data={this.state.JobsCards}/>
       <Articles data={this.state.article}/>
       <MeetTasker data={this.state.tasker}/>
       <Footer />
-    </>
+    </CategoryProvider>
     );
   }
 }

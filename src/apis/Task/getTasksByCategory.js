@@ -12,6 +12,5 @@ export default async function getTasksByCategory(category) {
     return false;
   }
 
-  console.log(destructure(response));
   return (response.status === 200) && destructure(response);
 }

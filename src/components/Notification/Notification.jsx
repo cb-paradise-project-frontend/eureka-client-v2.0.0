@@ -51,7 +51,7 @@ const Wrapper = styled.div`
   animation: ${slideIn} ease-in-out 3s both;
 `;
 
-const Notification = ({ children }) => {
+const Notification = ({ children, status }) => {
   const [ToggleContent, toggler] = useToggleContent(true);
 
   const hideNotification = () => {
@@ -67,6 +67,8 @@ const Notification = ({ children }) => {
   return (
     <ToggleContent toggler={hideNotification}>
       <Wrapper>
+        {status === 'success' ? <i className="ri-checkbox-circle-fill" /> : null}
+        {status === 'error' ? <i className="ri-error-warning-fill" /> : null}
         {children}
       </Wrapper>
     </ToggleContent>

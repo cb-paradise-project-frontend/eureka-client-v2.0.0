@@ -74,7 +74,7 @@ export default function TaskDisplay({
     } = event.target;
 
     if (scrollHeight - scrollTop - clientHeight < 1) {
-      saveScroll(scrollTop);
+      saveScroll(scrollTop - 5);
       nextPage();
     }
   };

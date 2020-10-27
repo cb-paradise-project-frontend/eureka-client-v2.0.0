@@ -19,20 +19,21 @@ export default function OfferModal({ pageToggler }) {
     requestProfile();
   }, []);
 
+  const CurrentPage = profileExist
+    ? { Content: OfferPage }
+    : {
+      Content: ProfilePage,
+      onMessageClose: pageToggler,
+    };
+
   return (
     <>
-      {profileExist
-        ? <OfferPage
-            showMessage={showMessage}
-            pageToggler={pageToggler}
-          />
-        : <ProfilePage
-            showMessage={showMessage}
-            pageToggler={pageToggler}
-            setProfileExist={setProfileExist}
-          />
-      }
-      <Message onRequestClose={profileExist && pageToggler} />
+      <CurrentPage.Content
+        showMessage={showMessage}
+        pageToggler={pageToggler}
+        setProfileExist={setProfileExist}
+      />
+      <Message onRequestClose={CurrentPage.onMessageClose} />
     </>
   );
 }

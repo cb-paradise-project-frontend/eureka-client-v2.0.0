@@ -5,12 +5,11 @@ import styles from './OfferPage.module.scss';
 
 import { makeOffer } from '../../../apis';
 import Button from '../../../components/Button';
-import MakeOffer from './MakeOffer';
+import MakeBid from './MakeBid';
 import Modal from '../../../components/Modal';
 import TextArea from '../../../components/TextArea';
 import { TaskContext } from '../../Browse/TaskDetail/TaskContext';
 
-const OFFER_SUCCESS = 'Offer have been sent to the task owner!';
 const OFFER_FAIL = 'Request sending failed. Please try again later.';
 
 const Header = () => (
@@ -48,11 +47,10 @@ export default function OfferPage({ showMessage, pageToggler }) {
 
   const submitOffer = async () => {
     const result = await makeOffer(taskId, { message, bid });
-    const newMessage = result ? OFFER_SUCCESS : OFFER_FAIL;
 
-    if (result) setOffered(true);
-
-    return showMessage(newMessage);
+    return result
+      ? setOffered(true)
+      : showMessage(OFFER_FAIL);
   };
 
   useEffect(() => {
@@ -66,7 +64,7 @@ export default function OfferPage({ showMessage, pageToggler }) {
       </Modal.Header>
       <Modal.Content>
         <Content>
-          <MakeOffer
+          <MakeBid
             bid={bid}
             setBid={setBid}
           />

@@ -3,17 +3,32 @@ import styled, { keyframes } from 'styled-components';
 import { useToggleContent } from '../ToggleContent';
 
 const slideIn = keyframes`
-  from {
+  0% {
     top: 24px;
     left: 50%;
     transform: translateX(-50%);
     opacity: 0;
   }
-  to {
+
+  15% {
     top: 48px;
     left: 50%;
     transform: translateX(-50%);
     opacity: 1;
+  }
+
+  85% {
+    top: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+
+  100% {
+    top: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
   }
 `;
 
@@ -33,7 +48,7 @@ const Wrapper = styled.div`
   z-index: 900;
   min-width: 200px;
   pointer-events: none;
-  animation: ${slideIn} ease-in-out 0.5s;
+  animation: ${slideIn} ease-in-out 3s both;
 `;
 
 const Notification = ({ children }) => {

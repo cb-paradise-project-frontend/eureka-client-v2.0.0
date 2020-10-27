@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import styles from './OfferPage.module.scss';
@@ -8,6 +8,7 @@ import Button from '../../../components/Button';
 import MakeOffer from './MakeOffer';
 import Modal from '../../../components/Modal';
 import TextArea from '../../../components/TextArea';
+import { TaskContext } from '../../Browse/TaskDetail/TaskContext';
 
 const OFFER_SUCCESS = 'Offer have been sent to the task owner!';
 const OFFER_FAIL = 'Request sending failed. Please try again later.';
@@ -18,21 +19,9 @@ const Header = () => (
   </div>
 );
 
-const Content = ({
-  message, setMessage,
-}) => (
+const Content = ({ children }) => (
   <div className={styles.content_wrapper} >
-    <MakeOffer />
-    <div className={styles.message} >
-      Comment (Optional)
-      <TextArea
-        maxLength="1500"
-        size="large"
-        displayValue={message}
-        onInputChange={setMessage}
-        placeHolder="Leave a message to the task owner"
-      />
-    </div>
+    {children}
   </div>
 );
 
@@ -52,10 +41,13 @@ export default function OfferPage({ showMessage, pageToggler }) {
 
   const [offered, setOffered] = useState(false);
 
+  const { budget } = useContext(TaskContext);
+  const [bid, setBid] = useState(budget);
+
   const [message, setMessage] = useState();
 
   const submitOffer = async () => {
-    const result = await makeOffer(taskId, message);
+    const result = await makeOffer(taskId, { message, bid });
     const newMessage = result ? OFFER_SUCCESS : OFFER_FAIL;
 
     if (result) setOffered(true);
@@ -73,10 +65,22 @@ export default function OfferPage({ showMessage, pageToggler }) {
         <Header />
       </Modal.Header>
       <Modal.Content>
-        <Content
-          message={message}
-          setMessage={setMessage}
-        />
+        <Content>
+          <MakeOffer
+            bid={bid}
+            setBid={setBid}
+          />
+          <div className={styles.message} >
+            Comment (Optional)
+            <TextArea
+              maxLength="1500"
+              size="large"
+              displayValue={message}
+              onInputChange={setMessage}
+              placeHolder="Leave a message to the task owner"
+            />
+          </div>
+        </Content>
       </Modal.Content>
       <Modal.Footer>
         <Footer onBottomClick={submitOffer} />

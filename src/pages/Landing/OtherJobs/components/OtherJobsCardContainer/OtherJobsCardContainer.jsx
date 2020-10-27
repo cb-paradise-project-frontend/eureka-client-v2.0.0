@@ -5,40 +5,44 @@ import styles from './OtherJobsCardContainer.module.scss';
 import OtherJobsCard from '../OtherJobsCard';
 
 
-class OtherJobsCardContainer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: [1, 2, 3, 4, 5, 6,],
-    };
-  }
-
-  render() {
-    const { data, } = this.state;
+function OtherJobsCardContainer({
+  taskList,
+  currentCategory,
+  tabDescription,
+}) {
+  
+    if(!taskList) {
+      return null;
+    }
+    let currentTask = taskList[currentCategory];
+    if(currentTask.length > 6) currentTask = currentTask.slice(0, 6);
 
     return (
       <div className={styles.OtherJobs__cards}>
         <div className={styles.OtherJobs__description}>
-          <h4>{this.props.tabDescription}</h4>
+          <h4>{tabDescription}</h4>
         </div>
 
         <div className={styles.OtherJobs__cardGrid}>
           {
-            data.map((e, index) =>
-              <OtherJobsCard
-                key = {index}
-                title = {this.props.title}
-                description = {this.props.description}
-                price = {this.props.price}
-                rate = {this.props.rate}
-              />
+            currentTask.map((task) =>
+              { 
+                const due_Date = new Date(task.dueDate)
+                return (
+                  <OtherJobsCard
+                    key = {task.id}
+                    title = {task.title}
+                    description = {task.description}
+                    price = {task.budget}
+                    rate = {due_Date.toDateString()}
+                  />)
+            }
             )
           }
         </div>
       </div>
     );
   }
-}
+
 
 export default OtherJobsCardContainer;

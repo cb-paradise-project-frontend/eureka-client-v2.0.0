@@ -93,18 +93,6 @@
   flex-direction: column;
 }
 
-.money {
-  @extend .units;
-  margin-left: 1em;
-  margin-right: 0.1em;
-  width: 8em;
-}
-
-.hour {
-  @extend .money;
-  width: 5em;
-}
-
 .want_help_box {
   display: flex;
   justify-content: flex-end;
@@ -136,11 +124,6 @@
 .budget_input_box {
   display: flex;
   flex-direction: column;
-}
-
-.budget_input {
-  height: 2em;
-  display: flex;
 }
 
 .units {

@@ -83,8 +83,8 @@ const Notification = ({ children, status }) => {
     <ToggleContent toggler={hideNotification}>
       <Wrapper>
         <StatusIcon status={status}>
-        {status === 'success' ? <i className="ri-checkbox-circle-fill" /> : null}
-        {status === 'error' ? <i className="ri-error-warning-fill" /> : null}
+          {status === 'success' ? <i className="ri-checkbox-circle-fill" /> : null}
+          {status === 'error' ? <i className="ri-error-warning-fill" /> : null}
         </StatusIcon>
         {children}
       </Wrapper>

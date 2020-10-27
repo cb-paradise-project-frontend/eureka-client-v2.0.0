@@ -30,7 +30,7 @@ export default function BillingAddress({ storedValue, onSubmit }) {
 
     return (
       <div className={styles.field_input_wrapper} key={label} >
-        <Input.WithErrorMessage
+        <Input
           label={label}
           value={value}
           handleChange={handleChange}

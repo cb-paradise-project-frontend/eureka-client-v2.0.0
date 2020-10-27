@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import styles from './TaskDetail.module.scss';
 
 import Header from './Header';
 import Section from './Section';
 import SideBar from './SideBar';
-import OfferButton from './OfferButton';
 import Comment from './Comment';
 import { TaskProvider } from './TaskContext';
 import CommentInput from './Comment/CommentInput';
@@ -15,9 +14,11 @@ import { addComment } from '../../../apis';
 import { AuthContext } from '../../../auth/Auth';
 import { LoadTaskContext } from './LoadTaskContext';
 import useMessageBox from '../../../components/MessageBox/useMessageBox';
+import OfferList from './Offers';
 
 export default function TaskDetail({ taskList }) {
   const { params: { taskId } } = useRouteMatch();
+  const history = useHistory();
 
   const { currentUser } = useContext(AuthContext);
   const userId = currentUser && currentUser.userId;
@@ -27,6 +28,11 @@ export default function TaskDetail({ taskList }) {
   const [Message, showMessage] = useMessageBox();
 
   const task = taskList.find((taskObj) => taskObj.id === taskId);
+
+  useEffect(() => {
+    if (!task) history.push(`/tasks/${taskList[0].id}`);
+  }, [taskId]);
+
   if (!task) return null;
 
   const {
@@ -52,16 +58,13 @@ export default function TaskDetail({ taskList }) {
   return (
     <div className={styles.task_detail} >
       <TaskProvider task={task} >
-        <SideBar />
         <Header />
         <Section title='DETAILS' >
           {description}
         </Section>
+        <SideBar />
         <Section title='OFFER' >
-          <div className={styles.offer_icon} />
-          <div className={styles.button_wrapper} >
-            <OfferButton />
-          </div>
+          <OfferList />
         </Section>
         <Comment
           commentInput={commentInput}

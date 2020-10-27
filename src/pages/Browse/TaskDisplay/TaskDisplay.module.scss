@@ -148,7 +148,3 @@ $content-color: #545a77;
 .completed{
   @include status-color-code($completed-color);
 }
-
-.expired{
-  @include status-color-code($expired-color);
-}

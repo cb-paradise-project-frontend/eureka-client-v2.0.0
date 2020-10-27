@@ -7,11 +7,12 @@ export default function JobCategory({
   onJobCategory,
   isJobCategoryNull,
 }) {
-  let option_id = [0, 1, 2];
+  let option_id = [0, 1, 2, 3];
   let options = [
     {name: 'Clean'},
     {name: 'Pickup'},
     {name: 'Removal'},
+    {name: 'Others'},
   ]
 
   const errorHint = 'Please select';
@@ -20,7 +21,7 @@ export default function JobCategory({
     <div className={styles.job_category_box}>
       <select 
         required  
-        className={styles}
+        className={styles.input}
         onChange={(e) => onJobCategory(e.target.value)}
         defaultValue={jobCategory}
       >

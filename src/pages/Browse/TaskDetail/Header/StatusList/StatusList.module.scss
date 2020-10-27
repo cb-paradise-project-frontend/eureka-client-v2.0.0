@@ -32,14 +32,5 @@
     &.completed.active{
       @include status-active($completed-color);
     }
-
-    &.expired{
-      display: none;
-
-      &.active{
-        @include status-active($expired-color);
-        display: block;
-      }
-    }
   }
 }

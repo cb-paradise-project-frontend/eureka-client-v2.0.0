@@ -21,6 +21,7 @@ import LoginModal from '../../components/LoginModal/LoginModal';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import MessageBox from '../../components/MessageBox';
 import withLoadingPage from '../../components/LoadingPage/withLoadingPage/withLoadingPage';
+import withLoginModal from '../../components/LoginModal/withLoginModal/withLoginModal';
 
 class PostTask extends React.Component {
   constructor(props) {
@@ -154,9 +155,9 @@ class PostTask extends React.Component {
   }
 
   async getQuote() {
-    this.props.toggleLoadingPage(true);
+    this.props.toggleLoadingPage();
     await postTask(this.state); //api 200 404
-    this.props.toggleLoadingPage(false);
+    this.props.toggleLoadingPage();
     this.props.history.push('/profile/tasks');
     this.togglerMsgBox()
   } //HOC
@@ -168,7 +169,7 @@ class PostTask extends React.Component {
       this.setState({ touch: true });
     } else {
       this.setState({ touch: false });
-      this.state.currentUser ? this.getQuote() : this.togglerShowLoginModal()
+      this.state.currentUser ? this.getQuote() : this.props.toggleLoginModal();
     }
   }
 
@@ -325,7 +326,7 @@ class PostTask extends React.Component {
 
     const { title, content } = pages[currentStep];
 
-    const { onRequestClose, LoadingContent } = this.props;
+    const { onRequestClose, LoadingContent, LoginContent } = this.props;
 
     return (
       <React.Fragment>
@@ -342,7 +343,7 @@ class PostTask extends React.Component {
           {postTaskBottom}
         </Modal.Footer>
       </Modal>
-      {showLoginModal && <LoginModal pageToggler={this.togglerShowLoginModal} />}
+      <LoginContent />
       { successSubmit && 
         <MessageBox
           onRequestClose={this.props.onClose}
@@ -355,4 +356,4 @@ class PostTask extends React.Component {
 }
 
 PostTask.contextType = AuthContext;
-export default withLoadingPage(false)(withAlert(withRouter(PostTask)));
+export default withLoginModal(false)(withLoadingPage(false)(withAlert(withRouter(PostTask))));

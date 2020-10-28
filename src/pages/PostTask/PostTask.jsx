@@ -1,7 +1,5 @@
 import React from 'react';
-
 import styles from './PostTask.module.scss';
-
 import Welcome from './components/Welcome';
 import TaskDescription from './components/TaskDescription';
 import TaskLocationAndTime from './components/TaskLocationAndTime';
@@ -17,11 +15,10 @@ import Modal from '../../components/Modal';
 import { withAlert } from './components/AlertModal';
 import { postTask } from '../../apis';
 import { AuthContext } from '../../auth/Auth';
-import LoginModal from '../../components/LoginModal/LoginModal';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
-import MessageBox from '../../components/MessageBox';
 import withLoadingPage from '../../components/LoadingPage/withLoadingPage/withLoadingPage';
 import withLoginModal from '../../components/LoginModal/withLoginModal/withLoginModal';
+import withMessageBox from '../../components/MessageBox/withMessageBox/withMessageBox';
 
 class PostTask extends React.Component {
   constructor(props) {
@@ -38,8 +35,6 @@ class PostTask extends React.Component {
       budgetHourlyWage: "0",
       touch: false,
       method: "offline",
-      showLoginModal: false,
-      successSubmit: false,
       currentUser: "",
     }
 
@@ -61,8 +56,6 @@ class PostTask extends React.Component {
     this.onBudgetHourlyWage = this.onBudgetHourlyWage.bind(this);
     this.onBudgetHour = this.onBudgetHour.bind(this);
     this.handleBudgetWageClick = this.handleBudgetWageClick.bind(this);
-    this.togglerMsgBox = this.togglerMsgBox.bind(this);
-    this.togglerShowLoginModal = this.togglerShowLoginModal.bind(this);
     }
 
   componentDidMount() {
@@ -76,18 +69,6 @@ class PostTask extends React.Component {
       this.setState({ currentUser: currentUser });
     }
   }
-
-  togglerMsgBox() {
-    this.setState((prevState) => ({
-      successSubmit: !prevState.successSubmit, 
-    }))
-  }//Chai
-
-  togglerShowLoginModal() {
-    this.setState((prevState) => ({
-      showLoginModal: !prevState.showLoginModal,
-    }))
-  }//chai
 
   onJobTitle(value) {
     this.setState({ jobTitle: value });
@@ -159,7 +140,7 @@ class PostTask extends React.Component {
     await postTask(this.state); //api 200 404
     this.props.toggleLoadingPage();
     this.props.history.push('/profile/tasks');
-    this.togglerMsgBox()
+    this.props.toggleMsgBox()
   } //HOC
 
   handleGetQuoteClick() {
@@ -187,7 +168,7 @@ class PostTask extends React.Component {
 
   render() {
     const {
-      currentStep, jobTitle, jobDetails, jobCategory, place, dueDate, touch, method, taskBudget, showLoginModal, successSubmit,
+      currentStep, jobTitle, jobDetails, jobCategory, place, dueDate, touch, method, taskBudget, successSubmit,
     } = this.state;
 
     const conditionList = [
@@ -326,7 +307,7 @@ class PostTask extends React.Component {
 
     const { title, content } = pages[currentStep];
 
-    const { onRequestClose, LoadingContent, LoginContent } = this.props;
+    const { onRequestClose, LoadingContent, LoginContent, MsgBoxContent, onClose } = this.props;
 
     return (
       <React.Fragment>
@@ -344,16 +325,11 @@ class PostTask extends React.Component {
         </Modal.Footer>
       </Modal>
       <LoginContent />
-      { successSubmit && 
-        <MessageBox
-          onRequestClose={this.props.onClose}
-          info="Successfully submit!" 
-        />
-      }
+      <MsgBoxContent onRequestClose={onClose} />
       </React.Fragment>
     );
   }
 }
 
 PostTask.contextType = AuthContext;
-export default withLoginModal(false)(withLoadingPage(false)(withAlert(withRouter(PostTask))));
+export default withMessageBox('Successful submit!')(false)(withLoginModal(false)(withLoadingPage(false)(withAlert(withRouter(PostTask)))));

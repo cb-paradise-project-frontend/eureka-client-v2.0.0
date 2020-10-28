@@ -55,7 +55,7 @@ class OtherJobsNav extends Component {
           </div>
 
           <div>
-            {              
+            {
               this.state.currentComponentIndex
             }
           </div>

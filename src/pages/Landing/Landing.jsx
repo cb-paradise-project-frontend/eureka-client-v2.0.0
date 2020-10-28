@@ -30,7 +30,7 @@ class Landing extends React.Component {
               "Renovating your bedroom? You simply can’t go wrong with this classic colour pairing.",
           },
           {
-           id: 3,
+            id: 3,
             articleImg: require("../../assets/article-curtain.png"),
             articleTitle: "35 Modern bedroom curtain ideas",
             articleContent:
@@ -133,16 +133,7 @@ class Landing extends React.Component {
           },
         ],
 
-
         JobsCards: [
-          {
-            id:"Moving home",
-            tabDescription : "Got a few boxes to shift, an apartment or entire house? Get your home moved just the way you want, by whom you want, when you want. Let Airtasker shoulder the load.",
-            title : "DELVERY",
-            description : "Deliver 1,000 letterbox flyers in Kellyville",
-            price : "$50",
-            rate : "5 Stars",
-          },
           {
             id:"Moving home",
             tabDescription : "Got a few boxes to shift, an apartment or entire house? Get your home moved just the way you want, by whom you want, when you want. Let Airtasker shoulder the load.",
@@ -182,10 +173,9 @@ class Landing extends React.Component {
             description : "Teach me your family pasta sauce recipe" ,
             price : "$575" ,
             rate : "5 Stars" ,
-          }
+          },
 
         ],
-
 
       
     };

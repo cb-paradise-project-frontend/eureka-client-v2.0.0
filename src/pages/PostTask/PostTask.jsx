@@ -15,12 +15,12 @@ import Button from '../../components/Button';
 import ProgressBar from './components/ProgressBar';
 import Modal from '../../components/Modal';
 import { withAlert } from './components/AlertModal';
-import postTask from '../../apis/Task/postTask';
+import { postTask } from '../../apis';
 import { AuthContext } from '../../auth/Auth';
 import LoginModal from '../../components/LoginModal/LoginModal';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import MessageBox from '../../components/MessageBox';
-import LoadingPage from '../../components/LoadingPage/LoadingPage';
+import withLoadingPage from '../../components/LoadingPage/withLoadingPage/withLoadingPage';
 
 class PostTask extends React.Component {
   constructor(props) {
@@ -40,7 +40,6 @@ class PostTask extends React.Component {
       showLoginModal: false,
       successSubmit: false,
       currentUser: "",
-      postStatus: false,
     }
 
     this.jobTitleMinLength = 10;
@@ -63,7 +62,6 @@ class PostTask extends React.Component {
     this.handleBudgetWageClick = this.handleBudgetWageClick.bind(this);
     this.togglerMsgBox = this.togglerMsgBox.bind(this);
     this.togglerShowLoginModal = this.togglerShowLoginModal.bind(this);
-    this.toggleLoadingPage = this.toggleLoadingPage.bind(this);
     }
 
   componentDidMount() {
@@ -78,39 +76,35 @@ class PostTask extends React.Component {
     }
   }
 
-  toggleLoadingPage(value) {
-    this.setState({postStatus: value})
-  }
-
   togglerMsgBox() {
     this.setState((prevState) => ({
       successSubmit: !prevState.successSubmit, 
     }))
-  }
+  }//Chai
 
   togglerShowLoginModal() {
     this.setState((prevState) => ({
       showLoginModal: !prevState.showLoginModal,
     }))
-  }
+  }//chai
 
   onJobTitle(value) {
     this.setState({ jobTitle: value });
-  }
+  }//chai
 
   onJobDetails(value) {
     this.setState({ jobDetails: value });
-  }
+  }//chai
 
   onJobCategory(value) {
     this.setState({ jobCategory: value });
-  }
+  }//chai
 
   onRadioCheck(value) {
     this.setState({
       method: value,
     });
-  }
+  }//chai
 
   onTaskBudget() {
     this.setState((prevState) => ({
@@ -123,7 +117,7 @@ class PostTask extends React.Component {
       { budgetHour: value },
       this.onTaskBudget,
     );
-  } //hook TODO
+  }
 
   onBudgetHourlyWage(value) {
     this.setState(
@@ -160,9 +154,9 @@ class PostTask extends React.Component {
   }
 
   async getQuote() {
-    this.toggleLoadingPage(true);
-    await postTask(this.state);
-    this.toggleLoadingPage(false);
+    this.props.toggleLoadingPage(true);
+    await postTask(this.state); //api 200 404
+    this.props.toggleLoadingPage(false);
     this.props.history.push('/profile/tasks');
     this.togglerMsgBox()
   } //HOC
@@ -331,12 +325,12 @@ class PostTask extends React.Component {
 
     const { title, content } = pages[currentStep];
 
-    const { onRequestClose } = this.props;
+    const { onRequestClose, LoadingContent } = this.props;
 
     return (
-      <>
+      <React.Fragment>
       <Modal onRequestClose={onRequestClose} >
-      { this.state.postStatus && <LoadingPage /> }
+        <LoadingContent />
         <Modal.Header>
           {title}
         </Modal.Header>
@@ -355,10 +349,10 @@ class PostTask extends React.Component {
           info="Successfully submit!" 
         />
       }
-      </>
+      </React.Fragment>
     );
   }
 }
 
 PostTask.contextType = AuthContext;
-export default withAlert(withRouter(PostTask));
+export default withLoadingPage(false)(withAlert(withRouter(PostTask)));

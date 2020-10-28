@@ -14,9 +14,6 @@ class TaskBudget extends React.Component{
       isClickHourlyRate: false,
     };
 
-    this.onBudgetHour = this.onBudgetHour.bind(this);
-    this.onBudgetHourlyWage = this.onBudgetHourlyWage.bind(this);
-    this.onBudgetHourlyWage = this.onBudgetHourlyWage.bind(this);
     this.handleHourlyRateClick = this.handleHourlyRateClick.bind(this);
     this.handleTotalClick = this.handleTotalClick.bind(this);
   }
@@ -30,14 +27,6 @@ class TaskBudget extends React.Component{
       { isClickHourlyRate: false },
       this.props.handleBudgetWageClick
       );
-  }
-
-  onBudgetHour(e) {
-    this.props.onBudgetHour(e.target.value);
-  }
-
-  onBudgetHourlyWage(e) {
-    this.props.onBudgetHourlyWage(e.target.value);
   }
 
   render() {
@@ -79,8 +68,8 @@ class TaskBudget extends React.Component{
             isBudgetInvalid={this.props.isBudgetInvalid}
             minBudget={5}
             maxBudget={9999}
-            onBudgetHour={this.onBudgetHour}
-            onBudgetHourlyWage={this.onBudgetHourlyWage}
+            onBudgetHour={this.props.onBudgetHour}
+            onBudgetHourlyWage={this.props.onBudgetHourlyWage}
             taskBudget={this.props.taskBudget}
           />
           <div>

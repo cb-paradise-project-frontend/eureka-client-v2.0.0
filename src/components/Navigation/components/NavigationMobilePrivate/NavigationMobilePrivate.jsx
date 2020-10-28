@@ -8,6 +8,7 @@ import postTaskLogo from '../../../../assets/postTaskLogo.svg';
 import ToggleContent from '../../../ToggleContent';
 import Button from '../../../Button';
 import PostTask from '../../../../pages/PostTask';
+import LogOut from '../LogOut';
 
 class NavigationMobilePrivate extends Component {
   constructor() {
@@ -119,6 +120,7 @@ class NavigationMobilePrivate extends Component {
           >
             Browse Tasks
           </Link>
+          <LogOut />
         </div>
       </nav>
     );

@@ -1,40 +1,85 @@
 import React, { useState, useContext } from 'react';
+import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-
-import styles from './SignupModal.module.scss';
-
 import { AuthContext } from '../../auth/Auth';
 import { api, extractTokenFromResponse, extractInfoFromToken } from './../../apis';
+import useForm from '../../pages/OfferModal/ProfilePage/SubPages/useForm';
 import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';
+import FORM from './form';
+
+const ModalContainer = styled.div`
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+`;
+
+const InputWrapper = styled.div`
+  display: inline-block;
+  margin-bottom: 24px;
+  width: ${props => props.width || '100%'};
+  vertical-align: top;
+  &:nth-child(1) {
+    margin-right: 16px;
+  }
+`;
 
 const SignupModal = ({ pageToggler }) => {
   const history = useHistory();
   const { setUser } = useContext(AuthContext);
+  const form = useForm(FORM);
+  const [errorHighlightField, setErrorHighlightField] = useState('');
 
-  const [userCredentials, setUserCredentials] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+  const {
+    getData,
+    handleDataChange,
+    findEmptyField,
+    getErrorMessage,
+  } = form;
+
+  const formData = getData();
+
+  const fieldList = Object.keys(FORM).map((key) => {
+    const { label, type, placeholder, width } = FORM[key];
+    const value = formData[key];
+    const handleChange = handleDataChange(key);
+    const errorMessage = FORM[key].getErrorMessage && FORM[key].getErrorMessage(value, formData);
+    const errorField = (key === errorHighlightField.field ? errorHighlightField.message : null);
+
+    return (
+      <InputWrapper key={key} width={width}>
+        <Input
+          label={label}
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          handleChange={handleChange}
+          isError={errorMessage || errorField}
+          errorMessage={errorMessage || errorField}
+        />
+      </InputWrapper>
+    )
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUserCredentials({
-      ...userCredentials,
-      [name]: value,
-    });
-  };
+  const error = findEmptyField() || getErrorMessage();
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    try {
-      const { firstName, lastName, email, password } = userCredentials;
+    console.log('error in onSignUp', error);
+    console.log('getErrorMessage in onSignUp', getErrorMessage());
 
-      const res = await api.post('/users', { firstName, lastName, email, password });
+    if (error) {
+      setErrorHighlightField({
+        field: error.field,
+        message: error.message,
+      });
+      return;
+    }
+
+    try {
+      const res = await api.post('/users', formData);
 
       if (!res) {
         pageToggler();
@@ -62,66 +107,12 @@ const SignupModal = ({ pageToggler }) => {
     <Modal onRequestClose={pageToggler} >
       <Modal.Header>Join us</Modal.Header>
       <Modal.Content>
-        <form className={styles.container}>
-          <div className={styles.name_wrapper}>
-            <div className={styles.input_wrapper} >
-              <Input
-                label="First Name"
-                name="firstName"
-                type="string"
-                placeholder="First Name"
-                required
-                value={userCredentials.firstname}
-                onChange={handleChange}
-              />
-            </div>
-            <div className={styles.input_wrapper} >
-              <Input
-                label="Last Name"
-                name="lastName"
-                type="string"
-                placeholder="Last Name"
-                required
-                value={userCredentials.lastname}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-          <div className={styles.input_wrapper} >
-            <Input
-              label="Email"
-              name="email"
-              type="email"
-              placeholder="Email"
-              required
-              value={userCredentials.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles.input_wrapper} >
-            <Input
-              label="Password"
-              name="password"
-              type="password"
-              placeholder="Password"
-              required
-              value={userCredentials.password}
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles.input_wrapper} >
-            <Input
-              label="Confirm Password"
-              name="confirmPassword"
-              type="password"
-              placeholder="Confirm Password"
-              required
-              value={userCredentials.confirmPassword}
-              onChange={handleChange}
-            />
+        <ModalContainer>
+          <div>
+            {fieldList}
           </div>
           <Button type="submit" onClick={onSignUp}>Sign up</Button>
-        </form>
+        </ModalContainer>
       </Modal.Content>
     </Modal>
   );

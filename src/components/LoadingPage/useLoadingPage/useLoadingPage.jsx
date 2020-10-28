@@ -5,8 +5,10 @@ import LoadingPage from '../LoadingPage';
 export default function useLoadingPage(initialState = true) {
   const [loading, toggleLoading] = useState(initialState);
 
-  const toggler = () => (
-    toggleLoading((prevState) => !prevState)
+  const toggler = (targetState) => (
+    targetState 
+      ? toggleLoading(targetState)
+      : toggleLoading((prevState) => !prevState)
   );
 
   const Content = ({ children }) => (

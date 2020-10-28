@@ -7,13 +7,17 @@ import MeetTaskerNav from "./MeetTaskerNav/MeetTaskerNav";
 
 function MeetTasker() {
   return (
-    <div className={styles.tasker}>
-      <div className={styles.wrapper}>
-        <TaskerDisplay />
-        <MeetTaskerNav />
-        <button className={styles.taskerButton}>Become a Tasker</button>
+    <div className={styles.meettasker__container}>
+      <div className={styles.bg__wrapper}>
+        <div className={styles.content__wrapper}>
+            <div className={styles.tasker__container}>
+              <TaskerDisplay />
+              <MeetTaskerNav />
+              <button className={styles.taskerButton}>Become a Tasker</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
   );
 }
 

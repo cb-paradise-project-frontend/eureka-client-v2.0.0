@@ -1,36 +1,79 @@
 import React, { useState, useContext } from 'react';
+import styled from 'styled-components';
 import { AuthContext } from './../../auth/Auth';
 import { useHistory } from 'react-router-dom';
-
-import styles from './LoginModal.module.scss';
-
 import { api, extractTokenFromResponse, extractInfoFromToken } from './../../apis';
+import useForm from '../../pages/OfferModal/ProfilePage/SubPages/useForm';
 import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';
+import FORM from './form';
+
+const ModalContainer = styled.div`
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+`;
+
+const InputWrapper = styled.div`
+  margin-bottom: 24px;
+  width: 100%;
+`;
 
 const LoginModal = ({ pageToggler }) => {
   const history = useHistory();
   const { setUser } = useContext(AuthContext);
+  const form = useForm(FORM);
+  const [errorHighlightField, setErrorHighlightField] = useState('');
 
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
+  const {
+    getData,
+    handleDataChange,
+    findEmptyField,
+    getErrorMessage,
+  } = form;
+
+  const formData = getData();
+
+  const fieldList = Object.keys(FORM).map((key) => {
+    const { label, type, placeholder } = FORM[key];
+    const value = formData[key];
+    const handleChange = handleDataChange(key);
+    const errorMessage = FORM[key].getErrorMessage && FORM[key].getErrorMessage(value);
+    const errorField = (key === errorHighlightField.field ? errorHighlightField.message : null);
+
+    return (
+      <InputWrapper key={key}>
+        <Input
+          label={label}
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          handleChange={handleChange}
+          isError={errorField}
+          errorMessage={errorField}
+        />
+      </InputWrapper>
+    )
   });
 
-  const handleChange = (e) => {
-    const {name, value} = e.target;
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  }
+  const error = findEmptyField() || getErrorMessage();
 
   const onLoginWithEmail = async (e) => {
     e.preventDefault();
-    const {email, password} = form;
+
+    if (error) {
+      console.log('error in login modal', error);
+      setErrorHighlightField({
+        field: error.field,
+        message: error.message,
+      });
+      return;
+    }
+
     try {
-      const res = await api.post('/users/login', {email, password});
+      const res = await api.post('/users/login', formData);
 
       if (!res) {
         pageToggler();
@@ -59,34 +102,15 @@ const LoginModal = ({ pageToggler }) => {
     <Modal onRequestClose={pageToggler} >
       <Modal.Header>Log In</Modal.Header>
       <Modal.Content>
-        <div className={styles.container}>
-          <div className={styles.input_wrapper} >
-            <Input
-              label="Email"
-              name="email"
-              type="email"
-              placeholder="Email"
-              value={form.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles.input_wrapper} >
-            <Input
-              label="Password"
-              name="password"
-              type="password"
-              placeholder="Password"
-              value={form.password}
-              onChange={handleChange}
-            />
-          </div>
+        <ModalContainer>
+          {fieldList}
           <Button onClick={onLoginWithEmail} >
             Log in
           </Button>
-        </div>
+        </ModalContainer>
       </Modal.Content>
     </Modal>
   );
-};
+}
 
 export default LoginModal;

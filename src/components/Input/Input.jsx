@@ -8,7 +8,15 @@ import Button from '../Button';
 const cx = classNames.bind(styles);
 
 const Input = ({
-  label, name, type, placeholder, validator, handleChange, isError, ...otherProps
+  label,
+  name,
+  type,
+  placeholder,
+  validator,
+  handleChange,
+  isError,
+  errorMessage,
+  ...otherProps
 }) => {
   const inputHandler = ({ target: { value } }) => {
     const validInput = validator ? validator(value) : value;
@@ -31,26 +39,14 @@ const Input = ({
         onChange={inputHandler}
         {...otherProps}
       />
-    </div>
-  );
-};
-
-const WithErrorMessage = ({
-  isError, errorMessage, ...otherProps
-}) => (
-  <div className={styles.input_with_error_message}>
-    <Input
-      {...otherProps}
-    />
-    <div className={styles.error_message_wrapper} >
       {isError && errorMessage &&
-        <ErrorMessage>
+        <ErrorMessage className={styles.error_message_wrapper}>
           {errorMessage}
         </ErrorMessage>
       }
     </div>
-  </div>
-);
+  );
+};
 
 const Search = ({
   placeholder, handleChange, onSubmit,
@@ -75,7 +71,26 @@ const Search = ({
   );
 };
 
-Input.WithErrorMessage = WithErrorMessage;
+const Naked = ({
+  validator,
+  handleChange,
+  ...otherProps
+}) => {
+  const inputHandler = ({ target: { value } }) => {
+    const validInput = validator ? validator(value) : value;
+    handleChange(validInput);
+  };
+
+  return (
+    <input
+      className={styles.naked}
+      onChange={inputHandler}
+      {...otherProps}
+    />
+  );
+};
+
 Input.Search = Search;
+Input.Naked = Naked;
 
 export default Input;

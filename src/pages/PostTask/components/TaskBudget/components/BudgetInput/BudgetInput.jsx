@@ -1,8 +1,14 @@
 import React from 'react';
 
 import styles from '../../../../PostTask.module.scss';
-
+import styled from 'styled-components';
 import ErrorMessage from '../../../../../../components/ErrorMessage';
+import Input from '../../../../../../components/Input';
+
+const Wrapper = styled.div`
+display: flex;
+padding: 10px 15px;
+`
 
 function BudgetInput({
   taskBudget,
@@ -22,11 +28,10 @@ function BudgetInput({
 
   return (
     <div className={styles.budget_input_box}>
-      <div className={styles.budget_input}>
-        <input 
-          className={styles.money}
+      <Wrapper>
+        <Input 
           type="text"
-          onChange={onBudgetHourlyWage}
+          handleChange={onBudgetHourlyWage}
           onInput={validateInput}
           value={taskBudget}
         />
@@ -34,18 +39,19 @@ function BudgetInput({
           &&
         <React.Fragment>
           <div className={styles.units}> /hr &times; </div>
-          <input
-            className={styles.hour}
+          <Input
             type="text"
-            onChange={onBudgetHour}
+            handleChange={onBudgetHour}
             onInput={validateInput}
             defaultValue={"1"}
           />
           <div className={styles.units}> /hrs </div>
         </React.Fragment>
         }
-      </div>
-      { isBudgetInvalid && <ErrorMessage>{errorHint}</ErrorMessage> }
+      </Wrapper>
+      <Wrapper>
+        { isBudgetInvalid && <ErrorMessage>{errorHint}</ErrorMessage> }
+      </Wrapper>
     </div>
   )
 }

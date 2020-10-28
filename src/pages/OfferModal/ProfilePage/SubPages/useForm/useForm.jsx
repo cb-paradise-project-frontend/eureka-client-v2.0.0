@@ -29,11 +29,13 @@ export default function useForm(config, initValues) {
   );
 
   const findEmptyField = () => {
-    const emptyField = formKeyArray.find((key) => !formData[key]);
+    const emptyField = formKeyArray
+      .find((key) => (!formData[key]
+        && !config[key].optional));
 
     if (!emptyField) return false;
 
-    return { field: emptyField, message: `${emptyField} is required.` };
+    return { field: emptyField, message: `${config[emptyField].label} is required.` };
   };
 
   const getErrorMessage = () => {
@@ -41,12 +43,12 @@ export default function useForm(config, initValues) {
       const value = formData[key];
       const getError = config[key].getErrorMessage;
 
-      return getError && getError(value);
+      return getError && getError(value, formData);
     });
 
     if (!errorField) return false;
 
-    const errorMessage = config[errorField].getErrorMessage(formData[errorField]);
+    const errorMessage = config[errorField].getErrorMessage(formData[errorField], formData);
 
     return { field: errorField, message: errorMessage };
   };

@@ -5,7 +5,6 @@ import styles from './PriceFilter.module.scss';
 import Button from '../../../../components/Button';
 import Slider from '../../../../components/Slider';
 import Scale from './scale';
-import MenuMask from '../MenuMask';
 import useMenuDropDown from '../useMenuDropDown/useMenuDropDown';
 
 const { List, Min, Max } = Scale;
@@ -93,8 +92,7 @@ export default function PriceFilter({ onSubmit }) {
 
   return (
     <MenuDropDown>
-      <MenuMask />
-      <div className={styles.dropdown} >
+      <div className={styles.container} >
         <div className={styles.header} >
           Task price
         </div>

@@ -8,6 +8,7 @@ import TaskMenu from './TaskMenu';
 import useLoadingPage from '../../components/LoadingPage/useLoadingPage';
 import { LoadTaskProvider } from './TaskDetail/LoadTaskContext';
 import EmptyTask from './EmptyTask';
+import ScrollManager from '../../components/ScrollManager';
 
 const initConfig = {
   keyword: '',
@@ -24,8 +25,6 @@ export default function Browse() {
   const [page, setPage] = useState(1);
 
   const [LoadingMask, toggleLoadingMask] = useLoadingPage();
-
-  const [lastScroll, saveScroll] = useState();
 
   const maskWhenFetch = async (fetchFunction) => {
     toggleLoadingMask(true);
@@ -90,18 +89,22 @@ export default function Browse() {
     <LoadTaskProvider reload={() => maskWhenFetch(reload)} >
       <div className={styles.browse} >
         <TaskMenu onFilterChange={updateConfig} />
-        <LoadingMask>
-          {taskList.length
-            ? (
-              <TaskDisplay
-                taskList={taskList}
-                nextPage={nextPage}
-                lastScroll={lastScroll}
-                saveScroll={saveScroll}
-              />
-            ) : <EmptyTask />
-          }
-        </LoadingMask>
+        <ScrollManager>
+          {({ lastScroll, saveScroll }) => (
+            <LoadingMask>
+              {taskList.length
+                ? (
+                  <TaskDisplay
+                    taskList={taskList}
+                    nextPage={nextPage}
+                    lastScroll={lastScroll}
+                    saveScroll={saveScroll}
+                  />
+                ) : <EmptyTask />
+              }
+            </LoadingMask>
+          )}
+        </ScrollManager>
       </div>
     </LoadTaskProvider>
   );

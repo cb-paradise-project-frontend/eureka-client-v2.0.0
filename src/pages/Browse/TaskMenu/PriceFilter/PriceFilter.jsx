@@ -3,18 +3,25 @@ import React, { useState } from 'react';
 import styles from './PriceFilter.module.scss';
 
 import Button from '../../../../components/Button';
-import { useToggleContent } from '../../../../components/ToggleContent';
 import Slider from '../../../../components/Slider';
 import Scale from './scale';
 import MenuMask from '../MenuMask';
-
-const dropdownIcon = String.fromCharCode(9660);
+import useMenuDropDown from '../useMenuDropDown/useMenuDropDown';
 
 const { List, Min, Max } = Scale;
 
-export default function PriceFilter({ onSubmit }) {
-  const [DropDown, toggleDropDown] = useToggleContent();
+const WrappedSlider = ({ label, ...otherProps }) => (
+  <div className={styles.slider_wrapper} >
+    <div className={styles.label} >
+      {label}
+    </div>
+    <div className={styles.slider} >
+      <Slider {...otherProps} />
+    </div>
+  </div>
+);
 
+export default function PriceFilter({ onSubmit }) {
   const [min, setMin] = useState(Min);
   const [max, setMax] = useState(Max);
 
@@ -22,6 +29,8 @@ export default function PriceFilter({ onSubmit }) {
 
   const buttonLabel = ((min > Min || max < Max) && priceRangeLabel)
     || 'Any price';
+
+  const [MenuDropDown, toggleDropDown] = useMenuDropDown(buttonLabel);
 
   const handleMinUpdate = (newMin) => {
     setMin(newMin);
@@ -69,17 +78,6 @@ export default function PriceFilter({ onSubmit }) {
     },
   ];
 
-  const WrappedSlider = ({ label, ...otherProps }) => (
-    <div className={styles.slider_wrapper} >
-      <div className={styles.label} >
-        {label}
-      </div>
-      <div className={styles.slider} >
-        <Slider {...otherProps} />
-      </div>
-    </div>
-  );
-
   const sliders = sliderElementArray.map(({
     defaultValue, onChange, label,
   }) => (
@@ -94,29 +92,21 @@ export default function PriceFilter({ onSubmit }) {
   ));
 
   return (
-    <>
-      <Button.Text
-        color="light-blue"
-        onClick={toggleDropDown}
-      >
-        {buttonLabel}{dropdownIcon}
-      </Button.Text>
-      <DropDown>
-        <MenuMask />
-        <div className={styles.dropdown} >
-          <div className={styles.header} >
-            Task price
-          </div>
-          <div className={styles.content} >
-            {priceRangeLabel}
-            {sliders}
-          </div>
-          <div className={styles.footer} >
-            <CancelButton />
-            <ConfirmButton />
-          </div>
+    <MenuDropDown>
+      <MenuMask />
+      <div className={styles.dropdown} >
+        <div className={styles.header} >
+          Task price
         </div>
-      </DropDown>
-    </>
+        <div className={styles.content} >
+          {priceRangeLabel}
+          {sliders}
+        </div>
+        <div className={styles.footer} >
+          <CancelButton />
+          <ConfirmButton />
+        </div>
+      </div>
+    </MenuDropDown>
   );
 }

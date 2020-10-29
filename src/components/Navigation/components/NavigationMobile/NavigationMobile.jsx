@@ -125,7 +125,7 @@ class NavigationMobile extends Component {
             className={styles.responsiveButton}
             onClick={this.handleClick}
           >
-            <i className={this.state.clicked ? 'ri-close-circle-line' : 'ri-menu-line'}></i>
+            <i className={this.state.clicked ? 'far fa-times-circle' : 'fas fa-bars'}></i>
           </div>
 
           <Link

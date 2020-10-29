@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './NavigationWeb.module.scss';
+import styles from './NavigationWebPrivate.module.scss';
 
 import logo from '../../../../assets/logo.svg';
 
@@ -8,18 +8,19 @@ import { AuthContext } from '../../../../auth/Auth';
 import ToggleContent from '../../../../components/ToggleContent';
 import Button from '../../../../components/Button';
 import PostTask from '../.././../../pages/PostTask';
-
+import LogOut from '../LogOut';
+import PrivateNavDropDown from '../PrivateNavDropDown';
 
 
 class NavigationWebPrivate extends Component {
   constructor() {
     super();
 
-    this.state = { clicked:false }
+    this.state = { clicked: false }
   }
-  
+
   handleClick = () => {
-    this.setState((prevState) => ({ clicked: !prevState.clicked}))
+    this.setState((prevState) => ({ clicked: !prevState.clicked }))
   }
   render() {
     const PostTaskButton = () => (
@@ -67,8 +68,12 @@ class NavigationWebPrivate extends Component {
               className={styles.navUser}
               onClick={this.handleClick}
             >
-              <i class="ri-user-line"></i>
+              <i className={"far fa-user-circle"}></i>
             </div>
+            <LogOut />
+          </div>
+          <div className={this.state.clicked ? styles.privateNavDropDownActive : styles.privateNavDropDown}>
+            <PrivateNavDropDown />
           </div>
         </div>
       </nav>

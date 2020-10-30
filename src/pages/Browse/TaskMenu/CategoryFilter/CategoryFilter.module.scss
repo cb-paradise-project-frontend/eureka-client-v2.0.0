@@ -1,0 +1,16 @@
+.container{
+  width: 200px;
+
+  .title{
+    text-align: left;
+  }
+
+  .select{
+    outline: none;
+    width: 80%;
+    padding: 0 10px;
+    margin: 20px;
+    border: 1px solid #bbc2dc;
+    border-radius: 4px;
+  }
+}

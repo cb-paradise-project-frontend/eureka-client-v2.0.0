@@ -70,7 +70,7 @@ class TaskBudget extends React.Component{
             maxBudget={9999}
             onBudgetHour={this.props.onBudgetHour}
             onBudgetHourlyWage={this.props.onBudgetHourlyWage}
-            taskBudget={this.props.taskBudget}
+            budgetHourlyWage={this.props.budgetHourlyWage}
           />
           <div>
             <BudgetDisplay 

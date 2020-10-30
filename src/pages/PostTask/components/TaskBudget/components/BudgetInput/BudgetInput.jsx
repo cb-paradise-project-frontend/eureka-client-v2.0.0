@@ -11,7 +11,7 @@ padding: 10px 15px;
 `
 
 function BudgetInput({
-  taskBudget,
+  budgetHourlyWage,
   isBudgetInvalid,
   minBudget,
   maxBudget,
@@ -33,7 +33,7 @@ function BudgetInput({
           type="text"
           handleChange={onBudgetHourlyWage}
           onInput={validateInput}
-          value={taskBudget}
+          value={budgetHourlyWage}
         />
         {switchMode 
           &&

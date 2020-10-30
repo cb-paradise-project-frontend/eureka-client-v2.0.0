@@ -3,7 +3,6 @@ import React from 'react';
 import styles from './MenuDropDown.module.scss';
 
 import Button from '../../../../components/Button';
-import { useToggleContent } from '../../../../components/ToggleContent';
 import MenuMask from '../MenuMask';
 
 const dropdownIcon = String.fromCharCode(9660);
@@ -24,7 +23,7 @@ export default function MenuDropDown({
       </Button.Text>
       {active &&
         <>
-          <MenuMask />
+          <MenuMask onClick={toggler} />
           <div className={styles.dropdown} >
             {children}
           </div>

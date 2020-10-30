@@ -87,7 +87,6 @@ export default function TaskDisplay({
         id="task-list"
         className = {styles.task_list}
         onScroll={handleScroll}
-        scrollTop={lastScroll}
       >
         {taskList.map((task) => (
           <TaskListItem

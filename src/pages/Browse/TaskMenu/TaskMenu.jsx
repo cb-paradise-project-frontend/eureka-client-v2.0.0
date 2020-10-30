@@ -2,19 +2,16 @@ import React, { useState } from 'react';
 
 import styles from './TaskMenu.module.scss';
 
-import Input from '../../../components/Input';
 import PriceFilter from './PriceFilter';
+import CategoryFilter from './CategoryFilter';
+import KeywordInput from './KeywordInput';
 
 export default function TaskMenu({ onFilterChange }) {
-  const [keyword, inputKeyword] = useState('');
+  const [activeDropDown, setActive] = useState('');
 
-  const handleKeywordUpdate = () => {
-    onFilterChange((prevFilter) => (
-      {
-        ...prevFilter,
-        keyword,
-      }
-    ));
+  const filterToggler = (key) => () => {
+    setActive((prevState) => (
+      (prevState === key) ? '' : key));
   };
 
   const handlePriceRangeUpdate = (minPrice, maxPrice) => {
@@ -27,18 +24,29 @@ export default function TaskMenu({ onFilterChange }) {
     ));
   };
 
+  const handleFilterChange = (key) => (input) => {
+    onFilterChange((prevFilter) => (
+      {
+        ...prevFilter,
+        [key]: input,
+      }
+    ));
+  };
+
   return (
     <div className={styles.task_menu_wrapper} >
       <div className={styles.task_menu} >
-        <PriceFilter onSubmit={handlePriceRangeUpdate} />
-        <div className={styles.search} >
-          <Input.Search
-            placeholder="Search for a task"
-            value={keyword}
-            handleChange={inputKeyword}
-            onSubmit={handleKeywordUpdate}
-          />
-        </div>
+        <PriceFilter
+          active={activeDropDown === 'price'}
+          onSubmit={handlePriceRangeUpdate}
+          toggler={filterToggler('price')}
+        />
+        <CategoryFilter
+          active={activeDropDown === 'category'}
+          onSubmit={handleFilterChange('category')}
+          toggler={filterToggler('category')}
+        />
+        <KeywordInput onSubmit={handleFilterChange('keyword')} />
       </div>
     </div>
   );

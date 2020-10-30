@@ -8,6 +8,7 @@ import TaskMenu from './TaskMenu';
 import useLoadingPage from '../../components/LoadingPage/useLoadingPage';
 import { LoadTaskProvider } from './TaskDetail/LoadTaskContext';
 import EmptyTask from './EmptyTask';
+import ScrollManager from '../../components/ScrollManager';
 
 const initConfig = {
   keyword: '',
@@ -15,6 +16,7 @@ const initConfig = {
   minPrice: '',
   page: 1,
   pageSize: 5,
+  category: '',
 };
 
 export default function Browse() {
@@ -35,15 +37,14 @@ export default function Browse() {
     keyword,
     maxPrice,
     minPrice,
+    category,
   } = config;
 
   const loadTaskList = async () => {
     const newTaskList = await getTaskList(config);
 
-    if (newTaskList.length) {
-      setTaskList(newTaskList);
-      setPage(1);
-    }
+    setTaskList(newTaskList);
+    setPage(1);
   };
 
   useEffect(() => {
@@ -52,6 +53,7 @@ export default function Browse() {
     keyword,
     maxPrice,
     minPrice,
+    category,
   ]);
 
   const extendTaskList = async () => {
@@ -88,16 +90,22 @@ export default function Browse() {
     <LoadTaskProvider reload={() => maskWhenFetch(reload)} >
       <div className={styles.browse} >
         <TaskMenu onFilterChange={updateConfig} />
-        <LoadingMask>
-          {taskList.length
-            ? (
-              <TaskDisplay
-                taskList={taskList}
-                nextPage={nextPage}
-              />
-            ) : <EmptyTask />
-          }
-        </LoadingMask>
+        <ScrollManager>
+          {({ lastScroll, saveScroll }) => (
+            <LoadingMask>
+              {taskList.length
+                ? (
+                  <TaskDisplay
+                    taskList={taskList}
+                    nextPage={nextPage}
+                    lastScroll={lastScroll}
+                    saveScroll={saveScroll}
+                  />
+                ) : <EmptyTask />
+              }
+            </LoadingMask>
+          )}
+        </ScrollManager>
       </div>
     </LoadTaskProvider>
   );

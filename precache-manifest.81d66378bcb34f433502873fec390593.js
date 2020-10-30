@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "06ca2d8471d6866a8a122d70dde56627",
+    "revision": "191e1c90585548923aad85c49b6469f9",
     "url": "/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/2.46642664.chunk.css"
   },
   {
-    "revision": "a449feaa71aa01fdd6f9",
-    "url": "/static/css/main.bedeb827.chunk.css"
+    "revision": "3a584311c6509ddf2fd6",
+    "url": "/static/css/main.0cc84fad.chunk.css"
   },
   {
     "revision": "fd96f7bc07fc7ac427cd",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/2.2ad5f571.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a449feaa71aa01fdd6f9",
-    "url": "/static/js/main.23c5e5a0.chunk.js"
+    "revision": "3a584311c6509ddf2fd6",
+    "url": "/static/js/main.7508146a.chunk.js"
   },
   {
     "revision": "b4c6871339d8b1d03cfc",
@@ -44,12 +44,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/article-farmhouse.1c136813.png"
   },
   {
+    "revision": "a61f663ba565c73b1972e3d7da936001",
+    "url": "/static/media/bg-categories-pad.a61f663b.svg"
+  },
+  {
     "revision": "4e883e21eac5026539a47703e1e535df",
     "url": "/static/media/bg-categories.4e883e21.svg"
   },
   {
     "revision": "7392db8bdd3dea29be78a075624769c8",
     "url": "/static/media/bg-categories.7392db8b.svg"
+  },
+  {
+    "revision": "0222596d123cc940ee40c6fe36286255",
+    "url": "/static/media/bg-home-pad.0222596d.svg"
   },
   {
     "revision": "023a8c343df5c6bc02803319fa06c88d",
@@ -62,6 +70,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "8b8ef60ae6e0478633b03ead58133eed",
     "url": "/static/media/bg-otherJobs.8b8ef60a.svg"
+  },
+  {
+    "revision": "6a17e17285c94e487ed0030642b7d72b",
+    "url": "/static/media/bg-otherjob.6a17e172.svg"
+  },
+  {
+    "revision": "cc38cb223e0de3ebe2ca22fe70a37c5d",
+    "url": "/static/media/bg-otherjobs-pad.cc38cb22.svg"
   },
   {
     "revision": "145cdefd4050fa074e30150f1974745d",

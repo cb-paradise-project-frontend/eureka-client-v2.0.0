@@ -1,4 +1,4 @@
-@media screen and (min-width: 768px)
+@media screen and (min-width: 769px)
 {
 .taskCategories__container {
   height: 100vh;
@@ -45,39 +45,61 @@
       }
       .taskCategoriesContent__mobile {
         display: none;
-
-        
-        // .bg__wrapper {
-        //   width: 100%;
-        //   height: 100%;
-        //   position: relative;
-        //   background: url(../../../assets/responsive/bg-categories.svg) no-repeat center/cover;
-        //   border: 1px solid black;
-        // }
-        // .content__wrapper {
-        //   height: 100%;
-        //   display: flex;
-        //   justify-content: flex-end;
-        //   align-items: flex-end;
-        //   // border: 1px solid red;
-        //   .taskCategoriesContent {
-        //     height: 650px;
-        //     border: 1px solid red;
-        //     h3 {
-        //       font-size: 24px;
-        //       line-height: 28px;
-        //       padding: 20px 0;
-        //       border: 1px solid green;
-        //     }
-        //   }
-        // }
       }
     }
   }
 }
 }
 
-@media screen and (max-width: 768px)
+@media screen and (min-width: 376px) and (max-width: 768px)
+{
+  .taskCategories__container {
+    height: 812px;
+
+    .bg__wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background: url(../../../assets/responsive/tablet/bg-categories-pad.svg) no-repeat center/cover;
+      // border: 1px solid black;
+    }
+    .content__wrapper {
+      height: 100%;
+      padding: 0px;
+      display: flex;
+      // border: 1px solid red;
+      .taskCategoriesContent {
+        display: none;
+      }
+      .taskCategoriesContent__mobile {
+        height: 500px;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
+        padding-top: 300px;
+
+
+        h3 {
+          font-size: 24px;
+          line-height: 28px;
+          width: 150px;
+          margin-left: 90px;
+          margin-bottom: 20px;
+        }
+
+        .iconContainer {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 375px)
 {
   .taskCategories__container {
     height: 812px;

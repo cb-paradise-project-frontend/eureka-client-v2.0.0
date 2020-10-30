@@ -11,6 +11,8 @@
 
   .OtherJobs__description {
     width: 740px;
+    display: flex;
+    justify-content: center;
     h4 {
       color: #4E4673;
       font-size: 16px;
@@ -37,3 +39,24 @@
   }
 }
 
+@media screen and (min-width: 376px) and (max-width: 768px)
+{
+  .OtherJobs__cards {
+    width: 100%;
+    
+    .OtherJobs__description {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 375px)
+{
+  .OtherJobs__cards {
+    width: 100%;
+
+    .OtherJobs__description {
+      width: 100%;
+    }
+  }
+}

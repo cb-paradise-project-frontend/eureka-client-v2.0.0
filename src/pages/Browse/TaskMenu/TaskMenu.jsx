@@ -4,6 +4,7 @@ import styles from './TaskMenu.module.scss';
 
 import Input from '../../../components/Input';
 import PriceFilter from './PriceFilter';
+import CategoryFilter from './CategoryFilter';
 
 export default function TaskMenu({ onFilterChange }) {
   const [keyword, inputKeyword] = useState('');
@@ -27,10 +28,20 @@ export default function TaskMenu({ onFilterChange }) {
     ));
   };
 
+  const handleCategoryUpdate = (category) => {
+    onFilterChange((prevFilter) => (
+      {
+        ...prevFilter,
+        category,
+      }
+    ));
+  };
+
   return (
     <div className={styles.task_menu_wrapper} >
       <div className={styles.task_menu} >
         <PriceFilter onSubmit={handlePriceRangeUpdate} />
+        <CategoryFilter onSubmit={handleCategoryUpdate} />
         <div className={styles.search} >
           <Input.Search
             placeholder="Search for a task"

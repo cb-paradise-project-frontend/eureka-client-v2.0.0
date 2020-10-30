@@ -16,6 +16,7 @@ const initConfig = {
   minPrice: '',
   page: 1,
   pageSize: 5,
+  category: '',
 };
 
 export default function Browse() {
@@ -36,15 +37,14 @@ export default function Browse() {
     keyword,
     maxPrice,
     minPrice,
+    category,
   } = config;
 
   const loadTaskList = async () => {
     const newTaskList = await getTaskList(config);
 
-    if (newTaskList.length) {
-      setTaskList(newTaskList);
-      setPage(1);
-    }
+    setTaskList(newTaskList);
+    setPage(1);
   };
 
   useEffect(() => {
@@ -53,6 +53,7 @@ export default function Browse() {
     keyword,
     maxPrice,
     minPrice,
+    category,
   ]);
 
   const extendTaskList = async () => {

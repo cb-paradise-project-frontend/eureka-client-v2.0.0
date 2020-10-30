@@ -40,7 +40,11 @@ function TaskInfoItem({ title, content }) {
 export default function TaskInfo() {
   const { postedBy, location, due } = useContext(TaskContext);
 
-  const taskInfo = { postedBy, location, due };
+  const taskInfo = {
+    postedBy,
+    location,
+    due: new Date(due).toDateString(),
+  };
   const infoTitle = {
     postedBy: 'POSTED BY',
     location: 'LOCATION',

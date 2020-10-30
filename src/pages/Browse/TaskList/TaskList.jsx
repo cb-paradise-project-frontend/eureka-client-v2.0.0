@@ -38,7 +38,7 @@ function TaskListItem({
           {location}
         </div>
         <div className={styles.due} >
-          {due}
+          {new Date(due).toDateString()}
         </div>
       </div>
       <div className={styles.footer} >

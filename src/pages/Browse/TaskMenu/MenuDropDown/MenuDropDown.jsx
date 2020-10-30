@@ -8,25 +8,28 @@ import MenuMask from '../MenuMask';
 
 const dropdownIcon = String.fromCharCode(9660);
 
-export default function useMenuDropDown(buttonLabel) {
-  const [DropDown, toggleDropDown] = useToggleContent();
-
-  const MenuDropDown = ({ children }) => (
+export default function MenuDropDown({
+  buttonLabel,
+  toggler,
+  active,
+  children,
+}) {
+  return (
     <div className={styles.container}>
       <Button.Text
         color="light-blue"
-        onClick={toggleDropDown}
+        onClick={toggler}
       >
         {buttonLabel}{dropdownIcon}
       </Button.Text>
-      <DropDown>
-        <MenuMask />
-        <div className={styles.dropdown} >
-          {children}
-        </div>
-      </DropDown>
+      {active &&
+        <>
+          <MenuMask />
+          <div className={styles.dropdown} >
+            {children}
+          </div>
+        </>
+      }
     </div>
   );
-
-  return [MenuDropDown, toggleDropDown];
 }

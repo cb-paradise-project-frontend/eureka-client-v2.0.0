@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import styles from './CategoryFilter.module.scss';
 
-import useMenuDropDown from '../useMenuDropDown';
+import MenuDropDown from '../MenuDropDown';
 
 const categoryList = {
   pickUp: {
@@ -23,12 +23,14 @@ const categoryList = {
   },
 };
 
-export default function CategoryFilter({ onSubmit }) {
+export default function CategoryFilter({
+  onSubmit,
+  active,
+  toggler,
+}) {
   const [target, setTarget] = useState('any');
 
   const buttonLabel = `Category - ${categoryList[target].label}`;
-
-  const [MenuDropDown, toggleDropDown] = useMenuDropDown(buttonLabel);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -37,11 +39,15 @@ export default function CategoryFilter({ onSubmit }) {
     setTarget(key);
     onSubmit(categoryList[key].value);
 
-    toggleDropDown();
+    toggler();
   };
 
   return (
-    <MenuDropDown>
+    <MenuDropDown
+      buttonLabel={buttonLabel}
+      active={active}
+      toggler={toggler}
+    >
       <div className={styles.container} >
         <div className={styles.title} >
           Select a category

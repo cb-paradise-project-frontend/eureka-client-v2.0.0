@@ -5,7 +5,7 @@ import styles from './PriceFilter.module.scss';
 import Button from '../../../../components/Button';
 import Slider from '../../../../components/Slider';
 import Scale from './scale';
-import useMenuDropDown from '../useMenuDropDown/useMenuDropDown';
+import MenuDropDown from '../MenuDropDown';
 
 const { List, Min, Max } = Scale;
 
@@ -20,7 +20,11 @@ const WrappedSlider = ({ label, ...otherProps }) => (
   </div>
 );
 
-export default function PriceFilter({ onSubmit }) {
+export default function PriceFilter({ 
+  onSubmit,
+  toggler,
+  active,
+}) {
   const [min, setMin] = useState(Min);
   const [max, setMax] = useState(Max);
 
@@ -28,8 +32,6 @@ export default function PriceFilter({ onSubmit }) {
 
   const buttonLabel = ((min > Min || max < Max) && priceRangeLabel)
     || 'Any price';
-
-  const [MenuDropDown, toggleDropDown] = useMenuDropDown(buttonLabel);
 
   const handleMinUpdate = (newMin) => {
     setMin(newMin);
@@ -43,13 +45,13 @@ export default function PriceFilter({ onSubmit }) {
 
   const handleSubmit = () => {
     onSubmit(List[min], List[max]);
-    toggleDropDown();
+    toggler();
   };
 
   const CancelButton = () => (
     <Button.Text
       color="grey"
-      onClick={toggleDropDown}
+      onClick={toggler}
     >
       Cancel
     </Button.Text>
@@ -91,7 +93,11 @@ export default function PriceFilter({ onSubmit }) {
   ));
 
   return (
-    <MenuDropDown>
+    <MenuDropDown
+      buttonLabel={buttonLabel}
+      toggler={toggler}
+      active={active}
+    >
       <div className={styles.container} >
         <div className={styles.header} >
           Task price

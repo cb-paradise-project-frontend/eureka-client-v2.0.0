@@ -1,23 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import styles from './TaskMenu.module.scss';
 
-import Input from '../../../components/Input';
 import PriceFilter from './PriceFilter';
 import CategoryFilter from './CategoryFilter';
+import KeywordInput from './KeywordInput';
 
 export default function TaskMenu({ onFilterChange }) {
-  const [keyword, inputKeyword] = useState('');
-
-  const handleKeywordUpdate = () => {
-    onFilterChange((prevFilter) => (
-      {
-        ...prevFilter,
-        keyword,
-      }
-    ));
-  };
-
   const handlePriceRangeUpdate = (minPrice, maxPrice) => {
     onFilterChange((prevFilter) => (
       {
@@ -28,11 +17,11 @@ export default function TaskMenu({ onFilterChange }) {
     ));
   };
 
-  const handleCategoryUpdate = (category) => {
+  const handleFilterChange = (key) => (input) => {
     onFilterChange((prevFilter) => (
       {
         ...prevFilter,
-        category,
+        [key]: input,
       }
     ));
   };
@@ -41,15 +30,8 @@ export default function TaskMenu({ onFilterChange }) {
     <div className={styles.task_menu_wrapper} >
       <div className={styles.task_menu} >
         <PriceFilter onSubmit={handlePriceRangeUpdate} />
-        <CategoryFilter onSubmit={handleCategoryUpdate} />
-        <div className={styles.search} >
-          <Input.Search
-            placeholder="Search for a task"
-            value={keyword}
-            handleChange={inputKeyword}
-            onSubmit={handleKeywordUpdate}
-          />
-        </div>
+        <CategoryFilter onSubmit={handleFilterChange('category')} />
+        <KeywordInput onSubmit={handleFilterChange('keyword')} />
       </div>
     </div>
   );

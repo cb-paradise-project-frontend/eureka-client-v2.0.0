@@ -45,7 +45,24 @@
   padding: 8px 24px;
 }
 
-@media screen and (max-width: 767px)
+@media screen and (max-width: 768px)
+{
+  .bg__wrapper {
+    position: relative;
+    background: none!important;
+}
+
+  .tasker__container{
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+}
+
+@media screen and (max-width: 375px)
 {
   .meettasker__container {
     height: 130vh;

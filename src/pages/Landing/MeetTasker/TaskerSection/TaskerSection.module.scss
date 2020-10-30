@@ -176,7 +176,30 @@
   overflow: hidden;
 }  
 
-@media screen and (max-width: 767px)
+@media screen and (max-width: 768px)
+{
+  .tasker_card {
+    height: auto;
+    margin: 30px auto;
+    width: 600px;
+  }
+
+  .tasker_photo {
+    float: left;
+    width: 100%;
+    height: auto;
+    border-radius: 8px 0 0 8px;
+    overflow: hidden;
+    border: solid 1px black;
+  }  
+
+  .left{
+    margin-left: 50px;
+  }
+  
+}
+
+@media screen and (max-width: 375px)
 {
   .tasker_card {
     height: auto;

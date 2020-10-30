@@ -22,7 +22,26 @@
     padding: 15px 50px;
 }
 
-@media screen and (max-width: 767px)
+@media screen and (max-width: 768px)
+{
+  .footer{
+    background: url("../../../assets/responsive/footer-mobile-bg.svg") no-repeat;
+    background-position: center bottom;
+    background-size:140%;
+  
+    }
+    .footer__content{
+        transform: translateY(250%);
+        p{
+          margin-top: -20px;
+        }
+    }
+    .logo {
+      padding: 15px 30px;
+    }
+}
+
+@media screen and (max-width: 375px)
 {
   .footer{
     background: url("../../../assets/responsive/footer-mobile-bg.svg") no-repeat;

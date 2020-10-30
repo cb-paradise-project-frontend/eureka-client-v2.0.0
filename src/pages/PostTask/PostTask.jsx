@@ -16,10 +16,16 @@ import { withAlert } from './components/AlertModal';
 import { postTask } from '../../apis';
 import { AuthContext } from '../../auth/Auth';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
-import withLoadingPage from '../../components/LoadingPage/withLoadingPage/withLoadingPage';
-import withLoginModal from '../../components/LoginModal/withLoginModal/withLoginModal';
-import withMessageBox from '../../components/MessageBox/withMessageBox/withMessageBox';
+import { withToggleContent } from '../../components/ToggleContent';
+import LoginModal from '../../components/LoginModal';
+import MessageBox from '../../components/MessageBox';
+import LoadingPage from '../../components/LoadingPage/LoadingPage';
 
+const showState = {
+  Login: false,
+  MsgBox: false,
+  Loading: false,
+} 
 class PostTask extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +41,7 @@ class PostTask extends React.Component {
       budgetHourlyWage: "0",
       touch: false,
       method: "offline",
-      currentUser: "",
+      User: "",
     }
 
     this.jobTitleMinLength = 10;
@@ -63,65 +69,68 @@ class PostTask extends React.Component {
     this.setState({ currentUser: currentUser });
   } //withForm HOC
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     const { currentUser } = this.context;
-    if(this.state.currentUser !== currentUser){
-      this.setState({ currentUser: currentUser });
+    const { User,budgetHour, budgetHourlyWage } = this.state;
+    const { budgetHour: prevHour, budgetHourlyWage: prevWage} = prevState;
+    if(User !== currentUser){
+      this.setState({ User: currentUser });
     }
+    if(budgetHour !== prevHour || budgetHourlyWage !== prevWage) {
+      this.onTaskBudget();
+    }
+  }
+
+  onTaskBudget() {
+    const { budgetHour, budgetHourlyWage } = this.state;
+    this.setState({
+      taskBudget: budgetHour * budgetHourlyWage,
+    })
   }
 
   onJobTitle(value) {
     this.setState({ jobTitle: value });
-  }//chai
+  }//withForm 
 
   onJobDetails(value) {
     this.setState({ jobDetails: value });
-  }//chai
+  }//withForm 
 
   onJobCategory(value) {
     this.setState({ jobCategory: value });
-  }//chai
+  }//withForm 
 
   onRadioCheck(value) {
     this.setState({
       method: value,
     });
-  }//chai
-
-  onTaskBudget() {
-    this.setState((prevState) => ({
-      taskBudget: prevState.budgetHourlyWage * prevState.budgetHour,
-    }));
-  }
+  }//withForm 
 
   onBudgetHour(value) {
     this.setState(
       { budgetHour: value },
-      this.onTaskBudget,
     );
-  }
+  }//withForm 
 
   onBudgetHourlyWage(value) {
     this.setState(
       { budgetHourlyWage: value },
-      this.onTaskBudget,
     );
-  }
+  }//withForm 
 
   handleBudgetWageClick() {
     this.setState(
-      { budgetHour: 1 },
-      this.onTaskBudget,
+      { budgetHour: 1},
     );
   }
 
   handleDateValue(date) {
     this.setState({ dueDate: date });
-  }
+  }//withForm 
 
   handlePlace(addressQuery) {
     this.setState({ place: addressQuery });
-  }
+  }//withForm 
 
   handleNextClick() {
     this.setState((prevState) => ({
@@ -136,21 +145,26 @@ class PostTask extends React.Component {
   }
 
   async getQuote() {
-    this.props.toggleLoadingPage();
+    this.props.toggleShow('Loading')();
     await postTask(this.state); //api 200 404
-    this.props.toggleLoadingPage();
+    this.props.toggleShow('Loading')();
     this.props.history.push('/profile/tasks');
-    this.props.toggleMsgBox()
+    this.props.toggleShow('MsgBox')();
   } //HOC
 
   handleGetQuoteClick() {
-    const { taskBudget } = this.state;
+    const { taskBudget, User } = this.state;
     
     if (taskBudget < this.minBudget || taskBudget > this.maxBudget) {
       this.setState({ touch: true });
     } else {
       this.setState({ touch: false });
-      this.state.currentUser ? this.getQuote() : this.props.toggleLoginModal();
+      if (!User) {
+        this.props.toggleShow('Login')();
+      } else {
+        this.getQuote();
+      };
+      // return this.state.currentUser ? this.getQuote() : this.props.toggleShow('Login');
     }
   }
 
@@ -168,7 +182,7 @@ class PostTask extends React.Component {
 
   render() {
     const {
-      currentStep, jobTitle, jobDetails, jobCategory, place, dueDate, touch, method, taskBudget, successSubmit,
+      currentStep, jobTitle, jobDetails, jobCategory, place, dueDate, touch, method, taskBudget, budgetHourlyWage,
     } = this.state;
 
     const conditionList = [
@@ -289,6 +303,7 @@ class PostTask extends React.Component {
         content: (
           <TaskBudget
             taskBudget={taskBudget}
+            budgetHourlyWage={budgetHourlyWage}
             isBudgetInvalid={((taskBudget < this.minBudget || taskBudget > this.maxBudget) && touch)}
             handleBudgetWageClick={this.handleBudgetWageClick}
             onBudgetHour={this.onBudgetHour}
@@ -307,12 +322,13 @@ class PostTask extends React.Component {
 
     const { title, content } = pages[currentStep];
 
-    const { onRequestClose, LoadingContent, LoginContent, MsgBoxContent, onClose } = this.props;
-
+    const { onRequestClose, onClose, ControlledContent, toggleShow } = this.props;
     return (
       <React.Fragment>
       <Modal onRequestClose={onRequestClose} >
-        <LoadingContent />
+        <ControlledContent.Loading>
+          <LoadingPage />
+        </ControlledContent.Loading>
         <Modal.Header>
           {title}
         </Modal.Header>
@@ -324,12 +340,19 @@ class PostTask extends React.Component {
           {postTaskBottom}
         </Modal.Footer>
       </Modal>
-      <LoginContent />
-      <MsgBoxContent onRequestClose={onClose} />
+      <ControlledContent.Login>
+        <LoginModal pageToggler={toggleShow('Login')} />
+      </ControlledContent.Login>
+      <ControlledContent.MsgBox>
+        <MessageBox 
+          info='Successful submit!'
+          onRequestClose={onClose}
+        />
+      </ControlledContent.MsgBox>
       </React.Fragment>
     );
   }
 }
 
 PostTask.contextType = AuthContext;
-export default withMessageBox('Successful submit!')(false)(withLoginModal(false)(withLoadingPage(false)(withAlert(withRouter(PostTask)))));
+export default withToggleContent(showState)(withAlert(withRouter(PostTask)));

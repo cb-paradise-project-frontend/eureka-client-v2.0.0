@@ -4,7 +4,6 @@ import styles from './NavigationWebPrivate.module.scss';
 
 import logo from '../../../../assets/logo.svg';
 
-import { AuthContext } from '../../../../auth/Auth';
 import ToggleContent from '../../../../components/ToggleContent';
 import Button from '../../../../components/Button';
 import PostTask from '../.././../../pages/PostTask';
@@ -42,7 +41,7 @@ class NavigationWebPrivate extends Component {
       />
     );
   
-    return (
+    return(
       <nav className={styles.navBar}>
         <div className={styles.navWebMenu}>
           <Link

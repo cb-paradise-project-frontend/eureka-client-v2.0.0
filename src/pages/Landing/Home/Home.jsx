@@ -22,7 +22,7 @@ function Home() {
           </div>
           <div className={styles.home__content__mobile}>
             <h2>Connect with experts to get the job done</h2>
-            <h3>on</h3>
+            <h3>On</h3>
             <h1>Airtasker</h1>
             <div>
               <Button color={'mint'}>

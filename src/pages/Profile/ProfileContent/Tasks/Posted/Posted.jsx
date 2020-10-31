@@ -1,13 +1,24 @@
 import React from 'react';
 
-import styles from './Posted.scss';
+import styles from './Posted.module.scss';
 
 import PostTaskButton from '../../../../../components/PostTaskButton';
+import TaskCard from '../../../../../components/TaskCard';
 
 const Posted = ({
   postedTask,
-}) => (
-    <div className={styles.posted_wrapper}>
+}) => {
+  console.log(postedTask);
+
+  const taskList = postedTask && postedTask.map((task) => (
+    <TaskCard
+      key={task.id}
+      task={task}
+    />
+  ));
+
+  return (
+    <div className={styles.container}>
     {
       !postedTask ? (
         <React.Fragment>
@@ -15,10 +26,13 @@ const Posted = ({
           <PostTaskButton />
         </React.Fragment>
       ) : (
-        <div>tasks</div>
+        <div className={styles.list_wrapper}>
+          {taskList}
+        </div>
       )
     }
     </div>
-);
+  );
+}
 
 export default Posted;

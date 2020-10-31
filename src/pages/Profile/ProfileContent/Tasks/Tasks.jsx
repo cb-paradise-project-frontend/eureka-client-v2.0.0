@@ -5,10 +5,11 @@ import styles from './Tasks.module.scss';
 import TaskNav from './TaskNav';
 import Posted from './Posted';
 import Assigned from './Assigned';
+import getTaskByUserId from '../../../../apis/Task/getTaskByUserId';
 
 class Tasks extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       taskType: 'Posted',
@@ -23,6 +24,22 @@ class Tasks extends React.Component {
     this.setState({
       taskType: input,
     });
+  }
+
+  async loadTask() {
+    const tasks = await getTaskByUserId();
+
+    console.log(tasks);
+
+    if (tasks) {
+      this.setState({
+        postedTask: tasks,
+      });
+    }
+  }
+
+  componentDidMount() {
+    this.loadTask();
   }
 
   render() {
@@ -49,9 +66,9 @@ class Tasks extends React.Component {
         <div className={styles.task_content}>
           {
             taskType === 'Posted' ? (
-              <Posted postedData={postedTask} />
+              <Posted postedTask={postedTask} />
             ) : (
-              <Assigned assignedData={assignedTask} />
+              <Assigned assignedTask={assignedTask} />
             )
           }
         </div>

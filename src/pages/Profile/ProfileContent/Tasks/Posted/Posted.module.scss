@@ -3,14 +3,16 @@
 
   .list_wrapper{
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
     width: 100%;
 
-    & > *{
-      margin: 5px;
-      width: 70%;
+    .card_wrapper{
+      max-width: 50%;
       flex: 1 1;
+      display: flex;
+      justify-content: center;
+      margin: 10px 0;
     }
   }
 }

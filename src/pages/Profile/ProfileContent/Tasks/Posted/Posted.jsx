@@ -11,10 +11,9 @@ const Posted = ({
   console.log(postedTask);
 
   const taskList = postedTask && postedTask.map((task) => (
-    <TaskCard
-      key={task.id}
-      task={task}
-    />
+    <div className={styles.card_wrapper} key={task.id} >
+      <TaskCard task={task} />
+    </div>
   ));
 
   return (

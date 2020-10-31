@@ -1,0 +1,23 @@
+.offer_wrapper{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .header{
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    
+    .name{
+      font-size: x-large;
+    }
+  }
+}
+
+.content{
+  color: black;
+  text-align: left;
+  word-wrap: break-word;
+  padding: 8px;
+  background-color: rgb(234, 236, 241);
+}

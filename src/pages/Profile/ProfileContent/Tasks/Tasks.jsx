@@ -4,7 +4,7 @@ import styles from './Tasks.module.scss';
 
 import TaskNav from './TaskNav';
 import Posted from './Posted';
-import Assigned from './Assigned';
+import Assigned from './Offered';
 import getTaskByUserId from '../../../../apis/Task/getTaskByUserId';
 
 class Tasks extends React.Component {
@@ -48,7 +48,7 @@ class Tasks extends React.Component {
 
   render() {
     const { taskType, postedTask, assignedTask } = this.state;
-    const taskStatusSelection = ['Posted', 'Assigned'];
+    const taskStatusSelection = ['Posted', 'Offered'];
 
     return (
       <div className={styles.task_wrapper}>

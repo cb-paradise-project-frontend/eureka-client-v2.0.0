@@ -4,60 +4,7 @@ import styles from './Posted.module.scss';
 
 import PostTaskButton from '../../../../../components/PostTaskButton';
 import TaskCard from '../../../../../components/TaskCard';
-import Modal from '../../../../../components/Modal';
-import Section from '../../../../../components/TaskSection';
-import CommentList from '../../../../Browse/TaskDetail/Comment/CommentList';
-
-const TaskModal = ({ task, onRequestClose }) => {
-  const {
-    title,
-    offers,
-    comments,
-    category,
-    budget,
-    location,
-    due,
-    description,
-  } = task;
-
-  const SideBar = () => (
-    <div className={styles.side_bar} >
-      <div className={styles.category} >
-        {category}
-      </div>
-      <div className={styles.budget} >
-        $ {budget}
-      </div>
-    </div>
-  );
-
-  return (
-    <Modal onRequestClose={onRequestClose}>
-      <Modal.Header>
-        {title}
-      </Modal.Header>
-      <Modal.Content>
-        <div className={styles.task_detail} >
-          <SideBar />
-          <Section title={'DUE'} >
-            {new Date(due).toDateString()}
-          </Section>
-          <Section title={'LOCATION'} >
-            {description}
-          </Section>
-          <Section title={'DESCRIPTION'} >
-            {description}
-          </Section>
-          <Section title={`COMMENT(${comments.length})`} >
-            <CommentList comments={comments} />
-          </Section>
-        </div>
-      </Modal.Content>
-      <Modal.Footer>
-      </Modal.Footer>
-    </Modal>
-  );
-};
+import TaskModal from './TaskModal';
 
 const Posted = ({ postedTask }) => {
   const [currentTaskId, selectTask] = useState();

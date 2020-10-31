@@ -17,30 +17,3 @@
   }
 }
 
-.task_detail{
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 300px;
-
-  .side_bar{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    right: 20px;
-    padding: 5px 15px;
-    border: solid 1px #adb2ce;
-    border-radius: 4px;
-
-    .budget{
-      width: 100%;
-    }
-    
-    .category{
-      width: 100%;
-    }
-  }
-}
-

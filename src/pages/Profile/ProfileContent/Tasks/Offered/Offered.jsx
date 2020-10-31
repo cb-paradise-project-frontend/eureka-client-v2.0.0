@@ -1,16 +1,16 @@
 import React from 'react';
 
-import styles from './Assigned.scss';
+import styles from './Offered.scss';
 import Browse from '../../../../Browse';
 
-const assigned = ({
-  assignedTask,
+const offered = ({
+  offeredTask,
 }) => (
-    <div className={styles.assigned_wrapper}>
+    <div className={styles.offered_wrapper}>
     {
-      !assignedTask ? (
+      !offeredTask ? (
         <React.Fragment>
-          <span>You have not assign any task yet</span>
+          <span>You haven't make any offer yet</span>
           { /*<Browse /> */}
         </React.Fragment>
       ) : (
@@ -20,4 +20,4 @@ const assigned = ({
     </div>
 );
 
-export default assigned;
+export default offered;

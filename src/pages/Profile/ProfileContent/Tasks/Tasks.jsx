@@ -29,8 +29,6 @@ class Tasks extends React.Component {
   async loadTask() {
     const tasks = await getTaskByUserId();
 
-    console.log(tasks);
-
     if (tasks) {
       this.setState({
         postedTask: tasks,
@@ -40,6 +38,12 @@ class Tasks extends React.Component {
 
   componentDidMount() {
     this.loadTask();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevState.postedTask) return;
+    const { length } = prevState.postedTask;
+    if (length !== this.state.postedTask.length) this.loadTask();
   }
 
   render() {

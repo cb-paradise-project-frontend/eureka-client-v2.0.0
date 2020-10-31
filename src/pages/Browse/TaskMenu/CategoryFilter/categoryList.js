@@ -1,14 +1,14 @@
 const CATEGORY = {
   pickUp: {
-    value: 'PICKUP',
+    value: 'Pickup',
     label: 'Pick up',
   },
   clean: {
-    value: 'CLEAN',
+    value: 'Clean',
     label: 'Clean',
   },
   removal: {
-    value: 'REMOVAL',
+    value: 'Removal',
     label: 'Removal',
   },
   any: {

@@ -5,7 +5,7 @@ import styles from './Tasks.module.scss';
 import TaskNav from './TaskNav';
 import Posted from './Posted';
 import Offered from './Offered';
-import getTaskByUserId from '../../../../apis/Task/getTaskByUserId';
+import getTaskByOwnerId from '../../../../apis/Task/getTaskByOwnerId';
 
 class Tasks extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class Tasks extends React.Component {
   }
 
   async loadTask() {
-    const tasks = await getTaskByUserId();
+    const tasks = await getTaskByOwnerId();
 
     if (tasks) {
       this.setState({

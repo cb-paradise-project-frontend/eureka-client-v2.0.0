@@ -6,7 +6,7 @@ import PostTaskButton from '../../../../../components/PostTaskButton';
 import TaskCard from '../../../../../components/TaskCard';
 import TaskModal from './TaskModal';
 
-const Posted = ({ postedTask }) => {
+export default function Posted({ postedTask, loadTask }) {
   const [currentTaskId, selectTask] = useState();
 
   if (!postedTask) return null;
@@ -45,11 +45,10 @@ const Posted = ({ postedTask }) => {
       {currentTask &&
         <TaskModal
           task={currentTask}
+          loadTask={loadTask}
           onRequestClose={() => selectTask('')}
         />
       }
     </>
   );
-};
-
-export default Posted;
+}

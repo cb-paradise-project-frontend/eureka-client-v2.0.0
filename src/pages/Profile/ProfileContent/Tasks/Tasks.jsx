@@ -4,7 +4,7 @@ import styles from './Tasks.module.scss';
 
 import TaskNav from './TaskNav';
 import Posted from './Posted';
-import Assigned from './Offered';
+import Offered from './Offered';
 import getTaskByUserId from '../../../../apis/Task/getTaskByUserId';
 
 class Tasks extends React.Component {
@@ -14,10 +14,11 @@ class Tasks extends React.Component {
     this.state = {
       taskType: 'Posted',
       postedTask: null,
-      assignedTask: null,
+      offeredTask: null,
     };
 
     this.handleNavChange = this.handleNavChange.bind(this);
+    this.loadTask = this.loadTask.bind(this);
   }
 
   handleNavChange(input) {
@@ -47,7 +48,7 @@ class Tasks extends React.Component {
   }
 
   render() {
-    const { taskType, postedTask, assignedTask } = this.state;
+    const { taskType, postedTask, offeredTask } = this.state;
     const taskStatusSelection = ['Posted', 'Offered'];
 
     return (
@@ -68,12 +69,13 @@ class Tasks extends React.Component {
           }
         </div>
         <div className={styles.task_content}>
-          {
-            taskType === 'Posted' ? (
-              <Posted postedTask={postedTask} />
-            ) : (
-              <Assigned assignedTask={assignedTask} />
-            )
+          {(taskType === 'Posted')
+            ? (
+              <Posted
+                loadTask={this.loadTask}
+                postedTask={postedTask}
+              />
+            ) : <Offered offeredTask={offeredTask} />
           }
         </div>
       </div>

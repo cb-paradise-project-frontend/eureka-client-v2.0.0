@@ -6,6 +6,7 @@ import TaskNav from './TaskNav';
 import Posted from './Posted';
 import Offered from './Offered';
 import getTaskByOwnerId from '../../../../apis/Task/getTaskByOwnerId';
+import getTaskByOffererId from '../../../../apis/Task/getTaskByOffererId';
 
 class Tasks extends React.Component {
   constructor(props) {
@@ -28,13 +29,13 @@ class Tasks extends React.Component {
   }
 
   async loadTask() {
-    const tasks = await getTaskByOwnerId();
+    const postedTask = await getTaskByOwnerId();
+    const offeredTask = await getTaskByOffererId();
 
-    if (tasks) {
-      this.setState({
-        postedTask: tasks,
-      });
-    }
+    this.setState({
+      postedTask,
+      offeredTask,
+    });
   }
 
   componentDidMount() {

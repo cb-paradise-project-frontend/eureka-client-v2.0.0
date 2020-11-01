@@ -26,24 +26,6 @@ function PrivateNavDropDown() {
     />
   );
 
-  // const LogOutButton = () => (
-  //   <ToggleContent
-  //     toggle={(toggler) => (
-  //       <div className={styles.privateNavDropDownItem} >
-  //         <Button.Text
-  //           color={'navMobile'}
-  //           onClick={toggler}
-  //         >
-  //           Logout
-  //         </Button.Text>
-  //       </div>
-  //     )}
-  //     content={(toggler) => (
-  //       <LogOut pageToggler={toggler} />
-  //     )}
-  //   />
-  // );
-
   return (
     <div className={styles.private}>
       <Link
@@ -59,8 +41,6 @@ function PrivateNavDropDown() {
       >
         Browse Tasks
       </Link>
-      {/* <LogOutButton /> */}
-      {/* <LogOut /> */}
     </div>
   );
 }

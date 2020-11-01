@@ -3,8 +3,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 import png from './welcome.png';
+import cover from './cover.svg';
 
 const Img = styled.img`
+  padding: 20px 0px;
   width: 25em;
   height: auto;
   margin-left: 2em;
@@ -17,7 +19,7 @@ const Img = styled.img`
 function WelcomeImg() {
   return (
     <Img
-      src={png}
+      src={cover}
       alt="Welcome"
     />
   )

@@ -1,16 +1,18 @@
 .section{
   width: 100%;
-  margin-top: 15px;
   text-align: left;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 20px;
 
   .title{
-    padding: 20px 16px;
+    padding: 0 16px;
     padding-bottom: 0;
     width: 100%;
     box-sizing: border-box;
+    color: #545A7B;
+    text-transform: uppercase;
   }
 
   .content{

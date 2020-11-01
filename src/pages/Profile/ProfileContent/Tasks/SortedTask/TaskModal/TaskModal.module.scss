@@ -1,0 +1,48 @@
+.task_detail{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+
+  .offer_wrapper{
+    position: relative;
+
+    .select_button{
+      position: absolute;
+      top: 20px;
+      right: 0;
+    }
+  }
+
+  .side_bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    padding: 5px 15px;
+    border: solid 1px #adb2ce;
+    border-radius: 4px;
+
+    .budget{
+      width: 100%;
+      text-align: center;
+    }
+    
+    .category{
+      width: 100%;
+    }
+  }
+}
+
+.footer{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding-bottom: 15px;
+
+  .button{
+    width: 150px;
+  }
+}

@@ -5,6 +5,7 @@ export { default as getTaskList } from './Task/getTaskList';
 export { default as makeOffer } from './Task/makeOffer';
 export { default as assignTask } from './Task/assignTask';
 export { default as completeTask } from './Task/completeTask';
+export { default as getTaskByOwnerId } from './Task/getTaskByOwnerId';
 export { default as postTask } from './Task/postTask';
 export { default as getTasksByCategory } from './Task/getTasksByCategory';
 export { default as getProfile } from './Profile/getProfile';

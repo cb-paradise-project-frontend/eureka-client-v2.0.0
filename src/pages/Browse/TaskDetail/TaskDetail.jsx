@@ -4,7 +4,7 @@ import { useHistory, useRouteMatch } from 'react-router-dom';
 import styles from './TaskDetail.module.scss';
 
 import Header from './Header';
-import Section from './Section';
+import Section from '../../../components/TaskSection';
 import SideBar from './SideBar';
 import Comment from './Comment';
 import { TaskProvider } from './TaskContext';

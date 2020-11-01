@@ -3,20 +3,22 @@ import React from 'react';
 import styles from './Tasks.module.scss';
 
 import TaskNav from './TaskNav';
-import Posted from './Posted';
-import Assigned from './Assigned';
+import SortedTask from './SortedTask';
+import getTaskByOwnerId from '../../../../apis/Task/getTaskByOwnerId';
+import getTaskByOffererId from '../../../../apis/Task/getTaskByOffererId';
 
 class Tasks extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       taskType: 'Posted',
       postedTask: null,
-      assignedTask: null,
+      offeredTask: null,
     };
 
     this.handleNavChange = this.handleNavChange.bind(this);
+    this.loadTask = this.loadTask.bind(this);
   }
 
   handleNavChange(input) {
@@ -25,9 +27,29 @@ class Tasks extends React.Component {
     });
   }
 
+  async loadTask() {
+    const postedTask = await getTaskByOwnerId();
+    const offeredTask = await getTaskByOffererId();
+
+    this.setState({
+      postedTask,
+      offeredTask,
+    });
+  }
+
+  componentDidMount() {
+    this.loadTask();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevState.postedTask) return;
+    const { length } = prevState.postedTask;
+    if (length !== this.state.postedTask.length) this.loadTask();
+  }
+
   render() {
-    const { taskType, postedTask, assignedTask } = this.state;
-    const taskStatusSelection = ['Posted', 'Assigned'];
+    const { taskType, postedTask, offeredTask } = this.state;
+    const taskStatusSelection = ['Posted', 'Offered'];
 
     return (
       <div className={styles.task_wrapper}>
@@ -47,13 +69,10 @@ class Tasks extends React.Component {
           }
         </div>
         <div className={styles.task_content}>
-          {
-            taskType === 'Posted' ? (
-              <Posted postedData={postedTask} />
-            ) : (
-              <Assigned assignedData={assignedTask} />
-            )
-          }
+          <SortedTask
+            loadTask={this.loadTask}
+            postedTask={(taskType === 'Posted') ? postedTask : offeredTask}
+          />
         </div>
       </div>
     );

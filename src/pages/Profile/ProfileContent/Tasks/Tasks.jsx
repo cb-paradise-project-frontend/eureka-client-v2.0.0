@@ -3,8 +3,7 @@ import React from 'react';
 import styles from './Tasks.module.scss';
 
 import TaskNav from './TaskNav';
-import Posted from './Posted';
-import Offered from './Offered';
+import Posted from './SortedTask';
 import getTaskByOwnerId from '../../../../apis/Task/getTaskByOwnerId';
 import getTaskByOffererId from '../../../../apis/Task/getTaskByOffererId';
 
@@ -70,14 +69,10 @@ class Tasks extends React.Component {
           }
         </div>
         <div className={styles.task_content}>
-          {(taskType === 'Posted')
-            ? (
-              <Posted
-                loadTask={this.loadTask}
-                postedTask={postedTask}
-              />
-            ) : <Offered offeredTask={offeredTask} />
-          }
+          <Posted
+            loadTask={this.loadTask}
+            postedTask={(taskType === 'Posted') ? postedTask : offeredTask}
+          />
         </div>
       </div>
     );

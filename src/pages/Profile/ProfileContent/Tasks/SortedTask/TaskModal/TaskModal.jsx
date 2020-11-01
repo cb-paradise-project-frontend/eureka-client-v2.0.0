@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { assignTask, completeTask } from '../../../../../../apis';
+import { AuthContext } from '../../../../../../auth/Auth';
 import Button from '../../../../../../components/Button';
 import useMessageBox from '../../../../../../components/MessageBox/useMessageBox';
 import Modal from '../../../../../../components/Modal';
@@ -16,6 +17,9 @@ export default function TaskModal({
 
   const [Message, showMessage] = useMessageBox();
 
+  const { currentUser } = useContext(AuthContext);
+  const userId = currentUser && currentUser.userId;
+
   const {
     id,
     status,
@@ -28,31 +32,34 @@ export default function TaskModal({
     due,
     description,
     acceptedBy,
+    postedBy,
   } = task;
 
   const assignedOffer = (status === 'ASSIGNED')
     && offers.find((offer) => offer.offeredBy.id === acceptedBy);
 
-  const handleSelect = (userId) => () => (
-    setOfferer(userId)
+  const handleSelect = (targetId) => () => (
+    setOfferer(targetId)
   );
 
-  const SelectButton = ({ userId }) => (
+  const SelectButton = ({ targetId }) => (
     <div className={styles.select_button} >
       <Button
         size="small"
-        color={(userId === offerer) ? 'green' : 'navy'}
-        onClick={handleSelect(userId)}
+        color={(targetId === offerer) ? 'green' : 'navy'}
+        onClick={handleSelect(targetId)}
         isDisabled={assignedOffer}
       >
-        {(userId === offerer) ? 'Selected' : 'Select'}
+        {(targetId === offerer) ? 'Selected' : 'Select'}
       </Button>
     </div>
   );
 
   const offerList = offers.map((offer) => (
     <div className={styles.offer_wrapper} key={offer._id} >
-      {(status === 'OPEN') && <SelectButton userId={offer.offeredBy.id} />}
+      {(status === 'OPEN') && (userId === postedBy) &&
+        <SelectButton targetId={offer.offeredBy.id} />
+      }
       <OfferItem offer={offer} showBid />
     </div>
   ));
@@ -115,6 +122,22 @@ export default function TaskModal({
     </div>
   );
 
+  const offerSections = {
+    OPEN: offerList,
+    ASSIGNED: <OfferItem offer={assignedOffer} showBid />,
+    COMPLETED: assignedOffer && <OfferItem offer={assignedOffer} showBid />,
+  };
+
+  const footers = {
+    OPEN: (
+      <>
+        <AssignButton />
+        <CompleteButton />
+      </>
+    ),
+    ASSIGNED: <CompleteButton />,
+  };
+
   return (
     <>
       <Modal onRequestClose={onRequestClose}>
@@ -134,9 +157,7 @@ export default function TaskModal({
               {description}
             </Section>
             <Section title={assignedOffer ? 'ASSIGNED' : 'OFFER'} >
-              {(assignedOffer)
-                ? <OfferItem offer={assignedOffer} showBid />
-                : offerList}
+              {offerSections[status]}
             </Section>
             <Section title={`COMMENT(${comments.length})`} >
               <CommentList comments={comments} />
@@ -145,10 +166,11 @@ export default function TaskModal({
         </Modal.Content>
         {(status !== 'COMPLETED') &&
           <Modal.Footer>
-            <div className={styles.footer} >
-              {(status === 'OPEN') && <AssignButton />}
-              <CompleteButton />
-            </div>
+            {(userId === postedBy) &&
+              <div className={styles.footer} >
+                {footers[status] || null}
+              </div>
+            }
           </Modal.Footer>
         }
       </Modal>

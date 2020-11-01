@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import styles from './Posted.module.scss';
+import styles from './SortedTask.module.scss';
 
 import PostTaskButton from '../../../../../components/PostTaskButton';
 import TaskCard from '../../../../../components/TaskCard';

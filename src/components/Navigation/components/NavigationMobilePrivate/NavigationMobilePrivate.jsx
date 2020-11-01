@@ -66,7 +66,7 @@ class NavigationMobilePrivate extends Component {
             <Button.IconButton
               onClick={toggler}
             >
-              <img src={postTaskLogo} />
+              <img src={postTaskLogo} alt={postTaskLogo} />
             </Button.IconButton>
           </div>
         )}
@@ -90,8 +90,8 @@ class NavigationMobilePrivate extends Component {
             className={this.state.clicked ? styles.none : styles.mobileLogo}
             to="/"
           >
-            <img src={logo} />
-            <p>Brand</p>
+            <img src={logo} alt={logo} />
+            <p>Eureka</p>
           </Link>
 
           <div className={styles.responsivePostTask}>

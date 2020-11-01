@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import className from 'classnames/bind';
 import styles from './NavigationWeb.module.scss';
 
 import logo from '../../../../assets/logo.svg';
@@ -85,8 +84,8 @@ class NavigationWeb extends Component {
             className={styles.logo}
             to="/"
           >
-            <img src={logo} />
-            <p>Brand</p>
+            <img src={logo} alt={logo} />
+            <p>Eureka</p>
           </Link>
 
           <div className={styles.left} >

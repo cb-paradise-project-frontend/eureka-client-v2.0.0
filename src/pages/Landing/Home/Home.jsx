@@ -3,7 +3,6 @@ import React from 'react';
 import styles from './Home.module.scss';
 
 import Button from '../../../components/Button';
-import { getTasksByCategory } from '../../../apis';
 
 function Home() {
   return (

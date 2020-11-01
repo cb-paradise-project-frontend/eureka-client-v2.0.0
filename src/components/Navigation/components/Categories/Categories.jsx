@@ -1,12 +1,8 @@
 import React from 'react';
-import className from 'classnames/bind';
 
 import styles from './Categories.module.scss';
 
-import CategoriesContent from '../CategoriesContent';
 import { NavContext } from '../../NavContext';
-
-const cx = className.bind(styles);
 
 function Categories() {
   return (
@@ -30,7 +26,6 @@ function Categories() {
               </div>
             </div>
             <div className = {styles.category_details_right}>
-                
             </div>
           </div>
         </div>

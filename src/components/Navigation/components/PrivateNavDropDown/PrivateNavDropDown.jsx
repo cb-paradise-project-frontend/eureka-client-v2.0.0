@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PrivateNavDropDown.module.scss';
 
 import ToggleContent from '../../../ToggleContent';
 import Button from '../../../Button';
 import PostTask from '../../../../pages/PostTask';
-import LogOut from '../LogOut';
+// import LogOut from '../LogOut';
 
 function PrivateNavDropDown() {
   const PostTaskButton = () => (
@@ -26,23 +26,23 @@ function PrivateNavDropDown() {
     />
   );
 
-  const LogOutButton = () => (
-    <ToggleContent
-      toggle={(toggler) => (
-        <div className={styles.privateNavDropDownItem} >
-          <Button.Text
-            color={'navMobile'}
-            onClick={toggler}
-          >
-            Logout
-          </Button.Text>
-        </div>
-      )}
-      content={(toggler) => (
-        <LogOut pageToggler={toggler} />
-      )}
-    />
-  );
+  // const LogOutButton = () => (
+  //   <ToggleContent
+  //     toggle={(toggler) => (
+  //       <div className={styles.privateNavDropDownItem} >
+  //         <Button.Text
+  //           color={'navMobile'}
+  //           onClick={toggler}
+  //         >
+  //           Logout
+  //         </Button.Text>
+  //       </div>
+  //     )}
+  //     content={(toggler) => (
+  //       <LogOut pageToggler={toggler} />
+  //     )}
+  //   />
+  // );
 
   return (
     <div className={styles.private}>

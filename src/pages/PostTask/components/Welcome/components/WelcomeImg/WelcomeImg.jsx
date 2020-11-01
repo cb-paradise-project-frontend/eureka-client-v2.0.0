@@ -9,6 +9,9 @@ const Img = styled.img`
   height: auto;
   margin-left: 2em;
   align-items: center;
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 `
 
 function WelcomeImg() {

@@ -5,9 +5,9 @@ import styles from './NavigationMobile.module.scss';
 import logo from '../../../../assets/logo.svg';
 import postTaskLogo from '../../../../assets/postTaskLogo.svg';
 
-import { AuthContext } from './../../../../auth/Auth';
-// import { NavContext } from './NavContext';
-import Categories from '../../../Navigation/components/Categories';
+
+import LoginModal from '../../../../components/LoginModal';
+import SignupModal from '../../../../components/SignupModal';
 import ToggleContent from '../../../../components/ToggleContent';
 import Button from '../../../../components/Button';
 import PostTask from './../../../../pages/PostTask';
@@ -61,26 +61,6 @@ class NavigationMobile extends Component {
         )}
       />
     );
-
-    // const LoginButtonII = () => (
-    //   <ToggleContent
-    //     toggle={(toggler) => (
-    //       <div className={styles.mobileNavDropDownItem}>
-    //         <Button.Text
-    //           color={'navMobile'}
-    //           onClick={toggler}
-    //         >
-    //           <div className={styles.mobileNavDropDownItem}>
-    //             Log in
-    //           </div>
-    //         </Button.Text>
-    //       </div>
-    //     )}
-    //     content={(toggler) => (
-    //       <LoginModal pageToggler={toggler} />
-    //     )}
-    //   />
-    // );
   
     const SignupButton = () => (
       <ToggleContent
@@ -107,7 +87,7 @@ class NavigationMobile extends Component {
           <Button.IconButton
             onClick={toggler}
           >
-            <img src={postTaskLogo} />
+            <img src={postTaskLogo} alt={postTaskLogo} />
           </Button.IconButton>
         </div>
       )}
@@ -131,8 +111,8 @@ class NavigationMobile extends Component {
             className={this.state.clicked ? styles.none : styles.mobileLogo}
             to="/"
           >
-            <img src={logo} />
-            <p>Brand</p>
+            <img src={logo} alt={logo} />
+            <p>Eureka</p>
           </Link>
 
           <div className={styles.responsivePostTask}>

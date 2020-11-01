@@ -10,7 +10,6 @@ import PostTask from '../.././../../pages/PostTask';
 import LogOut from '../LogOut';
 import PrivateNavDropDown from '../PrivateNavDropDown';
 
-
 class NavigationWebPrivate extends Component {
   constructor() {
     super();
@@ -48,8 +47,8 @@ class NavigationWebPrivate extends Component {
             className={styles.logo}
             to="/"
           >
-            <img src={logo} />
-            <p>Brand</p>
+            <img src={logo} alt={logo} />
+            <p>Eureka</p>
           </Link>
 
           <div className={styles.left} >

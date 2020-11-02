@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react';
-import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Redirect, Route, Switch, useHistory, useRouteMatch } from 'react-router-dom';
+import className from 'classnames/bind';
 
 import styles from './TaskDisplay.module.scss';
 
 import TaskDetail from '../TaskDetail';
 import TaskList from '../TaskList';
+import Button from '../../../components/Button';
+
+const cx = className.bind(styles);
 
 export default function TaskDisplay({
   taskList,
@@ -13,6 +17,32 @@ export default function TaskDisplay({
   saveScroll,
 }) {
   const { path } = useRouteMatch();
+  const { location } = useHistory();
+
+  const [showList, toggleList] = useState(true);
+
+  const [touched, setTouched] = useState(false);
+
+  const handleToggleList = () => {
+    toggleList((prevState) => !prevState);
+  };
+
+  const BackButton = () => (
+    <div className={styles.back_button_wrapper} >
+      <Button.Text
+        onClick={handleToggleList}
+        size="medium"
+      >
+        Back to List
+      </Button.Text>
+    </div>
+  );
+
+  useEffect(() => {
+    if (touched) toggleList(false);
+
+    if (!touched) setTouched(true);
+  }, [location]);
 
   useEffect(() => {
     const taskListNode = document.getElementById('task-list');
@@ -37,13 +67,22 @@ export default function TaskDisplay({
 
   return (
     <div className={styles.container}>
-      <TaskList
-        taskList={taskList}
-        handleScroll={handleScroll}
-      />
+      <div className={cx({
+        left: true,
+        active: showList,
+      })} >
+        <TaskList
+          taskList={taskList}
+          handleScroll={handleScroll}
+        />
+      </div>
       <Switch>
         <Route path={`${path}/:taskId`} >
-          <div className={styles.right} >
+          <div className={cx({
+            right: true,
+            active: !showList,
+          })} >
+            <BackButton />
             <TaskDetail taskList={taskList} />
           </div>
         </Route>

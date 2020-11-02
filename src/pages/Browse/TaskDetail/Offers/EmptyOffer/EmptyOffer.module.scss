@@ -17,3 +17,12 @@
     text-align: center;
   }
 }
+
+@media screen and (max-width: 400px) {
+  .container{
+    .offer_icon{
+      width: 70%;
+      height: 170px;
+    }
+  }
+}

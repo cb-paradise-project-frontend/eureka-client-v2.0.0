@@ -21,10 +21,11 @@
 
 .back_button_wrapper{
   display: none;
-  position: absolute;
+  position: sticky;
   top: 26px;
-  right: 70px;
+  width: 100%;
   z-index: 1;
+  background-color: rgba(#b1a8a8, 0.2);
 }
 
 @media screen and (max-width: 700px) {
@@ -37,7 +38,9 @@
   }
 
   .back_button_wrapper{
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .left{

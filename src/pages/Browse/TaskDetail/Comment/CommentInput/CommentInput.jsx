@@ -37,7 +37,7 @@ export default function CommentInput({ addComment }) {
       <div className={styles.input} >
         <TextArea
           size={'large'}
-          placeholder={placeHolder}
+          placeHolder={placeHolder}
           displayValue={input}
           onInputChange={updateInput}
           maxLength={WORD_LIMIT}

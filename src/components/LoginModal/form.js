@@ -4,7 +4,7 @@ const FORM = {
   email: {
     label: 'Email',
     type: 'email',
-    placeholder: 'Email',
+    placeHolder: 'Email',
     getErrorMessage: (value) => (
       value && !email(value) && 'Your email is invalid'
     ),
@@ -12,7 +12,7 @@ const FORM = {
   password: {
     label: 'Password',
     type: 'password',
-    placeholder: 'Password',
+    placeHolder: 'Password',
   },
 };
 

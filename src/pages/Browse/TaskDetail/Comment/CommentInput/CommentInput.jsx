@@ -8,7 +8,7 @@ import CommentAvatar from '../CommentAvatar';
 export default function CommentInput({ addComment }) {
   const [input, updateInput] = useState('');
 
-  const placeHolder = 'Leave a message here';
+  const placeholder = 'Leave a message here';
   const WORD_LIMIT = 1500;
 
   const handleSubmit = () => {
@@ -37,7 +37,7 @@ export default function CommentInput({ addComment }) {
       <div className={styles.input} >
         <TextArea
           size={'large'}
-          placeholder={placeHolder}
+          placeholder={placeholder}
           displayValue={input}
           onInputChange={updateInput}
           maxLength={WORD_LIMIT}

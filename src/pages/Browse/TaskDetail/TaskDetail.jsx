@@ -30,7 +30,7 @@ export default function TaskDetail({ taskList }) {
   const task = taskList.find((taskObj) => taskObj.id === taskId);
 
   useEffect(() => {
-    if (!task) history.push(`/tasks/${taskList[0].id}`);
+    if (!task) history.push('/tasks');
   }, [taskId]);
 
   if (!task) return null;

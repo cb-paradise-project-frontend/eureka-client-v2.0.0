@@ -6,16 +6,16 @@ import PostTaskButton from '../../../../../components/PostTaskButton';
 import TaskCard from '../../../../../components/TaskCard';
 import TaskModal from './TaskModal';
 
-export default function Posted({ postedTask, loadTask }) {
+export default function Posted({ sortedTask, loadTask }) {
   const [currentTaskId, selectTask] = useState();
 
-  if (!postedTask) return null;
+  if (!sortedTask) return null;
 
   const handleClickCreator = (taskId) => () => {
     selectTask(taskId);
   };
 
-  const taskList = postedTask && postedTask.map((task) => (
+  const taskList = sortedTask && sortedTask.map((task) => (
     <div className={styles.card_wrapper} key={task.id} >
       <TaskCard
         task={task}
@@ -24,13 +24,13 @@ export default function Posted({ postedTask, loadTask }) {
     </div>
   ));
 
-  const currentTask = postedTask.find((task) => task.id === currentTaskId);
+  const currentTask = sortedTask.find((task) => task.id === currentTaskId);
 
   return (
     <>
       <div className={styles.container}>
       {
-        !postedTask ? (
+        !sortedTask ? (
           <React.Fragment>
             <span>You have not post any task yet</span>
             <PostTaskButton />

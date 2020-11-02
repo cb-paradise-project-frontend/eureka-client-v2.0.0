@@ -13,8 +13,8 @@ class Tasks extends React.Component {
 
     this.state = {
       taskType: 'Posted',
-      postedTask: null,
-      offeredTask: null,
+      Posted: null,
+      Offered: null,
     };
 
     this.handleNavChange = this.handleNavChange.bind(this);
@@ -32,8 +32,8 @@ class Tasks extends React.Component {
     const offeredTask = await getTaskByOffererId();
 
     this.setState({
-      postedTask,
-      offeredTask,
+      Posted: postedTask,
+      Offered: offeredTask,
     });
   }
 
@@ -44,11 +44,11 @@ class Tasks extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (!prevState.postedTask) return;
     const { length } = prevState.postedTask;
-    if (length !== this.state.postedTask.length) this.loadTask();
+    if (length !== this.state.Posted.length) this.loadTask();
   }
 
   render() {
-    const { taskType, postedTask, offeredTask } = this.state;
+    const { taskType, ...taskSorts } = this.state;
     const taskStatusSelection = ['Posted', 'Offered'];
 
     return (
@@ -71,7 +71,7 @@ class Tasks extends React.Component {
         <div className={styles.task_content}>
           <SortedTask
             loadTask={this.loadTask}
-            postedTask={(taskType === 'Posted') ? postedTask : offeredTask}
+            sortedTask={taskSorts[taskType]}
           />
         </div>
       </div>

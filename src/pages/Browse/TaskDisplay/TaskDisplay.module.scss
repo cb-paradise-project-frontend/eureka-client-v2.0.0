@@ -12,4 +12,53 @@
 
 .right{
   flex: 1 1;
+  position: relative;
+}
+
+.left{
+  min-width: 300px;
+}
+
+.back_button_wrapper{
+  display: none;
+  position: sticky;
+  top: 26px;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(#b1a8a8, 0.2);
+}
+
+@media screen and (max-width: 700px) {
+  .container{
+    height: calc(100vh - 152px);
+  }
+
+  .left, .right{
+    display: none;
+  }
+
+  .active{
+    display: block;
+  }
+
+  .back_button_wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .left{
+    width: 100%;
+  }
+
+  .right{
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .right{
+    padding: 0;
+    padding-left: 10px;
+  }
 }

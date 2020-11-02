@@ -21,3 +21,12 @@
     background-repeat: no-repeat;
   }
 }
+
+@media screen and (max-width: 400px) {
+  .page_wrapper{
+    .background{
+      width: 70%;
+      height: 170px;
+    }
+  }
+}

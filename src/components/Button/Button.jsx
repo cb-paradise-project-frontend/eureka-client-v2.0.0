@@ -68,7 +68,9 @@ const SearchIcon = ({ onClick }) => (
   </IconButton>
 );
 
-const Text = ({ onClick, children, color }) => (
+const Text = ({
+  onClick, children, color, size,
+}) => (
   <button
     onClick={onClick}
     className={cx(
@@ -77,9 +79,13 @@ const Text = ({ onClick, children, color }) => (
         white: 'white',
         grey: 'grey',
         navy: 'navy',
-        navMobile: 'navMobile', 
+        navMobile: 'navMobile',
         'light-blue': 'light-blue',
       }[color] || 'grey',
+      {
+        small: 'small',
+        medium: 'medium',
+      }[size] || 'small',
     )}
   >
     {children}
@@ -91,6 +97,5 @@ Button.BackIcon = BackIcon;
 Button.SearchIcon = SearchIcon;
 Button.Text = Text;
 Button.IconButton = IconButton;
-
 
 export default Button;

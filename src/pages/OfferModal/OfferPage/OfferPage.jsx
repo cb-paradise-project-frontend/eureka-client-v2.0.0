@@ -75,7 +75,7 @@ export default function OfferPage({ showMessage, pageToggler }) {
               size="large"
               displayValue={message}
               onInputChange={setMessage}
-              placeHolder="Leave a message to the task owner"
+              placeholder="Leave a message to the task owner"
             />
           </div>
         </Content>

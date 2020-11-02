@@ -17,3 +17,17 @@
   }
 }
 
+@media screen and (max-width: 950px) {
+  .container{
+    .list_wrapper{
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: center;
+
+      .card_wrapper{
+        max-width: 100%;
+      }
+    }
+  }
+}
+

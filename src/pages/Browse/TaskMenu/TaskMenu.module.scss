@@ -16,8 +16,69 @@
     padding: 0 8px;
     box-sizing: border-box;
 
-    & > * {
-      margin-right: 30px;
+    .left{
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      & > * {
+        margin-right: 30px;
+  
+      }
     }
+
+    .right{
+      flex: 1 1;
+      position: relative;
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+
+      .input_wrapper{
+        width: 200px;
+      }
+    }
+  }
+}
+
+.toggle_button{
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+  .task_menu_wrapper{
+
+    .task_menu{
+      justify-content: space-around;
+
+      & > * {
+        margin: 0;
+      }
+
+      .left, .input_wrapper{
+        display: none;
+      }
+
+      .left.active{
+        display: flex;
+      }
+
+      .right{
+        width: 100%;
+
+        .input_wrapper.active{
+          display: block;
+          position: relative;
+          flex: 1 1;
+          padding: 0 10px;
+        }
+      }
+    }
+  }
+
+  .toggle_button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

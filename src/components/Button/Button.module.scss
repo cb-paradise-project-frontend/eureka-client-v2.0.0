@@ -136,7 +136,6 @@
   text-align: center;
   cursor: pointer;
   display: block;
-  font-size: 13px;
   letter-spacing: .4px;
   text-decoration: none;
   border: none;
@@ -183,5 +182,13 @@
   
   &.light-blue{
     color: #008fb4;
+  }
+
+  &.small{
+    font-size: 13px;
+  }
+
+  &.medium{
+    font-size: 17px;
   }
 }

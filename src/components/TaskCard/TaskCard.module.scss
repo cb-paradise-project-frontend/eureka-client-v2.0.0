@@ -128,3 +128,9 @@ $content-color: #545a77;
 .completed{
   @include status-color-code($completed-color);
 }
+
+@media screen and (max-width: 700px) {
+  .task_card{
+    width: 60%;
+  }
+}

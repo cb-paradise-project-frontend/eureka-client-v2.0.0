@@ -32,7 +32,7 @@ function Place({
     <Wrapper>
       <Input 
         id="searchTextField" 
-        placeHolder="Enter a suburb"
+        placeholder="Enter a suburb"
         defaultValue={place}
         handleChange={handleAddressQuery}
       />

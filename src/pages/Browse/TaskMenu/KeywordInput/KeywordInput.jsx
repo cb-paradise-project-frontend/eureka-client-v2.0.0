@@ -10,7 +10,7 @@ export default function KeywordInput({ onSubmit }) {
   return (
     <div className={styles.search} >
       <Input.Search
-        placeHolder="Search for a task"
+        placeholder="Search for a task"
         value={keyword}
         handleChange={inputKeyword}
         onSubmit={() => onSubmit(keyword)}

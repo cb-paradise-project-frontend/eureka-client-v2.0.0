@@ -1,12 +1,12 @@
 const FORM = {
   day: {
-    placeHolder: 'DD',
+    placeholder: 'DD',
   },
   month: {
-    placeHolder: 'MM',
+    placeholder: 'MM',
   },
   year: {
-    placeHolder: 'YYYY',
+    placeholder: 'YYYY',
   },
 };
 

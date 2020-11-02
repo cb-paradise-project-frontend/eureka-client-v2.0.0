@@ -34,7 +34,7 @@ export default function BankAccount({ storedValue, onSubmit }) {
 
   const fieldList = Object.keys(FORM).map((key) => {
     const {
-      label, placeHolder, maxLength, validator,
+      label, placeholder, maxLength, validator,
     } = FORM[key];
 
     const value = formData[key];
@@ -45,7 +45,7 @@ export default function BankAccount({ storedValue, onSubmit }) {
       <div className={styles.input_wrapper} key={key} >
         <Input
           label={label}
-          placeHolder={placeHolder}
+          placeholder={placeholder}
           value={value}
           validator={validator}
           handleChange={handleChange}

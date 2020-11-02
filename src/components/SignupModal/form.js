@@ -4,19 +4,19 @@ const FORM = {
   firstName: {
     label: 'First Name',
     name: 'firstName',
-    placeHolder: 'First Name',
+    placeholder: 'First Name',
     width: '157px'
   },
   lastName: {
     label: 'Last Name',
     type: 'string',
-    placeHolder: 'Last Name',
+    placeholder: 'Last Name',
     width: '157px'
   },
   email: {
     label: 'Email',
     type: 'email',
-    placeHolder: 'Email',
+    placeholder: 'Email',
     getErrorMessage: (value) => (
       value && !email(value) && 'Your email is invalid'
     ),
@@ -25,7 +25,7 @@ const FORM = {
     label: 'Password',
     name: 'password',
     type: 'password',
-    placeHolder: '8-16 mixed caps, numbers and special characters',
+    placeholder: '8-16 mixed caps, numbers and special characters',
     getErrorMessage: (value) => (
       value && !password(value) && 'Your password must be 8-16 mixed caps, numbers and special characters'
     ),
@@ -34,7 +34,7 @@ const FORM = {
     label: 'Confirm Password',
     name: 'confirmPassword',
     type: 'password',
-    placeHolder: 'Confirm Password',
+    placeholder: 'Confirm Password',
     getErrorMessage: (value, formData) => (
       value && !confirmPassword(value, formData.password) && 'Your passwords do not match'
     ),

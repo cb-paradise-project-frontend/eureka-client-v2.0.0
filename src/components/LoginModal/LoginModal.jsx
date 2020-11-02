@@ -37,7 +37,7 @@ const LoginModal = ({ pageToggler }) => {
   const formData = getData();
 
   const fieldList = Object.keys(FORM).map((key) => {
-    const { label, type, placeHolder } = FORM[key];
+    const { label, type, placeholder } = FORM[key];
     const value = formData[key];
     const handleChange = handleDataChange(key);
     const errorMessage = FORM[key].getErrorMessage && FORM[key].getErrorMessage(value);
@@ -48,7 +48,7 @@ const LoginModal = ({ pageToggler }) => {
         <Input
           label={label}
           type={type}
-          placeHolder={placeHolder}
+          placeholder={placeholder}
           value={value}
           handleChange={handleChange}
           isError={errorField}

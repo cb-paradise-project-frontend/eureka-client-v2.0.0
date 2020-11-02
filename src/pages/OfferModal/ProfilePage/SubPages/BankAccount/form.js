@@ -3,11 +3,11 @@ import { onlyNumber, addDashInNumber } from '../../../../../utils/validators/inp
 const FORM = {
   holder: {
     label: 'Account holder name',
-    placeHolder: 'Alice',
+    placeholder: 'Alice',
   },
   accountNumber: {
     label: 'Account number',
-    placeHolder: '12345678',
+    placeholder: '12345678',
     maxLength: 9,
     validator: onlyNumber,
     getErrorMessage: (value) => (
@@ -17,7 +17,7 @@ const FORM = {
   },
   bsb: {
     label: 'BSB',
-    placeHolder: '000-000',
+    placeholder: '000-000',
     maxLength: 7,
     validator: addDashInNumber,
     getErrorMessage: (value) => (

@@ -24,7 +24,7 @@ export default function Birthday({ storedValue, onSubmit }) {
   const [testing, toggleTest] = useState(false);
 
   const formInputs = Object.keys(FORM).map((key) => {
-    const { placeHolder } = FORM[key];
+    const { placeholder } = FORM[key];
     const value = formData[key];
 
     const handleChange = handleDataChange(key);
@@ -32,14 +32,14 @@ export default function Birthday({ storedValue, onSubmit }) {
     return (
       <div
         className={styles.input_wrapper}
-        key={placeHolder}
+        key={placeholder}
       >
         <Input
-          placeHolder={placeHolder}
+          placeholder={placeholder}
           value={value}
           validator={onlyNumber}
           handleChange={handleChange}
-          maxLength={placeHolder.length}
+          maxLength={placeholder.length}
         />
       </div>
     );

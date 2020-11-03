@@ -1,4 +1,4 @@
-export { api } from './axiosInstance';
+export { api, apiWithoutAuth } from './axiosInstance';
 export { setTokenToRequest, extractTokenFromResponse, extractInfoFromToken, checkTokenExpiry, removeLocalToken } from './utils';
 export { default as addComment } from './Task/addComment';
 export { default as getTaskList } from './Task/getTaskList';

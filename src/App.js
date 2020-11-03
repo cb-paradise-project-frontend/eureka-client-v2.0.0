@@ -12,6 +12,8 @@ import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 import Navigation from './components/Navigation';
 import Browse from './pages/Browse';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
 
 const App = () => (
   <Router>
@@ -25,6 +27,8 @@ const App = () => (
           <Browse />
         </Route>
         <PrivateRoute path="/profile" component={Profile} />
+        <Route exeact path="/forgot-password" component={ForgotPassword} />
+        <Route path="/reset-password" component={ResetPassword} />
         <Route component={NotFound} />
       </Switch>
     </AuthProvider>

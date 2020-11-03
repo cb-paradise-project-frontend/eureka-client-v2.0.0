@@ -226,7 +226,6 @@ class PostTask extends React.Component {
         jobTitle={jobTitle}
         isJobTitleInvalid={(jobTitle.length < this.jobTitleMinLength && touch)}
         onJobTitle={this.onJobTitle}
-        errorHint= {"Please enter at least 10 characters and a maximum of 50 "}
       />
     );
 
@@ -235,7 +234,6 @@ class PostTask extends React.Component {
         jobDetails={jobDetails}
         isJobDetailsInvalid={(jobDetails.length < this.jobDetailsMinLength && touch)}
         onJobDetails={this.onJobDetails}
-        errorHint= {"Please enter at least 25 characters and a maximum of 1000 "}
       />
     );
 

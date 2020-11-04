@@ -12,7 +12,5 @@ export default async function getTaskByOffererId() {
     return false;
   }
 
-  console.log(response);
-
   return (response.status === 200) && destructure(response);
 }

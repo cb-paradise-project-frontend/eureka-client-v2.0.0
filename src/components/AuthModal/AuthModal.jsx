@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import LoginModal from '../LoginModal';
 import SignupModal from '../SignupModal';
+import ForgotPassword from '../ForgotPassword';
 
 const AuthModal = ({ pageToggler, page }) => {
   const [currentPage, setPage] = useState(page);
@@ -9,6 +10,7 @@ const AuthModal = ({ pageToggler, page }) => {
   const pageList = {
     Login: LoginModal,
     SignUp: SignupModal,
+    ForgotPassword,
   };
 
   const CurrentModal = pageList[currentPage];

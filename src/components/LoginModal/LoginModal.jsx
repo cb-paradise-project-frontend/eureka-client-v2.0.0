@@ -1,8 +1,10 @@
 import React, { useState, useContext } from 'react';
-import styled from 'styled-components';
-import { AuthContext } from './../../auth/Auth';
 import { useHistory } from 'react-router-dom';
-import { api, extractTokenFromResponse, extractInfoFromToken } from './../../apis';
+
+import styled from 'styled-components';
+
+import { AuthContext } from '../../auth/Auth';
+import { api, extractTokenFromResponse, extractInfoFromToken } from '../../apis';
 import useForm from '../../pages/OfferModal/ProfilePage/SubPages/useForm';
 import Modal from '../Modal';
 import Button from '../Button';
@@ -16,13 +18,20 @@ const ModalContainer = styled.div`
 `;
 
 const InputWrapper = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   width: 100%;
 `;
 
-const FooterLabel = styled.div`
+const Label = styled.div`
   font-size: 13px;
   padding: 0 5px;
+`;
+
+const ForgotPswBtn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 18px;
 `;
 
 const LoginModal = ({ pageToggler, setPage }) => {
@@ -108,15 +117,22 @@ const LoginModal = ({ pageToggler, setPage }) => {
       <Modal.Content>
         <ModalContainer>
           {fieldList}
+          <ForgotPswBtn>
+            <Button.Text
+              onClick={() => setPage('ForgotPassword')}
+            >
+              Forgot password?
+            </Button.Text>
+          </ForgotPswBtn>
           <Button onClick={onLoginWithEmail} >
             Log in
           </Button>
         </ModalContainer>
       </Modal.Content>
       <Modal.Footer>
-        <FooterLabel>
+        <Label>
           Do not have an account yet?
-        </FooterLabel>
+        </Label>
         <Button.Text
           onClick={() => setPage('SignUp')}
         >

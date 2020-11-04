@@ -26,7 +26,7 @@ const InputWrapper = styled.div`
   }
 `;
 
-const FooterLabel = styled.div`
+const Label = styled.div`
   font-size: 13px;
   padding: 0 5px;
 `;
@@ -120,9 +120,9 @@ const SignupModal = ({ pageToggler, setPage }) => {
         </ModalContainer>
       </Modal.Content>
       <Modal.Footer>
-        <FooterLabel>
+        <Label>
           Already have an account?
-        </FooterLabel>
+        </Label>
         <Button.Text
           onClick={() => setPage('Login')}
         >

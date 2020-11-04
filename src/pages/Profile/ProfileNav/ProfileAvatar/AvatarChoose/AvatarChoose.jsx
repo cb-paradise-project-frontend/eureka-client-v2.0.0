@@ -45,6 +45,7 @@ class AvatarChoose extends React.Component {
     }
 
     this.props.onClose(false);
+    window.location.reload();
   }
 
   render() {

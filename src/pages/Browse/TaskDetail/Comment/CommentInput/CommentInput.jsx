@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import styles from './CommentInput.module.scss';
 
 import TextArea from '../../../../../components/TextArea';
 import CommentAvatar from '../CommentAvatar';
+import { AuthContext } from '../../../../../auth/Auth';
 
 export default function CommentInput({ addComment }) {
   const [input, updateInput] = useState('');
+
+  const { currentUser } = useContext(AuthContext);
 
   const placeholder = 'Leave a message here';
   const WORD_LIMIT = 1500;
@@ -31,9 +34,11 @@ export default function CommentInput({ addComment }) {
     </>
   );
 
+    console.log(currentUser);
+
   return (
     <>
-      <CommentAvatar />
+      <CommentAvatar avatarId={currentUser.avatarId} />
       <div className={styles.input} >
         <TextArea
           size={'large'}

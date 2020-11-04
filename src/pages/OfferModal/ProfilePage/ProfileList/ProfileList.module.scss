@@ -18,7 +18,7 @@
     width: 100%;
     text-align: left;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     border: 1px solid transparent;
     border-radius: 5px;
     font-weight: 400;
@@ -31,8 +31,8 @@
 
     .check_icon{
       background-color: #7db343;
-      width: 22px;
-      padding-top: 2px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       text-align: center;
       color: white;

@@ -8,7 +8,7 @@ export default function CommentList({ comments }) {
   const commentList = comments.map(({
     _id,
     askedBy: {
-      avatar, fullName,
+      avatarId, fullName,
     },
     message,
   }) => (
@@ -16,7 +16,7 @@ export default function CommentList({ comments }) {
       className={styles.comment_wrapper}
       key={_id}
     >
-      <CommentAvatar avatarUrl={avatar} />
+      <CommentAvatar avatarId={avatarId} />
       <div className={styles.details} >
         <div className={styles.header} >{`${fullName}`}</div>
         <div className={styles.content} >{message}</div>

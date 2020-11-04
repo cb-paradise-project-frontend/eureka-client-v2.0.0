@@ -12,8 +12,8 @@ const AuthProvider = ({ children }) => {
       setCurrentUser(null);
       return;
     }
-    const { userId, firstName, lastName, email } = decodedUser;
-    setCurrentUser({userId, firstName, lastName, email});
+
+    setCurrentUser({ ...decodedUser });
   }
 
   useEffect(() => {

@@ -10,7 +10,7 @@ export default function OfferItem({ offer, showBid }) {
 
   const {
     offeredBy: {
-      avatar, fullName,
+      avatarId, fullName,
     },
     bid,
     message,
@@ -19,7 +19,7 @@ export default function OfferItem({ offer, showBid }) {
   return (
     <div className={styles.offer_wrapper} >
       <div className={styles.header} >
-        <CommentAvatar avatarUrl={avatar} />
+        <CommentAvatar avatarId={avatarId} />
         <div className={styles.name} >
           {`${fullName}`}
         </div>

@@ -2,20 +2,26 @@ import React from 'react';
 
 import styles from './ProfileNav.module.scss';
 
-import Avatar from './Avatar';
+import ProfileAvatar from './ProfileAvatar';
 import Navigation from './Navigation';
 
 const ProfileNav = ({
   currentNav,
   handleNavChange,
   userName,
+  avatarID,
+  isAvatarShow,
+  onAvatarShowChange,
 }) => {
   const navList = ['Account', 'Payment', 'Tasks', 'Password'];
   return (
     <div className={styles.profile_nav}>
-      <Avatar
+      <ProfileAvatar
         handleNavChange={handleNavChange}
         userName={userName}
+        avatarID={avatarID}
+        isAvatarShow={isAvatarShow}
+        onAvatarShowChange={onAvatarShowChange}
       />
       <div className={styles.navigation}>
         {

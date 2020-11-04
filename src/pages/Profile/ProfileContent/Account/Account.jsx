@@ -16,6 +16,8 @@ const Account = ({
   const accountData = Object.keys(accountContent).map((key) => {
     const handleChange = onAccountChange(key);
 
+    if (key === 'avatarId') return;
+
     if (key === 'birthday') {
       const birthdayObj = accountContent[key];
       const birthdayInput = Object.keys(birthdayObj).map((index) => {

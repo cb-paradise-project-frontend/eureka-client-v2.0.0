@@ -67,7 +67,13 @@ class AvatarChoose extends React.Component {
               const { choosenAvatar } = this.state;
 
               return (
-                <AvatarDisplay key={index} id={index} image={image} onAvatarChange={onAvatarChange} choosenAvatar={choosenAvatar} />
+                <AvatarDisplay
+                  key={index}
+                  id={index}
+                  image={image}
+                  onAvatarChange={onAvatarChange}
+                  choosenAvatar={choosenAvatar}
+                />
               );
             })}
             </div>

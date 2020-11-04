@@ -8,6 +8,7 @@ import getProfile from '../../apis/Profile/getProfile';
 import { saveProfile } from '../../apis';
 import { setIntializeBirthday, setIntializePayment, setInitalizeBilling } from './utils';
 import updateUserName from '../../apis/Profile/updateUserName';
+import getAvatar from '../../apis/Profile/getAvatar';
 import { toDate } from '../OfferModal/ProfilePage/SubPages/Birthday/utils';
 
 import styles from './Profile.module.scss';
@@ -18,6 +19,7 @@ class Profile extends React.Component {
 
     this.state = {
       currentNav: 'Account',
+      isAvatarShow: false,
       displayName: '',
       account: {
         userId: '',
@@ -26,6 +28,7 @@ class Profile extends React.Component {
         lastName: '',
         birthday: '',
         mobile: '',
+        avatarId: '',
       },
       payment: {
         bankAccount: '',
@@ -41,6 +44,7 @@ class Profile extends React.Component {
     this.handleUpdateProfile = this.handleUpdateProfile.bind(this);
     this.getUserProfile = this.getUserProfile.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleAvatarShow = this.handleAvatarShow.bind(this);
   }
 
   handleDalin = () => {
@@ -59,6 +63,7 @@ class Profile extends React.Component {
       birthday,
       mobile,
     } = await getProfile();
+    const { avatarId } = await getAvatar();
     const bankAccountData = setIntializePayment(bankAccount);
     const billingAddressData = setInitalizeBilling(billingAddress);
 
@@ -67,6 +72,7 @@ class Profile extends React.Component {
         ...prevState.account,
         birthday: setIntializeBirthday(birthday),
         mobile,
+        avatarId,
       },
       payment: {
         bankAccount: bankAccountData,
@@ -191,13 +197,19 @@ class Profile extends React.Component {
     }
   }
 
+  handleAvatarShow(boolean) {
+    this.setState({
+      isAvatarShow: boolean,
+    });
+  }
+
   render() {
-    const { history } = this.props;
     const {
       currentNav,
       displayName,
       account,
       payment,
+      isAvatarShow,
     } = this.state;
 
     return (
@@ -208,6 +220,9 @@ class Profile extends React.Component {
               currentNav={currentNav}
               handleNavChange={this.handleNavChange}
               userName={displayName}
+              avatarID={account.avatarId}
+              isAvatarShow={isAvatarShow}
+              onAvatarShowChange={this.handleAvatarShow}
             />
             <ProfileContent
               currentNav={currentNav}

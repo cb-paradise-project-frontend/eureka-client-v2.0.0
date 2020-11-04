@@ -36,13 +36,11 @@ function OtherJobsCardContainer({
                     price = {task.budget}
                     rate = {due_Date.toDateString()}
                   />)
-            }
+              }
             )
           }
         </div>
       </div>
     );
   }
-
-
 export default OtherJobsCardContainer;

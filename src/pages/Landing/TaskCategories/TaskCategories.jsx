@@ -11,46 +11,34 @@ class TaskCategories extends React.Component {
     this.state = {
       data: [
         {
-          id: 1, 
-          type: "house",
-          title: "House",
+          id: 1,
+          type: 'clean',
+          title: 'Clean',
+          srcUrl: '<i class="fas fa-broom"></i>',
+          src: 'fas fa-broom',
         },
 
         {
-          id: 2, 
-          type: "clean",
-          title: "Clean",
+          id: 2,
+          type: 'removal',
+          title: 'Removal',
+          srcUrl: '<i class="fas fa-truck"></i>',
+          src: 'fas fa-truck',
         },
 
         {
-          id: 3, 
-          type: "delivery",
-          title: "Delivery",
-        },
-
-        {
-          id: 4, 
-          type: "delivery",
-          title: "Delivery",
-        },
-
-        {
-          id: 5, 
-          type: "delivery",
-          title: "Delivery",
-        },
-        
-        {
-          id: 6, 
-          type: "delivery",
-          title: "Delivery",
+          id: 3,
+          type: 'Pickup',
+          title: 'Pickup',
+          srcUrl: '<i class="fas fa-car"></i>',
+          src: 'fas fa-car',
         },
       ]
     };
   }
 
   render() {
-    const {data, } = this.state;
+    const { data, } = this.state;
     return (
       <div className={styles.taskCategories__container}>
         <div className={styles.bg__wrapper}>
@@ -66,6 +54,7 @@ class TaskCategories extends React.Component {
                       key = {item.id}
                       type = {item.type}
                       title = {item.title}
+                      srcUrl = {item.srcUrl}
                       />
                     )
                   })

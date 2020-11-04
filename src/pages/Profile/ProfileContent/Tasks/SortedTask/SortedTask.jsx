@@ -30,7 +30,7 @@ export default function Posted({ sortedTask, loadTask }) {
     <>
       <div className={styles.container}>
       {
-        !sortedTask ? (
+        !sortedTask.length ? (
           <React.Fragment>
             <span>You have not post any task yet</span>
             <PostTaskButton />

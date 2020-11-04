@@ -4,6 +4,7 @@ import sendResetPasswordLink from '../../apis/Password/sendResetPasswordLink';
 import { email as emailValidator } from '../../utils/validators/input';
 import Button from '../Button';
 import Input from '../Input';
+import Modal from '../Modal';
 
 import styles from './ForgotPassword.module.scss';
 
@@ -56,23 +57,49 @@ class ForgotPassword extends React.Component {
       // console.log('执行后端操作', emailData);
       const result = await sendResetPasswordLink(emailData);
       console.log('后端返回', result);
+
+      this.props.pageToggler();
     }
   }
 
   render() {
     const { email, error, isError } = this.state;
+    const { pageToggler } = this.props;
 
     return (
-      <div className={styles.forgot_background}>
-        <div className={styles.forgot_wrapper}>
-          <div className={styles.input_wrapper}>
-            <Input type="email" placeholder="Enter your email address here, please." value={email} label="Email" handleChange={this.handleEmailChange} isError={isError} errorMessage={error} />
+      <Modal onRequestClose={pageToggler} >
+        <Modal.Header>
+          Forgot Password
+        </Modal.Header>
+        <Modal.Content>
+          <div className={styles.forgot_wrapper}>
+            <div className={styles.input_wrapper}>
+              <Input
+                type="email"
+                placeholder="Enter your email address here, please."
+                value={email}
+                label="Email"
+                handleChange={this.handleEmailChange}
+                isError={isError}
+                errorMessage={error}
+              />
+            </div>
+            <div className={styles.label} >
+              A link will be sent to your email address, please click the link to finish validation for resetting your password.
+            </div>
+            <div className={styles.btn_wrapper} >
+              <Button
+                onClick={this.handleEmailSubmit}
+                color="blue"
+                size="medium"
+                long
+              >
+                Send
+              </Button>
+            </div>
           </div>
-          <div className={styles.btn_wrapper}>
-            <Button onClick={this.handleEmailSubmit} color="blue" size="medium">Send me an email to reset password</Button>
-          </div>
-        </div>
-      </div>
+        </Modal.Content>
+      </Modal>
     );
   }
 }

@@ -13,7 +13,7 @@ const ModalContainer = styled.div`
   width: 330px;
   display: flex;
   flex-direction: column;
-  padding-bottom: 24px;
+
 `;
 
 const InputWrapper = styled.div`
@@ -26,7 +26,12 @@ const InputWrapper = styled.div`
   }
 `;
 
-const SignupModal = ({ pageToggler }) => {
+const Label = styled.div`
+  font-size: 13px;
+  padding: 0 5px;
+`;
+
+const SignupModal = ({ pageToggler, setPage }) => {
   const history = useHistory();
   const { setUser } = useContext(AuthContext);
   const form = useForm(FORM);
@@ -114,6 +119,16 @@ const SignupModal = ({ pageToggler }) => {
           <Button type="submit" onClick={onSignUp}>Sign up</Button>
         </ModalContainer>
       </Modal.Content>
+      <Modal.Footer>
+        <Label>
+          Already have an account?
+        </Label>
+        <Button.Text
+          onClick={() => setPage('Login')}
+        >
+          Login
+        </Button.Text>
+      </Modal.Footer>
     </Modal>
   );
 };

@@ -17,9 +17,9 @@ import { postTask } from '../../apis';
 import { AuthContext } from '../../auth/Auth';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import { withToggleContent } from '../../components/ToggleContent';
-import LoginModal from '../../components/LoginModal';
 import MessageBox from '../../components/MessageBox';
 import LoadingPage from '../../components/LoadingPage/LoadingPage';
+import AuthModal from '../../components/AuthModal';
 
 const showState = {
   Login: false,
@@ -341,7 +341,7 @@ class PostTask extends React.Component {
         </Modal.Footer>
       </Modal>
       <ControlledContent.Login>
-        <LoginModal pageToggler={toggleShow('Login')} />
+        <AuthModal.Login pageToggler={toggleShow('Login')} />
       </ControlledContent.Login>
       <ControlledContent.MsgBox>
         <MessageBox 

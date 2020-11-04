@@ -13,7 +13,7 @@ const ModalContainer = styled.div`
   width: 330px;
   display: flex;
   flex-direction: column;
-  padding-bottom: 24px;
+
 `;
 
 const InputWrapper = styled.div`
@@ -24,6 +24,11 @@ const InputWrapper = styled.div`
   &:nth-child(1) {
     margin-right: 16px;
   }
+`;
+
+const FooterLabel = styled.div`
+  font-size: 13px;
+  padding: 0 5px;
 `;
 
 const SignupModal = ({ pageToggler, setPage }) => {
@@ -115,11 +120,13 @@ const SignupModal = ({ pageToggler, setPage }) => {
         </ModalContainer>
       </Modal.Content>
       <Modal.Footer>
-        Already have an account yet?
+        <FooterLabel>
+          Already have an account?
+        </FooterLabel>
         <Button.Text
           onClick={() => setPage('Login')}
         >
-          Sign up now
+          Login
         </Button.Text>
       </Modal.Footer>
     </Modal>

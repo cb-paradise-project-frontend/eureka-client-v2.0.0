@@ -25,7 +25,7 @@ const ProfileAvatar = ({
     </div>
     {isAvatarShow
     && <Overlay>
-      <AvatarChoose onClose={onAvatarShowChange} />
+      <AvatarChoose onClose={onAvatarShowChange} avatarID={avatarID} />
     </Overlay>}
   </div>
 );

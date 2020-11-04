@@ -18,6 +18,14 @@ class AvatarChoose extends React.Component {
     this.handleAvatarSubmit = this.handleAvatarSubmit.bind(this);
   }
 
+  componentDidMount() {
+    const { avatarID } = this.props;
+
+    this.setState({
+      choosenAvatar: avatarID,
+    });
+  }
+
   handleAvatarChoose(ID) {
     this.setState({
       choosenAvatar: ID,

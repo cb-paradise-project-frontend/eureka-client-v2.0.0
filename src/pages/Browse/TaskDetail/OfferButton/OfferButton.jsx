@@ -36,6 +36,7 @@ export default function OfferButton() {
       <Button
         onClick={toggler}
         isDisabled={!isOpen || isOwner || isOffered}
+        color="navy"
       >
         {label}
       </Button>

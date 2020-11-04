@@ -5,13 +5,11 @@ import styles from './NavigationWeb.module.scss';
 
 import logo from '../../../../assets/logo.svg';
 
-import LoginModal from '../../../../components/LoginModal';
-import SignupModal from '../../../../components/SignupModal';
 import Categories from '../../../Navigation/components/Categories';
 import ToggleContent from '../../../../components/ToggleContent';
 import Button from '../../../../components/Button';
 import PostTask from '../.././../../pages/PostTask';
-
+import AuthModal from '../../../AuthModal';
 
 class NavigationWeb extends Component {
   constructor() {
@@ -19,10 +17,11 @@ class NavigationWeb extends Component {
 
     this.state = { clicked:false }
   }
-  
+
   handleClick = () => {
-    this.setState((prevState) => ({ clicked: !prevState.clicked}))
+    this.setState((prevState) => ({ clicked: !prevState.clicked}));
   }
+
   render() {
     const PostTaskButton = () => (
       <ToggleContent
@@ -42,7 +41,7 @@ class NavigationWeb extends Component {
         )}
       />
     );
-  
+
     const LoginButton = () => (
       <ToggleContent
         toggle={(toggler) => (
@@ -56,11 +55,11 @@ class NavigationWeb extends Component {
           </div>
         )}
         content={(toggler) => (
-          <LoginModal pageToggler={toggler} />
+          <AuthModal.Login pageToggler={toggler} />
         )}
       />
     );
-  
+
     const SignupButton = () => (
       <ToggleContent
         toggle={(toggler) => (
@@ -74,10 +73,11 @@ class NavigationWeb extends Component {
           </div>
         )}
         content={(toggler) => (
-          <SignupModal pageToggler={toggler} />
+          <AuthModal.SignUp pageToggler={toggler} />
         )}
       />
     );
+
     return (
       <nav className={styles.navBar}>
         <div className={styles.navWebMenu}>

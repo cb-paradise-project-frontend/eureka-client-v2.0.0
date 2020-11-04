@@ -7,12 +7,11 @@ import postTaskLogo from '../../../../assets/postTaskLogo.svg';
 
 import { AuthContext } from './../../../../auth/Auth';
 // import { NavContext } from './NavContext';
-import LoginModal from '../../../../components/LoginModal';
-import SignupModal from '../../../../components/SignupModal';
 import Categories from '../../../Navigation/components/Categories';
 import ToggleContent from '../../../../components/ToggleContent';
 import Button from '../../../../components/Button';
 import PostTask from './../../../../pages/PostTask';
+import AuthModal from '../../../AuthModal';
 
 class NavigationMobile extends Component {
   constructor() {
@@ -58,30 +57,30 @@ class NavigationMobile extends Component {
           </div>
         )}
         content={(toggler) => (
-          <LoginModal pageToggler={toggler} />
+          <AuthModal.Login pageToggler={toggler} />
         )}
       />
     );
 
-    const LoginButtonII = () => (
-      <ToggleContent
-        toggle={(toggler) => (
-          <div className={styles.mobileNavDropDownItem}>
-            <Button.Text
-              color={'navMobile'}
-              onClick={toggler}
-            >
-              <div className={styles.mobileNavDropDownItem}>
-                Log in
-              </div>
-            </Button.Text>
-          </div>
-        )}
-        content={(toggler) => (
-          <LoginModal pageToggler={toggler} />
-        )}
-      />
-    );
+    // const LoginButtonII = () => (
+    //   <ToggleContent
+    //     toggle={(toggler) => (
+    //       <div className={styles.mobileNavDropDownItem}>
+    //         <Button.Text
+    //           color={'navMobile'}
+    //           onClick={toggler}
+    //         >
+    //           <div className={styles.mobileNavDropDownItem}>
+    //             Log in
+    //           </div>
+    //         </Button.Text>
+    //       </div>
+    //     )}
+    //     content={(toggler) => (
+    //       <LoginModal pageToggler={toggler} />
+    //     )}
+    //   />
+    // );
   
     const SignupButton = () => (
       <ToggleContent
@@ -96,7 +95,7 @@ class NavigationMobile extends Component {
           </div>
         )}
         content={(toggler) => (
-          <SignupModal pageToggler={toggler} />
+          <AuthModal.SignUp pageToggler={toggler} />
         )}
       />
     );

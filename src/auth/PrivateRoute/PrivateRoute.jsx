@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import { Route, useHistory } from 'react-router-dom';
 import { AuthContext } from './../Auth';
-import LoginModal from './../../components/LoginModal';
+
 import { useToggleContent } from './../../components/ToggleContent';
 import { useLoadingPage } from '../../components/LoadingPage';
+import AuthModal from '../../components/AuthModal';
 
 const PrivateRoute = ({component, ...restProps}) => {
   const history = useHistory();
@@ -40,7 +41,7 @@ const PrivateRoute = ({component, ...restProps}) => {
             <RouteComponent {...routeProps} />
           ) : (
             <Content>
-              <LoginModal pageToggler={handleToggle} />
+              <AuthModal.Login pageToggler={handleToggle} />
             </Content>
           )
         }

@@ -5,9 +5,9 @@ import Button from '../../../../components/Button';
 import { AuthContext } from '../../../../auth/Auth';
 import { useToggleContent } from '../../../../components/ToggleContent';
 import OfferModal from '../../../OfferModal';
-import SignupModal from '../../../../components/SignupModal';
 import { TaskContext } from '../TaskContext';
 import { OPEN } from '../../../../components/Status';
+import AuthModal from '../../../../components/AuthModal';
 
 export default function OfferButton() {
   const [Content, toggler] = useToggleContent();
@@ -29,7 +29,7 @@ export default function OfferButton() {
 
   const modal = userId
     ? <OfferModal pageToggler={toggler} />
-    : <SignupModal pageToggler={toggler} />;
+    : <AuthModal.Login pageToggler={toggler} />;
 
   return (
     <>

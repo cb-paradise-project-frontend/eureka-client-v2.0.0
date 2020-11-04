@@ -3,7 +3,7 @@ import className from 'classnames/bind';
 
 import styles from './TaskCard.module.scss';
 
-import Avatar from '../Avatar';
+import AvatarDisplay from '../AvatarDisplay';
 
 const cx = className.bind(styles);
 
@@ -31,7 +31,7 @@ export default function TaskCard({
       </div>
       <div className={styles.content} >
         <div className={styles.avatar_container} >
-          <Avatar avatarUrl={postedBy.avatar || null} />
+          <AvatarDisplay avatarID={postedBy.avatarId} />
         </div>
         <div className={styles.location} >
           {location}

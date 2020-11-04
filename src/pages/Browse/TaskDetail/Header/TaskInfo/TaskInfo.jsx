@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './TaskInfo.module.scss';
-import Avatar from '../../../../../components/Avatar';
 import { TaskContext } from '../../TaskContext';
+import AvatarDisplay from '../../../../../components/AvatarDisplay';
 
 const cx = classNames.bind(styles);
 
@@ -21,7 +21,7 @@ function TaskInfoItem({ title, content }) {
           }[title],
         )}>
           {(title === 'POSTED BY') &&
-            <Avatar avatarUrl={content.avatar} />
+            <AvatarDisplay avatarID={content.avatarId} />
           }
         </div>
       </div>

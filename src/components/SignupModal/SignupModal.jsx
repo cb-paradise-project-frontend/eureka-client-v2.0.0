@@ -26,7 +26,7 @@ const InputWrapper = styled.div`
   }
 `;
 
-const SignupModal = ({ pageToggler }) => {
+const SignupModal = ({ pageToggler, setPage }) => {
   const history = useHistory();
   const { setUser } = useContext(AuthContext);
   const form = useForm(FORM);
@@ -114,6 +114,14 @@ const SignupModal = ({ pageToggler }) => {
           <Button type="submit" onClick={onSignUp}>Sign up</Button>
         </ModalContainer>
       </Modal.Content>
+      <Modal.Footer>
+        Already have an account yet?
+        <Button.Text
+          onClick={() => setPage('Login')}
+        >
+          Sign up now
+        </Button.Text>
+      </Modal.Footer>
     </Modal>
   );
 };

@@ -26,3 +26,18 @@
   position: absolute;
   right: 15px;
 }
+
+@media screen and (max-width: 768px)
+{
+  .navi_item {
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 375px)
+{
+  .navi_item {
+    padding-left: 5px;
+    width: 75px;
+  }
+}

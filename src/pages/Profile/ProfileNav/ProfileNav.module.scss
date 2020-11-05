@@ -18,3 +18,36 @@
   width: 100%;
   position: relative;
 }
+
+@media screen and (max-width: 768px)
+{
+  .profile_nav {
+    width: 600px;
+    border-right: none !important;
+  }
+
+  .navigation {
+    
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+    position: relative;
+  }
+}
+
+@media screen and (max-width: 375px)
+{
+  .profile_nav {
+    width: 300px;
+    border-right: none !important;
+  }
+
+  .navigation {
+    
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    position: relative;
+  }
+}
+

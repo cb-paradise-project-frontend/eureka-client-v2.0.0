@@ -22,3 +22,17 @@
   color: rgb(84, 90, 119);
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px)
+{
+  .avatar_wrapper {
+    width: 600px;
+  }
+}
+
+@media screen and (max-width: 375px)
+{
+  .avatar_wrapper {
+    width: 300px;
+  }
+}

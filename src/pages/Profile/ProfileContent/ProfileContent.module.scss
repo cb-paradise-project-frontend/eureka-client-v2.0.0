@@ -9,3 +9,18 @@
   overflow: auto;
   padding: 20px;
 }
+
+@media screen and (max-width: 375px)
+{
+  .profile_content {
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 300px;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    justify-content: center;
+    overflow: auto;
+    padding: 20px;
+  }
+  
+}

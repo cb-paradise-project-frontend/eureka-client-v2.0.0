@@ -10,6 +10,7 @@ import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';
 import FORM from './form';
+import { FetchContext } from '../../apis/Fetch';
 
 const ModalContainer = styled.div`
   width: 330px;
@@ -39,6 +40,7 @@ const LoginModal = ({ pageToggler, setPage }) => {
   const { setUser } = useContext(AuthContext);
   const form = useForm(FORM);
   const [errorHighlightField, setErrorHighlightField] = useState('');
+  const { setNotification } = useContext(FetchContext);
 
   const {
     getData,
@@ -83,7 +85,7 @@ const LoginModal = ({ pageToggler, setPage }) => {
         message: error.message,
       });
       return;
-    }
+    };
 
     try {
       const res = await api.post('/users/login', formData);
@@ -102,12 +104,19 @@ const LoginModal = ({ pageToggler, setPage }) => {
 
       await setUser(info.user);
 
+      setNotification({
+        status: 'success',
+        message: 'Log in successed'
+      })
+
       history.push('/profile');
 
       pageToggler();
     } catch (error) {
-      console.log(error);
-      pageToggler();
+      setNotification({
+        status: 'error',
+        message: error.response.data.message
+      })
     }
   }
 

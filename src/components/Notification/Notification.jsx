@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { useToggleContent } from '../ToggleContent';
+import { FetchContext } from '../../apis/Fetch';
 
 const slideIn = keyframes`
   0% {
@@ -66,12 +66,16 @@ const StatusIcon = styled.div`
   }
 `;
 
-const Notification = ({ children, status }) => {
-  const [ToggleContent, toggler] = useToggleContent(true);
+const Notification = ({status}) => {
+  const { notification, setNotification } = useContext(FetchContext);
 
   const hideNotification = () => {
     setTimeout(() => {
-      toggler();
+      setNotification({
+        status: null,
+        message: null,
+      });
+      console.log('hide notification');
     }, 3000);
   }
 
@@ -80,15 +84,13 @@ const Notification = ({ children, status }) => {
   }, []);
 
   return (
-    <ToggleContent toggler={hideNotification}>
       <Wrapper>
         <StatusIcon status={status}>
           {status === 'success' ? <i className="ri-checkbox-circle-fill" /> : null}
           {status === 'error' ? <i className="ri-error-warning-fill" /> : null}
         </StatusIcon>
-        {children}
+        {notification.message}
       </Wrapper>
-    </ToggleContent>
   );
 }
 

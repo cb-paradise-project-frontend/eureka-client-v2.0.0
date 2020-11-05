@@ -13,23 +13,26 @@ import NotFound from './pages/NotFound';
 import Navigation from './components/Navigation';
 import Browse from './pages/Browse';
 import ResetPassword from './components/ResetPassword';
+import { FetchProvider } from './apis/Fetch';
 
 const App = () => (
   <Router>
-    <AuthProvider>
-      <NavProvider>
-        <Navigation />
-      </NavProvider>
-      <Switch>
-        <Route path="/" exact component={Landing} />
-        <Route path="/tasks" >
-          <Browse />
-        </Route>
-        <PrivateRoute path="/profile" component={Profile} />
-        <Route path="/reset-password" component={ResetPassword} />
-        <Route component={NotFound} />
-      </Switch>
-    </AuthProvider>
+    <FetchProvider>
+      <AuthProvider>
+        <NavProvider>
+          <Navigation />
+        </NavProvider>
+        <Switch>
+          <Route path="/" exact component={Landing} />
+          <Route path="/tasks" >
+            <Browse />
+          </Route>
+          <PrivateRoute path="/profile" component={Profile} />
+          <Route path="/reset-password" component={ResetPassword} />
+          <Route component={NotFound} />
+        </Switch>
+      </AuthProvider>
+    </FetchProvider>
   </Router>
 );
 

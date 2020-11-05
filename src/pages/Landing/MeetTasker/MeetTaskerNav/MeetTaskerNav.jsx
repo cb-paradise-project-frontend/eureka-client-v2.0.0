@@ -5,6 +5,10 @@ import styles from './MeetTaskerNav.module.scss';
 import TaskerSection from '../TaskerSection';
 import MTShowCard from '../MeetTaskerShowCard';
 
+import Samantha from "../../../../assets/tasker-samantha.png";
+import Emily from "../../../../assets/tasker-Emily.png";
+import Brandon from "../../../../assets/tasker-Brandon.png";
+
 
 class MeetTaskerNav extends Component {
   constructor() {
@@ -32,7 +36,7 @@ class MeetTaskerNav extends Component {
       case("Samantha"): 
         return(
           <TaskerSection 
-              taskerImg = "../../../../assets/tasker-samantha.png"
+              taskerImg = {Samantha}
               name= "Samantha"
               spec= "Specialities: assembly, pet care, gardening"
               details=
@@ -46,7 +50,7 @@ class MeetTaskerNav extends Component {
       case("Emily"): 
         return(
           <TaskerSection 
-          taskerImg = "../../../../assets/tasker-Emily.png"
+          taskerImg = {Emily}
           name = "Emily"
           spec = "Specialities: delivery, cleaning, packing"
           details =
@@ -59,7 +63,7 @@ class MeetTaskerNav extends Component {
       case("Brendan"): 
         return(
           <TaskerSection 
-          taskerImg = "../../../../assets/tasker-Brandon.png"
+          taskerImg = {Brandon}
           name = "Brendan"
           spec =
             "She was an absolute lifesaver. Quick, friendly and super efficient!"

@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.72901143.chunk.css",
-    "main.js": "/static/js/main.4fd4f6ff.chunk.js",
-    "main.js.map": "/static/js/main.4fd4f6ff.chunk.js.map",
+    "main.css": "/static/css/main.e0128819.chunk.css",
+    "main.js": "/static/js/main.ddf92678.chunk.js",
+    "main.js.map": "/static/js/main.ddf92678.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.b53aeb94.js",
     "runtime-main.js.map": "/static/js/runtime-main.b53aeb94.js.map",
     "static/css/2.46642664.chunk.css": "/static/css/2.46642664.chunk.css",
-    "static/js/2.5bfd786a.chunk.js": "/static/js/2.5bfd786a.chunk.js",
-    "static/js/2.5bfd786a.chunk.js.map": "/static/js/2.5bfd786a.chunk.js.map",
+    "static/js/2.20733973.chunk.js": "/static/js/2.20733973.chunk.js",
+    "static/js/2.20733973.chunk.js.map": "/static/js/2.20733973.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.be323e64ff5146622ea2c24138c1d26d.js": "/precache-manifest.be323e64ff5146622ea2c24138c1d26d.js",
+    "precache-manifest.973837a68dfd321632faec178e324c40.js": "/precache-manifest.973837a68dfd321632faec178e324c40.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.46642664.chunk.css.map": "/static/css/2.46642664.chunk.css.map",
-    "static/css/main.72901143.chunk.css.map": "/static/css/main.72901143.chunk.css.map",
-    "static/js/2.5bfd786a.chunk.js.LICENSE.txt": "/static/js/2.5bfd786a.chunk.js.LICENSE.txt",
+    "static/css/main.e0128819.chunk.css.map": "/static/css/main.e0128819.chunk.css.map",
+    "static/js/2.20733973.chunk.js.LICENSE.txt": "/static/js/2.20733973.chunk.js.LICENSE.txt",
     "static/media/01.svg": "/static/media/01.24d7cb8a.svg",
     "static/media/02.svg": "/static/media/02.cef2374f.svg",
     "static/media/03.svg": "/static/media/03.3f35888d.svg",
@@ -54,14 +54,13 @@
     "static/media/MeetTasker.module.scss": "/static/media/tasker-bg.5a113ae2.svg",
     "static/media/tasker-samantha.png": "/static/media/tasker-samantha.0333205c.png",
     "static/media/top-rated-insurance.png": "/static/media/top-rated-insurance.ad76350a.png",
-    "static/media/verified-badges.png": "/static/media/verified-badges.feb305d4.png",
-    "static/media/EmptyOffer.module.scss": "/static/media/welcome.dc417566.png"
+    "static/media/verified-badges.png": "/static/media/verified-badges.feb305d4.png"
   },
   "entrypoints": [
     "static/js/runtime-main.b53aeb94.js",
     "static/css/2.46642664.chunk.css",
-    "static/js/2.5bfd786a.chunk.js",
-    "static/css/main.72901143.chunk.css",
-    "static/js/main.4fd4f6ff.chunk.js"
+    "static/js/2.20733973.chunk.js",
+    "static/css/main.e0128819.chunk.css",
+    "static/js/main.ddf92678.chunk.js"
   ]
 }

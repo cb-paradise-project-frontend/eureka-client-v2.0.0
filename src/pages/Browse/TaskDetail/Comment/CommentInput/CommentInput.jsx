@@ -34,11 +34,9 @@ export default function CommentInput({ addComment }) {
     </>
   );
 
-    console.log(currentUser);
-
   return (
     <>
-      <CommentAvatar avatarId={currentUser.avatarId} />
+      <CommentAvatar avatarId={currentUser && currentUser.avatarId} />
       <div className={styles.input} >
         <TextArea
           size={'large'}

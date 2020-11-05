@@ -1,5 +1,4 @@
 .profile_wrapper {
-  border: 1px solid black;
   padding-top: 80px;
   display: flex;
   flex-direction: row;
@@ -19,4 +18,34 @@
   margin-right: 90px;
   display: flex;
   flex-direction: row;
+}
+
+
+@media screen and (max-width: 768px)
+{
+  .profile_wrapper {
+    height: 150vh;
+    
+  }
+
+  .profile{
+    flex-direction: column;
+    height: 130vh;
+    
+  }
+}
+
+@media screen and (max-width: 375px)
+{
+  .profile_wrapper {
+    width: 300px;
+    height: 150vh;
+  }
+
+  .profile{
+    flex-direction: column;
+    height: 130vh;
+    margin-left: 0px;
+    
+  }
 }

@@ -10,6 +10,10 @@ display: flex;
 padding: 10px 15px;
 `
 
+const InputWrapper = styled.div`
+ width:100px;
+`
+
 function BudgetInput({
   budgetHourlyWage,
   isBudgetInvalid,
@@ -29,22 +33,26 @@ function BudgetInput({
   return (
     <div className={styles.budget_input_box}>
       <Wrapper>
+      <InputWrapper>
         <Input 
           type="text"
           handleChange={onBudgetHourlyWage}
           onInput={validateInput}
           value={budgetHourlyWage}
         />
+      </InputWrapper>
         {switchMode 
           &&
         <React.Fragment>
-          <div className={styles.units}> /hr &times; </div>
-          <Input
-            type="text"
-            handleChange={onBudgetHour}
-            onInput={validateInput}
-            defaultValue={"1"}
-          />
+          <div className={styles.units}> /hr &nbsp;&times;&nbsp; </div>
+          <InputWrapper>
+            <Input
+              type="text"
+              handleChange={onBudgetHour}
+              onInput={validateInput}
+              defaultValue={"1"}
+            />
+          </InputWrapper>
           <div className={styles.units}> /hrs </div>
         </React.Fragment>
         }

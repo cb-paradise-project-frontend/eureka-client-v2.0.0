@@ -34,7 +34,8 @@ function TaskLocationAndTime({
           method={method}
         />
         <div className={styles.date_box}>
-        {method === "offline" && taskPlace}
+        {method === 'offline' && taskPlace}
+        {method === 'online' && <div className={styles.kongbai}> </div>}
         </div>
         <h2 className={styles.other_heading}> 
           When do you need it done? 

@@ -1,6 +1,9 @@
 .box {
   display: flex;
   margin-right: 15px;
+  width: 100%;
+  // justify-content: space-around;
+  align-items: flex-start;
 }
 
 .piece {

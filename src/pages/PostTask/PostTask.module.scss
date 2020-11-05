@@ -102,15 +102,10 @@
 }
 
 .want_help_box {
-  display: flex;
+  // display: flex;
   justify-content: flex-end;
+  margin: 3px 10px 0 0;
   width: 3em;
-}
-
-.want_help {
-  width: 6em;
-  text-align: center;
-  //position: absolute;
 }
 
 .budget_help {
@@ -125,7 +120,7 @@
   border-radius: 0.5em;
   display: none;
 }
-.want_help:hover .budget_help {
+.want_help_box:hover .budget_help {
   display: flex;
 }
 
@@ -154,6 +149,5 @@
     max-height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
   }
 }

@@ -22,3 +22,9 @@
   display: flex;
   align-items: center;
 }
+
+@media screen and (max-width: 768px){
+  .content_wrapper{
+    width: 100%;
+  }
+}

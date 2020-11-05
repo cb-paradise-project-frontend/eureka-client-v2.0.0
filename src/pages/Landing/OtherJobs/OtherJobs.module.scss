@@ -1,15 +1,15 @@
 .otherJobs__container {
-  min-height: 110vh;
+  height: 100vh;
   
   .bg__wrapper {
-    position: relative;
-    top: -10%;
+    // position: relative;
+    // top: -10%;
     background: url(../../../assets/bg-otherJobs.svg) no-repeat center center/cover;
     width: 100%;
     height: 100%;
 
     .content__wrapper {
-      height: 100%;
+      height: 800px;
       padding: 0 10%;
       display: flex;
       justify-content: flex-start;
@@ -17,7 +17,7 @@
 
       .otherJobsContent {
         position: relative;
-        top: 20%;
+        top: -10%;
         // left: 10%;
         max-width: 850px;
         // border: 1px solid red;

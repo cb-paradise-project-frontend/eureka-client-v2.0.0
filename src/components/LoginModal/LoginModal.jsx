@@ -115,8 +115,8 @@ const LoginModal = ({ pageToggler, setPage }) => {
     } catch (error) {
       setNotification({
         status: 'error',
-        message: error.response.data.message
-      })
+        message: error.response.data.message,
+      });
     }
   }
 

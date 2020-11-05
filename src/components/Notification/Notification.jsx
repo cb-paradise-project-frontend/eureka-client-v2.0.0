@@ -75,7 +75,6 @@ const Notification = ({status}) => {
         status: null,
         message: null,
       });
-      console.log('hide notification');
     }, 3000);
   }
 

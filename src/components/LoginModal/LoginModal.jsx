@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import { AuthContext } from '../../auth/Auth';
 import { api, extractTokenFromResponse, extractInfoFromToken } from '../../apis';
-import useForm from '../../pages/OfferModal/ProfilePage/SubPages/useForm';
+import useForm from '../../hooks/useForm';
 import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';

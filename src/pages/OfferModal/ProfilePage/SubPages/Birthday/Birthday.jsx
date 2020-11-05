@@ -7,7 +7,7 @@ import Button from '../../../../../components/Button';
 import ErrorMessage from '../../../../../components/ErrorMessage';
 import { onlyNumber } from '../../../../../utils/validators/input';
 import { isDate, isAdult } from '../../../../../utils/validators/submit';
-import useForm from '../useForm';
+import useForm from '../../../../../hooks/useForm';
 import FORM from './form';
 import { toObject, toDate } from './utils';
 

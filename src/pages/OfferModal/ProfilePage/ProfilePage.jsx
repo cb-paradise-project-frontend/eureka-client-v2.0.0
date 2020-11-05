@@ -3,12 +3,12 @@ import React, { useEffect, useState } from 'react';
 import styles from './ProfilePage.module.scss';
 
 import Button from '../../../components/Button';
-import useForm from './SubPages/useForm';
+import useForm from '../../../hooks/useForm';
 import FORM from './form';
 import LocalStorage from './utils/LocalStorage';
 import { saveProfile } from '../../../apis';
 import ProfileList from './ProfileList';
-import useLoadingPage from '../../../components/LoadingPage/useLoadingPage';
+import useLoadingPage from '../../../hooks/useLoadingPage';
 import Modal from '../../../components/Modal';
 
 const SAVE_PROFILE_FAIL = 'Profile saving failed. Please try again later.';

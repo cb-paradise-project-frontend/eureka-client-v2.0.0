@@ -13,7 +13,7 @@ import CommentList from './Comment/CommentList';
 import { addComment } from '../../../apis';
 import { AuthContext } from '../../../auth/Auth';
 import { LoadTaskContext } from './LoadTaskContext';
-import useMessageBox from '../../../components/MessageBox/useMessageBox';
+import useMessageBox from '../../../hooks/useMessageBox';
 import OfferList from './Offers';
 
 export default function TaskDetail({ taskList }) {

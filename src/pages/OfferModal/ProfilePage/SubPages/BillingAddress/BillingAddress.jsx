@@ -4,7 +4,7 @@ import styles from './BillingAddress.module.scss';
 
 import Button from '../../../../../components/Button';
 import Input from '../../../../../components/Input';
-import useForm from '../useForm';
+import useForm from '../../../../../hooks/useForm';
 import FORM from './form';
 
 export default function BillingAddress({ storedValue, onSubmit }) {

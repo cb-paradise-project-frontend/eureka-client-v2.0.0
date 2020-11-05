@@ -15,6 +15,7 @@
 
   h4 {
     color: #313849;
+    max-height: 16px;
     font-weight: 400;    
     font-size: 14px;
     line-height: 16px;
@@ -107,6 +108,7 @@
       font-size: 11px;
       line-height: 13px;
       letter-spacing: 0.5px;
+      max-height: 13px;
     }
 
     .card__content {
@@ -151,6 +153,7 @@
       font-size: 11px;
       line-height: 13px;
       letter-spacing: 0.5px;
+      max-height: 13px;
     }
 
     .card__content {
@@ -167,7 +170,7 @@
           width: 75px;
           font-size: 9px;
           line-height: 10px;
-          
+          max-height: 62px;
         }
       }
 

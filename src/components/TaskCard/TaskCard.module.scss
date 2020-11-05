@@ -117,6 +117,11 @@ $content-color: #545a77;
   }
 }
 
+.selected{
+  border: 2px solid rgba(2,165,209,.5);
+  box-shadow: 0 0 1px 1px rgba(2,165,209,.29);
+}
+
 .open{
   @include status-color-code($open-color);
 }
@@ -128,6 +133,7 @@ $content-color: #545a77;
 .completed{
   @include status-color-code($completed-color);
 }
+
 
 @media screen and (max-width: 700px) {
   .task_card{

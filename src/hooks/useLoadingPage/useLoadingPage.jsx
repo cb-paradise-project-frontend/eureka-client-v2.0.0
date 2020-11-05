@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import LoadingPage from '../LoadingPage';
+import LoadingPage from '../../components/LoadingPage';
 
 export default function useLoadingPage(initialState = true) {
   const [loading, toggleLoading] = useState(initialState);

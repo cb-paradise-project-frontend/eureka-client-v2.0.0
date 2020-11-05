@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './TaskDeliveryMethod.module.scss';//TODO try styled component
+import styles from './TaskDeliveryMethod.module.scss';
 
 import Radio from '../../../../../components/Radio';
 

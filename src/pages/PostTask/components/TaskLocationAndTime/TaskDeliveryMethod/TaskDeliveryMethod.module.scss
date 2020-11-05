@@ -1,14 +1,16 @@
 .box {
   display: flex;
+  margin-right: 15px;
 }
 
 .piece {
   display: flex;
   flex-direction: column;
-  background-color: #e3e4d6;
-  border: 1px solid #C4C4C4;
+  background-color: #add8e6;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  margin-left: 1em;
   border-radius: 10px;
   width: 12.5em;
   height: 6em;
-  margin-left: 1em;
 }

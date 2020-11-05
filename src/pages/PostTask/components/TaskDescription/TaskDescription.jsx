@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from '../../PostTask.module.scss';
 
 function TaskDescription({
   jobTitleInput,
@@ -8,7 +7,7 @@ function TaskDescription({
 }) {
     return (
       <React.Fragment>
-        <div className={styles.main}>
+        <div >
           {jobTitleInput}
           {jobCategoryInput}
           {jobDetailsInput}

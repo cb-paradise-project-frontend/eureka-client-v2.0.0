@@ -5,7 +5,7 @@ import styles from './Browse.module.scss';
 import TaskDisplay from './TaskDisplay';
 import getTaskList from '../../apis/Task/getTaskList';
 import TaskMenu from './TaskMenu';
-import useLoadingPage from '../../components/LoadingPage/useLoadingPage';
+import useLoadingPage from '../../hooks/useLoadingPage';
 import { LoadTaskProvider } from './TaskDetail/LoadTaskContext';
 import EmptyTask from './EmptyTask';
 import ScrollManager from '../../components/ScrollManager';

@@ -21,6 +21,7 @@ export default function TaskList({
         <TaskCard
           key={task.id}
           task={task}
+          selected={history.location.pathname.includes(task.id)}
           onClick={() => history.push(`${path}/${task.id}`)}
         />
       ))}

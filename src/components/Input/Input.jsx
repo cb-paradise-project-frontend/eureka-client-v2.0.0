@@ -30,6 +30,7 @@ const Input = ({
   label,
   isError,
   errorMessage,
+  displayValue,
   ...otherProps
 }) => (
   <div className={styles.input_wrapper} >
@@ -42,6 +43,7 @@ const Input = ({
         error_input: isError,
       })}
       {...otherProps}
+      value={displayValue}
     />
     {isError && errorMessage &&
       <ErrorMessage className={styles.error_message_wrapper}>

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { assignTask, completeTask } from '../../../../../../apis';
 import { AuthContext } from '../../../../../../auth/Auth';
 import Button from '../../../../../../components/Button';
-import useMessageBox from '../../../../../../components/MessageBox/useMessageBox';
+import useMessageBox from '../../../../../../hooks/useMessageBox';
 import Modal from '../../../../../../components/Modal';
 import Section from '../../../../../../components/TaskSection';
 import CommentList from '../../../../../Browse/TaskDetail/Comment/CommentList';

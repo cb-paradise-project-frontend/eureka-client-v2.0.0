@@ -19,6 +19,7 @@ function TextArea({
     <>
       <textarea
         className={cx(
+          { 'error_input': isInputInvalid, },
           'text_area',
           {
             small: 'small',
@@ -29,7 +30,7 @@ function TextArea({
         value={displayValue}
         {...otherProps}
       />
-      <div className={styles.error_hint_wrapper} >
+      <div className={styles.error_message_wrapper} >
         {isInputInvalid && errorHint
           && <ErrorMessage>{errorHint}</ErrorMessage>
         }

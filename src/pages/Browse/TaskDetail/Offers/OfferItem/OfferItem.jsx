@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './OfferItem.module.scss';
 
 import CommentAvatar from '../../Comment/CommentAvatar';
-import useCollapsible from '../useCollapsible';
+import useCollapsible from '../../../../../hooks/useCollapsible';
 
 export default function OfferItem({ offer, showBid }) {
   const Collapsible = useCollapsible();

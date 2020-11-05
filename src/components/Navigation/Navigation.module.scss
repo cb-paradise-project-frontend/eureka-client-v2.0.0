@@ -1,20 +1,65 @@
+.navBar{
+  height: 72px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
 
-.menuMobile {
-  display: none;
+  display: block;
+  box-shadow: none;
+  border-bottom: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.8);
+  font-family: "Baloo Tamma 2", cursive;
+  font-weight: 600;
+
+  .navWebMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 72px;
+    max-width: 1024px;
+    position: relative;
+    margin: 0 auto;
+    // border: 1px solid red;
+  }
 }
 
-.web {
-  display: flex;
-}
 
 
 @media screen and (max-width: 768px)
 {
-  .web {
-    display: none;
-  }
+  .navBar {
+    height: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  
+    display: block;
+    box-shadow: none;
+    background: #fff;
 
-  .menuMobile {
-    display: flex;
+    .navWebMenu {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-content: center;
+      height: 50px;
+      max-width: 768px;
+      position: relative;
+      margin: 0 auto;
+      font-family: "Baloo Tamma 2", cursive;
+
+      .left {
+        width: 100%;
+      }
+
+      .right {
+        display: none;
+      }
+    }
   }
 }

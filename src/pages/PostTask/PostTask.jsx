@@ -19,13 +19,7 @@ import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import { withToggleContent } from '../../components/ToggleContent';
 import MessageBox from '../../components/MessageBox';
 import LoadingPage from '../../components/LoadingPage/LoadingPage';
-import AuthModal from '../../components/AuthModal';
-
-const showState = {
-  Login: false,
-  MsgBox: false,
-  Loading: false,
-} 
+import showState from './showStateConfig';
 class PostTask extends React.Component {
   constructor(props) {
     super(props);

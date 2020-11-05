@@ -15,7 +15,11 @@ function OtherJobsCardContainer({
       return null;
     }
     let currentTask = taskList[currentCategory];
-    if(currentTask.length > 6) currentTask = currentTask.slice(0, 6);
+    if (!currentTask) {
+      // {key: 0, title: 'default', description: 'default', price: '0', dueDate: '0'}
+      return []
+    }
+    else if(currentTask.length > 6) currentTask = currentTask.slice(0, 6);
 
     return (
       <div className={styles.OtherJobs__cards}>

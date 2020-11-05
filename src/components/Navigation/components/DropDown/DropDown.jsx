@@ -13,6 +13,7 @@ import Button from '../../../../components/Button';
 import PostTask from './../../../../pages/PostTask';
 import AuthModal from '../../../AuthModal';
 import { AuthContext } from '../../../../auth/Auth';
+import LogOut from '../LogOut';
 
 class DropDown extends Component {
   constructor() {
@@ -112,6 +113,9 @@ class DropDown extends Component {
               >
                 Browse Tasks
               </Link>
+              <div className={styles.mobileNavDropDownItem}>
+                <LogOut />
+              </div> 
             </>
           }
         </div>

@@ -43,13 +43,14 @@
         border-radius: 50%;
         background-color: yellow;
       }
-
+      
       p {
         width: 135px;
         // margin-right: 16px;
-        // height: 72px;
+        max-height: 85px;
         white-space: pre-line;
         // overflow: hidden;
+        overflow: hidden;
         word-wrap: break-word;
         color: #313849;
         font-size: 14px;
@@ -122,7 +123,7 @@
           width: 90px;
           font-size: 10px;
           line-height: 11px;
-          
+          max-height: 62px;
         }
       }
 

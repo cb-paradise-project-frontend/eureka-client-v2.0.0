@@ -15,13 +15,8 @@ function OtherJobsCardContainer({
       return null;
     }
     let currentTask = taskList[currentCategory];
-    console.log(currentTask);
-    if (!currentTask) {
-      // {key: 0, title: 'default', description: 'default', price: '0', dueDate: '0'}
-      currentTask = [
-        
-      ]
-      return currentTask;
+    if(!currentTask) {
+      currentTask = [ {key: 0, title: 'default', description: 'default', budget: '0', dueDate: '0'} ];
     }
     else if(currentTask.length > 6) currentTask = currentTask.slice(0, 6);
 

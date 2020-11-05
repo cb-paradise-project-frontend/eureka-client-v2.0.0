@@ -1,8 +1,5 @@
 import React from 'react';
-
 import styled from 'styled-components';
-
-import png from './welcome.png';
 import cover from './cover.svg';
 
 const Img = styled.img`
@@ -26,4 +23,3 @@ function WelcomeImg() {
 }
 
 export default WelcomeImg;
-

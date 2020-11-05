@@ -4,17 +4,18 @@
   height: 100%;
   // @media screen and (min-width: 400px) {
   // max-height: 450px;
-    min-height: 384px; 
+  min-height: 384px; 
   // }
 }
-
+.kongbai {
+  margin: 5px 0;
+  padding: 10px 0;
+}
 .bottom {
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  // max-width: 30em;
-  //min-height: 40px;
   border-bottom-right-radius: 0.8em;
   border-bottom-left-radius: 0.8em;
   position: relative;
@@ -76,6 +77,7 @@
 .title_box {
   display: flex;
   margin-right: 1em;
+  padding-bottom: 5px;
   flex-flow: row;
   justify-content: space-between;
 }
@@ -83,12 +85,12 @@
 .budget {
   display: flex;
   background-color: lightblue;
-  width: 96%;
+  width: 100%;
   height: 5em;
-  justify-items: center;
   justify-content: space-around;
-  position: absolute;
-  bottom: 0;
+}
+.budget_box {
+  padding: 30px 0;
 }
 
 .label {
@@ -99,13 +101,13 @@
 .want_help_box {
   display: flex;
   justify-content: flex-end;
-  width: 12em;
+  width: 3em;
 }
 
 .want_help {
   width: 6em;
   text-align: center;
-  position: absolute;
+  //position: absolute;
 }
 
 .budget_help {

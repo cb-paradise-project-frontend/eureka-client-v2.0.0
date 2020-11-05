@@ -37,7 +37,7 @@ class TaskBudget extends React.Component{
             <h2 className={styles.other_heading}> What is your budget? </h2>
             <div className={styles.want_help_box}>
               <div className={styles.want_help}>
-              Want help? 
+              Want&nbsp;help? 
               <BudgetHelp />
               </div> 
             </div>
@@ -72,11 +72,7 @@ class TaskBudget extends React.Component{
             onBudgetHourlyWage={this.props.onBudgetHourlyWage}
             budgetHourlyWage={this.props.budgetHourlyWage}
           />
-          <div>
-            <BudgetDisplay 
-              taskBudget={this.props.taskBudget}
-            />
-          </div>
+          <BudgetDisplay taskBudget={this.props.taskBudget} />
         </div>
     </React.Fragment>
     )

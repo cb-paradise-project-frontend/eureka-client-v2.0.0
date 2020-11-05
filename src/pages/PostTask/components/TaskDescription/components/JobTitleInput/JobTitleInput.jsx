@@ -1,8 +1,5 @@
 import React from 'react';
-
 import styles from '../../../../PostTask.module.scss';
-
-import TextArea from '../../../../../../components/TextArea';
 import Input from '../../../../../../components/Input';
 
 export default function JobTitleInput({

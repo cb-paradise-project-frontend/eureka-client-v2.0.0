@@ -9,6 +9,7 @@ const cx = className.bind(styles);
 
 export default function TaskCard({
   onClick,
+  selected,
   task: {
     title, status, budget, postedBy, location, due,
   },
@@ -18,6 +19,7 @@ export default function TaskCard({
       className={cx(
         'task_card',
         status.toLowerCase(),
+        { selected },
       )}
       onClick = {onClick}
     >

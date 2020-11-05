@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.2decbde5.chunk.css",
-    "main.js": "/static/js/main.917f6d1a.chunk.js",
-    "main.js.map": "/static/js/main.917f6d1a.chunk.js.map",
+    "main.css": "/static/css/main.72901143.chunk.css",
+    "main.js": "/static/js/main.2c25755d.chunk.js",
+    "main.js.map": "/static/js/main.2c25755d.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.b53aeb94.js",
     "runtime-main.js.map": "/static/js/runtime-main.b53aeb94.js.map",
     "static/css/2.46642664.chunk.css": "/static/css/2.46642664.chunk.css",
-    "static/js/2.8c58a030.chunk.js": "/static/js/2.8c58a030.chunk.js",
-    "static/js/2.8c58a030.chunk.js.map": "/static/js/2.8c58a030.chunk.js.map",
+    "static/js/2.8d308e5c.chunk.js": "/static/js/2.8d308e5c.chunk.js",
+    "static/js/2.8d308e5c.chunk.js.map": "/static/js/2.8d308e5c.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.219ced3ed3569bab6e9b02b149eac287.js": "/precache-manifest.219ced3ed3569bab6e9b02b149eac287.js",
+    "precache-manifest.ecc438ee89d87c6048482421a8351678.js": "/precache-manifest.ecc438ee89d87c6048482421a8351678.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.46642664.chunk.css.map": "/static/css/2.46642664.chunk.css.map",
-    "static/css/main.2decbde5.chunk.css.map": "/static/css/main.2decbde5.chunk.css.map",
-    "static/js/2.8c58a030.chunk.js.LICENSE.txt": "/static/js/2.8c58a030.chunk.js.LICENSE.txt",
+    "static/css/main.72901143.chunk.css.map": "/static/css/main.72901143.chunk.css.map",
+    "static/js/2.8d308e5c.chunk.js.LICENSE.txt": "/static/js/2.8d308e5c.chunk.js.LICENSE.txt",
     "static/media/01.svg": "/static/media/01.24d7cb8a.svg",
     "static/media/02.svg": "/static/media/02.cef2374f.svg",
     "static/media/03.svg": "/static/media/03.3f35888d.svg",
@@ -41,6 +41,7 @@
     "static/media/TaskCategories.module.scss": "/static/media/bg-categories.7392db8b.svg",
     "static/media/Home.module.scss": "/static/media/bg-home.81c1ce31.svg",
     "static/media/OtherJobs.module.scss": "/static/media/bg-otherjobs-pad.cc38cb22.svg",
+    "static/media/cover.svg": "/static/media/cover.a9d4497d.svg",
     "static/media/Articles.module.scss": "/static/media/pad-article.61f387c6.svg",
     "static/media/Footer.module.scss": "/static/media/footer-mobile-bg.14707bf4.svg",
     "static/media/here-if-you-need-us.png": "/static/media/here-if-you-need-us.921d522e.png",
@@ -54,13 +55,13 @@
     "static/media/tasker-samantha.png": "/static/media/tasker-samantha.0333205c.png",
     "static/media/top-rated-insurance.png": "/static/media/top-rated-insurance.ad76350a.png",
     "static/media/verified-badges.png": "/static/media/verified-badges.feb305d4.png",
-    "static/media/welcome.png": "/static/media/welcome.dc417566.png"
+    "static/media/EmptyOffer.module.scss": "/static/media/welcome.dc417566.png"
   },
   "entrypoints": [
     "static/js/runtime-main.b53aeb94.js",
     "static/css/2.46642664.chunk.css",
-    "static/js/2.8c58a030.chunk.js",
-    "static/css/main.2decbde5.chunk.css",
-    "static/js/main.917f6d1a.chunk.js"
+    "static/js/2.8d308e5c.chunk.js",
+    "static/css/main.72901143.chunk.css",
+    "static/js/main.2c25755d.chunk.js"
   ]
 }

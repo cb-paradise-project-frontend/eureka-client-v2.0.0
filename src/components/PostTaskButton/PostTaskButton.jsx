@@ -1,10 +1,8 @@
 import React from 'react';
 
-import styles from './PostTaskModal.module.scss';
-
 import Button from '../Button';
-import { useToggleContent } from '../ToggleContent';
 import PostTask from '../../pages/PostTask';
+import useToggleContent from '../../hooks/useToggleContent';
 
 export default function PostTaskButton() {
   const [Modal, toggleModal] = useToggleContent();

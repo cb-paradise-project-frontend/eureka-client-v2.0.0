@@ -2,8 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import { Route, useHistory } from 'react-router-dom';
 import { AuthContext } from './../Auth';
 
-import { useToggleContent } from './../../components/ToggleContent';
-import { useLoadingPage } from '../../components/LoadingPage';
+import useToggleContent from '../../hooks/useToggleContent';
+import useLoadingPage from '../../hooks/useLoadingPage';
 import AuthModal from '../../components/AuthModal';
 
 const PrivateRoute = ({component, ...restProps}) => {

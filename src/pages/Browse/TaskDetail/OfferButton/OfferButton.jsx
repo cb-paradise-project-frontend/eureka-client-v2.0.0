@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import Button from '../../../../components/Button';
 
 import { AuthContext } from '../../../../auth/Auth';
-import { useToggleContent } from '../../../../components/ToggleContent';
+import useToggleContent from '../../../../hooks/useToggleContent';
 import OfferModal from '../../../OfferModal';
 import { TaskContext } from '../TaskContext';
 import { OPEN } from '../../../../components/Status';

@@ -4,7 +4,7 @@ import styles from './BankAccount.module.scss';
 
 import Button from '../../../../../components/Button';
 import Input from '../../../../../components/Input';
-import useForm from '../useForm';
+import useForm from '../../../../../hooks/useForm';
 import FORM from './form';
 import { onlyNumber, addDashInNumber } from '../../../../../utils/validators/input';
 

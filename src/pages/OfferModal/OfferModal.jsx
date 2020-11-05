@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { getProfile } from '../../apis';
-import useMessageBox from '../../components/MessageBox/useMessageBox';
+import useMessageBox from '../../hooks/useMessageBox';
 import OfferPage from './OfferPage';
 import ProfilePage from './ProfilePage';
 

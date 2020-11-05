@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useToggleContent } from '../../../../components/ToggleContent';
+import useToggleContent from '../../../../hooks/useToggleContent';
 import AlertModal from './AlertModal';
 
 export default function withAlert(Component) {

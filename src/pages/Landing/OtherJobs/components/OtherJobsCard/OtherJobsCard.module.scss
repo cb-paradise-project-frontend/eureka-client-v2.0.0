@@ -15,6 +15,7 @@
 
   h4 {
     color: #313849;
+    max-height: 16px;
     font-weight: 400;    
     font-size: 14px;
     line-height: 16px;
@@ -43,13 +44,14 @@
         border-radius: 50%;
         background-color: yellow;
       }
-
+      
       p {
         width: 135px;
         // margin-right: 16px;
-        // height: 72px;
+        max-height: 85px;
         white-space: pre-line;
         // overflow: hidden;
+        overflow: hidden;
         word-wrap: break-word;
         color: #313849;
         font-size: 14px;
@@ -106,6 +108,7 @@
       font-size: 11px;
       line-height: 13px;
       letter-spacing: 0.5px;
+      max-height: 13px;
     }
 
     .card__content {
@@ -122,7 +125,7 @@
           width: 90px;
           font-size: 10px;
           line-height: 11px;
-          
+          max-height: 62px;
         }
       }
 
@@ -150,6 +153,7 @@
       font-size: 11px;
       line-height: 13px;
       letter-spacing: 0.5px;
+      max-height: 13px;
     }
 
     .card__content {
@@ -166,7 +170,7 @@
           width: 75px;
           font-size: 9px;
           line-height: 10px;
-          
+          max-height: 62px;
         }
       }
 

@@ -3,7 +3,6 @@ import React from 'react';
 import styles from './Home.module.scss';
 
 import Button from '../../../components/Button';
-import { getTasksByCategory } from '../../../apis';
 
 function Home() {
   return (
@@ -12,7 +11,7 @@ function Home() {
         <div className={styles.content__wrapper}>
           <div className={styles.home__content}>
             <h2>Connect with experts to get the job done</h2>
-            <h1>on Airtasker</h1>
+            <h1>on Eureka</h1>
             <p>It’s amazing what you can’t do yourself</p>
             <div>
               <Button color={'mint'}>
@@ -22,8 +21,8 @@ function Home() {
           </div>
           <div className={styles.home__content__mobile}>
             <h2>Connect with experts to get the job done</h2>
-            <h3>On</h3>
-            <h1>Airtasker</h1>
+            {/* <h3>On</h3> */}
+            <h1>On Eureka</h1>
             <div>
               <Button color={'mint'}>
                 Get started now

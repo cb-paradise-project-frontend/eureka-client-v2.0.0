@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import { AuthContext } from '../../auth/Auth';
+import styles from './Navigation.module.scss';
+
 import Public from './Public';
 import Private from './Private';
 
 function Navigation() {
   return (
-      <AuthContext.Consumer>
-        {(currentUser) => (
-          // console.log(123,currentUser)
-          <React.Fragment>
-            {
-              !currentUser.currentUser ?
-              <Public />
-              : <Private />
-            }
-          </React.Fragment>
-        )}
-      </AuthContext.Consumer>
-    );
+    <nav className={styles.navBar}>
+      <div className={styles.navWebMenu}>
+        <div className={styles.left}>
+          <Public />
+        </div>
+
+        <div className={styles.right}>
+          <Private />
+        </div>
+      </div>
+    </nav>
+  )
 }
 
 export default Navigation;

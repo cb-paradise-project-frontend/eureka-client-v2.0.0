@@ -8,6 +8,7 @@ import Modal from '../Modal';
 import Button from '../Button';
 import Input from '../Input';
 import FORM from './form';
+import { FetchContext } from '../../apis/Fetch';
 
 const ModalContainer = styled.div`
   width: 330px;
@@ -36,6 +37,7 @@ const SignupModal = ({ pageToggler, setPage }) => {
   const { setUser } = useContext(AuthContext);
   const form = useForm(FORM);
   const [errorHighlightField, setErrorHighlightField] = useState('');
+  const { setNotification } = useContext(FetchContext);
 
   const {
     getData,
@@ -99,12 +101,19 @@ const SignupModal = ({ pageToggler, setPage }) => {
 
       await setUser(info.user);
 
+      setNotification({
+        status: 'success',
+        message: 'Sign up successed'
+      })
+
       history.push('/profile');
 
       pageToggler();
     } catch (error) {
-      console.log(error);
-      pageToggler();
+      setNotification({
+        status: 'error',
+        message: error.response.data.message,
+      });
     }
   }
 

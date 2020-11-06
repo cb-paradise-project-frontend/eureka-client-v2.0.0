@@ -3,6 +3,9 @@ import React from 'react';
 import styles from './TaskCategories.module.scss';
 
 import TaskCategoriesItem from './components/TaskCategoriesItem';
+import Button from '../../../components/Button';
+import ToggleContent from '../../../components/ToggleContent';
+import PostTask from '../../../pages/PostTask';
 
 class TaskCategories extends React.Component {
   constructor(props) {
@@ -39,6 +42,67 @@ class TaskCategories extends React.Component {
 
   render() {
     const { data, } = this.state;
+
+    const CleanButton = () => (
+      <ToggleContent
+        toggle={(toggler) => (
+          <div className={styles.taskCategoriesItem} >
+            <Button
+              color={'categories'}
+              onClick={toggler}
+              size={'categoriesButton'}
+            >
+              <i class="fas fa-broom"></i>
+            </Button>
+            <p>Clean</p>
+          </div>
+        )}
+        content={(toggler) => (
+          <PostTask pageToggler={toggler} />
+        )}
+      />
+    );
+
+    const RemovalButton = () => (
+      <ToggleContent
+        toggle={(toggler) => (
+          <div className={styles.taskCategoriesItem} >
+            <Button
+              color={'categories'}
+              onClick={toggler}
+              size={'categoriesButton'}
+            >
+              <i class="fas fa-truck"></i>
+            </Button>
+            <p>Removal</p>
+          </div>
+        )}
+        content={(toggler) => (
+          <PostTask pageToggler={toggler} />
+        )}
+      />
+    );
+
+    const PickUpButton = () => (
+      <ToggleContent
+        toggle={(toggler) => (
+          <div className={styles.taskCategoriesItem} >
+            <Button
+              color={'categories'}
+              onClick={toggler}
+              size={'categoriesButton'}
+            >
+              <i class="fas fa-car"></i>
+            </Button>
+            <p>Pick up</p>
+          </div>
+        )}
+        content={(toggler) => (
+          <PostTask pageToggler={toggler} />
+        )}
+      />
+    );
+
     return (
       <div className={styles.taskCategories__container}>
         <div className={styles.bg__wrapper}>
@@ -46,36 +110,17 @@ class TaskCategories extends React.Component {
             <div className={styles.taskCategoriesContent}>
               <h3>What do you need done?</h3>
               <div className={styles.iconContainer}>
-                {
-                  data.map((item, index) => {
-                    // console.log(item)
-                    return (
-                      <TaskCategoriesItem
-                      key = {item.id}
-                      type = {item.type}
-                      title = {item.title}
-                      srcUrl = {item.srcUrl}
-                      />
-                    )
-                  })
-                }
+                <CleanButton />
+                <RemovalButton />
+                <PickUpButton />
               </div>
             </div>
             <div className={styles.taskCategoriesContent__mobile}>
               <h3>What do you need done?</h3>
               <div className={styles.iconContainer}>
-                {
-                  data.map((item, index) => {
-                    // console.log(item)
-                    return (
-                      <TaskCategoriesItem
-                      key = {item.id}
-                      type = {item.type}
-                      title = {item.title}
-                      />
-                    )
-                  })
-                }
+                <CleanButton />
+                <RemovalButton />
+                <PickUpButton />
               </div>
             </div>
           </div>

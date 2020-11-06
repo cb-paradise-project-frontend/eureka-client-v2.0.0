@@ -12,6 +12,7 @@ export default function Public({
   toggleLogin,
   toggleSignup,
   togglePostTask,
+  handleLogout,
  }) {
   const [showDropDown, dropDownToggler] = useState(false);
 
@@ -106,6 +107,7 @@ export default function Public({
           toggleSignup={toggleSignup}
           togglePostTask={togglePostTask}
           pageToggler={toggleDropDown}
+          handleLogout={handleLogout}
         />
       </div>
     </div>

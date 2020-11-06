@@ -9,32 +9,30 @@ function PrivateNavDropDown({
   pageToggler,
   handleLogout,
 }) {
-  const PostTaskButton = () => (
+  const DropDownButton = ({ onClick, children }) => (
     <div className={styles.privateNavDropDownItem} >
       <Button.Text
         color={'navMobile'}
         onClick={() => {
-          togglePostTask();
+          onClick();
           pageToggler();
         }}
       >
-        Post a Task
+        {children}
       </Button.Text>
     </div>
   );
 
+  const PostTaskButton = () => (
+    <DropDownButton onClick={togglePostTask} >
+      Post a Task
+    </DropDownButton>
+  );
+
   const LogOutButton = () => (
-    <div className={styles.privateNavDropDownItem} >
-      <Button.Text
-        color={'navMobile'}
-        onClick={() => {
-          handleLogout();
-          pageToggler();
-        }}
-      >
-        Log Out
-      </Button.Text>
-    </div>
+    <DropDownButton onClick={handleLogout} >
+      Log Out
+    </DropDownButton>
   );
 
   return (

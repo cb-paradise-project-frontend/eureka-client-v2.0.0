@@ -6,7 +6,18 @@ import styles from './DropDown.module.scss';
 import Button from '../../../../components/Button';
 import { AuthContext } from '../../../../auth/Auth';
 
-function DropDown ({
+const DropDownButton = ({ onClick, children }) => (
+  <div className={styles.mobileNavDropDownItem}>
+    <Button.Text
+      color={'navMobile'}
+      onClick={onClick}
+    >
+      {children}
+    </Button.Text>
+  </div>
+);
+
+export default function DropDown ({
   toggleLogin,
   toggleSignup,
   togglePostTask,
@@ -21,47 +32,27 @@ function DropDown ({
   );
 
   const LoginButton = () => (
-    <div className={styles.mobileNavDropDownItem}>
-      <Button.Text
-        color={'navMobile'}
-        onClick={handlerCreator(toggleLogin)}
-      >
-        Log in
-      </Button.Text>
-    </div>
+    <DropDownButton onClick={handlerCreator(toggleLogin)} >
+      Log in
+    </DropDownButton>
   );
 
   const SignupButton = () => (
-    <div className={styles.mobileNavDropDownItem} >
-      <Button.Text
-        color={'navMobile'}
-        onClick={handlerCreator(toggleSignup)}
-      >
-        Join Airtasker
-      </Button.Text>
-    </div>
+    <DropDownButton onClick={handlerCreator(toggleSignup)} >
+      Sign up
+    </DropDownButton>
   );
 
   const PostTaskButton = () => (
-    <div className={styles.mobileNavDropDownItem} >
-      <Button.Text
-        color={'navMobile'}
-        onClick={handlerCreator(togglePostTask)}
-      >
-        Post a Task
-      </Button.Text>
-    </div>
+    <DropDownButton onClick={handlerCreator(togglePostTask)} >
+      Post task
+    </DropDownButton>
   );
 
   const LogoutButton = () => (
-    <div className={styles.mobileNavDropDownItem} >
-      <Button.Text
-        color={'navMobile'}
-        onClick={handleLogout}
-      >
-        Log Out
-      </Button.Text>
-    </div>
+    <DropDownButton onClick={handleLogout} >
+      Log out
+    </DropDownButton>
   );
 
   return (
@@ -102,6 +93,3 @@ function DropDown ({
     </AuthContext.Consumer>
   );
 }
-
-
-export default DropDown;

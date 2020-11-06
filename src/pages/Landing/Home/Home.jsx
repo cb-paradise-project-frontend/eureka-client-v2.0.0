@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './Home.module.scss';
 
 import Button from '../../../components/Button';
+import PostTask from '../../PostTask';
+import ToggleContent from '../../../components/ToggleContent';
 
 function Home() {
   return (
+    <React.Fragment>
+   
     <div className={styles.home__container}>
       <div className={styles.bg__wrapper}>
         <div className={styles.content__wrapper}>
@@ -14,9 +18,19 @@ function Home() {
             <h1>on Eureka</h1>
             <p>It’s amazing what you can’t do yourself</p>
             <div>
-              <Button color={'mint'}>
-                Get started now
-              </Button>
+            <ToggleContent
+              toggle={(togglePostTask) => (
+                <Button 
+                  color={'mint'}
+                  onClick={togglePostTask}
+                >
+                  Get started now
+                </Button>
+              )} 
+              content={(togglePostTask) => (
+                <PostTask pageToggler={togglePostTask} />
+              )}
+            />
             </div>
           </div>
           <div className={styles.home__content__mobile}>
@@ -35,6 +49,7 @@ function Home() {
         </div>
       </div>
     </div>
+    </React.Fragment>
   );
 }
 

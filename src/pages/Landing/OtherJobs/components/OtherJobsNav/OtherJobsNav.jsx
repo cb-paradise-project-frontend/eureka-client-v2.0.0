@@ -6,6 +6,8 @@ import styles from './OtherJobsNav.module.scss';
 import OtherJobsCardContainer from '../OtherJobsCardContainer';
 import ShowCard from '../OtherJobsShowCard';
 import { CategoryConsumer } from '../../../../categoryContext/categoryContext';
+import ToggleContent from '../../../../../components/ToggleContent';
+import PostTask from '../../../../PostTask';
 
 const categoryList = [
   {
@@ -67,10 +69,22 @@ class OtherJobsNav extends Component {
               tabDescription={categoryList.find((category) => category.key === currentCategory).tabDescription}
             />}
           </CategoryConsumer>
-
-          <div className={styles.OtherJobs__button}>
-            <button>Get started now</button>
+          <ToggleContent
+          toggle={(togglePostTask) => (
+            <div 
+              className={styles.OtherJobs__button}
+              onClick={togglePostTask}
+            >
+            <button>
+              Get started now
+            </button>
           </div>
+          )} 
+          content={(togglePostTask) => (
+            <PostTask pageToggler={togglePostTask} />
+          )}
+        />
+
       </div>
     );
   }

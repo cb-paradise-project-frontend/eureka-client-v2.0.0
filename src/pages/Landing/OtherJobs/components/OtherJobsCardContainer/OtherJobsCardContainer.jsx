@@ -45,6 +45,7 @@ function OtherJobsCardContainer({
                     price = {task.budget}
                     rate = {due_Date.toDateString()}
                     onClick={jumpToBrowser(task.id)}
+                    avatarID={task.postedBy.avatarId}
                   />)
               }
             )

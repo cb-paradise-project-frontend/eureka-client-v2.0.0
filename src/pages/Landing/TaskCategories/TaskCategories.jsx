@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './TaskCategories.module.scss';
 
-import TaskCategoriesItem from './components/TaskCategoriesItem';
+// import TaskCategoriesItem from './components/TaskCategoriesItem';
 import Button from '../../../components/Button';
 import ToggleContent from '../../../components/ToggleContent';
 import PostTask from '../../../pages/PostTask';
@@ -12,31 +12,31 @@ class TaskCategories extends React.Component {
     super(props);
 
     this.state = {
-      data: [
-        {
-          id: 1,
-          type: 'cleaning',
-          title: 'Cleaning',
-          srcUrl: '<i class="fas fa-broom"></i>',
-          src: 'fas fa-broom',
-        },
+      // data: [
+      //   {
+      //     id: 1,
+      //     type: 'cleaning',
+      //     title: 'Cleaning',
+      //     srcUrl: '<i class="fas fa-broom"></i>',
+      //     src: 'fas fa-broom',
+      //   },
 
-        {
-          id: 2,
-          type: 'moving',
-          title: 'Moving',
-          srcUrl: '<i class="fas fa-truck"></i>',
-          src: 'fas fa-truck',
-        },
+      //   {
+      //     id: 2,
+      //     type: 'moving',
+      //     title: 'Moving',
+      //     srcUrl: '<i class="fas fa-truck"></i>',
+      //     src: 'fas fa-truck',
+      //   },
 
-        {
-          id: 3,
-          type: 'Pickup',
-          title: 'Pickup',
-          srcUrl: '<i class="fas fa-car"></i>',
-          src: 'fas fa-car',
-        },
-      ],
+      //   {
+      //     id: 3,
+      //     type: 'Pickup',
+      //     title: 'Pickup',
+      //     srcUrl: '<i class="fas fa-car"></i>',
+      //     src: 'fas fa-car',
+      //   },
+      // ],
       postTask: false,
     };
     this.toggler = this.toggler.bind(this);

@@ -132,7 +132,7 @@ export default function ProfilePage({
 
     if (result) {
       setProfileExist(true);
-      // dropStoredData();
+      dropStoredData();
     } else {
       toggleMask();
       showMessage(SAVE_PROFILE_FAIL);

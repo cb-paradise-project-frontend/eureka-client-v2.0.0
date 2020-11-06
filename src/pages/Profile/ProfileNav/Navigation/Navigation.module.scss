@@ -30,14 +30,18 @@
 @media screen and (max-width: 768px)
 {
   .navi_item {
-    width: 150px;
+    flex-grow: 1;
+    text-align: center;
   }
 }
 
 @media screen and (max-width: 375px)
 {
   .navi_item {
-    padding-left: 5px;
-    width: 75px;
+    flex-grow: 1;
+
+    & > a {
+      margin-left: 5px;
+    }
   }
 }

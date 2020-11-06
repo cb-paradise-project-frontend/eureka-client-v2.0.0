@@ -70,6 +70,8 @@
 
     .content {
       max-height: 90vh;
+      display: flex;
+      justify-content: center;
     }
   }
 }

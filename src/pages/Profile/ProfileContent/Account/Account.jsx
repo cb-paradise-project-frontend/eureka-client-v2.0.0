@@ -63,8 +63,8 @@ const Account = ({
           {accountData}
         </div>
         <div className={styles.update_btn}>
-          <Button onClick={onNameChange}>Update My Name</Button>
-          <Button onClick={onSubmit}>Update Birthday & Mobile</Button>
+          <Button onClick={onNameChange} color="blue">Update My Name</Button>
+          <Button onClick={onSubmit} color="blue">Update Birthday & Mobile</Button>
         </div>
       </div>
     </React.Fragment>

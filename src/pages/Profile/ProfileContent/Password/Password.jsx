@@ -32,7 +32,7 @@ class Password extends React.Component {
     const { currentPassword, newPassword } = this.state;
     const passwords = { currentPassword, newPassword };
 
-    const res = resetPassword(passwords);
+    const res = await resetPassword(passwords);
     console.log(res);
   }
 
@@ -55,7 +55,7 @@ class Password extends React.Component {
       <div className={styles.password_wrapper}>
         {passwordComponent}
         <div className={styles.update_btn}>
-          <Button onClick={this.handleResetPassword}>Reset Password</Button>
+          <Button color="blue" onClick={this.handleResetPassword}>Reset Password</Button>
         </div>
       </div>
     );

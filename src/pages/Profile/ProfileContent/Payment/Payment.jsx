@@ -35,11 +35,11 @@ const Payment = ({
         <div className={styles.bank_wrapper}>
           {paymentInputMaker(bankAccount)}
         </div>
-        <Button onClick={onSubmit}>Update Bank Detail</Button>
+        <Button color="blue" onClick={onSubmit}>Update Bank Detail</Button>
         <div className={styles.bill_wrapper}>
           {paymentInputMaker(billingAddress)}
         </div>
-        <Button onClick={onSubmit}>Update Billing Address</Button>
+        <Button color="blue" onClick={onSubmit}>Update Billing Address</Button>
       </div>
     </React.Fragment>
   );

@@ -36,10 +36,14 @@ class TaskCategories extends React.Component {
           srcUrl: '<i class="fas fa-car"></i>',
           src: 'fas fa-car',
         },
-      ]
+      ],
+      postTask: false,
     };
+    this.toggler = this.toggler.bind(this);
   }
-
+  toggler() {
+    this.setState((prevState) => ({ postTask: !prevState.postTask }))
+  }
   render() {
     const { data, } = this.state;
 
@@ -104,6 +108,8 @@ class TaskCategories extends React.Component {
     );
 
     return (
+      <React.Fragment>
+      {this.state.postTask && <PostTask pageToggler={this.toggler}/>}
       <div className={styles.taskCategories__container}>
         <div className={styles.bg__wrapper}>
           <div className={styles.content__wrapper}>
@@ -126,6 +132,7 @@ class TaskCategories extends React.Component {
           </div>
         </div>
       </div>
+      </React.Fragment>
     );
   }
 }

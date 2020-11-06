@@ -45,7 +45,7 @@ class AvatarChoose extends React.Component {
     }
 
     this.props.onClose(false);
-    window.location.reload();
+    this.props.onNavAvatarChange();
   }
 
   render() {

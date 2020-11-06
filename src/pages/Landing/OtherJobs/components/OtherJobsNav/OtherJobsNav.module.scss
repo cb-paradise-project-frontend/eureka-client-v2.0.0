@@ -25,30 +25,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     // border: 1px solid green;
-
-    p::after {
-      content: "";
-      background-color: transparent;
-      display: block;
-      height: 2px;
-      width: 2;
-      margin: 5px auto 0;
-    }
     
-    p:hover {
-      color: #83009F;
-    }
-    p:active {
-      color: green;
-    }
-    p:visited {
-      color: red;
-    }
-
-    p:hover::after {
-      // content: "";
-      background-color: #83009F;
-    }    
   }
 
   .OtherJobs__title__active{
@@ -57,7 +34,6 @@
     }
 
     p::after {
-      // content: "";
       background-color: #83009F;
     }
   }

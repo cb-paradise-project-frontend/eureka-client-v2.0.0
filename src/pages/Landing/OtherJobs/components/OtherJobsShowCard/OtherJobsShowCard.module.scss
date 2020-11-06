@@ -3,10 +3,13 @@
   padding: 0;
 }
 
+
+
 .OtherJobsShowCard__container {
   // position: relative;
   margin: 0 auto 0px;
   // height: 50px;
+
   
 
   p {
@@ -29,6 +32,24 @@
     //   color:pink;
     // }
   }
+
+  p::after {
+    content: "";
+    background-color: transparent;
+    display: block;
+    height: 2px;
+    width: 2;
+    margin: 5px auto 0;
+  }
+  
+  p:hover {
+    color: #83009F;
+  }
+
+  p:hover::after {
+
+    background-color: #83009F;
+  } 
 
   // p:active {
   //   color: #008fb4;
@@ -71,6 +92,18 @@
   //   color: #008fb4;
   // }
 }
+
+.OtherJobsShowCard__container__active {
+    p {
+      color: #83009F;
+    }
+
+    p::after {
+      // content: "";
+      background-color: #83009F;
+    }
+  }
+
 
 // @media screen and (max-width) {
 //   .OtherJobsShowCard__container {

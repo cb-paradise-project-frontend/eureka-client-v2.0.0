@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import styles from './OtherJobsNav.module.scss';
-import classnames from 'classnames/bind';
+
 
 import OtherJobsCardContainer from '../OtherJobsCardContainer';
 import ShowCard from '../OtherJobsShowCard';
@@ -25,7 +25,7 @@ const categoryList = [
   },
 ]
 
-const cx = classnames.bind(styles);
+// const cx = classnames.bind(styles);
 
 class OtherJobsNav extends Component {
   constructor(props) {
@@ -50,16 +50,13 @@ class OtherJobsNav extends Component {
         active = {category.key === this.state.currentCategory}
       >
         {category.label}
+        
       </ShowCard>
       ))
 
     return (
       <div className={styles.OtherJobs__container}>
-          <div 
-            className={cx({
-              OtherJobs__title,
-              OtherJobs__title__active:this.props.active, 
-            })}>
+          <div className={styles.OtherJobs__title}>
             {showCard}
           </div>
           <CategoryConsumer>

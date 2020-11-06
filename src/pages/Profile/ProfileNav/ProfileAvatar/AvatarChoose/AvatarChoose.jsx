@@ -5,6 +5,8 @@ import styles from './AvatarChoose.module.scss';
 import AvatarDisplay from './AvatarDisplay';
 import AvatarFinder from '../../../../../components/Avatar/avatarFinder';
 import updateAvatar from '../../../../../apis/Profile/updateAvatar';
+import Modal from '../../../../../components/Modal';
+import Button from '../../../../../components/Button';
 
 class AvatarChoose extends React.Component {
   constructor(props) {
@@ -65,11 +67,11 @@ class AvatarChoose extends React.Component {
     }
 
     return (
-      <div className={styles.avatar_choose_wrapper}>
-        <div className={styles.avatar_choose}>
-          <button className={styles.close} onClick={() => onClose(false)}>
-            <i className="fas fa-times"></i>
-          </button>
+      <Modal className={styles.avatar_choose_wrapper} onRequestClose={() => onClose(false)} >
+        <Modal.Header>
+          Please choose your favourite avatar
+        </Modal.Header>
+        <Modal.Content>
           <div className={styles.avatar_display}>
             {avatarArray.map((index) => {
               const image = AvatarFinder(index);
@@ -86,12 +88,17 @@ class AvatarChoose extends React.Component {
                 />
               );
             })}
-            </div>
-          <button className={styles.choose} onClick={this.handleAvatarSubmit}>
+          </div>
+        </Modal.Content>
+        <Modal.Footer>
+          {/* <button className={styles.choose} onClick={this.handleAvatarSubmit}>
             Choose this as your profile avatar
-            </button>
-        </div>
-      </div>
+          </button> */}
+        <Button color='blue' onClick={this.handleAvatarSubmit} >
+          Choose this as your profile avatar
+        </Button>
+        </Modal.Footer>
+      </Modal>
     );
   }
 }

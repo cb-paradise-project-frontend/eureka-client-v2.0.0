@@ -5,8 +5,30 @@
   align-items: center;
   margin-top: 20px;
 
-  div:nth-child(n+1) {
+  div:nth-child(n+2) {
     margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 375px)
+{
+  .account_wrapper {
+    margin-top: 5px;
+  }
+
+  div:nth-child(n+2) {
+    margin-top: 5px;
+  }
+
+  .update_btn {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    button ~ button {
+      margin-top: 5px;
+    }
   }
 }
 
@@ -34,6 +56,10 @@
 .birthday_wrapper {
   // border: 1px solid red;
   width: 100%;
+  
+  div:nth-child(1) {
+    margin-top: 20px;
+  }
 }
 
 .label_wrapper {

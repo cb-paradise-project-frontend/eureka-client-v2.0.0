@@ -195,6 +195,8 @@ class Profile extends React.Component {
         displayName: `${res.firstName} ${res.lastName}`,
       });
     }
+    
+    window.location.reload();
   }
 
   handleAvatarShow(boolean) {
@@ -223,6 +225,7 @@ class Profile extends React.Component {
               avatarID={account.avatarId}
               isAvatarShow={isAvatarShow}
               onAvatarShowChange={this.handleAvatarShow}
+              onNavAvatarChange={this.handleNameChange}
             />
             <ProfileContent
               currentNav={currentNav}

@@ -116,7 +116,7 @@ const LoginModal = ({ pageToggler, setPage }) => {
       console.log(error);
       setNotification({
         status: 'error',
-        message: error.message || 'Invalid account or password',
+        message: error.response.data.message || 'Invalid account or password',
       });
     }
   }

@@ -1,41 +1,39 @@
-import React, { useEffect }  from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PrivateNavDropDown.module.scss';
 
 import Button from '../../../Button';
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
-import LogOut from '../LogOut';
 
 function PrivateNavDropDown({
   togglePostTask,
   pageToggler,
-  showDropDown,
+  handleLogout,
 }) {
-  const { pathname } = useLocation();
-
-  const PostTaskButton = () => (
+  const DropDownButton = ({ onClick, children }) => (
     <div className={styles.privateNavDropDownItem} >
       <Button.Text
         color={'navMobile'}
         onClick={() => {
-          togglePostTask();
+          onClick();
           pageToggler();
         }}
       >
-        Post a Task
+        {children}
       </Button.Text>
     </div>
   );
 
-  const LogOutButton = () => (
-    <div className={styles.privateNavDropDownItem} >
-      <LogOut />
-    </div>
+  const PostTaskButton = () => (
+    <DropDownButton onClick={togglePostTask} >
+      Post a Task
+    </DropDownButton>
   );
 
-  useEffect(() => {
-    if (showDropDown) pageToggler();
-  }, [pathname]);
+  const LogOutButton = () => (
+    <DropDownButton onClick={handleLogout} >
+      Log Out
+    </DropDownButton>
+  );
 
   return (
     <div className={styles.private}>

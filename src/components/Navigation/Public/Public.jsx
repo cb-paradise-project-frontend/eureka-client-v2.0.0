@@ -1,26 +1,30 @@
-import React, { Component, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+
 import styles from './Public.module.scss';
 
 import logo from '../../../assets/logo.svg';
 import postTaskLogo from '../../../assets/postTaskLogo.svg';
-
 import Button from '../../Button';
 import DropDown from '../components/DropDown';
-
-// import NavigationMobile from '../components/NavigationMobile';
-// import NavigationWeb from '../components/NavigationWeb';
 
 export default function Public({ 
   toggleLogin,
   toggleSignup,
   togglePostTask,
+  handleLogout,
  }) {
   const [showDropDown, dropDownToggler] = useState(false);
+
+  const { pathname } = useLocation();
 
   const toggleDropDown = () => {
     dropDownToggler((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    if(showDropDown) toggleDropDown();
+  }, [pathname]);
 
   const PostTaskButton = () => (
     <Button
@@ -60,7 +64,10 @@ export default function Public({
         className={styles.responsiveButton}
         onClick={toggleDropDown}
       >
-        <i className={showDropDown ? 'far fa-times-circle' : 'fas fa-bars'}></i>
+        <i className={showDropDown 
+          ? 'far fa-times-circle'
+          : 'fas fa-bars'
+        }></i>
       </div>
 
       <Link
@@ -83,18 +90,24 @@ export default function Public({
 
       <div className={styles.responsivePostTask}>
         <PostTaskIconButton />
-        <div className={showDropDown ? styles.postTaskButtonActive : styles.postTaskButton}>
+        <div className={showDropDown 
+          ? styles.postTaskButtonActive
+          : styles.postTaskButton
+        }>
           <PostTaskButtonMobile />
         </div>
       </div>
 
-      <div  className={showDropDown ? styles.mobileNavDropDownActive : styles.mobileNavDropDown}>
+      <div className={showDropDown 
+        ? styles.mobileNavDropDownActive
+        : styles.mobileNavDropDown
+      }>
         <DropDown
           toggleLogin={toggleLogin}
           toggleSignup={toggleSignup}
           togglePostTask={togglePostTask}
           pageToggler={toggleDropDown}
-          showDropDown={showDropDown}
+          handleLogout={handleLogout}
         />
       </div>
     </div>

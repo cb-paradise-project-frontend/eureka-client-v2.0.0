@@ -1,25 +1,29 @@
-import React, { Component, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+
 import styles from './DropDown.module.scss';
 
-// import logo from '../../../../assets/logo.svg';
-// import postTaskLogo from '../../../../assets/postTaskLogo.svg';
-
-import ToggleContent from '../../../../components/ToggleContent';
 import Button from '../../../../components/Button';
 import { AuthContext } from '../../../../auth/Auth';
-import LogOut from '../LogOut';
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
-function DropDown ({
+const DropDownButton = ({ onClick, children }) => (
+  <div className={styles.mobileNavDropDownItem}>
+    <Button.Text
+      color={'navMobile'}
+      onClick={onClick}
+    >
+      {children}
+    </Button.Text>
+  </div>
+);
+
+export default function DropDown ({
   toggleLogin,
   toggleSignup,
   togglePostTask,
   pageToggler,
-  showDropDown,
+  handleLogout,
 }) {
-  const { pathname } = useLocation(); 
-
   const handlerCreator = (clickHandler) => (
     () => {
       clickHandler();
@@ -28,49 +32,34 @@ function DropDown ({
   );
 
   const LoginButton = () => (
-    <div className={styles.mobileNavDropDownItem}>
-      <Button.Text
-        color={'navMobile'}
-        onClick={handlerCreator(toggleLogin)}
-      >
-        Log in
-      </Button.Text>
-    </div>
+    <DropDownButton onClick={handlerCreator(toggleLogin)} >
+      Log in
+    </DropDownButton>
   );
 
   const SignupButton = () => (
-    <div className={styles.mobileNavDropDownItem} >
-      <Button.Text
-        color={'navMobile'}
-        onClick={handlerCreator(toggleSignup)}
-      >
-        Join Airtasker
-      </Button.Text>
-    </div>
+    <DropDownButton onClick={handlerCreator(toggleSignup)} >
+      Sign up
+    </DropDownButton>
   );
 
   const PostTaskButton = () => (
-    <div className={styles.mobileNavDropDownItem} >
-      <Button.Text
-        color={'navMobile'}
-        onClick={handlerCreator(togglePostTask)}
-      >
-        Post a Task
-      </Button.Text>
-    </div>
+    <DropDownButton onClick={handlerCreator(togglePostTask)} >
+      Post task
+    </DropDownButton>
   );
 
-  useEffect(() => {
-    if(showDropDown) pageToggler();
-  }, [pathname]);
+  const LogoutButton = () => (
+    <DropDownButton onClick={handleLogout} >
+      Log out
+    </DropDownButton>
+  );
 
   return (
-    // <div className={this.state.clicked ? styles.mobileNavDropDownActive : styles.mobileNavDropDown}>
     <AuthContext.Consumer>
-      {({currentUser}) =>(
+      {({currentUser}) => (
         <div>
-          {
-            !currentUser ?
+          {!currentUser ?
             <>
               <LoginButton />
               <SignupButton />
@@ -96,9 +85,7 @@ function DropDown ({
               >
                 Browse Tasks
               </Link>
-              <div className={styles.mobileNavDropDownItem}>
-                <LogOut />
-              </div> 
+              <LogoutButton />
             </>
           }
         </div>
@@ -106,6 +93,3 @@ function DropDown ({
     </AuthContext.Consumer>
   );
 }
-
-
-export default DropDown;

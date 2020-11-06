@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 
 import styles from './Navigation.module.scss';
 
 import Public from './Public';
 import Private from './Private';
-
 import AuthModal from '../AuthModal';
 import PostTask from '../../pages/PostTask';
 import useToggleContent from '../../hooks/useToggleContent';
+import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../../auth/Auth';
+import { removeLocalToken } from '../../apis';
 
 function Navigation() {
   const [LoginContent, loginToggler] = useToggleContent();
   const [SignupContent, signupToggler] = useToggleContent();
   const [PostTaskContent, postTaskToggler] = useToggleContent();
+
+  const history = useHistory();
+  
+  const { setUser } = useContext(AuthContext);
 
   const toggleLogin = () => {
     loginToggler((prevState) => !prevState);
@@ -24,6 +30,13 @@ function Navigation() {
     postTaskToggler((prevState) => !prevState);
   };
 
+
+  const handleLogout = () => {
+    setUser(null);
+    removeLocalToken();
+    history.push('/');
+  }
+
   return (
     <>
       <nav className={styles.navBar}>
@@ -33,6 +46,7 @@ function Navigation() {
               toggleLogin={toggleLogin}
               toggleSignup={toggleSignup}
               togglePostTask={togglePostTask}
+              handleLogout={handleLogout}
             />
           </div>
 
@@ -41,6 +55,7 @@ function Navigation() {
               toggleLogin={toggleLogin}
               toggleSignup={toggleSignup}
               togglePostTask={togglePostTask}
+              handleLogout={handleLogout}
             />
           </div>
         </div>

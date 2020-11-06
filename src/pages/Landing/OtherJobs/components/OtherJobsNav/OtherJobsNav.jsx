@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import styles from './OtherJobsNav.module.scss';
+import classnames from 'classnames/bind';
 
 import OtherJobsCardContainer from '../OtherJobsCardContainer';
 import ShowCard from '../OtherJobsShowCard';
@@ -24,6 +25,8 @@ const categoryList = [
   },
 ]
 
+const cx = classnames.bind(styles);
+
 class OtherJobsNav extends Component {
   constructor(props) {
     super(props);
@@ -44,6 +47,7 @@ class OtherJobsNav extends Component {
       <ShowCard 
         onClick={() => this.handleComponentShowing(category.key)}
         key={category.key}
+        active = {category.key === this.state.currentCategory}
       >
         {category.label}
       </ShowCard>
@@ -51,7 +55,11 @@ class OtherJobsNav extends Component {
 
     return (
       <div className={styles.OtherJobs__container}>
-          <div className={styles.OtherJobs__title}>
+          <div 
+            className={cx({
+              OtherJobs__title,
+              OtherJobs__title__active:this.props.active, 
+            })}>
             {showCard}
           </div>
           <CategoryConsumer>

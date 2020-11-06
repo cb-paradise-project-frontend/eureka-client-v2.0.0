@@ -5,6 +5,7 @@ import resetPasswordFromLink from '../../apis/Password/resetPasswordFromLink';
 import { password as passwordValidator } from '../../utils/validators/input';
 import Button from '../Button';
 import Input from '../Input';
+import { FetchContext } from '../../apis/Fetch';
 
 import styles from './ReserPassword.module.scss';
 
@@ -72,6 +73,7 @@ class ResetPassword extends React.Component {
     const confirmPasswordValid = password === confirmPassword;
     const { history } = this.props;
     const token = history.location.search.split('=')[1];
+    const { setNotification } = this.context;
 
     this.setState({
       isPasswordValid: !passwordValid,
@@ -87,9 +89,19 @@ class ResetPassword extends React.Component {
         password,
         token,
       };
-      console.log('新密码', passwordData);
-      const result = await resetPasswordFromLink(passwordData);
-      console.log('后端返回', result);
+
+      const res = await resetPasswordFromLink(passwordData);
+
+      if (res.data) {
+        return setNotification({
+          status: 'error',
+          message: 'reset password error, reset-link could only use once'
+        });
+      }
+      setNotification({
+        status: 'success',
+        message: 'reset password succeeded, welcome to sign-in',
+      });
     }
   }
 
@@ -136,5 +148,7 @@ class ResetPassword extends React.Component {
     );
   }
 }
+
+ResetPassword.contextType = FetchContext;
 
 export default withRouter(ResetPassword);

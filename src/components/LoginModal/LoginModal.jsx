@@ -16,9 +16,6 @@ const ModalContainer = styled.div`
   width: 330px;
   display: flex;
   flex-direction: column;
-  @media screen and (max-width: 700px) {
-    width: 100%;
-  }
 `;
 
 const InputWrapper = styled.div`

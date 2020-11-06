@@ -74,7 +74,6 @@ export default function Private({
                 <PrivateNavDropDown
                   togglePostTask={togglePostTask}
                   pageToggler={toggleDropDown}
-                  showDropDown={showDropDown}
                 />
               </div>
             </>

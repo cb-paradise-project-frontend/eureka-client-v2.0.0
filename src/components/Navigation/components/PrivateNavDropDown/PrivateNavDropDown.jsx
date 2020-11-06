@@ -8,7 +8,6 @@ import Button from '../../../Button';
 function PrivateNavDropDown({
   togglePostTask,
   pageToggler,
-  showDropDown,
 }) {
   const PostTaskButton = () => (
     <div className={styles.privateNavDropDownItem} >

@@ -246,7 +246,7 @@ class PostTask extends React.Component {
       <Place 
         handleAddressQuery={this.handlePlace}
         place={place}
-        type="(regions)"
+        type="geocode"
         isPlaceInvalid={(place == null && touch)}
       />
     );

@@ -25,7 +25,7 @@ const Account = ({
 
         return (
         <Input
-          value={birthdayObj[index]}
+          displayValue={birthdayObj[index]}
           label={ToPascalCase(index)}
           key={index}
           handleChange={handleBirthdayChange}
@@ -49,7 +49,7 @@ const Account = ({
       <Input
         key={key}
         label={ToPascalCase(key)}
-        value={value}
+        displayValue={value}
         handleChange={handleChange}
         disabled={(key === 'email' || key === 'userId')}
       />
@@ -63,8 +63,8 @@ const Account = ({
           {accountData}
         </div>
         <div className={styles.update_btn}>
-          <Button onClick={onNameChange}>Update My Name</Button>
-          <Button onClick={onSubmit}>Update Birthday & Mobile</Button>
+          <Button onClick={onNameChange} color="blue">Update My Name</Button>
+          <Button onClick={onSubmit} color="blue">Update Birthday & Mobile</Button>
         </div>
       </div>
     </React.Fragment>

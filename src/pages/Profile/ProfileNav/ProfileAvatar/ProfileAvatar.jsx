@@ -12,6 +12,7 @@ const ProfileAvatar = ({
   avatarID,
   isAvatarShow,
   onAvatarShowChange,
+  onNavAvatarChange,
 }) => (
   <div className={styles.avatar_wrapper}>
     <div className={styles.avatar} onClick={() => onAvatarShowChange(true)}>
@@ -25,7 +26,11 @@ const ProfileAvatar = ({
     </div>
     {isAvatarShow
     && <Overlay>
-      <AvatarChoose onClose={onAvatarShowChange} avatarID={avatarID} />
+      <AvatarChoose
+        onClose={onAvatarShowChange}
+        avatarID={avatarID}
+        onNavAvatarChange={onNavAvatarChange}
+      />
     </Overlay>}
   </div>
 );

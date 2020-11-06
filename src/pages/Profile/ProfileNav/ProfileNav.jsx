@@ -12,6 +12,7 @@ const ProfileNav = ({
   avatarID,
   isAvatarShow,
   onAvatarShowChange,
+  onNavAvatarChange,
 }) => {
   const navList = ['Account', 'Payment', 'Tasks', 'Password'];
   return (
@@ -22,6 +23,7 @@ const ProfileNav = ({
         avatarID={avatarID}
         isAvatarShow={isAvatarShow}
         onAvatarShowChange={onAvatarShowChange}
+        onNavAvatarChange={onNavAvatarChange}
       />
       <div className={styles.navigation}>
         {

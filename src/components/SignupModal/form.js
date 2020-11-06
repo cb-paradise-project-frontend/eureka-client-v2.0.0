@@ -5,13 +5,15 @@ const FORM = {
     label: 'First Name',
     name: 'firstName',
     placeholder: 'First Name',
-    width: '157px'
+    width: '157px',
+    mobile: '45%'
   },
   lastName: {
     label: 'Last Name',
     type: 'string',
     placeholder: 'Last Name',
-    width: '157px'
+    width: '157px', 
+    mobile: '45%'
   },
   email: {
     label: 'Email',

@@ -14,13 +14,18 @@ const ModalContainer = styled.div`
   width: 330px;
   display: flex;
   flex-direction: column;
-
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 const InputWrapper = styled.div`
   display: inline-block;
   margin-bottom: 24px;
   width: ${props => props.width || '100%'};
+  @media screen and (max-width: 700px) {
+    width: ${props => props.mobile || '100%'};
+  }
   vertical-align: top;
   &:nth-child(1) {
     margin-right: 16px;

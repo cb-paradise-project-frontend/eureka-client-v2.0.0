@@ -41,11 +41,20 @@ class AvatarChoose extends React.Component {
     const result = await updateAvatar(avatarIDData);
 
     if (!choosenAvatar || !result) {
-      return;
+      this.props.onNotification({
+        status: 'error',
+        message: 'update avatar error, check signin status',
+      })
     }
+
+    this.props.onNotification({
+      status: 'success',
+      message: 'update avatar succeeded',
+    })
 
     this.props.onClose(false);
     this.props.onNavAvatarChange();
+    this.props.onAvatarChange(this.state.choosenAvatar)
   }
 
   render() {

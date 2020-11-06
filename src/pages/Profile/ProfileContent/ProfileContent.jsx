@@ -6,6 +6,7 @@ import Account from './Account';
 import Payment from './Payment';
 import Tasks from './Tasks';
 import Password from './Password';
+import { FetchContext } from '../../../apis/Fetch';
 
 const ProfileContent = ({
   currentNav,
@@ -16,6 +17,7 @@ const ProfileContent = ({
   onBirthdayChange,
   onSubmit,
   onNameChange,
+  onNotification,
 }) => {
   const contentDisplay = (pageIndex) => (
     {
@@ -32,7 +34,7 @@ const ProfileContent = ({
         onSubmit={onSubmit}
       />,
       Tasks: <Tasks />,
-      Password: <Password />,
+      Password: <Password onNotification={onNotification} />,
     }[pageIndex]
   );
 

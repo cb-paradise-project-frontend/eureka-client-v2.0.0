@@ -7,8 +7,8 @@ import Button from '../../../../components/Button';
 import resetPassword from '../../../../apis/Profile/resetPassword';
 
 class Password extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       currentPassword: '',
@@ -33,7 +33,18 @@ class Password extends React.Component {
     const passwords = { currentPassword, newPassword };
 
     const res = await resetPassword(passwords);
-    console.log(res);
+    
+    if (res.data) {
+      return this.props.onNotification({
+        status: 'error',
+        message: `${res.data}`
+      })
+    }
+
+    this.props.onNotification({
+      status: 'success',
+      message: 'password reset succeeded',
+    });
   }
 
   render() {

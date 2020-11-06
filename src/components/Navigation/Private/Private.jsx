@@ -1,14 +1,12 @@
-import React, { Component, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import styles from './Private.module.scss';
-
-// import NavigationMobile from '../components/NavigationMobile';
-// import NavigationWebPrivate from '../components/NavigationWebPrivate';
-// import NavigationMobilePrivate from '../components/NavigationMobilePrivate';
 
 import { AuthContext } from '../../../auth/Auth';
 import Button from '../../Button';
 import PrivateNavDropDown from '../components/PrivateNavDropDown';
+import AvatarDisplay from '../../AvatarDisplay';
 
 export default function Private({
   toggleLogin,
@@ -17,9 +15,15 @@ export default function Private({
 }) {
   const [showDropDown, dropDownToggler] = useState(false);
 
+  const { pathname } = useLocation();
+  
   const toggleDropDown = () => {
     dropDownToggler((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    if (showDropDown) toggleDropDown();
+  }, [pathname]);
 
   const LoginButton = () => (
     <div className={styles.login_button_wrapper} >
@@ -55,16 +59,15 @@ export default function Private({
             :
             <>
               <div
-              className={styles.userPrivate}
-              onClick={toggleDropDown}
+                className={styles.userPrivate}
+                onClick={toggleDropDown}
               >
-                <i className={"far fa-user-circle"}></i>
+                <AvatarDisplay avatarID={currentUser.avatarId} />
               </div>
               <div className={showDropDown ? styles.privateNavDropDownActive : styles.privateNavDropDown}>
                 <PrivateNavDropDown
                   togglePostTask={togglePostTask}
                   pageToggler={toggleDropDown}
-                  showDropDown={showDropDown}
                 />
               </div>
             </>

@@ -1,25 +1,18 @@
-import React, { Component, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+
 import styles from './DropDown.module.scss';
 
-// import logo from '../../../../assets/logo.svg';
-// import postTaskLogo from '../../../../assets/postTaskLogo.svg';
-
-import ToggleContent from '../../../../components/ToggleContent';
 import Button from '../../../../components/Button';
 import { AuthContext } from '../../../../auth/Auth';
-import LogOut from '../LogOut';
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
 function DropDown ({
   toggleLogin,
   toggleSignup,
   togglePostTask,
   pageToggler,
-  showDropDown,
+  handleLogout,
 }) {
-  const { pathname } = useLocation(); 
-
   const handlerCreator = (clickHandler) => (
     () => {
       clickHandler();
@@ -60,17 +53,22 @@ function DropDown ({
     </div>
   );
 
-  useEffect(() => {
-    if(showDropDown) pageToggler();
-  }, [pathname]);
+  const LogoutButton = () => (
+    <div className={styles.mobileNavDropDownItem} >
+      <Button.Text
+        color={'navMobile'}
+        onClick={handleLogout}
+      >
+        Log Out
+      </Button.Text>
+    </div>
+  );
 
   return (
-    // <div className={this.state.clicked ? styles.mobileNavDropDownActive : styles.mobileNavDropDown}>
     <AuthContext.Consumer>
-      {({currentUser}) =>(
+      {({currentUser}) => (
         <div>
-          {
-            !currentUser ?
+          {!currentUser ?
             <>
               <LoginButton />
               <SignupButton />
@@ -96,9 +94,7 @@ function DropDown ({
               >
                 Browse Tasks
               </Link>
-              <div className={styles.mobileNavDropDownItem}>
-                <LogOut />
-              </div> 
+              <LogoutButton />
             </>
           }
         </div>

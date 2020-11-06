@@ -1,4 +1,4 @@
-import React, { useEffect }  from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PrivateNavDropDown.module.scss';
 
@@ -9,10 +9,7 @@ import LogOut from '../LogOut';
 function PrivateNavDropDown({
   togglePostTask,
   pageToggler,
-  showDropDown,
 }) {
-  const { pathname } = useLocation();
-
   const PostTaskButton = () => (
     <div className={styles.privateNavDropDownItem} >
       <Button.Text

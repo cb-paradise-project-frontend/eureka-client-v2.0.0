@@ -10,6 +10,7 @@ import { AuthContext } from '../../../auth/Auth';
 import Button from '../../Button';
 import LogOut from '../components/LogOut';
 import PrivateNavDropDown from '../components/PrivateNavDropDown';
+import AvatarDisplay from '../../AvatarDisplay';
 
 export default function Private({
   toggleLogin,
@@ -59,7 +60,7 @@ export default function Private({
                 className={styles.userPrivate}
                 onClick={toggleDropDown}
               >
-                <i className={"far fa-user-circle"}></i>
+                <AvatarDisplay avatarID={currentUser.avatarId} />
               </div>
               <LogOut />
               <div className={showDropDown ? styles.privateNavDropDownActive : styles.privateNavDropDown}>

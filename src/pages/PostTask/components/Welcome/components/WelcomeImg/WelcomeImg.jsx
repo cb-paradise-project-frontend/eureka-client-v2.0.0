@@ -6,7 +6,6 @@ const Img = styled.img`
   padding: 20px 0px;
   width: 25em;
   height: auto;
-  margin-left: 2em;
   align-items: center;
   @media (max-width: 768px) {
     width: 80%;

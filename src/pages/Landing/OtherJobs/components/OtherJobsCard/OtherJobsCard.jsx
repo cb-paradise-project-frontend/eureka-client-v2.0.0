@@ -28,10 +28,10 @@ function OtherJobsCard ({
         <AvatarWrapper>
           <AvatarDisplay avatarID={avatarID}/>
         </AvatarWrapper>
-        <p>{description}</p>
+        <p className={styles.card__P}>{description}</p>
       </div>
       <div className={styles.card__price}>
-        <h5>{price}</h5>
+        <h5>${price}</h5>
       </div>
     </div>
     

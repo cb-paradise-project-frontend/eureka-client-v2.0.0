@@ -15,16 +15,16 @@ class TaskCategories extends React.Component {
       data: [
         {
           id: 1,
-          type: 'clean',
-          title: 'Clean',
+          type: 'cleaning',
+          title: 'Cleaning',
           srcUrl: '<i class="fas fa-broom"></i>',
           src: 'fas fa-broom',
         },
 
         {
           id: 2,
-          type: 'removal',
-          title: 'Removal',
+          type: 'moving',
+          title: 'Moving',
           srcUrl: '<i class="fas fa-truck"></i>',
           src: 'fas fa-truck',
         },

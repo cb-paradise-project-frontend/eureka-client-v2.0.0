@@ -1,10 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import styles from './Navigation.module.scss';
 
 import Public from './Public';
 import Private from './Private';
-
 import AuthModal from '../AuthModal';
 import PostTask from '../../pages/PostTask';
 import useToggleContent from '../../hooks/useToggleContent';

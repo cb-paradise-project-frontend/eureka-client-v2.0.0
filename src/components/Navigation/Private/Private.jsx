@@ -3,10 +3,6 @@ import { useLocation } from 'react-router-dom';
 
 import styles from './Private.module.scss';
 
-// import NavigationMobile from '../components/NavigationMobile';
-// import NavigationWebPrivate from '../components/NavigationWebPrivate';
-// import NavigationMobilePrivate from '../components/NavigationMobilePrivate';
-
 import { AuthContext } from '../../../auth/Auth';
 import Button from '../../Button';
 import LogOut from '../components/LogOut';
@@ -70,7 +66,10 @@ export default function Private({
                 <AvatarDisplay avatarID={currentUser.avatarId} />
               </div>
               <LogOut />
-              <div className={showDropDown ? styles.privateNavDropDownActive : styles.privateNavDropDown}>
+              <div className={showDropDown 
+                ? styles.privateNavDropDownActive
+                : styles.privateNavDropDown
+              }>
                 <PrivateNavDropDown
                   togglePostTask={togglePostTask}
                   pageToggler={toggleDropDown}

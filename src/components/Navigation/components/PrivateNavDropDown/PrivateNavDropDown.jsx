@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import styles from './PrivateNavDropDown.module.scss';
 
 import Button from '../../../Button';
-// import LogOut from '../LogOut';
 
 function PrivateNavDropDown({
   togglePostTask,

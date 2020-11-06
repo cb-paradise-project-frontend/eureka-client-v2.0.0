@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './DropDown.module.scss';
 
-// import logo from '../../../../assets/logo.svg';
-// import postTaskLogo from '../../../../assets/postTaskLogo.svg';
+import styles from './DropDown.module.scss';
 
 import Button from '../../../../components/Button';
 import { AuthContext } from '../../../../auth/Auth';
@@ -67,12 +65,10 @@ function DropDown ({
   );
 
   return (
-    // <div className={this.state.clicked ? styles.mobileNavDropDownActive : styles.mobileNavDropDown}>
     <AuthContext.Consumer>
-      {({currentUser}) =>(
+      {({currentUser}) => (
         <div>
-          {
-            !currentUser ?
+          {!currentUser ?
             <>
               <LoginButton />
               <SignupButton />

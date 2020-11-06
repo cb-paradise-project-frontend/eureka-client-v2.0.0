@@ -56,8 +56,8 @@ export default function Private({
             :
             <>
               <div
-              className={styles.userPrivate}
-              onClick={toggleDropDown}
+                className={styles.userPrivate}
+                onClick={toggleDropDown}
               >
                 <i className={"far fa-user-circle"}></i>
               </div>

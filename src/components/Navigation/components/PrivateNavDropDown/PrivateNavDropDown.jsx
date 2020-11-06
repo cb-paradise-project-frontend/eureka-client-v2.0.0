@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import styles from './PrivateNavDropDown.module.scss';
 
 import Button from '../../../Button';
-import PostTask from '../../../../pages/PostTask';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 // import LogOut from '../LogOut';
 

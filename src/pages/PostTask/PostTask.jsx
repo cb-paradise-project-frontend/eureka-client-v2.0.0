@@ -25,6 +25,8 @@ import { withToggleContent } from '../../components/ToggleContent';
 import MessageBox from '../../components/MessageBox';
 import LoadingPage from '../../components/LoadingPage/LoadingPage';
 import showState from './showStateConfig';
+// import LoginModal from '../../components/LoginModal';
+import AuthModal from '../../components/AuthModal';
 
 class PostTask extends React.Component {
   constructor(props) {
@@ -144,20 +146,20 @@ class PostTask extends React.Component {
     }));
   }
 
-  // async getQuote() {
-  //   this.props.toggleShow('Loading')();
-  //   await postTask(this.state); //api 200 404
-  //   this.props.toggleShow('Loading')();
-  //   this.props.history.push('/profile/tasks');
-  //   this.props.toggleShow('MsgBox')();
-  // } //HOC
   async getQuote() {
-    this.props.toggleLoadingPage();
+    this.props.toggleShow('Loading')();
     await postTask(this.state); //api 200 404
-    this.props.toggleLoadingPage();
+    this.props.toggleShow('Loading')();
     this.props.history.push('/profile/tasks');
-    this.props.toggleMsgBox()
+    this.props.toggleShow('MsgBox')();
   } //HOC
+  // async getQuote() {
+  //   this.props.toggleLoadingPage();
+  //   await postTask(this.state); //api 200 404
+  //   this.props.toggleLoadingPage();
+  //   this.props.history.push('/profile/tasks');
+  //   this.props.toggleMsgBox()
+  // } //HOC
 
   handleGetQuoteClick() {
     const { taskBudget, User } = this.state;
@@ -166,13 +168,13 @@ class PostTask extends React.Component {
       this.setState({ touch: true });
     } else {
       this.setState({ touch: false });
-      if (!User) {
-        //this.props.toggleShow('Login')();
-        this.props.toggleLoginModal();
-      } else {
-        this.getQuote();
-      };
-      // this.state.currentUser ? this.getQuote() : this.props.toggleShow('Login')();
+      // if (!User) {
+      //   this.props.toggleShow('Login')();
+      //   // this.props.toggleLoginModal();
+      // } else {
+      //   this.getQuote();
+      // };
+      User ? this.getQuote() : this.props.toggleShow('Login')();
       //this.state.currentUser ? this.getQuote() : this.props.toggleLoginModal();
     }
   }
@@ -329,12 +331,15 @@ class PostTask extends React.Component {
 
     const { title, content } = pages[currentStep];
 
-    const { onRequestClose, LoadingContent, LoginContent, MsgBoxContent, onClose } = this.props;
+    const { onRequestClose, onClose, ControlledContent, toggleShow } = this.props;
     // { onRequestClose, onClose, ControlledContent, toggleShow }
+    // { onRequestClose, LoadingContent, LoginContent, MsgBoxContent, onClose }
     return (
       <React.Fragment>
       <Modal onRequestClose={onRequestClose} >
-        <LoadingContent />
+        <ControlledContent.Loading>
+          <LoadingPage />
+        </ControlledContent.Loading>
         <Modal.Header>
           {title}
         </Modal.Header>
@@ -346,14 +351,21 @@ class PostTask extends React.Component {
           {postTaskBottom}
         </Modal.Footer>
       </Modal>
-      <LoginContent />
-      <MsgBoxContent onRequestClose={onClose} />
+      <ControlledContent.Login>
+        <AuthModal.Login pageToggler={toggleShow('Login')} />
+      </ControlledContent.Login>
+      <ControlledContent.MsgBox>
+        <MessageBox 
+          info='Successful submit!'
+          onRequestClose={onClose}
+        />
+      </ControlledContent.MsgBox>
       </React.Fragment>
     );
   }
 }
 
 PostTask.contextType = AuthContext;
-export default withMessageBox('Successful submit!')(false)(withLoginModal(false)(withLoadingPage(false)(withAlert(withRouter(PostTask)))));
-//withAlert(withToggleContent(showState)(withRouter(PostTask)));
+export default withAlert(withToggleContent(showState)(withRouter(PostTask)));
+// withMessageBox('Successful submit!')(false)(withLoginModal(false)(withLoadingPage(false)(withAlert(withRouter(PostTask)))));
 //withToggleContent(showState)(PostTask)

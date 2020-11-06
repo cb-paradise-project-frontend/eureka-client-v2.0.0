@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 export default function useToggleContent(initialState = false) {
   const [show, toggleShow] = useState(initialState);
@@ -7,11 +7,13 @@ export default function useToggleContent(initialState = false) {
     toggleShow((prevShow) => !prevShow);
   };
 
-  const Content = ({ children }) => (
-    <>
-      {show && children}
-    </>
-  );
+  const Content = useMemo(() => (
+    ({ children }) => (
+      <>
+        {show && children}
+      </>
+    )
+  ), [show]); 
 
   return [Content, toggler];
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 
 import styles from './Navigation.module.scss';
 
@@ -12,25 +12,13 @@ import { AuthContext } from '../../auth/Auth';
 import { removeLocalToken } from '../../apis';
 
 function Navigation() {
-  const [LoginContent, loginToggler] = useToggleContent();
-  const [SignupContent, signupToggler] = useToggleContent();
-  // const [PostTaskContent, postTaskToggler] = useToggleContent();
-  const [showPostTask, postTaskToggler] = useState(false);
+  const [LoginContent, toggleLogin] = useToggleContent();
+  const [SignupContent, toggleSignup] = useToggleContent();
+  const [PostTaskContent, togglePostTask] = useToggleContent();
 
   const history = useHistory();
   
   const { setUser } = useContext(AuthContext);
-
-  const toggleLogin = () => {
-    loginToggler((prevState) => !prevState);
-  };
-  const toggleSignup = () => {
-    signupToggler((prevState) => !prevState);
-  };
-  const togglePostTask = () => {
-    postTaskToggler((prevState) => !prevState);
-  };
-
 
   const handleLogout = () => {
     setUser(null);
@@ -67,10 +55,9 @@ function Navigation() {
       <SignupContent>
         <AuthModal.SignUp pageToggler={toggleSignup} />
       </SignupContent>
-
-      {showPostTask && 
+      <PostTaskContent>
         <PostTask pageToggler={togglePostTask} />
-      }
+      </PostTaskContent>
     </>
   )
 }

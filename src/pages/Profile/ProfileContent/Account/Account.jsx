@@ -25,7 +25,7 @@ const Account = ({
 
         return (
         <Input
-          displayValue={birthdayObj[index]}
+          value={birthdayObj[index]}
           label={ToPascalCase(index)}
           key={index}
           handleChange={handleBirthdayChange}
@@ -49,7 +49,7 @@ const Account = ({
       <Input
         key={key}
         label={ToPascalCase(key)}
-        displayValue={value}
+        value={value}
         handleChange={handleChange}
         disabled={(key === 'email' || key === 'userId')}
       />

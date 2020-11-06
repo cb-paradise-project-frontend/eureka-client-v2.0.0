@@ -2,17 +2,16 @@ import React from 'react';
 
 import styles from './TaskCategoriesItem.module.scss';
 
-// import houseIcon from '../../../../../assets/house.svg';
-
 function TaskCategoriesItem({
-  type,
   title,
-  srcUrl,
-  src,
+  onClick,
 }) {
   return (
     <div className={styles.taskCategoriesItem}>
-      <button className={styles.taskCategoriesItem__button}>
+      <button 
+        className={styles.taskCategoriesItem__button}
+        onClick={onClick}
+      >
         <div>
           {/* <img src={src} alt={type}/> */}
           {/* {srcUrl} */}

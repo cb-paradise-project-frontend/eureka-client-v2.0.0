@@ -113,9 +113,10 @@ const LoginModal = ({ pageToggler, setPage }) => {
 
       pageToggler();
     } catch (error) {
+      console.log(error);
       setNotification({
         status: 'error',
-        message: error.response.data.message,
+        message: error.response.data.message || 'Invalid account or password',
       });
     }
   }

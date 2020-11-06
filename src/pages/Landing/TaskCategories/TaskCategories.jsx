@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './TaskCategories.module.scss';
 
 import TaskCategoriesItem from './components/TaskCategoriesItem';
+import PostTask from '../../PostTask';
 
 class TaskCategories extends React.Component {
   constructor(props) {
@@ -12,16 +13,16 @@ class TaskCategories extends React.Component {
       data: [
         {
           id: 1,
-          type: 'clean',
-          title: 'Clean',
+          type: 'cleaning',
+          title: 'Cleaning',
           srcUrl: '<i class="fas fa-broom"></i>',
           src: 'fas fa-broom',
         },
 
         {
           id: 2,
-          type: 'removal',
-          title: 'Removal',
+          type: 'moving',
+          title: 'Moving',
           srcUrl: '<i class="fas fa-truck"></i>',
           src: 'fas fa-truck',
         },
@@ -33,13 +34,20 @@ class TaskCategories extends React.Component {
           srcUrl: '<i class="fas fa-car"></i>',
           src: 'fas fa-car',
         },
-      ]
+      ],
+      postTask: false,
     };
+    this.toggler = this.toggler.bind(this);
   }
-
+  toggler() {
+    this.setState((prevState) => ({ postTask: !prevState.postTask }))
+  }
   render() {
     const { data, } = this.state;
+
     return (
+      <React.Fragment>
+      {this.state.postTask && <PostTask pageToggler={this.toggler}/>}
       <div className={styles.taskCategories__container}>
         <div className={styles.bg__wrapper}>
           <div className={styles.content__wrapper}>
@@ -48,13 +56,13 @@ class TaskCategories extends React.Component {
               <div className={styles.iconContainer}>
                 {
                   data.map((item, index) => {
-                    // console.log(item)
                     return (
                       <TaskCategoriesItem
                       key = {item.id}
                       type = {item.type}
                       title = {item.title}
                       srcUrl = {item.srcUrl}
+                      onClick={this.toggler}
                       />
                     )
                   })
@@ -81,6 +89,7 @@ class TaskCategories extends React.Component {
           </div>
         </div>
       </div>
+      </React.Fragment>
     );
   }
 }

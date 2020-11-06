@@ -98,7 +98,7 @@
 
   .OtherJobs__button{
     margin: 25px auto;
-
+    outline: none;
     button {
       display: block;
       flex-wrap: wrap;
@@ -117,6 +117,7 @@
       border-width: 1px;
       border-style: solid;
       padding: 8px 24px;
+      outline: none;
       }
   }
 }

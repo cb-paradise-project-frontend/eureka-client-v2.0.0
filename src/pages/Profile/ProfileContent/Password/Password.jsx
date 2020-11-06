@@ -55,7 +55,7 @@ class Password extends React.Component {
         <Input
           key={title}
           label={title}
-          displayValue={value}
+          value={value}
           type="password"
           onChange={this.handleInputChangeCreator(title)}
         />

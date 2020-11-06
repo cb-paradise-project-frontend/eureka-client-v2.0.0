@@ -11,7 +11,7 @@ export default function AvatarDisplay({ avatarID }) {
         ? <img src={AvatarFinder(avatarID)} alt="user avatar" />
         : (
           <div className={styles.icon} >
-            <i className="ri-user-line ri-xl" ></i>
+            <i className="ri-user-line ri-l" ></i>
           </div>
         )
       }

@@ -22,7 +22,7 @@ const Payment = ({
         <Input
           key={key}
           label={ToPascalCase(key)}
-          displayValue={props[key]}
+          value={props[key]}
           handleChange={handleChange}
         />
       );

@@ -1,5 +1,5 @@
-import React, { Component, useContext, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './DropDown.module.scss';
 
 // import logo from '../../../../assets/logo.svg';
@@ -7,18 +7,14 @@ import styles from './DropDown.module.scss';
 
 import Button from '../../../../components/Button';
 import { AuthContext } from '../../../../auth/Auth';
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
 function DropDown ({
   toggleLogin,
   toggleSignup,
   togglePostTask,
   pageToggler,
-  showDropDown,
   handleLogout,
 }) {
-  const { pathname } = useLocation(); 
-
   const handlerCreator = (clickHandler) => (
     () => {
       clickHandler();
@@ -69,10 +65,6 @@ function DropDown ({
       </Button.Text>
     </div>
   );
-
-  useEffect(() => {
-    if(showDropDown) pageToggler();
-  }, [pathname]);
 
   return (
     // <div className={this.state.clicked ? styles.mobileNavDropDownActive : styles.mobileNavDropDown}>

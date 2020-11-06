@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component, useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Public.module.scss';
 
 import logo from '../../../assets/logo.svg';
@@ -18,9 +18,15 @@ export default function Public({
  }) {
   const [showDropDown, dropDownToggler] = useState(false);
 
+  const { pathname } = useLocation();
+
   const toggleDropDown = () => {
     dropDownToggler((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    if(showDropDown) toggleDropDown();
+  }, [pathname]);
 
   const PostTaskButton = () => (
     <Button
@@ -88,13 +94,12 @@ export default function Public({
         </div>
       </div>
 
-      <div  className={showDropDown ? styles.mobileNavDropDownActive : styles.mobileNavDropDown}>
+      <div className={showDropDown ? styles.mobileNavDropDownActive : styles.mobileNavDropDown}>
         <DropDown
           toggleLogin={toggleLogin}
           toggleSignup={toggleSignup}
           togglePostTask={togglePostTask}
           pageToggler={toggleDropDown}
-          showDropDown={showDropDown}
         />
       </div>
     </div>

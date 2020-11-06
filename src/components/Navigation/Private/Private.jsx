@@ -1,4 +1,5 @@
-import React, { Component, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import styles from './Private.module.scss';
 
@@ -19,9 +20,15 @@ export default function Private({
 }) {
   const [showDropDown, dropDownToggler] = useState(false);
 
+  const { pathname } = useLocation();
+  
   const toggleDropDown = () => {
     dropDownToggler((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    if (showDropDown) toggleDropDown();
+  }, [pathname]);
 
   const LoginButton = () => (
     <div className={styles.login_button_wrapper} >

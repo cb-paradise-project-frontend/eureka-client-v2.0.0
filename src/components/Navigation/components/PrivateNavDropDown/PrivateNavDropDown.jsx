@@ -1,9 +1,8 @@
-import React, { useEffect }  from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PrivateNavDropDown.module.scss';
 
 import Button from '../../../Button';
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 // import LogOut from '../LogOut';
 
 function PrivateNavDropDown({
@@ -11,8 +10,6 @@ function PrivateNavDropDown({
   pageToggler,
   showDropDown,
 }) {
-  const { pathname } = useLocation();
-
   const PostTaskButton = () => (
     <div className={styles.privateNavDropDownItem} >
       <Button.Text
@@ -26,10 +23,6 @@ function PrivateNavDropDown({
       </Button.Text>
     </div>
   );
-
-  useEffect(() => {
-    if (showDropDown) pageToggler();
-  }, [pathname]);
 
   return (
     <div className={styles.private}>

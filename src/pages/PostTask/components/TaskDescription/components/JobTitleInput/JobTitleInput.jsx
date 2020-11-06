@@ -23,7 +23,7 @@ export default function JobTitleInput({
       <div className={styles.text_area} >
         <Input
           isError={isJobTitleInvalid}
-          displayValue={jobTitle}
+          value={jobTitle}
           maxLength={maxLength}
           handleChange={onJobTitle}
           errorMessage={errorHint}

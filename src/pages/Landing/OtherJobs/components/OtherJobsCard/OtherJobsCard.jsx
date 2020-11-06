@@ -7,9 +7,10 @@ function OtherJobsCard ({
   description,
   price,
   rate,
+  onClick,
 }) {
   return (
-  <div className={styles.card__container}>
+  <div className={styles.card__container} onClick={onClick}>
     <div>
       <h4>{title}</h4>
     </div>

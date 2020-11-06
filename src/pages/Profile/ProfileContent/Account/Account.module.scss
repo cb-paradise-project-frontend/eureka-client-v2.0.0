@@ -14,11 +14,12 @@
 {
   .account_wrapper {
     margin-top: 5px;
+    
+    div:nth-child(n+2) {
+      margin-top: 5px;
+    }
   }
 
-  div:nth-child(n+2) {
-    margin-top: 5px;
-  }
 
   .update_btn {
     margin-top: 20px;

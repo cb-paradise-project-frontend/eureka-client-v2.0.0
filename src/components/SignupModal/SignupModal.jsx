@@ -14,7 +14,6 @@ const ModalContainer = styled.div`
   width: 330px;
   display: flex;
   flex-direction: column;
-
 `;
 
 const InputWrapper = styled.div`

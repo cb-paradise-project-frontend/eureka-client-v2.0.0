@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import styles from './Navigation.module.scss';
 
@@ -14,7 +14,8 @@ import { removeLocalToken } from '../../apis';
 function Navigation() {
   const [LoginContent, loginToggler] = useToggleContent();
   const [SignupContent, signupToggler] = useToggleContent();
-  const [PostTaskContent, postTaskToggler] = useToggleContent();
+  // const [PostTaskContent, postTaskToggler] = useToggleContent();
+  const [showPostTask, postTaskToggler] = useState(false);
 
   const history = useHistory();
   
@@ -66,9 +67,10 @@ function Navigation() {
       <SignupContent>
         <AuthModal.SignUp pageToggler={toggleSignup} />
       </SignupContent>
-      <PostTaskContent>
+
+      {showPostTask && 
         <PostTask pageToggler={togglePostTask} />
-      </PostTaskContent>
+      }
     </>
   )
 }

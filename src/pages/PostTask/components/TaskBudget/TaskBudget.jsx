@@ -36,10 +36,8 @@ class TaskBudget extends React.Component{
           <div className={styles.title_box}>
             <h2 className={styles.other_heading}> What is your budget? </h2>
             <div className={styles.want_help_box}>
-              <div className={styles.want_help}>
               Want&nbsp;help? 
               <BudgetHelp />
-              </div> 
             </div>
           </div>
           <label className={styles.hint_label}> 

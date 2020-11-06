@@ -10,17 +10,17 @@ const categoryList = [
   {
     key: 'Clean',
     label: 'Clean',
-    tabDescription : "想接清洁任务吗？下面这些还可以，酬劳不错",
+    tabDescription : "Are you a careful person? You can try those well-paid clean jobs",
   },
   {
     key: 'Removal',
     label: 'Removal',
-    tabDescription : "你是搬家肌肉人吗，我们需要你，人傻力气大的那种",
+    tabDescription : "Come on, my friends, let eureka help you move",
   },
   {
     key: 'Pickup',
-    label: 'Pickup',
-    tabDescription : "接送机任务，留学生再不来，我们没活干了",
+    label: 'Pick up',
+    tabDescription : "We need responsible drivers for the need of pick up",
   },
 ]
 

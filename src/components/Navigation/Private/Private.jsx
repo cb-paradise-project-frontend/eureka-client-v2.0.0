@@ -12,6 +12,7 @@ export default function Private({
   toggleLogin,
   toggleSignup,
   togglePostTask,
+  handleLogout,
 }) {
   const [showDropDown, dropDownToggler] = useState(false);
 
@@ -64,10 +65,14 @@ export default function Private({
               >
                 <AvatarDisplay avatarID={currentUser.avatarId} />
               </div>
-              <div className={showDropDown ? styles.privateNavDropDownActive : styles.privateNavDropDown}>
+              <div className={showDropDown 
+                ? styles.privateNavDropDownActive 
+                : styles.privateNavDropDown
+              }>
                 <PrivateNavDropDown
                   togglePostTask={togglePostTask}
                   pageToggler={toggleDropDown}
+                  handleLogout={handleLogout}
                 />
               </div>
             </>

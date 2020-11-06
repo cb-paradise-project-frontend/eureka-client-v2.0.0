@@ -1,5 +1,11 @@
 .user {
   cursor: pointer;
+  width: 100%;
+  display: flex;
+  & > * {
+    margin-right: 10px;;
+  }
+  
 
   .userPrivate{
     display: flex;

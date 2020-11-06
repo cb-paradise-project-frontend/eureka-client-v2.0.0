@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 import styles from './PrivateNavDropDown.module.scss';
 
 import Button from '../../../Button';
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
-import LogOut from '../LogOut';
 
 function PrivateNavDropDown({
   togglePostTask,
   pageToggler,
+  handleLogout,
 }) {
   const PostTaskButton = () => (
     <div className={styles.privateNavDropDownItem} >
@@ -26,13 +25,17 @@ function PrivateNavDropDown({
 
   const LogOutButton = () => (
     <div className={styles.privateNavDropDownItem} >
-      <LogOut />
+      <Button.Text
+        color={'navMobile'}
+        onClick={() => {
+          handleLogout();
+          pageToggler();
+        }}
+      >
+        Log Out
+      </Button.Text>
     </div>
   );
-
-  useEffect(() => {
-    if (showDropDown) pageToggler();
-  }, [pathname]);
 
   return (
     <div className={styles.private}>

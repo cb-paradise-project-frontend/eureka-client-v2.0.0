@@ -25,55 +25,17 @@
     flex-direction: row;
     flex-wrap: wrap;
     // border: 1px solid green;
-
-    p::after {
-      content: "";
-      background-color: transparent;
-      display: block;
-      height: 2px;
-      width: 2;
-      margin: 5px auto 0;
-    }
     
-    p:hover {
+  }
+
+  .OtherJobs__title__active{
+    p {
       color: #83009F;
     }
-    p:active {
-      color: green;
-    }
-    p:visited {
-      color: red;
-    }
 
-    p:hover::after {
-      // content: "";
+    p::after {
       background-color: #83009F;
-      // display: block;
-      // height: 2px;
-      // width: 2;
-      // margin: 5px auto 0;
-      // transition: all 0.3s ease-in-out;
-      // position: relative;
-      // display: block;
-      // top: 6px;
-      // width: 100%;
-      // height: 4px;
-      // border-radius: 4px;
-      // background: #008fb4;
-      // transition: all .15s cubic-bezier(.615,.19,.305,.91);
-      // transform: translateY(-4px);
-      // opacity: 0;
     }
-    // p:visited::after{
-    //   content: "";
-    //   background-color: green;
-    //   display: block;
-    //   height: 2px;
-    //   width: 2;
-    //   margin: 5px auto 0;
-    // }
-
-    
   }
 
   // .OtherJobs__cards {
@@ -122,7 +84,7 @@
   }
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width:768px) {
   .OtherJobs__title {
 
     margin: 0 auto 10px;

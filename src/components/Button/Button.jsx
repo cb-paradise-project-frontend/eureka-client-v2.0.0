@@ -22,6 +22,7 @@ const Button = ({
         navy: 'navy',
         transparent: 'transparent',
         transparentActive: 'transparentActive',
+        categories: 'categories',
 
       }[color] || 'green',
       {
@@ -29,6 +30,7 @@ const Button = ({
         medium: 'medium',
         large: 'large',
         navbar: 'navbar',
+        categoriesButton: 'categoriesButton',
       }[size] || 'medium',
     )}
     disabled={isDisabled}

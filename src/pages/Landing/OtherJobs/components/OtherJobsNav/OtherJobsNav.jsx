@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import styles from './OtherJobsNav.module.scss';
 
+
 import OtherJobsCardContainer from '../OtherJobsCardContainer';
 import ShowCard from '../OtherJobsShowCard';
 import { CategoryConsumer } from '../../../../categoryContext/categoryContext';
@@ -24,6 +25,8 @@ const categoryList = [
   },
 ]
 
+// const cx = classnames.bind(styles);
+
 class OtherJobsNav extends Component {
   constructor(props) {
     super(props);
@@ -44,8 +47,10 @@ class OtherJobsNav extends Component {
       <ShowCard 
         onClick={() => this.handleComponentShowing(category.key)}
         key={category.key}
+        active = {category.key === this.state.currentCategory}
       >
         {category.label}
+        
       </ShowCard>
       ))
 

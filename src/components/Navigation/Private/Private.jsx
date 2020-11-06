@@ -8,7 +8,6 @@ import styles from './Private.module.scss';
 
 import { AuthContext } from '../../../auth/Auth';
 import Button from '../../Button';
-import LogOut from '../components/LogOut';
 import PrivateNavDropDown from '../components/PrivateNavDropDown';
 
 export default function Private({
@@ -61,7 +60,6 @@ export default function Private({
               >
                 <i className={"far fa-user-circle"}></i>
               </div>
-              <LogOut />
               <div className={showDropDown ? styles.privateNavDropDownActive : styles.privateNavDropDown}>
                 <PrivateNavDropDown
                   togglePostTask={togglePostTask}

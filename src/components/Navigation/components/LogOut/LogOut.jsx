@@ -5,22 +5,15 @@ import { removeLocalToken } from '../../../../apis/utils';
 import styled from 'styled-components';
 
 const LogOutButton = styled.button`
-  color:#426ad2;
-  text-align: center;
   cursor: pointer;
-  display: block;
-  font-size: 13px;
-  letter-spacing: .4px;
   text-decoration: none;
   border: none;
   outline: none;
-  font-weight: 600;
-  background-color: transparent;
-  margin: 0 15px;
-  width: 60px;
+  background: transparent;
+  color: #313849;
 
   &:hover {
-    color: #008fb4;
+    color: #3ABEF9;
   }
 `
 

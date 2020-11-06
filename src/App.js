@@ -8,7 +8,7 @@ import { AuthProvider } from './auth/Auth';
 import { NavProvider } from './components/Navigation/NavContext';
 import PrivateRoute from './auth/PrivateRoute';
 import Landing from './pages/Landing';
-import Profile from './pages/Profile';
+import ProfileContainer from './pages/Profile';
 import NotFound from './pages/NotFound';
 import Navigation from './components/Navigation';
 import Browse from './pages/Browse';
@@ -27,7 +27,7 @@ const App = () => (
           <Route path="/tasks" >
             <Browse />
           </Route>
-          <PrivateRoute path="/profile" component={Profile} />
+          <PrivateRoute path="/profile" component={ProfileContainer} />
           <Route path="/reset-password" component={ResetPassword} />
           <Route component={NotFound} />
         </Switch>

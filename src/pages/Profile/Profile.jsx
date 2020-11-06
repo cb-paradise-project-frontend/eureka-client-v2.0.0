@@ -10,8 +10,10 @@ import { setIntializeBirthday, setIntializePayment, setInitalizeBilling } from '
 import updateUserName from '../../apis/Profile/updateUserName';
 import getAvatar from '../../apis/Profile/getAvatar';
 import { toDate } from '../OfferModal/ProfilePage/SubPages/Birthday/utils';
+import Notification from '../../components/Notification';
 
 import styles from './Profile.module.scss';
+import { FetchContext } from '../../apis/Fetch';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -45,6 +47,7 @@ class Profile extends React.Component {
     this.getUserProfile = this.getUserProfile.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleAvatarShow = this.handleAvatarShow.bind(this);
+    this.handleAvatarChange = this.handleAvatarChange.bind(this);
   }
 
   handleDalin = () => {
@@ -146,6 +149,7 @@ class Profile extends React.Component {
   });
 
   handleUpdateProfile = async () => {
+    const { onNotification } = this.props;
     const {
       account: {
         birthday, mobile,
@@ -172,14 +176,21 @@ class Profile extends React.Component {
     };
 
     const res = await saveProfile(profile);
-
-    if (res) {
-      return console.log(202, 'succeeded updated', res);
+    console.log(999, res);
+    if (res.data) {
+      return onNotification({
+        status: 'error',
+        message: 'update profile failed, please check payment details'
+      });
     }
-    return console.log(500, 'failed');
+    return onNotification({
+      status: 'success',
+      message: 'update profile succeeded'
+    });
   }
 
   handleNameChange = async () => {
+    const { onNotification } = this.props;
     const {
       account: {
         firstName,
@@ -190,19 +201,36 @@ class Profile extends React.Component {
     const username = { firstName, lastName };
     const res = await updateUserName(username);
 
-    if (res) {
-      this.setState({
-        displayName: `${res.firstName} ${res.lastName}`,
-      });
+    if (res.data) {
+      return onNotification({
+        status: 'error',
+        message: 'update name failed'
+      })
     }
-    
-    window.location.reload();
+
+    this.setState({
+      displayName: `${res.firstName} ${res.lastName}`,
+    });
+    return onNotification({
+      status: 'success',
+      message: 'update name succeeded',
+    });
   }
 
   handleAvatarShow(boolean) {
     this.setState({
       isAvatarShow: boolean,
     });
+  }
+
+  handleAvatarChange(avatarId) {
+    this.setState((prevState) => ({
+      ...prevState,
+      account: {
+        ...prevState.account,
+        avatarId,
+      },
+    }));
   }
 
   render() {
@@ -213,6 +241,7 @@ class Profile extends React.Component {
       payment,
       isAvatarShow,
     } = this.state;
+    const { onNotification } = this.props;
 
     return (
       <React.Fragment>
@@ -226,6 +255,7 @@ class Profile extends React.Component {
               isAvatarShow={isAvatarShow}
               onAvatarShowChange={this.handleAvatarShow}
               onNavAvatarChange={this.handleNameChange}
+              onAvatarChange={this.handleAvatarChange}
             />
             <ProfileContent
               currentNav={currentNav}
@@ -236,10 +266,11 @@ class Profile extends React.Component {
               onBirthdayChange={this.handleBirthdayChangeCreator}
               onSubmit={this.handleUpdateProfile}
               onNameChange={this.handleNameChange}
+              onNotification={onNotification}
             />
           </div>
         </div>
-      </React.Fragment>
+        </React.Fragment>
     );
   }
 }

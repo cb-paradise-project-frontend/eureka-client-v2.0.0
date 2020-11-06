@@ -66,7 +66,7 @@ const StatusIcon = styled.div`
   }
 `;
 
-const Notification = ({ status, message }) => {
+const Notification = ({status}) => {
   const { notification, setNotification } = useContext(FetchContext);
 
   const hideNotification = () => {
@@ -88,7 +88,7 @@ const Notification = ({ status, message }) => {
           {status === 'success' ? <i className="ri-checkbox-circle-fill" /> : null}
           {status === 'error' ? <i className="ri-error-warning-fill" /> : null}
         </StatusIcon>
-        {notification.message || message}
+        {notification.message}
       </Wrapper>
   );
 }

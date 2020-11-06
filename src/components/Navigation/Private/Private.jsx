@@ -62,7 +62,7 @@ export default function Private({
               <div
                 className={styles.userPrivate}
                 onClick={toggleDropDown}
-              >{console.log(9988, currentUser)}
+              >
                 <AvatarDisplay avatarID={currentUser.avatarId} />
               </div>
               <div className={showDropDown 

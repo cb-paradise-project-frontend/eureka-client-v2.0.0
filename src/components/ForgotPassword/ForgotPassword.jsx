@@ -5,6 +5,8 @@ import { email as emailValidator } from '../../utils/validators/input';
 import Button from '../Button';
 import Input from '../Input';
 import Modal from '../Modal';
+import { FetchContext } from '../../apis/Fetch';
+
 
 import styles from './ForgotPassword.module.scss';
 
@@ -47,6 +49,7 @@ class ForgotPassword extends React.Component {
 
   handleEmailSubmit = async () => {
     const { email, isError, touched } = this.state;
+    const { setNotification } = this.context;
 
     this.handleValidEmail();
 
@@ -54,11 +57,20 @@ class ForgotPassword extends React.Component {
       const emailData = {
         email,
       };
-      // console.log('执行后端操作', emailData);
-      const result = await sendResetPasswordLink(emailData);
-      console.log('后端返回', result);
+      const res = await sendResetPasswordLink(emailData);
+      
+      if (res.data) {
+        return setNotification({
+          status: 'error',
+          message: `your email not found, please sign-up`,
+        });
+      }
 
       this.props.pageToggler();
+      return setNotification({
+        status: 'success',
+        message: 'reset-password link had been sent, please check your email'
+      });
     }
   }
 
@@ -103,5 +115,7 @@ class ForgotPassword extends React.Component {
     );
   }
 }
+
+ForgotPassword.contextType = FetchContext;
 
 export default ForgotPassword;

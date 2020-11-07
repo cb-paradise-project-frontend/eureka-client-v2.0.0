@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 
 import styles from './OtherJobsNav.module.scss';
 
+
 import OtherJobsCardContainer from '../OtherJobsCardContainer';
 import ShowCard from '../OtherJobsShowCard';
 import { CategoryConsumer } from '../../../../categoryContext/categoryContext';
+import ToggleContent from '../../../../../components/ToggleContent';
+import PostTask from '../../../../PostTask';
 
 const categoryList = [
   {
@@ -23,6 +26,8 @@ const categoryList = [
     tabDescription : "We need responsible drivers for the need of pick up",
   },
 ]
+
+// const cx = classnames.bind(styles);
 
 class OtherJobsNav extends Component {
   constructor(props) {
@@ -44,8 +49,10 @@ class OtherJobsNav extends Component {
       <ShowCard 
         onClick={() => this.handleComponentShowing(category.key)}
         key={category.key}
+        active = {category.key === this.state.currentCategory}
       >
         {category.label}
+        
       </ShowCard>
       ))
 
@@ -62,10 +69,22 @@ class OtherJobsNav extends Component {
               tabDescription={categoryList.find((category) => category.key === currentCategory).tabDescription}
             />}
           </CategoryConsumer>
-
-          <div className={styles.OtherJobs__button}>
-            <button>Get started now</button>
+          <ToggleContent
+          toggle={(togglePostTask) => (
+            <div 
+              className={styles.OtherJobs__button}
+              onClick={togglePostTask}
+            >
+            <button>
+              Get started now
+            </button>
           </div>
+          )} 
+          content={(togglePostTask) => (
+            <PostTask pageToggler={togglePostTask} />
+          )}
+        />
+
       </div>
     );
   }

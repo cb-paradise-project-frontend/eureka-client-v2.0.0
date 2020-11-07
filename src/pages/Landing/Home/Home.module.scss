@@ -6,11 +6,12 @@
     height: 100%;
     position: relative;
     background: url(../../../assets/bg-home.svg) no-repeat center/cover;
-
+    
     .content__wrapper {
       height: 100%;
       padding: 0 10%;
       // border: 1px solid green;
+      // border: 1px solid red;
 
       .home__content {
         display: flex;
@@ -95,6 +96,7 @@
       background: url(../../../assets/responsive/tablet/bg-home-pad.svg) no-repeat center/cover;
       .content__wrapper {
         height: 100%;
+        // border: 1px solid black;
         .home__content {
           display: none;
         }

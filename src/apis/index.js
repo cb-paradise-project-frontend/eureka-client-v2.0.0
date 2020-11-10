@@ -11,3 +11,5 @@ export { default as getTasksByCategory } from './Task/getTasksByCategory';
 export { default as getProfile } from './Profile/getProfile';
 export { default as saveProfile } from './Profile/saveProfile';
 export { default as checkUser } from './Auth/checkUser';
+export { default as signup } from './Auth/signup';
+export { default as login } from './Auth/login';

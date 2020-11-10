@@ -12,31 +12,6 @@ class TaskCategories extends React.Component {
     super(props);
 
     this.state = {
-      // data: [
-      //   {
-      //     id: 1,
-      //     type: 'cleaning',
-      //     title: 'Cleaning',
-      //     srcUrl: '<i class="fas fa-broom"></i>',
-      //     src: 'fas fa-broom',
-      //   },
-
-      //   {
-      //     id: 2,
-      //     type: 'moving',
-      //     title: 'Moving',
-      //     srcUrl: '<i class="fas fa-truck"></i>',
-      //     src: 'fas fa-truck',
-      //   },
-
-      //   {
-      //     id: 3,
-      //     type: 'Pickup',
-      //     title: 'Pickup',
-      //     srcUrl: '<i class="fas fa-car"></i>',
-      //     src: 'fas fa-car',
-      //   },
-      // ],
       postTask: false,
     };
     this.toggler = this.toggler.bind(this);
@@ -45,8 +20,7 @@ class TaskCategories extends React.Component {
     this.setState((prevState) => ({ postTask: !prevState.postTask }))
   }
   render() {
-    const { data, } = this.state;
-
+    
     const CleanButton = () => (
       <ToggleContent
         toggle={(toggler) => (

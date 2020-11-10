@@ -4,7 +4,6 @@ import styles from './Home.module.scss';
 
 import Button from '../../../components/Button';
 import PostTask from '../../PostTask';
-import ToggleContent from '../../../components/ToggleContent';
 import useToggleContent from '../../../hooks/useToggleContent';
 
 function Home() {
@@ -21,14 +20,12 @@ function Home() {
             <h1>on Eureka</h1>
             <p>It’s amazing what you can’t do yourself</p>
             <div>
-            
-                <Button 
-                  color={'mint'}
-                  onClick={togglePostTask}
-                >
-                  Get started now
-                </Button>
-              
+            <Button 
+              color={'mint'}
+              onClick={togglePostTask}
+            >
+              Get started now
+            </Button>
             </div>
           </div>
           <div className={styles.home__content__mobile}>

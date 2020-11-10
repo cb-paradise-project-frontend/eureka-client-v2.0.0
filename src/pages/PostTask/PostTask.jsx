@@ -13,7 +13,7 @@ import Button from '../../components/Button';
 import ProgressBar from './components/ProgressBar';
 import Modal from '../../components/Modal';
 import { withAlert } from './components/AlertModal';
-import { postTask } from '../../apis';
+import { getTaskByOwnerId, postTask } from '../../apis';
 import { AuthContext } from '../../auth/Auth';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import { withToggleContent } from '../../components/ToggleContent';
@@ -63,6 +63,7 @@ class PostTask extends React.Component {
   componentDidMount() {
     const { currentUser } = this.context;
     this.setState({ currentUser: currentUser });
+    this.loadTask();
   } //withForm HOC
 
   componentDidUpdate(prevProps, prevState) {
@@ -74,6 +75,13 @@ class PostTask extends React.Component {
     }
     if(budgetHour !== prevHour || budgetHourlyWage !== prevWage) {
       this.onTaskBudget();
+    }
+  }
+  async loadTask() {
+    const postedTask = await getTaskByOwnerId();
+
+    if(postedTask.length !== 0){
+      this.setState({currentStep: 1})
     }
   }
 
@@ -304,7 +312,7 @@ class PostTask extends React.Component {
 
     const postTaskBottom = (
       <div className={styles.bottom} >
-        { (currentStep === 0)|| backBtn }
+        { (currentStep === 0 || currentStep === 1)|| backBtn }
         { currentStep === pages.length - 1 ? submitBtn : nextBtn }
       </div>
     );

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { AuthContext } from '../../auth/Auth';
-import { api, extractTokenFromResponse, extractInfoFromToken } from '../../apis';
+import { extractTokenFromResponse, extractInfoFromToken, login } from '../../apis';
 import useForm from '../../hooks/useForm';
 import Modal from '../Modal';
 import Button from '../Button';
@@ -85,7 +85,7 @@ const LoginModal = ({ pageToggler, setPage }) => {
     try {
       setLoading(true);
 
-      const res = await api.post('/users/login', formData);
+      const res = await login(formData);
 
       if (!res) {
         pageToggler();

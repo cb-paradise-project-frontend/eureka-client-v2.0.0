@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { AuthContext } from '../../auth/Auth';
-import { api, extractTokenFromResponse, extractInfoFromToken } from '../../apis';
+import { extractTokenFromResponse, extractInfoFromToken, signup } from '../../apis';
 import useForm from '../../hooks/useForm';
 import Modal from '../Modal';
 import Button from '../Button';
@@ -83,7 +83,7 @@ const SignupModal = ({ pageToggler, setPage }) => {
     try {
       setLoading(true);
 
-      const res = await api.post('/users', formData);
+      const res = await signup(formData);
 
       if (!res) {
         pageToggler();

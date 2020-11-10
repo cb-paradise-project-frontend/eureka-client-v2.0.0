@@ -1,6 +1,7 @@
 select:required:invalid {
   color: gray;
   margin-right: 0.5em;
+  margin-top: 10px;
 }
 option[value=""][disabled] {
   display: none;

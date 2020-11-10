@@ -80,7 +80,9 @@ class PostTask extends React.Component {
   async loadTask() {
     const postedTask = await getTaskByOwnerId();
 
-    if(postedTask.length !== 0){
+    if(!postedTask){
+      return null;
+    }else if (postedTask.length !== 0){
       this.setState({currentStep: 1})
     }
   }

@@ -36,7 +36,7 @@ const SignupModal = ({ pageToggler, setPage }) => {
   const { setUser } = useContext(AuthContext);
   const form = useForm(FORM);
   const [errorHighlightField, setErrorHighlightField] = useState('');
-  const { setNotification } = useContext(FetchContext);
+  const { loading, setLoading, setNotification } = useContext(FetchContext);
 
   const {
     getData,
@@ -73,8 +73,6 @@ const SignupModal = ({ pageToggler, setPage }) => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    console.log('error in onSignUp', error);
-    console.log('getErrorMessage in onSignUp', getErrorMessage());
 
     if (error) {
       setErrorHighlightField({
@@ -85,6 +83,8 @@ const SignupModal = ({ pageToggler, setPage }) => {
     }
 
     try {
+      setLoading(true);
+
       const res = await api.post('/users', formData);
 
       if (!res) {
@@ -100,15 +100,17 @@ const SignupModal = ({ pageToggler, setPage }) => {
 
       await setUser(info.user);
 
+      setLoading(false);
+
       setNotification({
         status: 'success',
         message: 'Sign up successed'
       })
 
-      history.push('/profile');
-
       pageToggler();
     } catch (error) {
+      setLoading(false);
+
       setNotification({
         status: 'error',
         message: error.response.data.message,
@@ -124,7 +126,7 @@ const SignupModal = ({ pageToggler, setPage }) => {
           <div>
             {fieldList}
           </div>
-          <Button type="submit" onClick={onSignUp}>Sign up</Button>
+          <Button isLoading={loading} type="submit" onClick={onSignUp}>Sign up</Button>
         </ModalContainer>
       </Modal.Content>
       <Modal.Footer>

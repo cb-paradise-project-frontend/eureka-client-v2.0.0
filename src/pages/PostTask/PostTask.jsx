@@ -144,9 +144,8 @@ class PostTask extends React.Component {
     this.props.toggleShow('Loading')();
     await postTask(this.state); //api 200 404
     this.props.toggleShow('Loading')();
-    this.props.history.push('/profile/tasks');
     this.props.toggleShow('MsgBox')();
-  } //HOC
+  }
 
   handleGetQuoteClick() {
     const { taskBudget, User } = this.state;
@@ -337,8 +336,8 @@ class PostTask extends React.Component {
       <ControlledContent.MsgBox>
         <MessageBox 
           info='Successful submit!'
-          onRequestClose={onClose}
-        />
+          onRequestClose={() => {onClose(); this.props.history.push('/profile/tasks')}}
+          />
       </ControlledContent.MsgBox>
       </React.Fragment>
     );

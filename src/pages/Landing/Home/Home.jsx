@@ -5,8 +5,11 @@ import styles from './Home.module.scss';
 import Button from '../../../components/Button';
 import PostTask from '../../PostTask';
 import ToggleContent from '../../../components/ToggleContent';
+import useToggleContent from '../../../hooks/useToggleContent';
 
 function Home() {
+  const [PostTaskContent, togglePostTask] = useToggleContent();
+  
   return (
     <React.Fragment>
    
@@ -18,24 +21,18 @@ function Home() {
             <h1>on Eureka</h1>
             <p>It’s amazing what you can’t do yourself</p>
             <div>
-            <ToggleContent
-              toggle={(togglePostTask) => (
+            
                 <Button 
                   color={'mint'}
                   onClick={togglePostTask}
                 >
                   Get started now
                 </Button>
-              )} 
-              content={(togglePostTask) => (
-                <PostTask pageToggler={togglePostTask} />
-              )}
-            />
+              
             </div>
           </div>
           <div className={styles.home__content__mobile}>
             <h2>Connect with experts to get the job done</h2>
-            {/* <h3>On</h3> */}
             <h1>On Eureka</h1>
             <div>
               <Button color={'mint'}>
@@ -49,6 +46,9 @@ function Home() {
         </div>
       </div>
     </div>
+    <PostTaskContent>
+      <PostTask pageToggler={togglePostTask} />
+    </PostTaskContent>
     </React.Fragment>
   );
 }

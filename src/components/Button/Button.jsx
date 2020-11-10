@@ -3,10 +3,19 @@ import classNames from 'classnames/bind';
 
 import styles from './Button.module.scss';
 
+import Spinner from './components/Spinner';
+
 const cx = classNames.bind(styles);
 
 const Button = ({
-  children, onClick, color, size, long, isDisabled, ...otherProps
+  children,
+  onClick,
+  color,
+  size,
+  long,
+  isDisabled,
+  isLoading,
+  ...otherProps
 }) => (
   <button
     className={cx(
@@ -23,7 +32,6 @@ const Button = ({
         transparent: 'transparent',
         transparentActive: 'transparentActive',
         categories: 'categories',
-
       }[color] || 'green',
       {
         small: 'small',
@@ -32,11 +40,13 @@ const Button = ({
         navbar: 'navbar',
         categoriesButton: 'categoriesButton',
       }[size] || 'medium',
+      { isLoading },
     )}
     disabled={isDisabled}
     onClick={onClick}
     {...otherProps}
   >
+    {isLoading ? <Spinner /> : null}
     {children}
   </button>
 );

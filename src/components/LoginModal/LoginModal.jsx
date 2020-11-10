@@ -40,7 +40,7 @@ const LoginModal = ({ pageToggler, setPage }) => {
   const { setUser } = useContext(AuthContext);
   const form = useForm(FORM);
   const [errorHighlightField, setErrorHighlightField] = useState('');
-  const { setNotification } = useContext(FetchContext);
+  const { loading, setLoading, setNotification } = useContext(FetchContext);
 
   const {
     getData,
@@ -79,7 +79,6 @@ const LoginModal = ({ pageToggler, setPage }) => {
     e.preventDefault();
 
     if (error) {
-      console.log('error in login modal', error);
       setErrorHighlightField({
         field: error.field,
         message: error.message,
@@ -88,6 +87,8 @@ const LoginModal = ({ pageToggler, setPage }) => {
     };
 
     try {
+      setLoading(true);
+
       const res = await api.post('/users/login', formData);
 
       if (!res) {
@@ -104,16 +105,18 @@ const LoginModal = ({ pageToggler, setPage }) => {
 
       await setUser(info.user);
 
+      setLoading(false);
+
       setNotification({
         status: 'success',
         message: 'Log in successed'
-      })
-
-      history.push('/profile');
+      });
 
       pageToggler();
+
     } catch (error) {
-      console.log(error);
+      setLoading(false);
+
       setNotification({
         status: 'error',
         message: error.response.data.message || 'Invalid account or password',
@@ -134,7 +137,7 @@ const LoginModal = ({ pageToggler, setPage }) => {
               Forgot password?
             </Button.Text>
           </ForgotPswBtn>
-          <Button onClick={onLoginWithEmail} >
+          <Button isLoading={loading} onClick={onLoginWithEmail} >
             Log in
           </Button>
         </ModalContainer>

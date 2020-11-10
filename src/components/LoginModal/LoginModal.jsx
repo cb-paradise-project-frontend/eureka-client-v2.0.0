@@ -1,8 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-
 import styled from 'styled-components';
-
 import { AuthContext } from '../../auth/Auth';
 import { api, extractTokenFromResponse, extractInfoFromToken } from '../../apis';
 import useForm from '../../hooks/useForm';
@@ -36,7 +33,6 @@ const ForgotPswBtn = styled.div`
 `;
 
 const LoginModal = ({ pageToggler, setPage }) => {
-  const history = useHistory();
   const { setUser } = useContext(AuthContext);
   const form = useForm(FORM);
   const [errorHighlightField, setErrorHighlightField] = useState('');

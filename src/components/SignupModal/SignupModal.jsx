@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../auth/Auth';
 import { api, extractTokenFromResponse, extractInfoFromToken } from '../../apis';
 import useForm from '../../hooks/useForm';
@@ -32,7 +31,6 @@ const Label = styled.div`
 `;
 
 const SignupModal = ({ pageToggler, setPage }) => {
-  const history = useHistory();
   const { setUser } = useContext(AuthContext);
   const form = useForm(FORM);
   const [errorHighlightField, setErrorHighlightField] = useState('');

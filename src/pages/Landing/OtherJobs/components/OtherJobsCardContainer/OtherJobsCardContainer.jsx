@@ -46,6 +46,7 @@ function OtherJobsCardContainer({
                     rate = {due_Date.toDateString()}
                     onClick={jumpToBrowser(task.id)}
                     avatarID={task.postedBy.avatarId}
+                    status={task.status}
                   />)
               }
             )

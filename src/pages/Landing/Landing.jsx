@@ -151,9 +151,9 @@ class Landing extends React.Component {
     const Clean = await getTasksByCategory('Clean');
 
     const tasksList = {
-      Pickup,
-      Removal,
-      Clean,
+      Pickup: Pickup.filter(task => task.status === 'OPEN'),
+      Removal: Removal.filter(task => task.status === 'OPEN'),
+      Clean: Clean.filter(task => task.status === 'OPEN'),
     } 
     this.setState({tasksList});
   } 
@@ -170,7 +170,7 @@ class Landing extends React.Component {
       >
       <Home />
       <TaskCategories />
-      <OtherJobs  data={this.state.JobsCards}/>
+      <OtherJobs />
       <Articles data={this.state.article}/>
       <MeetTasker data={this.state.tasker}/>
       <Footer />

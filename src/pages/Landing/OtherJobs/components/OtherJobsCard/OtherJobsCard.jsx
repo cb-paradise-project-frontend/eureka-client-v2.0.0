@@ -16,6 +16,7 @@ function OtherJobsCard ({
   rate,
   onClick,
   avatarID,
+  status,
 }) {
   return (
   <div className={styles.card__container} onClick={onClick}>
@@ -30,8 +31,11 @@ function OtherJobsCard ({
         </AvatarWrapper>
         <p className={styles.card__P}>{description}</p>
       </div>
-      <div className={styles.card__price}>
-        <h5>${price}</h5>
+      <div className={styles.card__price_status}>
+        <div className={styles.card__price}>
+          <h5>${price}</h5>
+        </div>
+        <p className={styles.card__status}>{status}</p>
       </div>
     </div>
     

@@ -5,6 +5,7 @@
   left: 0;
   width: 100%;
   z-index: 100;
+  padding: 0 2%;
 
   display: block;
   box-shadow: none;
@@ -19,11 +20,8 @@
     justify-content: space-between;
     align-items: center;
     height: 72px;
-    max-width: 1024px;
     position: relative;
     margin: 0 auto;
-    // border: 1px solid red;
-
   }
 }
 

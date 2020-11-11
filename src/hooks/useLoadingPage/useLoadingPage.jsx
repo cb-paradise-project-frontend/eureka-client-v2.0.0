@@ -1,21 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import LoadingPage from '../../components/LoadingPage';
+import useMask from '../useMask';
 
-export default function useLoadingPage(initialState = true) {
-  const [loading, toggleLoading] = useState(initialState);
-
-  const toggler = (targetState) => (
-    targetState 
-      ? toggleLoading(targetState)
-      : toggleLoading((prevState) => !prevState)
-  );
-
-  const Content = ({ children }) => (
-    <>
-      {loading ? <LoadingPage /> : children}
-    </>
-  );
-
-  return [Content, toggler, loading];
+export default function useLoadingPage(initialState) {
+  return useMask(LoadingPage, initialState);
 }

@@ -11,16 +11,17 @@ const rotate = keyframes`
   }
 `;
 
-const SpinnerIcon = styled.i`
+const SpinnerIcon = styled.div`
+  display: inline-block;
   color: white;
-  animation: ${rotate} infinite 1.4s linear;
-  margin-right: 8px;
-  line-height: 16px;
+  animation: ${rotate} 2s linear infinite;
 `;
 
 const Spinner = () => {
   return (
-    <SpinnerIcon className="ri-loader-2-line ri-1x" />
+    <SpinnerIcon>
+      <i className="ri-loader-4-fill ri-3x" ></i>
+    </SpinnerIcon>
   );
 }
 

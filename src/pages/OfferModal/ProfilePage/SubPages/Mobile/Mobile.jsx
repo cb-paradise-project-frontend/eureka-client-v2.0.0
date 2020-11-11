@@ -5,17 +5,21 @@ import styles from './Mobile.module.scss';
 import Button from '../../../../../components/Button';
 import { onlyNumber } from '../../../../../utils/validators/input';
 import Input from '../../../../../components/Input';
+import { isMobileNumber } from '../../../../../utils/validators/submit';
 
 export default function Mobile({ storedValue, onSubmit }) {
   const [mobile, setMobile] = useState(storedValue);
   const [isVerified, toggleEdit] = useState(!!mobile);
+  const [testing, toggleTest] = useState(false);
 
   const handleEdit = () => {
     toggleEdit(!isVerified);
   };
 
   const handleSubmit = () => {
-    onSubmit(mobile);
+    return isMobileNumber(mobile)
+      ? onSubmit(mobile)
+      : toggleTest(true);
   };
 
   const introduction = "We'll keep you up to date about the latest happenings on your tasks by SMS.";
@@ -60,7 +64,9 @@ export default function Mobile({ storedValue, onSubmit }) {
             validator={onlyNumber}
             handleChange={setMobile}
             disabled={isVerified}
-            maxLength={15} // 15 is the max length of international phone number
+            isError={testing && !isMobileNumber(mobile)}
+            errorMessage="Mobile number is not valid"
+            maxLength={10} // 10 is the length of Australian mobile number
           />
         </div>
         <div className={styles.button_wrapper} >

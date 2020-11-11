@@ -16,5 +16,5 @@ export default function isDate(day, month, year, validYearRange=150) {
   ];
 
   const reducer = (accumulator, currentValue) => accumulator && currentValue;
-  return conditions.reduce(reducer);
+  return conditions.reduce(reducer, true);
 };

@@ -31,7 +31,7 @@
 
 .input_bar{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 15px 0;
 
   :disabled{

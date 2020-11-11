@@ -39,9 +39,11 @@ export default function TaskDisplay({
   );
 
   useEffect(() => {
-    if (touched) toggleList(false);
-
-    if (!touched) setTouched(true);
+    if (touched) {
+      toggleList(false)
+    } else {
+      setTouched(true)
+    }
   }, [location]);
 
   useEffect(() => {

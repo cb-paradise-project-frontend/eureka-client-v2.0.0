@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import LoadingPage from '../../components/LoadingPage';
 
@@ -11,11 +11,11 @@ export default function useLoadingPage(initialState = true) {
       : toggleLoading((prevState) => !prevState)
   );
 
-  const Content = ({ children }) => (
+  const Content = useMemo(() => ({ children }) => (
     <>
       {loading ? <LoadingPage /> : children}
     </>
-  );
+  ), [loading]) ;
 
   return [Content, toggler, loading];
 }

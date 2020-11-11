@@ -6,10 +6,9 @@ import Input from '../../components/Input';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  width: 166px;
+  width: 300px;
   padding: 20px 0px;
 `
-
 
 function Place({
   type,
@@ -19,24 +18,18 @@ function Place({
 }) {
 
   useEffect(() => {
-    getLocation(`${type}`, handleAddressQuery); //"regions" 
-    // handleAddressQuery();
+    getLocation(`${type}`, handleAddressQuery);
   }, [getLocation])
-
-  // const handleAddressQuery = (addressQuery) => {
-  //   setPlace(addressQuery)
-  // }
-
  
   return(
     <Wrapper>
       <Input 
         id="searchTextField" 
-        placeholder="Enter a suburb"
+        placeholder="Enter a location"
         defaultValue={place}
         handleChange={handleAddressQuery}
       />
-      { isPlaceInvalid && <ErrorMsg> Please enter a suburb </ErrorMsg>}
+      { isPlaceInvalid && <ErrorMsg> Please enter the task location </ErrorMsg>}
     </Wrapper>
   )
 }

@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from './Button.module.scss';
 
-import Spinner from './components/Spinner';
+import Spinner from '../Spinner';
 
 const cx = classNames.bind(styles);
 

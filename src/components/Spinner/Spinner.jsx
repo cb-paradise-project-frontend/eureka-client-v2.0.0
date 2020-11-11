@@ -20,7 +20,7 @@ const SpinnerIcon = styled.i`
 
 const Spinner = () => {
   return (
-    <SpinnerIcon className="ri-loader-2-line ri-1x" />
+    <SpinnerIcon className="ri-loader-2-line ri-xl" ></SpinnerIcon>
   );
 }
 
